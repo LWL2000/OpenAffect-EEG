@@ -9,7 +9,9 @@ EEG, stimulus media, participant-level predictions, feature arrays, or weights.
 ## Reviewer acceptance
 
 Reviewers and independent testers should begin with
-`docs/REVIEWER_QUICKSTART.md`. In a Python 3.11 or 3.12 environment, the
+[the reviewer quickstart](docs/REVIEWER_QUICKSTART.md). A
+[detailed Chinese independent-user procedure](docs/independent_acceptance_task_zh.md)
+is also available. In a Python 3.11 or 3.12 environment, the
 following command verifies the release manifest, dependency consistency,
 synthetic audit path, and frozen V11 evidence hashes:
 

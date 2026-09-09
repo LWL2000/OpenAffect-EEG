@@ -29,8 +29,8 @@
     {
       "mode": "644",
       "path": "README.md",
-      "sha256": "62862cbecdff7fe1d6831857161bba6a91ab063f132e696704cde9dff693ea71",
-      "size_bytes": 19337
+      "sha256": "b74c4e28cc2d638497d047384fb37f397b60e9ac1ff19315641b3a8b3e07df4b",
+      "size_bytes": 19469
     },
     {
       "mode": "644",
@@ -53,7 +53,7 @@
     {
       "mode": "644",
       "path": "configs/submission_release_v11.yaml",
-      "sha256": "2ec8938a7061328ea15a0843dd04d8df7bcc6a89a5464d33f03e61d2e88ceaf5",
+      "sha256": "1444809ae09284e0eeab0203b11d7ae6154098bfea9bd430373d1d7c1dd383dd",
       "size_bytes": 4631
     },
     {
@@ -77,8 +77,8 @@
     {
       "mode": "644",
       "path": "docs/independent_acceptance_task_zh.md",
-      "sha256": "890d6e586f2883c429bacd78af3734de2ef4c504f4462264d020e287461ed94c",
-      "size_bytes": 3472
+      "sha256": "3679caf98c4d057ea83ce0b941ed1974c303d3eba4a63de7371dd0b0f1a31d69",
+      "size_bytes": 6591
     },
     {
       "mode": "644",
@@ -969,5 +969,5 @@
       "size_bytes": 5716
     }
   ],
-  "version": "submission_closure_v11_acceptance2_20260909"
+  "version": "submission_closure_v11_acceptance3_20260909"
 }

@@ -1,52 +1,110 @@
-# OpenAffect-EEG 独立电脑完整验收任务
+# OpenAffect-EEG 独立复现与验收执行文档
 
-## 验收目的
+## 1. 任务目标
 
-这项任务验证匿名代码包能否在另一台电脑上仅凭公开文档完成安装、运行和证据重建。它不下载原始 EEG，不重新训练模型，也不要求 GPU。
+请在一台未用于本项目开发的电脑、虚拟机或新系统账户中，仅根据本文档完成安装和验收。任务验证的是：
 
-如果执行者本人参与过本项目开发，结果只能称为“独立机器验收”；如果执行者没有参与开发，并且只阅读 `docs/REVIEWER_QUICKSTART.md`，才可以称为“独立用户验收”。
+- 公开仓库可以从零安装；
+- 发布清单中的文件完整且哈希一致；
+- Python 依赖不存在已知冲突；
+- 合成数据上的审计流程可以执行；
+- 论文使用的两份聚合证据摘要可以从冻结来源重建。
 
-## 执行前准备
+这不是原始 EEG 模型的全量重新训练。公开仓库不包含原始 EEG、刺激材料、个体级预测、特征数组或模型权重，因此本任务不能被描述成“独立重复了论文全部实证结果”。
 
-- 使用一台没有本项目开发环境的新电脑、虚拟机或新系统账户。
-- 安装 Git，以及 Python 3.11 或 3.12。
-- 至少预留 2 GB 磁盘空间和稳定网络。
-- 不需要 CUDA、GPU、原始 EEG、刺激视频、特征或模型权重。
-- 验收者不要提前阅读内部开发文档，也不要接受作者口头操作指导。
+## 2. 验收类型
 
-## Windows PowerShell 步骤
+- **独立用户验收**：执行者没有参与本项目开发，只收到仓库链接和本文档，过程中没有获得作者逐步指导。
+- **独立机器验收**：执行者参与过开发，或作者本人换一台电脑运行。
+- **作者辅助验收**：执行过程中作者解释了具体命令、修改了环境或提供了修复方案。
 
-将匿名仓库下载或克隆到新目录后，在仓库根目录执行：
+三种结果都有诊断价值，但论文中必须按真实类型报告，不能混称。
+
+## 3. 执行前要求
+
+- Git；
+- CPython 3.11 或 3.12；
+- 稳定网络；
+- 至少 2 GB 可用磁盘；
+- 不需要 CUDA、GPU、Conda、原始 EEG 或任何受限数据。
+
+请新建目录，不要在已有项目副本或作者提供的虚拟环境中运行。开始计时后，保留完整终端输出，包括第一次失败。
+
+## 4. Windows PowerShell
+
+将下面 `$RepoUrl` 的内容替换为负责人发送的 HTTPS 仓库地址，然后逐行执行：
 
 ```powershell
-Start-Transcript -Path ..\openaffect_acceptance_terminal.txt
+$RepoUrl = "把仓库的 HTTPS 地址粘贴到这里"
+$RunDir = "OpenAffect-EEG-acceptance-01"
+
+New-Item -ItemType Directory -Path $RunDir
+Set-Location $RunDir
+Start-Transcript -Path .\openaffect_acceptance_terminal.txt
+
+Write-Host "START_UTC=$((Get-Date).ToUniversalTime().ToString('o'))"
+git --version
+py -3.12 --version
+git clone --depth 1 $RepoUrl artifact
+Set-Location artifact
+git rev-parse HEAD
+git status --short
+
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install ".[audit]"
+.\.venv\Scripts\python.exe -m pip install --disable-pip-version-check ".[audit]"
 .\.venv\Scripts\python.exe scripts\verify_review_artifact.py `
   --project-root . `
   --output acceptance-run
+
+$VerifyExit = $LASTEXITCODE
+Write-Host "VERIFY_EXIT_CODE=$VerifyExit"
+Get-Content .\acceptance-run\independent_acceptance_report.json
+git diff --exit-code
+Write-Host "END_UTC=$((Get-Date).ToUniversalTime().ToString('o'))"
 Stop-Transcript
 ```
 
-如果电脑只安装了 Python 3.11，将第一条命令改为 `py -3.11 -m venv .venv`。
+如果没有 Python 3.12，但安装了 3.11，将所有 `py -3.12` 改为 `py -3.11`。这里直接调用虚拟环境中的 Python，不需要执行激活脚本，也不需要修改 PowerShell 执行策略。
 
-## Linux 或 macOS 步骤
+## 5. Linux 或 macOS
+
+将 `REPO_URL` 替换为负责人发送的 HTTPS 仓库地址。在新终端中执行：
 
 ```bash
-script ../openaffect_acceptance_terminal.txt
+REPO_URL="把仓库的 HTTPS 地址粘贴到这里"
+RUN_DIR="OpenAffect-EEG-acceptance-01"
+
+mkdir "$RUN_DIR"
+cd "$RUN_DIR"
+script -q openaffect_acceptance_terminal.txt
+
+echo "START_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+git --version
+python3.12 --version
+git clone --depth 1 "$REPO_URL" artifact
+cd artifact
+git rev-parse HEAD
+git status --short
+
 python3.12 -m venv .venv
-.venv/bin/python -m pip install ".[audit]"
+.venv/bin/python -m pip install --disable-pip-version-check ".[audit]"
 .venv/bin/python scripts/verify_review_artifact.py \
   --project-root . \
   --output acceptance-run
+
+VERIFY_EXIT=$?
+echo "VERIFY_EXIT_CODE=$VERIFY_EXIT"
+cat acceptance-run/independent_acceptance_report.json
+git diff --exit-code
+echo "END_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 exit
 ```
 
-如果只安装了 Python 3.11，将 `python3.12` 改为 `python3.11`。
+如果只有 Python 3.11，将全部 `python3.12` 改为 `python3.11`。Ubuntu/Debian 若提示缺少 `venv`，请保留原始错误；安装相应系统包后，必须在验收备注中写明该操作。
 
-## 成功标准
+## 6. 成功判据
 
-终端命令退出码为 0，且 `acceptance-run/independent_acceptance_report.json` 中满足：
+终端应出现 `VERIFY_EXIT_CODE=0`。同时，`artifact/acceptance-run/independent_acceptance_report.json` 必须满足：
 
 - 顶层 `status` 为 `pass`；
 - `supported_python` 为 `pass`；
@@ -55,28 +113,54 @@ exit
 - `synthetic_toy_audit` 为 `pass`；
 - `source_linked_evidence_rebuild` 为 `pass`。
 
-## 需要记录并交回的材料
+任意一项失败都应按失败记录。不要手工修改仓库文件来获得 `pass`。
 
-请把以下三个文件私下交给项目负责人：
+## 7. 必须交回的材料
 
-1. `acceptance-run/independent_acceptance_report.json`：机器自动生成的核心验收结果。
-2. `openaffect_acceptance_terminal.txt`：完整终端记录，包括首次失败，不要只保留最后成功部分。
-3. `docs/independent_acceptance_form.md` 的填写副本：记录是否参与开发、系统与 Python 版本、耗时、文档不清楚之处、失败及所需帮助。
+请将以下材料私下发送给项目负责人，不要提交到公开 Issue：
 
-额外需要告诉项目负责人：
+1. `artifact/acceptance-run/independent_acceptance_report.json`；
+2. `openaffect_acceptance_terminal.txt`；
+3. 填写后的 `docs/independent_acceptance_form.md` 副本，或下面的等价中文记录；
+4. 第一次运行失败时的报告和终端记录，即使后续已经修复成功。
 
-- 使用的匿名 URL；
-- 下载日期和时区；
-- 从打开文档到第一次得到结果的大致分钟数；
-- 是否在不搜索作者信息的情况下从包内看到了姓名、单位、账号、邮箱或服务器信息；
-- 如果失败，原始错误文本、发生在哪条命令、是否请求过帮助以及帮助内容；
-- 修复后重新运行时，新旧两个报告对应的 release-manifest SHA-256。
+中文记录至少填写：
 
-终端日志可能包含本机用户名或路径。交回前可以把用户名替换为 `[REDACTED]`，但不要修改命令输出、错误信息、版本号、时间或哈希。
+```text
+匿名验收者编号：
+验收日期与时区：
+是否参与过项目开发：是/否
+是否获得了本文档之外的操作指导：是/否
+操作系统与版本：
+CPU 架构：
+Python 版本：
+git rev-parse HEAD 输出：
+报告中的 release version：
+报告中的 release-manifest SHA-256：
+最终 VERIFY_EXIT_CODE：
+最终 status：pass/fail
+从打开文档到首次得到结果的分钟数：
+不清楚的命令：
+首次失败及完整错误：
+为成功运行做过的修改或获得的帮助：
+是否从仓库内容发现作者、单位、账号、邮箱或私有服务器信息：是/否
+其他意见：
+```
 
-## 不应填写的内容
+终端日志中的本机用户名、主机名和个人目录可以替换成 `[REDACTED]`。不要修改命令、错误文本、版本号、时间、Git 提交号、状态或哈希。
 
-- 不需要验收者姓名、学校、邮箱、GitHub 账号或电脑主机名。
-- 不需要截图替代 JSON 和终端日志。
-- 不要把原始 EEG、特征、刺激或任何受限数据放进验收材料。
-- 首次失败不能删除；它是判断文档和安装流程是否真实可用的重要证据。
+## 8. 失败处理
+
+- `Output directory must be absent or empty`：不要删除首次记录；把输出目录改为 `acceptance-run-02` 后重试。
+- `Python 3.11 or 3.12 is required`：改用支持的 CPython 版本，记录原版本和更换过程。
+- `Release manifest mismatch`：停止修改文件，保存报告和日志并联系负责人。
+- 下载或 `pip` 网络失败：保留错误；网络恢复后在新终端记录中重试。
+- 其他失败：不要凭经验改源码。先发送完整报告、终端日志和出错命令。
+
+首次失败本身是评估文档可用性的重要证据，不能只保留最终成功记录。截图可以补充，但不能替代 JSON、终端日志和验收表。
+
+## 9. 结果解释边界
+
+通过本任务可以声明：公开审计工具在该操作系统和 Python 版本上能够从零安装、执行，并重建指定聚合证据。
+
+不能仅凭本任务声明：原始 EEG 已被第三方重新下载、所有模型已重新训练、论文全部数值获得独立复制，或论文的科学结论已被外部研究者确认。
