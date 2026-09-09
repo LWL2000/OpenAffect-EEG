@@ -1,0 +1,122 @@
+[
+  {
+    "dataset_id": "ds005540",
+    "representation": "de_ridge_base",
+    "minimum": -0.0185026925800635,
+    "maximum": 0.0181974836998979,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds005540",
+    "representation": "de_ridge_strong",
+    "minimum": -0.0187518896268836,
+    "maximum": 0.0002346828300913,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds005540",
+    "representation": "eegnet_lr1e3",
+    "minimum": -0.0079111146911128,
+    "maximum": 0.0098869971329398,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds005540",
+    "representation": "eegnet_lr1e4",
+    "minimum": -0.0011919009952656,
+    "maximum": 0.0014409324752979,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds005540",
+    "representation": "labram_ridge_base",
+    "minimum": -0.0675176886249419,
+    "maximum": -0.013893892522208,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds005540",
+    "representation": "labram_ridge_strong",
+    "minimum": -0.0272095896350937,
+    "maximum": -0.0072045586537449,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds006850",
+    "representation": "bandpower_ridge_base",
+    "minimum": -0.0179163311740749,
+    "maximum": 0.0080943167061407,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds006850",
+    "representation": "bandpower_ridge_strong",
+    "minimum": -0.0197429352678594,
+    "maximum": 0.0054775917819877,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds006850",
+    "representation": "eegnet_lr1e3",
+    "minimum": -0.0157249775035657,
+    "maximum": 0.0168841932461025,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds006850",
+    "representation": "eegnet_lr1e4",
+    "minimum": 0.0002594312885632,
+    "maximum": 0.0176579155661918,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds006850",
+    "representation": "labram_ridge_base",
+    "minimum": -0.0360499644144583,
+    "maximum": -0.007430667249146,
+    "positive_pointwise": 0,
+    "negative_pointwise": 2,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  },
+  {
+    "dataset_id": "ds006850",
+    "representation": "labram_ridge_strong",
+    "minimum": -0.0147005793066379,
+    "maximum": 0.0014862433355639,
+    "positive_pointwise": 0,
+    "negative_pointwise": 0,
+    "positive_dose_family": 0,
+    "negative_dose_family": 0
+  }
+]

@@ -1,0 +1,198 @@
+{
+  "datasets": [
+    {
+      "dataset_id": "ds002721",
+      "input_sha256": "55331398caa0f93c328555b13a3f7efad8a73967e50ea526276f7cf62c71a1d5",
+      "iterations": 2000,
+      "bootstrap_seed": 20260902,
+      "fixed_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "supports": [
+        {
+          "seed": 11,
+          "n_trials": 19,
+          "n_participants": 5,
+          "n_stimuli_or_conditions": 9
+        },
+        {
+          "seed": 23,
+          "n_trials": 25,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 13
+        },
+        {
+          "seed": 47,
+          "n_trials": 25,
+          "n_participants": 5,
+          "n_stimuli_or_conditions": 7
+        },
+        {
+          "seed": 71,
+          "n_trials": 22,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 11
+        },
+        {
+          "seed": 101,
+          "n_trials": 46,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 18
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": false,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    },
+    {
+      "dataset_id": "ds003751",
+      "input_sha256": "7d6e0447312256ca5a48720540969358ce88963e2b787f6c6ecc664823cd4f9c",
+      "iterations": 2000,
+      "bootstrap_seed": 20260902,
+      "fixed_seeds": [
+        23,
+        47,
+        71,
+        101
+      ],
+      "supports": [
+        {
+          "seed": 23,
+          "n_trials": 6,
+          "n_participants": 3,
+          "n_stimuli_or_conditions": 3
+        },
+        {
+          "seed": 47,
+          "n_trials": 10,
+          "n_participants": 4,
+          "n_stimuli_or_conditions": 4
+        },
+        {
+          "seed": 71,
+          "n_trials": 5,
+          "n_participants": 3,
+          "n_stimuli_or_conditions": 2
+        },
+        {
+          "seed": 101,
+          "n_trials": 6,
+          "n_participants": 5,
+          "n_stimuli_or_conditions": 4
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": false,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    },
+    {
+      "dataset_id": "ds005540",
+      "input_sha256": "d6502afcfae3384efca29d7fc6897cdd64f114575309f44cad9d6ef866684d73",
+      "iterations": 2000,
+      "bootstrap_seed": 20260902,
+      "fixed_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "supports": [
+        {
+          "seed": 11,
+          "n_trials": 48,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 23,
+          "n_trials": 40,
+          "n_participants": 5,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 47,
+          "n_trials": 56,
+          "n_participants": 7,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 71,
+          "n_trials": 32,
+          "n_participants": 4,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 101,
+          "n_trials": 32,
+          "n_participants": 4,
+          "n_stimuli_or_conditions": 8
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": false,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    },
+    {
+      "dataset_id": "ds006866",
+      "input_sha256": "4bfa5e13706cf7f75b7ed740d06548544ec58e2c8c9ada9a66f63230708906c7",
+      "iterations": 2000,
+      "bootstrap_seed": 20260902,
+      "fixed_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "supports": [
+        {
+          "seed": 11,
+          "n_trials": 1200,
+          "n_participants": 30,
+          "n_stimuli_or_conditions": 1
+        },
+        {
+          "seed": 23,
+          "n_trials": 1199,
+          "n_participants": 30,
+          "n_stimuli_or_conditions": 1
+        },
+        {
+          "seed": 47,
+          "n_trials": 1200,
+          "n_participants": 30,
+          "n_stimuli_or_conditions": 1
+        },
+        {
+          "seed": 71,
+          "n_trials": 1200,
+          "n_participants": 30,
+          "n_stimuli_or_conditions": 1
+        },
+        {
+          "seed": 101,
+          "n_trials": 1200,
+          "n_participants": 30,
+          "n_stimuli_or_conditions": 1
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": true,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    }
+  ],
+  "output_sha256": {
+    "table_added_value_scores.csv": "14349b3f1c63f7ec8d2dbb37a0b3cda3dd075ea55ad424ed00034e3bcee48658",
+    "table_added_value_contrasts.csv": "c994028712605ead4749122ad061ef8be161efd90824a93d43dd811bb3c3964b",
+    "table_added_value_summary.csv": "6c06ab539e6c39485440c5efedf7c4367b16d1bf09583c7e0f6565ff12434fde"
+  }
+}

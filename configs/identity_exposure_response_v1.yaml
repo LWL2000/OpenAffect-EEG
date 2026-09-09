@@ -1,0 +1,93 @@
+version: identity_exposure_response_v1
+frozen_at: 2026-09-01
+seeds: [11, 23, 47, 71, 101]
+ridge_alphas: [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+bootstrap_iterations: 1000
+estimand:
+  participant_axis: labelled target-participant calibration trials used only for a known-ID post-hoc offset
+  stimulus_axis: labelled other-participant observations of each test stimulus added to population training
+  fixed_support: identical test trials within every seed and dataset response surface
+  training_size: each repeated-stimulus row replaces one metadata/target-matched base-training row
+  boundary: observed self-report prediction, not latent-emotion disentanglement
+experiments:
+  ds005540:
+    name: EmoEEG-MC
+    trial_table: ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+    split_root: ${data_root}/derived/splits/core_v1/subject_stimulus_holdout
+    subject_column: subject_uid
+    stimulus_column: stimulus_uid
+    stimulus_label: stimulus
+    deployment_context: &within_source_context
+      target_unlabelled_data: not used
+      calibration_unit: labelled complete trials
+      calibration_session_relation: not isolated by available metadata
+      stimulus_metadata: source-released normative prior retained when available
+      session_holdout: false
+      dataset_holdout: false
+      device_holdout: false
+    participant_doses: [0, 1, 2, 4, 8]
+    stimulus_doses: [0, 1, 2, 4, 8]
+    representations:
+      de:
+        path: ${data_root}/derived/features/ds005540_de.npz
+        view: channel
+      labram_pretrained:
+        path: ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+        view: foundation
+      labram_random:
+        path: ${data_root}/derived/features/ds005540_labram_random_v1.npz
+        view: foundation
+      cbramod_pretrained:
+        path: ${data_root}/derived/features/ds005540_cbramod.npz
+        view: foundation
+      cbramod_random:
+        path: ${data_root}/derived/features/ds005540_cbramod_random.npz
+        view: foundation
+  ds002721:
+    name: MusicEEG
+    trial_table: ${data_root}/derived/manifests/ds002721_trials.tsv.gz
+    split_root: ${data_root}/derived/cross_dataset_music_labram_v1/splits/subject_stimulus_holdout
+    subject_column: subject_uid
+    stimulus_column: stimulus_uid
+    stimulus_label: stimulus
+    deployment_context: *within_source_context
+    participant_doses: [0, 1, 2, 4, 8]
+    stimulus_doses: [0, 1, 2, 4]
+    representations:
+      bandpower:
+        path: ${data_root}/derived/features/ds002721_bandpower.npz
+        view: channel
+      labram_pretrained:
+        path: ${data_root}/derived/cross_dataset_music_labram_v1/features/ds002721_labram_pretrained_v1.npz
+        view: foundation
+      labram_random:
+        path: ${data_root}/derived/cross_dataset_music_labram_v1/features/ds002721_labram_random_v1.npz
+        view: foundation
+  ds003751:
+    name: DENS complete-case supplement
+    trial_table: ${data_root}/derived/manifests/ds003751_trials.tsv.gz
+    split_root: ${data_root}/derived/splits/core_v1/subject_stimulus_holdout
+    subject_column: subject_uid
+    stimulus_column: stimulus_uid
+    stimulus_label: stimulus
+    deployment_context: *within_source_context
+    participant_doses: [0, 1, 2]
+    stimulus_doses: [0, 1, 2]
+    representations:
+      bandpower:
+        path: ${data_root}/derived/features/ds003751_bandpower.npz
+        view: channel
+  ds006866:
+    name: Emotion regulation condition-level supplement
+    trial_table: ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+    split_mode: generated_joint
+    subject_column: subject_uid
+    stimulus_column: condition_id
+    stimulus_label: condition
+    deployment_context: *within_source_context
+    participant_doses: [0, 2, 8]
+    stimulus_doses: [0, 2, 8]
+    representations:
+      bandpower:
+        path: ${data_root}/derived/features/ds006866_bandpower.npz
+        view: global

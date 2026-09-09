@@ -1,0 +1,12 @@
+{
+  "input_sha256": {
+    "paper/generated/competitive_revision_v3/shrinkage/ds005540_standard/summary.tsv": "c608b6bce1b1ea9f0ad7f9cccf3169b040d911b1e8d0f5faad5905350dc4d1d2",
+    "paper/generated/competitive_revision_v3/shrinkage/ds002721/summary.tsv": "766415aefb6d7c79155ffe3170e9126b5f5ffc29f2faf92784948591bfa3978d"
+  },
+  "output_sha256": {
+    "table_calibration_sensitivity.tex": "e384878daa0732429a96ee9ab83d10baf475a7486cbd4209cd1662ab51b64b4d",
+    "table_calibration_mae.tex": "e94dbdf2eda7c97c1974bee1ec733ccc451c086a46ff348a3af3178683b7b6b8",
+    "calibration_sensitivity_zh.md": "ad0b6d1d8a668f0d6aa812f21d50bf8e31f72170c15f09b4b8ba8135b05b9e47",
+    "primary_values.tex": "5aa136016fff03c43116ba3040baee56df280e0e8c0edde8b4d82aab29b81d55"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "status": "verified",
+  "dataset": "ds005540",
+  "assignments_verified": 250,
+  "phases": {
+    "validation": {
+      "subjects": 6,
+      "stimuli": 8,
+      "trials": 48
+    },
+    "test": {
+      "subjects": 6,
+      "stimuli": 8,
+      "trials": 48
+    }
+  },
+  "maximum_metric_or_interval_error": 5.811323644522304e-17,
+  "aggregate_sha256": "57e00250ff7abb94ccc2ef0389b4c97b1393effd16f7ba81492db3c36d2845fc",
+  "verifier_sha256": "0298a77a46ca36d49fbaaaf9c9a844799806dfff953e1eea060438342126bac7",
+  "environment": {
+    "python": "3.11.15",
+    "packages": {
+      "numpy": "2.4.6",
+      "pandas": "3.0.5",
+      "torch": "2.11.0+cu130",
+      "scikit-learn": "1.9.0"
+    }
+  },
+  "boundary": "Developer verification of recorded artifacts, not independent human replication"
+}

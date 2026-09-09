@@ -1,0 +1,32 @@
+{
+  "config": {
+    "version": "reviewer_block_validation_v12",
+    "design_source": "paper/generated/final_closure_v9/percentile/added_value_statistics.json",
+    "seed": 20260910,
+    "replicates": 300,
+    "bootstrap_iterations": 2000,
+    "noise_sd": 0.5,
+    "doses": [
+      0,
+      1,
+      2,
+      4,
+      8
+    ],
+    "scenarios": [
+      "labels_only",
+      "trial_signal",
+      "participant_constant",
+      "independent_noise"
+    ]
+  },
+  "sources": {
+    "block_validation_v12.json": "910e65b29aa0a8befd72a2e96dd638cd048a7008f9e290be4c76d818668cb3eb",
+    "added_value_statistics.json": "314d7edbbf219face89e78bfaf8dc24d36375a45c75797a39e5494bbc33a01a0",
+    "run_block_validation.py": "967c2c1e98e900470578a9b43d4bc12739af5b27b2271e2861806931f3e1c1df",
+    "block_validation.py": "5f25ee86345c21a32c8194e50b352e1e0789cd3764afd6ca5f59ec9517bc102d",
+    "exposure_statistics.py": "071ca4a36aca8c68991ad15eda73cae778d90e1c5dc08dac25ecaad81678351b",
+    "evaluation_validation.py": "96b0a13a48feadf8664e9c8e725852d11d0a585d4b4a3bb100d7556ee2d0fd4f"
+  },
+  "boundary": "Test topology and fixed-fit estimator matched; not EEG distribution or refits."
+}

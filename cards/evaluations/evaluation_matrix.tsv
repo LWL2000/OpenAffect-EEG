@@ -1,0 +1,25 @@
+dataset_id	dataset_name	protocol	status	reason
+ds002721	MusicEEG	dataset_holdout	supported	the dataset is a core cross-dataset benchmark domain
+ds002721	MusicEEG	directional_context_transfer	not_applicable	the dataset contains one music-listening context
+ds002721	MusicEEG	stimulus_holdout	supported	soundtrack identity is available for each modeled trial
+ds002721	MusicEEG	subject_holdout	supported	dataset-qualified participant identities are available
+ds002721	MusicEEG	subject_stimulus_holdout	supported	participant and soundtrack identities are jointly available
+ds002721	MusicEEG	trial_random	supported	complete trials can be assigned while auditing subject and stimulus overlap
+ds003751	DENS	dataset_holdout	supported	the dataset is a core cross-dataset benchmark domain
+ds003751	DENS	directional_context_transfer	not_applicable	the dataset contains one naturalistic-video context
+ds003751	DENS	stimulus_holdout	supported	naturalistic video identity is available for each trial
+ds003751	DENS	subject_holdout	supported	dataset-qualified participant identities are available
+ds003751	DENS	subject_stimulus_holdout	supported	participant and video identities are jointly available
+ds003751	DENS	trial_random	supported	complete trials can be assigned while auditing subject and stimulus overlap
+ds005540	EmoEEG-MC	dataset_holdout	supported	the dataset is a core cross-dataset benchmark domain
+ds005540	EmoEEG-MC	directional_context_transfer	supported	matched video and guided-imagery contexts support both transfer directions
+ds005540	EmoEEG-MC	stimulus_holdout	supported	video and guided-imagery stimulus identities are available
+ds005540	EmoEEG-MC	subject_holdout	supported	dataset-qualified participant identities are available
+ds005540	EmoEEG-MC	subject_stimulus_holdout	supported	participant and stimulus identities are jointly available
+ds005540	EmoEEG-MC	trial_random	supported	complete trials can be assigned while auditing subject and stimulus overlap
+ds006866	Socio-affective emotion regulation	dataset_holdout	not_applicable	this dataset is reserved for large-sample external validation
+ds006866	Socio-affective emotion regulation	directional_context_transfer	supported	social and nonsocial content define two transferable contexts with shared condition families
+ds006866	Socio-affective emotion regulation	stimulus_holdout	blocked_by_source_metadata	the public event tables do not expose trial-level image identity
+ds006866	Socio-affective emotion regulation	subject_holdout	supported	participant identities are available for all modeled trials
+ds006866	Socio-affective emotion regulation	subject_stimulus_holdout	blocked_by_source_metadata	joint holdout requires the unavailable trial-level image identity
+ds006866	Socio-affective emotion regulation	trial_random	supported	complete image-presentation trials and condition labels are available

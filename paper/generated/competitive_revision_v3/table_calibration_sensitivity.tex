@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering\small
+\caption{Implementation and calibration sensitivity. Entries are uniform-grid mean matched EEG added value, $\mathrm{CCC}(EC)-\mathrm{CCC}(PC)$, with 95\% paired crossed intervals conditional on fitted predictions. Shrinkage weights are estimated only from population-fit residuals and shared by EEG and non-EEG offsets. These are not maximum-dose scores or equivalence tests.}
+\label{tab:v3-calibration}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Dataset & Representation & Mean offset & Shrunk offset \\
+\midrule
+EmoEEG-MC & Compact EEGNet-style & 0.0089 [-0.0034, 0.0254] & 0.0067 [-0.0064, 0.0253] \\
+EmoEEG-MC & Standard EEGNet & 0.0006 [-0.0036, 0.0054] & 0.0006 [-0.0044, 0.0060] \\
+EmoEEG-MC & LaBraM & -0.0100 [-0.0392, 0.0279] & -0.0098 [-0.0419, 0.0308] \\
+EmoEEG-MC & Frozen EMOD & -0.0001 [-0.0280, 0.0247] & -0.0005 [-0.0302, 0.0263] \\
+MusicEEG & Band power & 0.0042 [-0.0094, 0.0188] & 0.0052 [-0.0269, 0.0335] \\
+MusicEEG & LaBraM & 0.0182 [-0.0161, 0.0452] & 0.0247 [-0.0176, 0.0568] \\
+\bottomrule
+\end{tabular}
+\end{table}

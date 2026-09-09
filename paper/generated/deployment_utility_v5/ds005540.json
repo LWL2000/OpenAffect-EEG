@@ -1,0 +1,995 @@
+{
+  "bootstrap_draws": 2000,
+  "boundary": "Conditional on frozen fits and validation selection; no training-population or selector-training uncertainty",
+  "candidate_names": [
+    "de:combined",
+    "de:direct",
+    "labram_pretrained:combined",
+    "labram_pretrained:direct",
+    "labram_random:combined",
+    "labram_random:direct",
+    "prior_personalized"
+  ],
+  "cell_choices": [
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "prior_personalized",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:direct",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined",
+    "labram_random:combined"
+  ],
+  "cells": [
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 0,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 0,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 0,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 0,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 0,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 1,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 1,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 1,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 1,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 1,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 2,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 2,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 2,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 2,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.07106869924729016,
+      "ci_low": -0.006927747358011434,
+      "conditional_minus_global": 0.03714258198965731,
+      "metric": "ccc",
+      "participant_dose": 2,
+      "simultaneous_high": 0.10313805402809928,
+      "simultaneous_low": -0.028852890048784663,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 4,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 4,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 4,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 4,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 4,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.09257364555343114,
+      "ci_low": -0.03623578348887672,
+      "conditional_minus_global": 0.026785021874137754,
+      "metric": "ccc",
+      "participant_dose": 8,
+      "simultaneous_high": 0.09278049391257973,
+      "simultaneous_low": -0.03921045016430422,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 8,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 8,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 8,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "ccc",
+      "participant_dose": 8,
+      "simultaneous_high": 0.06599547203844197,
+      "simultaneous_low": -0.06599547203844197,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 0,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 0,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 0,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 0,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 0,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 1,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 1,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 1,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 1,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 1,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 2,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 2,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 2,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 2,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": -0.00208223260761572,
+      "ci_low": -0.01717972713067466,
+      "conditional_minus_global": -0.009759968316924633,
+      "metric": "mae",
+      "participant_dose": 2,
+      "simultaneous_high": -0.00039442181408807717,
+      "simultaneous_low": -0.01912551481976119,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 4,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 4,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 4,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 4,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 4,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0033695718397365763,
+      "ci_low": -0.013563233454198527,
+      "conditional_minus_global": -0.00496377471684839,
+      "metric": "mae",
+      "participant_dose": 8,
+      "simultaneous_high": 0.004401771785988166,
+      "simultaneous_low": -0.014329321219684946,
+      "stimulus_dose": 0,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 8,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 1,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 8,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 2,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 8,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 4,
+      "valid_bootstrap": 2000
+    },
+    {
+      "ci_high": 0.0,
+      "ci_low": 0.0,
+      "conditional_minus_global": 0.0,
+      "metric": "mae",
+      "participant_dose": 8,
+      "simultaneous_high": 0.009365546502836556,
+      "simultaneous_low": -0.009365546502836556,
+      "stimulus_dose": 8,
+      "valid_bootstrap": 2000
+    }
+  ],
+  "claim_boundary": "internal held-out policy comparison on previously studied datasets, not independent external confirmation or a new selection algorithm",
+  "coverage": {
+    "feature_dimensions": {
+      "de": 320,
+      "labram_pretrained": 200,
+      "labram_random": 200
+    },
+    "stimuli": 42,
+    "subjects": 30,
+    "trials": 1260
+  },
+  "dataset": "ds005540",
+  "decision_sha256": "bfcd307b009ca7d719230d1cbf33a1f19f8b91be1c5cf44c8225dcca91b1042e",
+  "global_choice": "labram_random:combined",
+  "grid": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      8
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      8
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      4,
+      1
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      8,
+      0
+    ],
+    [
+      8,
+      1
+    ],
+    [
+      8,
+      2
+    ],
+    [
+      8,
+      4
+    ],
+    [
+      8,
+      8
+    ]
+  ],
+  "input_sha256": {
+    "audit_cli": "4f8bed01f53a42da1ae89a70e9e5cb21975cdaba359176a66dd9191630fcf43c",
+    "baselines": "60d459b186d7776bd9f88e21d5e05a1f15243b2ae73fa05ffc0ef0cdc8931631",
+    "config": "9267ce9bdbbaa2685b8bf389e057341a9e1e3ef590a58cd0734a4341cdf6ca0f",
+    "de": "98e59367173e445d75dd1691b309bf45523d56802f35bca43a3c44b8fd4f4808",
+    "deployment_benchmark": "ce674c3880274fc6614f8112f40d7e708f1715581332df58039fcb3c484e97de",
+    "deployment_selection": "c82dcb9819b6233f20912839bd8d40065570fe5234f40ba48eb3dab30843cc9b",
+    "exposure_statistics": "34587b2c809460372b8ccd3d3ba83990b86080bcc3c594c4c5c403796990b50a",
+    "identity_exposure": "3a643962a4c824ba35ea354eaab9e80968e57cc48c92dabea5467e3e1645f900",
+    "labram_pretrained": "2249ba0eb52b1c478bb991d47bf89b0f5e027503b5f2dfbf7b1f8b11b08d99ce",
+    "labram_random": "ddad96a071a20be4dd741514de2dbc62935f015d726d8354bd14dafed04c8343",
+    "runner": "69faf5c5fb79c8f33a683d1970add06059d08e535274e40a55175fb8aff26196",
+    "source_config": "51a42201b0e1a9d9efca7b4dca9994afc025272f116776e2c9c078565b5da1dc",
+    "trials": "7a36e9465b265142ef6da6b8b6605254e7cd865fb01422f450d4976f5349aaf7"
+  },
+  "plan_sha256": "a916d64eac5e1ff952e20d7091e631bfeb5101d6808d914b2a4c9d6e4c31e25a",
+  "predictions_sha256": "1b6eca89886fc8eb831f9c5cca4dbeade6d2d2d4f29c04e2d0eeb9acf0543d0c",
+  "resampling": "shared participant x stimulus multiplicities across policies, cells and fixed split seeds",
+  "surface": {
+    "ccc": {
+      "ci_high": 0.006005879089147731,
+      "ci_low": -0.0011271262705345119,
+      "conditional": 0.34476889988680204,
+      "conditional_minus_global": 0.0025571041545518025,
+      "global": 0.3422117957322503,
+      "valid_bootstrap": 2000
+    },
+    "mae": {
+      "ci_high": -0.0001319534505787053,
+      "ci_low": -0.0010284117847243134,
+      "conditional": 0.1946429550877871,
+      "conditional_minus_global": -0.0005889497213509209,
+      "global": 0.19523190480913802,
+      "valid_bootstrap": 2000
+    }
+  },
+  "target_identity_counts": {
+    "test": {
+      "stimulus": 8,
+      "subject": 6
+    },
+    "validation": {
+      "stimulus": 8,
+      "subject": 6
+    }
+  },
+  "test_support": {
+    "calibration": 0,
+    "excluded": 426,
+    "test": 48,
+    "train": 330,
+    "validation": 12
+  },
+  "validation_scores": [
+    [
+      0.04293975946604385,
+      -0.024401091445011208,
+      -0.05158842694208495,
+      -0.07751830143714775,
+      0.08894236844969577,
+      0.08511935538854251,
+      -1.4610441487614862e-15
+    ],
+    [
+      0.23563069982395404,
+      -0.017606028822719135,
+      0.21752202816015775,
+      -0.06305480198618936,
+      0.28801076642969436,
+      0.08266489061073218,
+      0.2621952829258679
+    ],
+    [
+      0.3615851223726623,
+      -0.021853119270370355,
+      0.31436332089597735,
+      -0.04294606375122144,
+      0.41057836883338633,
+      0.07885697852044239,
+      0.38103134707402486
+    ],
+    [
+      0.34822392015442827,
+      0.002849003973880027,
+      0.3398117074166079,
+      -0.015831192997214156,
+      0.45378561263534045,
+      0.07936659048653286,
+      0.42305490735737444
+    ],
+    [
+      0.35728588189107974,
+      -0.0013933155923143558,
+      0.3918587843078976,
+      -0.0033979893113667533,
+      0.48875350319047123,
+      0.07230699195617386,
+      0.461535641562781
+    ],
+    [
+      -0.002666373424669602,
+      -0.022391357595465025,
+      0.02441293308573594,
+      -0.020849849102022727,
+      0.09901620715306228,
+      0.058578152938134107,
+      0.06339873463907826
+    ],
+    [
+      0.15902402760164397,
+      -0.019263690709774003,
+      0.19282848660771976,
+      -0.019403864337978353,
+      0.25419734405427247,
+      0.05577409576753104,
+      0.24762842122335296
+    ],
+    [
+      0.2771832147380424,
+      -0.020498277002561273,
+      0.2560123188271688,
+      -0.005391985938564117,
+      0.32027073704162545,
+      0.05408884145049305,
+      0.3129244444851191
+    ],
+    [
+      0.26725351868343783,
+      -0.005225260597701026,
+      0.25885616886383556,
+      0.007594888343518265,
+      0.33643163592399067,
+      0.05179689883201778,
+      0.326299980128935
+    ],
+    [
+      0.2630033541321436,
+      -0.013501392888614868,
+      0.31351890623412204,
+      0.023950221915327148,
+      0.3498451266902716,
+      0.04561815003725147,
+      0.34684012708727724
+    ],
+    [
+      0.01806135803142968,
+      -0.039215803092855356,
+      0.04369740454947531,
+      -0.007923166409625787,
+      0.13289516876376756,
+      0.08492433941116599,
+      0.09450209895935166
+    ],
+    [
+      0.18140967061819174,
+      -0.037110885961814354,
+      0.22024926558362026,
+      -0.0074078258227558615,
+      0.28548796498383766,
+      0.08273031174803537,
+      0.28076838430965734
+    ],
+    [
+      0.3158201181240027,
+      -0.03986076333602383,
+      0.2876049988225482,
+      0.010675524838825171,
+      0.37210152591424617,
+      0.07692174499552185,
+      0.3670298322846104
+    ],
+    [
+      0.2992863568777348,
+      -0.022714166378522326,
+      0.31006791692371494,
+      0.025391899538351248,
+      0.4032231621537553,
+      0.0754124672925209,
+      0.3974472255294018
+    ],
+    [
+      0.297746897668682,
+      -0.03348008130248285,
+      0.35127641622874795,
+      0.02564965927290097,
+      0.41834213814598326,
+      0.06855722537625883,
+      0.42312449646401074
+    ],
+    [
+      0.003494881822701005,
+      -0.0319477644751869,
+      0.03809515801866832,
+      -0.015254528436885944,
+      0.15123664473046272,
+      0.11673785849993638,
+      0.09805782990898286
+    ],
+    [
+      0.18408798112055375,
+      -0.028370448303676177,
+      0.2511736711557358,
+      -0.011638895999708944,
+      0.3064732946028381,
+      0.1158242903307817,
+      0.2970839233548997
+    ],
+    [
+      0.326122706808244,
+      -0.028137337540004526,
+      0.3310884679239046,
+      0.013577444079627599,
+      0.40317994021034986,
+      0.11136172657800776,
+      0.3919559208874684
+    ],
+    [
+      0.3179951779667145,
+      -0.008933894590333495,
+      0.35942664901831267,
+      0.03966067478896264,
+      0.44633794274505867,
+      0.10626399546759595,
+      0.436156938039957
+    ],
+    [
+      0.3216137924151706,
+      -0.025483878982490837,
+      0.38885325457424014,
+      0.0421880792444955,
+      0.46504325394416657,
+      0.09932980550990292,
+      0.4642370646108359
+    ],
+    [
+      0.014336475403604523,
+      0.004697546727120294,
+      0.03942450935276909,
+      0.010046372170833161,
+      0.16206810416757106,
+      0.1657684684853477,
+      0.10354836744747224
+    ],
+    [
+      0.20305031277093494,
+      0.008868234014803616,
+      0.25151289639527746,
+      0.020457999901642713,
+      0.3187837089346549,
+      0.16470293644873776,
+      0.3063919871181435
+    ],
+    [
+      0.35149487339405067,
+      0.007905939453957738,
+      0.3367070866472392,
+      0.03957177035977822,
+      0.4252490861048237,
+      0.16146624030976311,
+      0.4131794682082626
+    ],
+    [
+      0.347724250040831,
+      0.02887076877138776,
+      0.3750715794049651,
+      0.06964707785368185,
+      0.4709831543463293,
+      0.15854173903559102,
+      0.4576090402500981
+    ],
+    [
+      0.3601058827750519,
+      0.013654579708591902,
+      0.41754426998290606,
+      0.07232936565093351,
+      0.4973252024694171,
+      0.15118508874543374,
+      0.4918477286820336
+    ]
+  ],
+  "validation_support": {
+    "calibration": 0,
+    "excluded": 426,
+    "test": 48,
+    "train": 330,
+    "validation": 12
+  }
+}

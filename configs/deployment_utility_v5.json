@@ -1,0 +1,23 @@
+{
+  "version": "deployment_utility_v5",
+  "design_status": "fixed_before_this_analysis_not_preregistered_independent_data",
+  "role_seed": 20260903,
+  "role_fractions": {"validation": 0.2, "test": 0.2, "tuning": 0.1},
+  "resource_seeds": [11, 23, 47, 71, 101],
+  "source_config": "configs/identity_exposure_response_v1.yaml",
+  "datasets": {
+    "ds005540": ["de", "labram_pretrained", "labram_random"],
+    "ds002721": ["bandpower", "labram_pretrained", "labram_random"]
+  },
+  "candidates": "personalized EEG-free prior plus direct and prior+EEG for each declared representation",
+  "calibration": "unshrunk mean residual offset, identical calibration trial labels",
+  "primary": "uniform-cell test macro CCC: validation-cell selector minus global validation-mean selector",
+  "secondary": "paired MAE difference and within-dataset simultaneous cell intervals",
+  "bootstrap_draws": 2000,
+  "bootstrap_seed": 20260903,
+  "minimum_target_subjects": 3,
+  "minimum_target_stimuli": 3,
+  "minimum_target_trials": 12,
+  "retry_policy": "no outcome-dependent split, grid, seed or candidate changes",
+  "claim_boundary": "internal held-out policy comparison on previously studied datasets, not independent external confirmation or a new selection algorithm"
+}

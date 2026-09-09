@@ -1,0 +1,5 @@
+dataset_id,branch,fit_records,selected_epoch_one,selected_epoch_median,selected_epoch_min,selected_epoch_max,median_objective_reduction
+ds005540,direct,50,12,18.0,1,98,0.1103808581829071
+ds005540,residual,50,10,17.5,1,99,0.11616581678390503
+ds006850,direct,50,8,11.0,1,39,0.19223716855049133
+ds006850,residual,50,7,7.5,1,47,0.20797479152679443

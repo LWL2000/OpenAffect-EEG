@@ -1,0 +1,102 @@
+\section{Matched-Grid Display and Learning Diagnostics}
+\label{app:revision-diagnostics}
+
+\subsection{Complete cell evidence and deployment interpretation}
+% evidence: paper/generated/reviewer_revision_v12/figure_manifest.json
+The display in Figure~\ref{fig:matched-grid} is generated directly from
+\texttt{table\_added\_value\_contrasts.csv}. It preserves all 300
+task--setting--dose rows, with their paired pointwise CCC/MAE intervals and
+within-model dose-family CCC bands. The four resource corners give 48
+comparisons across all settings, including unfavorable and uncertain results.
+The files \texttt{matched\_increment\_all\_cells.csv} and
+\texttt{deployment\_corners.csv} retain unrounded values. A common symmetric
+color scale is used, with entries multiplied by 1000 for legibility.
+The visualization was added after examining the results and is descriptive.
+
+The four corners answer different deployment questions: no target-user
+calibration or repeated-stimulus ratings; calibration only; repeated-stimulus
+ratings only; and both. Released normative information remains separately
+declared. These scenarios do not make ratings costless or assert that stimuli
+will recur in a real application. A weighted application score requires
+weights selected for that application and paired prediction-level uncertainty.
+Marginal interval endpoints cannot be averaged to obtain such an interval.
+
+\subsection{Real-task optimization evidence}
+% evidence: paper/generated/reviewer_revision_v12/learning_diagnostics.csv
+\begin{table}[ht]\centering\small
+\caption{Previously executed EEGNet training diagnostics, now summarized by
+task and branch. Counts refer to settings, identity blocks, and stimulus doses,
+not independent participants or studies. Objective reduction is the median
+initial-minus-final recorded training objective; these values are not test
+metrics and are not comparable performance measures across tasks.}
+\begin{tabular}{llrrrr}\toprule
+Task & Branch & Fits & Epoch-one & Median epoch & Objective reduction\\\midrule
+Emo & Direct & 50 & 12 & 18 & 0.1104\\
+Emo & Residual & 50 & 10 & 17.5 & 0.1162\\
+Urban & Direct & 50 & 8 & 11 & 0.1922\\
+Urban & Residual & 50 & 7 & 7.5 & 0.2080\\
+\bottomrule\end{tabular}
+\end{table}
+These aggregates come from the same verification record as the primary
+predictions, not from newly selected runs. The historical standard/compact
+EEGNet and matched shrinkage-calibration comparisons remain supporting
+evidence on their original supports. The repaired real SEED-V task provides
+a separate compatibility check, not a positive control for the current
+self-report regression task. None of these records spans full fine-tuning,
+all calibration algorithms, or repeated-training uncertainty. The scope of
+the matched increment remains the specified fitted predictor pair.
+
+\subsection{Five-block interval validation}
+The production statistic first computes paired CCC differences within each
+identity block, then averages blocks and dose cells. It does not pool all
+trials before computing CCC. The new validation implementation preserves this
+order and uses the same global participant and stimulus multinomial weights
+across all blocks and cells. A draw invalid in any block is not repaired by
+omitting that block. Tests compare its cell estimates, uniform means, interval
+endpoints, and valid-draw counts with the production analyzer for both one-
+and two-target tasks.
+
+% evidence: configs/block_validation_v12.json; paper/generated/final_closure_v9/percentile/added_value_statistics.json
+The frozen validation configuration uses the exact complete diagonal test
+supports in the primary verification record: $6\times9,6\times9,6\times8,
+6\times8,6\times8$ for Emo, and $13\times12,13\times11,12\times11,
+12\times11,12\times11$ for Urban. It retains the full $5\times5$ dose grid,
+two targets for Emo and one for Urban. Four previously defined Gaussian
+scenarios exercise label-only cancellation, trial signal, participant-constant
+signal, and independent noise. Each scenario uses 300 fresh simulation
+replicates per task and 2,000 bootstrap draws. Percentile, basic, and heuristic
+t-normal intervals are retained as fixed candidates; the production method
+is not selected using the observed EEG results.
+
+The estimand is the scenario's analytic population matched CCC difference,
+averaged uniformly over dose cells. Finite-block estimation bias is part of
+the stress test. Synthetic block resources are independent: matching this
+test topology does not reproduce all cross-block training-resource dependence,
+the actual EEG distribution, or retraining uncertainty. Coverage proportions
+require Monte Carlo uncertainty and do not establish validity outside the
+tested constructions. Executed results are recorded in the accompanying
+validation artifact.
+
+
+% evidence: results/block_validation_v12/summary.csv; results/block_validation_v12/completion.json
+\input{../generated/reviewer_revision_v12/five_block_coverage.tex}
+All 2,400 simulation replicates completed without a failed run. The released
+187,200 rows include every cell, uniform mean, and candidate interval, not
+187,200 independent simulations. Labels-only cancellation gives degenerate
+zero differences; its coverage of one is an algebraic check, not calibration
+of a nondegenerate interval. Independent noise produces no positive interval
+in these runs, which does not establish false-positive control for every null.
+
+% evidence: paper/generated/reviewer_revision_v12/five_block_all_coverage.csv
+The percentile failure is substantive. At Emo's zero-dose participant-constant
+cell, population-target bias is $-0.0756$ and coverage is $0.193$
+(Monte Carlo interval $[0.153,0.242]$); t-normal coverage is only $0.887$.
+For trial signal, the worst Emo cell covers at $0.770$. These constructions
+expose finite-block CCC bias and bootstrap miscalibration. They do not diagnose
+which component dominates in the real EEG data. The mean-level t-normal
+coverage of $0.973$--$1.000$ across these scenarios is not a reason to select
+that method post hoc or claim general calibration. Statistical intervals
+throughout this revision are conditional diagnostics; the resource identity
+and descriptive paired differences do not depend on a nominal significance
+threshold. Calibrated inference would require a separately validated procedure
+or a redesigned support/estimand and is not claimed complete by this study.

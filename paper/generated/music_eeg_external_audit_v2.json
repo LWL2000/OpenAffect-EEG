@@ -1,0 +1,418 @@
+{
+  "available_labeled_trial_count": 1240,
+  "dataset_id": "ds002721",
+  "frozen_labram": {
+    "protocol_summary": {
+      "stimulus_holdout": {
+        "paired_pretrained_minus_random_macro_ccc": {
+          "mean": 0.07027169285311403,
+          "sample_sd": 0.01828730848221228,
+          "seed_count": 5
+        },
+        "pretrained_macro_ccc": {
+          "mean": 0.08472913624984403,
+          "sample_sd": 0.012369212873712178,
+          "seed_count": 5
+        },
+        "random_macro_ccc": {
+          "mean": 0.014457443396729996,
+          "sample_sd": 0.008691556785229178,
+          "seed_count": 5
+        }
+      },
+      "subject_holdout": {
+        "paired_pretrained_minus_random_macro_ccc": {
+          "mean": 0.07032269943433958,
+          "sample_sd": 0.03773744251169723,
+          "seed_count": 5
+        },
+        "pretrained_macro_ccc": {
+          "mean": 0.06969877394339015,
+          "sample_sd": 0.04021949706971217,
+          "seed_count": 5
+        },
+        "random_macro_ccc": {
+          "mean": -0.0006239254909494358,
+          "sample_sd": 0.006891998155459061,
+          "seed_count": 5
+        }
+      },
+      "subject_stimulus_holdout": {
+        "paired_pretrained_minus_random_macro_ccc": {
+          "mean": 0.03371552468207942,
+          "sample_sd": 0.039859194125612785,
+          "seed_count": 5
+        },
+        "pretrained_macro_ccc": {
+          "mean": 0.0421938885471645,
+          "sample_sd": 0.058572826746441826,
+          "seed_count": 5
+        },
+        "random_macro_ccc": {
+          "mean": 0.00847836386508508,
+          "sample_sd": 0.032631494926229444,
+          "seed_count": 5
+        }
+      },
+      "trial_random_holdout": {
+        "paired_pretrained_minus_random_macro_ccc": {
+          "mean": 0.0731771558040708,
+          "sample_sd": 0.02718297013008142,
+          "seed_count": 5
+        },
+        "pretrained_macro_ccc": {
+          "mean": 0.0923067241120705,
+          "sample_sd": 0.031318733430669085,
+          "seed_count": 5
+        },
+        "random_macro_ccc": {
+          "mean": 0.01912956830799968,
+          "sample_sd": 0.01574677053624885,
+          "seed_count": 5
+        }
+      }
+    },
+    "subject_probe_seed_metrics": {
+      "pretrained": [
+        {
+          "balanced_accuracy": 0.9113764371828887,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.024321556579621092,
+          "seed": 11,
+          "test_trial_count": 225,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.9359447004608296,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.05257296466973886,
+          "seed": 23,
+          "test_trial_count": 195,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.9248214151439959,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.024430408301376046,
+          "seed": 47,
+          "test_trial_count": 316,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.8824028122415222,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.0329621095750128,
+          "seed": 71,
+          "test_trial_count": 222,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.9134885723595401,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.022311827956989248,
+          "seed": 101,
+          "test_trial_count": 200,
+          "uniform_chance_accuracy": 0.03225806451612903
+        }
+      ],
+      "random": [
+        {
+          "balanced_accuracy": 0.42130172694688817,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.024372759856630823,
+          "seed": 11,
+          "test_trial_count": 225,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.4398233486943165,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.047196620583717354,
+          "seed": 23,
+          "test_trial_count": 195,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.40026255106900266,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.030834398576334063,
+          "seed": 47,
+          "test_trial_count": 316,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.42674189609673474,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.03448343770924416,
+          "seed": 71,
+          "test_trial_count": 222,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.431561001722292,
+          "fit_participant_count": 31,
+          "permuted_balanced_accuracy": 0.011573104315039797,
+          "seed": 101,
+          "test_trial_count": 200,
+          "uniform_chance_accuracy": 0.03225806451612903
+        }
+      ]
+    },
+    "subject_probe_summary": {
+      "pretrained": {
+        "mean": 0.9136067874777553,
+        "sample_sd": 0.02002140565699148,
+        "seed_count": 5
+      },
+      "random": {
+        "mean": 0.4239381049058468,
+        "sample_sd": 0.014881138307931743,
+        "seed_count": 5
+      }
+    }
+  },
+  "input_sha256": {
+    "bandpower_features": "d1c3869e47aebaa21deef0fc65f17e0843a2200aef1f69b131e54e8939770a77",
+    "labram_pretrained_features": "c2535d3dd734f9da0394e7c2f2c57298d8c282a3aead8524296088918452fd19",
+    "labram_random_features": "08a09f9b6ec4c3eba4b599ca4c16ad407a6111cb749629a1a9271bef3a9bbcfb",
+    "labram_trial_table": "6020bd9d3ad39f6d943e1a069b8d7911460c2acf4f0ec2af9a8c50f3bac8b02d",
+    "trial_table": "6020bd9d3ad39f6d943e1a069b8d7911460c2acf4f0ec2af9a8c50f3bac8b02d"
+  },
+  "release_boundary": "Aggregate metrics, seed labels, input hashes, and source-safe counts only. No raw EEG, feature arrays, stimuli, trial identifiers, participant identifiers, trial predictions, checkpoints, or local paths are included.",
+  "schema_version": 1,
+  "self_report_diagnostics": {
+    "interpretation_boundary": "Leave-one-rating-out stimulus consensus measures agreement among different participants' reports for the same musical stimulus. It is not a test-retest reliability estimate, a noise ceiling, or evidence that a prediction model can recover private affective experience. The additive R-squared values are descriptive in-sample summaries, not a causal variance decomposition.",
+    "results": {
+      "target_arousal": {
+        "descriptive_additive_structure": {
+          "descriptive_in_sample_r2": {
+            "stimulus_only": 0.3483577829264042,
+            "subject_only": 0.1782149580907917,
+            "subject_plus_stimulus": 0.4845245265057663
+          },
+          "incremental_descriptive_r2": {
+            "stimulus_given_subject": 0.3063095684149746,
+            "subject_given_stimulus": 0.1361667435793621
+          },
+          "observation_count": 1240,
+          "stimulus_count": 307,
+          "subject_count": 31,
+          "target_sample_variance": 0.08087369456051968
+        },
+        "leave_one_rating_out_stimulus_consensus": {
+          "ccc": 0.16340643226154844,
+          "mae": 0.24569256073924506,
+          "supported_rating_count": 1123,
+          "supported_stimulus_count": 190
+        }
+      },
+      "target_valence": {
+        "descriptive_additive_structure": {
+          "descriptive_in_sample_r2": {
+            "stimulus_only": 0.35792216683358713,
+            "subject_only": 0.11695998187594758,
+            "subject_plus_stimulus": 0.46531858152112016
+          },
+          "incremental_descriptive_r2": {
+            "stimulus_given_subject": 0.3483585996451726,
+            "subject_given_stimulus": 0.10739641468753303
+          },
+          "observation_count": 1240,
+          "stimulus_count": 307,
+          "subject_count": 31,
+          "target_sample_variance": 0.08089403484534875
+        },
+        "leave_one_rating_out_stimulus_consensus": {
+          "ccc": 0.1436751130191267,
+          "mae": 0.24418973266532323,
+          "supported_rating_count": 1123,
+          "supported_stimulus_count": 190
+        }
+      }
+    }
+  },
+  "transparent_bandpower": {
+    "identity_probe_seed_metrics": {
+      "stimulus_uid": [
+        {
+          "balanced_accuracy": 0.0,
+          "covered_test_trial_count": 219,
+          "fit_class_count": 288,
+          "fit_trial_count": 1000,
+          "permuted_balanced_accuracy": 0.007751937984496124,
+          "seed": 11,
+          "seen_test_fraction": 0.9125,
+          "test_trial_count": 240,
+          "uniform_chance_accuracy": 0.003472222222222222
+        },
+        {
+          "balanced_accuracy": 0.0,
+          "covered_test_trial_count": 214,
+          "fit_class_count": 281,
+          "fit_trial_count": 1000,
+          "permuted_balanced_accuracy": 0.0,
+          "seed": 23,
+          "seen_test_fraction": 0.8916666666666667,
+          "test_trial_count": 240,
+          "uniform_chance_accuracy": 0.0035587188612099642
+        },
+        {
+          "balanced_accuracy": 0.0,
+          "covered_test_trial_count": 189,
+          "fit_class_count": 261,
+          "fit_trial_count": 1000,
+          "permuted_balanced_accuracy": 0.0,
+          "seed": 47,
+          "seen_test_fraction": 0.7875,
+          "test_trial_count": 240,
+          "uniform_chance_accuracy": 0.0038314176245210726
+        },
+        {
+          "balanced_accuracy": 0.0,
+          "covered_test_trial_count": 214,
+          "fit_class_count": 281,
+          "fit_trial_count": 1000,
+          "permuted_balanced_accuracy": 0.008695652173913044,
+          "seed": 71,
+          "seen_test_fraction": 0.8916666666666667,
+          "test_trial_count": 240,
+          "uniform_chance_accuracy": 0.0035587188612099642
+        },
+        {
+          "balanced_accuracy": 0.0,
+          "covered_test_trial_count": 209,
+          "fit_class_count": 276,
+          "fit_trial_count": 1000,
+          "permuted_balanced_accuracy": 0.0,
+          "seed": 101,
+          "seen_test_fraction": 0.8708333333333333,
+          "test_trial_count": 240,
+          "uniform_chance_accuracy": 0.0036231884057971015
+        }
+      ],
+      "subject_uid": [
+        {
+          "balanced_accuracy": 1.0,
+          "covered_test_trial_count": 225,
+          "fit_class_count": 31,
+          "fit_trial_count": 1015,
+          "permuted_balanced_accuracy": 0.0358562584369036,
+          "seed": 11,
+          "seen_test_fraction": 1.0,
+          "test_trial_count": 225,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 1.0,
+          "covered_test_trial_count": 195,
+          "fit_class_count": 31,
+          "fit_trial_count": 1045,
+          "permuted_balanced_accuracy": 0.08732718894009217,
+          "seed": 23,
+          "seen_test_fraction": 1.0,
+          "test_trial_count": 195,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 0.9975186104218362,
+          "covered_test_trial_count": 316,
+          "fit_class_count": 31,
+          "fit_trial_count": 924,
+          "permuted_balanced_accuracy": 0.032130235356041814,
+          "seed": 47,
+          "seen_test_fraction": 1.0,
+          "test_trial_count": 316,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 1.0,
+          "covered_test_trial_count": 222,
+          "fit_class_count": 31,
+          "fit_trial_count": 1018,
+          "permuted_balanced_accuracy": 0.033380597896726934,
+          "seed": 71,
+          "seen_test_fraction": 1.0,
+          "test_trial_count": 222,
+          "uniform_chance_accuracy": 0.03225806451612903
+        },
+        {
+          "balanced_accuracy": 1.0,
+          "covered_test_trial_count": 200,
+          "fit_class_count": 31,
+          "fit_trial_count": 1040,
+          "permuted_balanced_accuracy": 0.02685728250244379,
+          "seed": 101,
+          "seen_test_fraction": 1.0,
+          "test_trial_count": 200,
+          "uniform_chance_accuracy": 0.03225806451612903
+        }
+      ]
+    },
+    "identity_probe_summary": {
+      "stimulus_uid": {
+        "balanced_accuracy": {
+          "mean": 0.0,
+          "sample_sd": 0.0,
+          "seed_count": 5
+        },
+        "permuted_balanced_accuracy": {
+          "mean": 0.0032895180316818333,
+          "sample_sd": 0.0045166985963575445,
+          "seed_count": 5
+        }
+      },
+      "subject_uid": {
+        "balanced_accuracy": {
+          "mean": 0.9995037220843672,
+          "sample_sd": 0.0011097111550867548,
+          "seed_count": 5
+        },
+        "permuted_balanced_accuracy": {
+          "mean": 0.04311031262644166,
+          "sample_sd": 0.024935636581600355,
+          "seed_count": 5
+        }
+      }
+    },
+    "primary_paired_comparison": {
+      "left_minus_right": {
+        "mean": 0.08037673878311812,
+        "sample_sd": 0.03569018645489638,
+        "seed_count": 5
+      },
+      "left_protocol": "trial_random_holdout",
+      "metric": "transparent_bandpower_ridge_macro_ccc",
+      "right_protocol": "subject_stimulus_holdout"
+    },
+    "protocol_summary": {
+      "stimulus_holdout": {
+        "transparent_bandpower_ridge_macro_ccc": {
+          "mean": 0.11295649416111124,
+          "sample_sd": 0.01246326428930833,
+          "seed_count": 5
+        }
+      },
+      "subject_holdout": {
+        "transparent_bandpower_ridge_macro_ccc": {
+          "mean": 0.017518763490683046,
+          "sample_sd": 0.021239630049063353,
+          "seed_count": 5
+        }
+      },
+      "subject_stimulus_holdout": {
+        "transparent_bandpower_ridge_macro_ccc": {
+          "mean": 0.022717900766595005,
+          "sample_sd": 0.03674295757679596,
+          "seed_count": 5
+        }
+      },
+      "trial_random_holdout": {
+        "transparent_bandpower_ridge_macro_ccc": {
+          "mean": 0.10309463954971312,
+          "sample_sd": 0.01586656745488951,
+          "seed_count": 5
+        }
+      }
+    }
+  }
+}

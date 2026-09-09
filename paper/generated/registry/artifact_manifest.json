@@ -1,0 +1,853 @@
+{
+  "inputs": {
+    "benchmark_scope_summary": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "benchmark_scope_summary",
+      "sha256": "ee008885372f310a2c180f5d64b9edaf299855aa1628999485c2bd378f12447b"
+    },
+    "cbramod_context_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "cbramod_context_predictions",
+      "sha256": "ce6cb8ea874b4c9b97ae64dbef50156a781232a2731ea9254897f9bc532bd85c"
+    },
+    "cbramod_context_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "cbramod_context_summary",
+      "sha256": "abe68645096e8fe65858bda9bdebf64060f2ad09f6f69e0f39b968edb6f16d01"
+    },
+    "cbramod_core_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "cbramod_core_predictions",
+      "sha256": "508666bf8e15b3eaf731720d0cd4824a504b13f5c78acbd0a17b4d12e10ebe5d"
+    },
+    "cbramod_core_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "cbramod_core_summary",
+      "sha256": "ff72f36d29de22b8a869e08ea8af0f100362c0286c280a20ab2f12564794743a"
+    },
+    "de_context_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "de_context_predictions",
+      "sha256": "46077edd7c63f76a61013268986fa0b8e8ebae13850c67008f2828c8a8acf34b"
+    },
+    "de_context_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "de_context_summary",
+      "sha256": "36ac6d61b1e9eda756d24c6899b65ae419bf3bd2f769e00ed6d6d8e395ffa4c1"
+    },
+    "de_core_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "de_core_predictions",
+      "sha256": "9c1135d18a752db802ee3a6665ffbc1eca438c052e8a08eb497f6149d54e16f6"
+    },
+    "de_core_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "de_core_summary",
+      "sha256": "092d4fce57fbac3b8e2240d2e91a5dbca4f7dace73e391c677cf790b86de2770"
+    },
+    "dens_feature_missingness": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "dens_feature_missingness",
+      "sha256": "121c1d52978b8490f9d6702c3d30512341acbd0add6c0ae0edd0fa5dacf73377"
+    },
+    "eegnet_joint_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "eegnet_joint_predictions",
+      "sha256": "55b29557b96ed33efcc7f3941ea7933e7d1788eb22aa9663cb62a4dd0c70935c"
+    },
+    "eegnet_joint_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "eegnet_joint_summary",
+      "sha256": "4e1a40bf58232585e3acd08d483c876b9776ae2433a623edbcce753c0daf6cc7"
+    },
+    "external_bandpower_global": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "external_bandpower_global",
+      "sha256": "8c7ce2e49bde62885285e6424083459f9cec3e685ff398969de7a4afa9a92df9"
+    },
+    "external_bandpower_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "external_bandpower_predictions",
+      "sha256": "c908f4b429d4d0fad53fc0a7e49ed36cdcab4409f36d278c4f593b437410d471"
+    },
+    "external_bandpower_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "external_bandpower_summary",
+      "sha256": "8f82622a1f33a698a2fc2b3ff05313122ae2cc6306423e33f7b0e157c50fa2c8"
+    },
+    "external_condition_effects_channel": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "external_condition_effects_channel",
+      "sha256": "17a23de008ff93ddc90911fe38dc301981451b0fd9ab3054f9ebf7bd05d08961"
+    },
+    "external_condition_probe_channel": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "external_condition_probe_channel",
+      "sha256": "ea3a5e63bfde5880b1b1b78b50331b6f4ad76f8563d6ac074771ff246fc51eb2"
+    },
+    "external_condition_probe_global": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "external_condition_probe_global",
+      "sha256": "def3ad2e16634635f63b6f0f5a56b4d11d99e8b2bfe35025d9b8c6beabac1d53"
+    },
+    "external_paired_channel": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "external_paired_channel",
+      "sha256": "65031268ca5c3031c7d98242d72a0151093f9921f9f91551c0051260ed8ca963"
+    },
+    "external_paired_feature_view": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "external_paired_feature_view",
+      "sha256": "b1259dd9e335ca14cad7fc50f5dcc54d2e0fbfdf866219c8f91f7621cfef00d1"
+    },
+    "feature_ablation_statistics": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "feature_ablation_statistics",
+      "sha256": "70d6b298c0c5cad4593ef29dad38da02359bfc62cc4a32e6a9bc8e8a144710ae"
+    },
+    "feature_ablations_core_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "dataset_id",
+        "protocol",
+        "seed",
+        "view_id",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "feature_ablations_core_predictions",
+      "sha256": "272c18beb017e688a644baf7d4dbcf8595b709dbbd2422ff08ec523b97c82156"
+    },
+    "feature_ablations_core_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "feature_ablations_core_summary",
+      "sha256": "cd79f9f715e93e79a8d57ed993db9f659d2accee9ed08bfbbc32abe5b73dc4dc"
+    },
+    "feature_ablations_external_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "dataset_id",
+        "protocol",
+        "seed",
+        "view_id",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "feature_ablations_external_predictions",
+      "sha256": "4b51f8fb1a9019c515a18d393ef112aeafedb37b28e968aaebf037d224928a7b"
+    },
+    "feature_ablations_external_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "feature_ablations_external_summary",
+      "sha256": "9b80a254f94cbe293d10a580e5ce3c789517e7825780290345af49aee91f903c"
+    },
+    "identity_cbramod_pretrained": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "identity_cbramod_pretrained",
+      "sha256": "79afd238458685c4f7280a76fa51875968383653a40d49b2a66f4731783a1bf7"
+    },
+    "identity_cbramod_random": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "identity_cbramod_random",
+      "sha256": "e564ae43d8c408cdf68967c75bf3f3f343b891523febe234f9692d676908f9b8"
+    },
+    "identity_de": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "identity_de",
+      "sha256": "21eb1efe40e7c01efa7da9faef4cec84b91c8745144ec2e52cb7e719244ae0f0"
+    },
+    "identity_labram_pretrained": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "identity_labram_pretrained",
+      "sha256": "1c5f10ad9cc92d2bc7c15cd6765a668c7f91c903c255c429a28e206cddc024a3"
+    },
+    "identity_labram_random": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "identity_labram_random",
+      "sha256": "760b6f041679aa08e1c05c7c97a0bd92f202b1f0d811eca9097be4fc8c56a0bf"
+    },
+    "labram_pretrained_context_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "labram_pretrained_context_predictions",
+      "sha256": "429b37814768d9c3060ad4d8f9765fe63543b96a5e3b77d730bdc5173d89b0bc"
+    },
+    "labram_pretrained_context_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "labram_pretrained_context_summary",
+      "sha256": "0b06e36f0b11e29008875a33135c598810fd6b6f402ca17e15acb290196d7269"
+    },
+    "labram_pretrained_core_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "labram_pretrained_core_predictions",
+      "sha256": "02e32d4270f0705ff5c2b2f6138b377f6be5bf59a57f11d4cad8178662ac5a19"
+    },
+    "labram_pretrained_core_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "labram_pretrained_core_summary",
+      "sha256": "2fcfdfbdc16c0899672c176ef83e9fd662061047bc9f443f5223cc515b05fe14"
+    },
+    "labram_random_context_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "labram_random_context_predictions",
+      "sha256": "13ad4a95f8aeaf7c5371bcc9c375b3379de9988563e3718eb7c3995a07f5a6e5"
+    },
+    "labram_random_context_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "labram_random_context_summary",
+      "sha256": "bd4be19934b882f016250c6e65fe35a4f519df10e9a6863f89f55807f273e955"
+    },
+    "labram_random_core_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "labram_random_core_predictions",
+      "sha256": "22a3739496010c597d868dd8c7af218fcc801bc885edb1f57101fc1ec0fb6dad"
+    },
+    "labram_random_core_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "labram_random_core_summary",
+      "sha256": "a9a551c8a8e03474fdf33c8039a91bc37fe17cfa241a1ecfe4538219bedecfae"
+    },
+    "representation_statistics_context": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "representation_statistics_context",
+      "sha256": "e61089e13b36dc63f6a9ff38302b3745731ba565a09bd51dc887173dd7e29297"
+    },
+    "representation_statistics_core": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "representation_statistics_core",
+      "sha256": "779f38c3f6a65f79b84abb0d4831ad56b37c7df756176da9ed1be0506bc5338d"
+    },
+    "residual_invariance_labram_pretrained_context": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "residual_invariance_labram_pretrained_context",
+      "sha256": "0de36c5226808471f3d55ed97759188095790c9e31e197ab33e17d970f672e1a"
+    },
+    "residual_invariance_labram_pretrained_core": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "residual_invariance_labram_pretrained_core",
+      "sha256": "b39b7aaa4a453af046fe46cf251495484b7181ae3ba7dcb7d3969218dd1d8888"
+    },
+    "residual_invariance_labram_random_context": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "residual_invariance_labram_random_context",
+      "sha256": "60e49f3fbab2136635b8bf8fa13a9fe79d2c1789873755934966547640e2593f"
+    },
+    "residual_invariance_labram_random_core": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "residual_invariance_labram_random_core",
+      "sha256": "abddb067bb996324e36f8f73a6f805ac2fc20d14f2b07e579204574e24e153f1"
+    },
+    "semantic_prior_ablation": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "semantic_prior_ablation",
+      "sha256": "6c969a828e5a3429ca172019a1c5cba8d4a36ae582c914f9bc7af6841886960b"
+    },
+    "semantic_prior_ablation_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "semantic_prior_ablation_predictions",
+      "sha256": "fc9929e7a871966daa58a985ec3fd0e4d00cd52fa17ae874f96eda1dfe866d40"
+    },
+    "semantic_prior_ablation_statistics": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "semantic_prior_ablation_statistics",
+      "sha256": "d8c3ab210a198271be734908cf02838bf85c8a84deb43bb1bd2fcf0d23d771ed"
+    },
+    "subject_subspace_intervention": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "subject_subspace_intervention",
+      "sha256": "88883cfaf79fc27fd7814074351a44a4adde7a5a88457f043ce3ff9e7d978ab7"
+    },
+    "subject_subspace_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "projection_kind",
+        "requested_components",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "subject_subspace_predictions",
+      "sha256": "0ef55e78d6d182cc4a5a303cb844c8f21862bc6fc4befe329fa70f3a8ea68b00"
+    },
+    "subject_subspace_statistics": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "subject_subspace_statistics",
+      "sha256": "11d25b98fa6494de8ecdc4fc1c2ba2950a6a74452a7db71542075ff96117fbd8"
+    },
+    "support_matched_predictions": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "predictions",
+      "name": "support_matched_predictions",
+      "sha256": "06c359f1fcbff46709f574cffcf295fac6aeb650c3bf65c2a4e775e82e99bb0d"
+    },
+    "support_matched_split_manifest": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "support_matched_split_manifest",
+      "sha256": "29ad50c1ab070dfb41e83cd48f337d907617c337f2863b2f8555a985e7c0c18c"
+    },
+    "support_matched_statistics": {
+      "expected_seeds": [],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "support_matched_statistics",
+      "sha256": "0a686de58cece35a3b681274290b889bff9f947b2a85e3263201b32307104cd0"
+    },
+    "support_matched_summary": {
+      "expected_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "key_columns": [
+        "protocol",
+        "seed",
+        "trial_uid"
+      ],
+      "kind": "summary",
+      "name": "support_matched_summary",
+      "sha256": "a35783dafaa4dd53022bb6451139361309053000648978dcac7ab8983752b8f3"
+    }
+  },
+  "outputs": {
+    "benchmark_metrics.csv": {
+      "row_count": 25785,
+      "sha256": "87d945f366defff8edc37ad40eb328720a75e3fefcaa5839bea9e6ddac76b660"
+    },
+    "paired_comparisons.csv": {
+      "row_count": 1980,
+      "sha256": "6aa1b1e44b50399ba3a23e8a9e20854f77f97bb87cbc69c9ba175875018e22aa"
+    },
+    "prediction_index.csv": {
+      "row_count": 15,
+      "sha256": "71040c797e43f1db974ca8aa482db23d5ce69954ad14e676b10e7e67831ad905"
+    },
+    "summary_numeric_values.csv": {
+      "row_count": 341350,
+      "sha256": "506229f1648a0d2e55265ec1e56b8ce923e12a28165178d04fea475abeab0a80"
+    }
+  },
+  "registry_sha256": "3b5526b40a03ed1383e857efa505f7dfaf1982bcb23f1530ff67003d6cccebbf",
+  "registry_version": "neurips_ed_v1",
+  "repository_commit": "926ff047a3f3233b921e1dd5da02467f56bd6183"
+}

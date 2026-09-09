@@ -1,0 +1,131 @@
+{
+  "ablation": {
+    "m0": {
+      "trial_macro_f1": 0.26323929588945577
+    },
+    "m1_cross": {
+      "trial_macro_f1": 0.25785476080049724
+    },
+    "m2_subject": {
+      "trial_macro_f1": 0.2617817729311982
+    },
+    "m3_stimulus": {
+      "trial_macro_f1": 0.28813491361767224
+    },
+    "m4_async": {
+      "trial_macro_f1": 0.26074526507084644
+    }
+  },
+  "case_id": "seedv_authorized_protocol_audit_v1",
+  "code_sha256": {
+    "dataset_seedv_protocols.py": "117f6432ae80494428e5fd085089ba21d8595fff03c8cf2385bb6e5660edacfa",
+    "evaluate_sdsa_probes.py": "7f656b8b81dcd52c7c0f154cb05eadd026189bcdaec9618b00ab6b0f1dad6e4e",
+    "summarize_sdsa_paper.py": "d957022bb3ff104e3b5b340db6658c28cff76edde91fd6f8e318f1aabb954ab8",
+    "train_sdsa_seedv.py": "ee9a50fdc25d1d64055a755c0e5abd8ff5981857bfec34ae293704a9a8a1cfd6"
+  },
+  "data_boundary": {
+    "access": "authorized source access; no recordings, features, stimuli, or trial predictions are redistributed",
+    "role": "independent protocol-audit case study; not a fifth public OpenAffect-EEG source",
+    "source": "SEED-V"
+  },
+  "decision_gate": {
+    "checks": {
+      "at_least_10_of_16_subjects_improve": false,
+      "joint_delta_positive": true,
+      "probe_constraints_pass": false,
+      "strict_delta_at_least_0p03": false
+    },
+    "joint_macro_f1_delta": 0.006785954377866144,
+    "joint_n_subjects": 16,
+    "joint_positive": true,
+    "passed": false,
+    "probe_constraints_pass": false,
+    "strict_improved_subjects": 7,
+    "strict_macro_f1_delta": -0.012111279508687654,
+    "strict_n_subjects": 16
+  },
+  "input_sha256": {
+    "ablation.csv": "1b5396e9f9f2acf8fa6792acb9b6a4e55df32345549a28c6989011bf96d3d6ce",
+    "decision_gate.json": "f0e72f673bd1eef1637080153c5af3b8d70de6e935ed490981df960536ff86fa",
+    "main_results.csv": "7e199cabbbe46b980fd4e91d037770de71b2af0ecc2cf061526260df0b1d5907",
+    "probes.csv": "67c567b01127e0fbd0be8aa0661569f07ef3cfc47131bd6d06b6c6e4989fb6e9",
+    "protocol_ladder.csv": "7b5ec2b3ab92810409084c2b2e35d068d2eb10e03dd794b57fea45c2032bb4af",
+    "statistics.json": "32129722e70718327ed0ff285d1fc58a39a9f489d198f7e0a2647e4b77c17320"
+  },
+  "interpretation_boundary": "The strict-to-PaperStyle contrast is a protocol sensitivity result, not a model-only gain; the SDSA gate did not pass and is reported as a negative control.",
+  "probes": {
+    "raw_temporal": {
+      "emotion_probe": 0.4439917158586798,
+      "session_probe": 0.42592592592592593,
+      "stimulus_probe": 0.13209876543209875,
+      "subject_probe": 0.7660493827160494,
+      "time_bin_probe": 0.1037037037037037
+    },
+    "sdsa_m3": {
+      "emotion_probe": 0.5002842327583114,
+      "session_probe": 0.49135802469135803,
+      "stimulus_probe": 0.13098765432098766,
+      "subject_probe": 0.7901234567901234,
+      "time_bin_probe": 0.09814814814814815
+    }
+  },
+  "protocol_ladder": {
+    "p_full_paperstyle": 0.5922181895998191,
+    "s0_strict": 0.2785747316717989
+  },
+  "protocol_means": {
+    "joint_subject_stimulus_holdout": {
+      "raw_temporal": {
+        "mean_trial_accuracy": 0.26990740740740743,
+        "participant_count": 16,
+        "result_rows": 144,
+        "seed_count": 3,
+        "trial_macro_f1": 0.1787862681980329
+      },
+      "sdsa_m3": {
+        "mean_trial_accuracy": 0.26712962962962966,
+        "participant_count": 16,
+        "result_rows": 144,
+        "seed_count": 3,
+        "trial_macro_f1": 0.18557222257589903
+      }
+    },
+    "strict_loso": {
+      "raw_temporal": {
+        "mean_trial_accuracy": 0.31666666666666665,
+        "participant_count": 16,
+        "result_rows": 48,
+        "seed_count": 3,
+        "trial_macro_f1": 0.24178614755661187
+      },
+      "sdsa_m3": {
+        "mean_trial_accuracy": 0.30972222222222223,
+        "participant_count": 16,
+        "result_rows": 48,
+        "seed_count": 3,
+        "trial_macro_f1": 0.22967486804792422
+      }
+    }
+  },
+  "schema_version": 1,
+  "statistics": {
+    "joint": {
+      "ci95_high": 0.02915732564798128,
+      "ci95_low": -0.01540549716147143,
+      "mean_difference": 0.006785954377866144,
+      "metric": "trial_macro_f1",
+      "n_boot": 10000,
+      "n_subjects": 16,
+      "seed": 20260817
+    },
+    "strict": {
+      "ci95_high": 0.017782559294628502,
+      "ci95_low": -0.04386208207902274,
+      "mean_difference": -0.012111279508687654,
+      "metric": "trial_macro_f1",
+      "n_boot": 10000,
+      "n_subjects": 16,
+      "seed": 20260817
+    }
+  }
+}

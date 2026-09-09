@@ -1,0 +1,10 @@
+{
+  "version": "reviewer_block_validation_v12",
+  "design_source": "paper/generated/final_closure_v9/percentile/added_value_statistics.json",
+  "seed": 20260910,
+  "replicates": 300,
+  "bootstrap_iterations": 2000,
+  "noise_sd": 0.5,
+  "doses": [0, 1, 2, 4, 8],
+  "scenarios": ["labels_only", "trial_signal", "participant_constant", "independent_noise"]
+}

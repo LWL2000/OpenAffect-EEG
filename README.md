@@ -6,6 +6,14 @@ non-EEG predictors with matched resources. It does not establish causal or
 latent-emotion disentanglement. The anonymous review artifact contains no raw
 EEG, stimulus media, participant-level predictions, feature arrays, or weights.
 
+## Current revision: V12
+
+[Revision, limitations, and reproduction commands](docs/reviewer_revision_v12.md)
+include the complete matched-increment heatmap and an executed five-block
+coverage study. The study exposes severe small-block undercoverage; reported
+intervals are conditional diagnostics, not calibrated confidence guarantees.
+Primary EEG predictions and training records are reused.
+
 ## Reviewer acceptance
 
 Reviewers and independent testers should begin with

@@ -1,0 +1,17 @@
+\begin{table}[t]
+\centering\small
+\caption{Companion error contrasts for the same matched resources. Entries are uniform-grid mean $\mathrm{MAE}(EC)-\mathrm{MAE}(PC)$ with paired crossed 95\% intervals. Negative values favor the EEG branch; positive values mean larger error. These marginal intervals do not control error across all representations and calibration variants.}
+\label{tab:v3-mae}
+\begin{tabular}{@{}llcc@{}}
+\toprule
+Dataset & Representation & Mean offset & Shrunk offset \\
+\midrule
+EmoEEG-MC & Compact EEGNet-style & -0.0008 [-0.0030, 0.0011] & -0.0002 [-0.0032, 0.0023] \\
+EmoEEG-MC & Standard EEGNet & 0.0004 [-0.0004, 0.0012] & 0.0005 [-0.0005, 0.0015] \\
+EmoEEG-MC & LaBraM & 0.0059 [0.0001, 0.0114] & 0.0056 [-0.0009, 0.0122] \\
+EmoEEG-MC & Frozen EMOD & 0.0032 [-0.0025, 0.0100] & 0.0029 [-0.0029, 0.0099] \\
+MusicEEG & Band power & 0.0013 [-0.0021, 0.0044] & 0.0033 [-0.0045, 0.0108] \\
+MusicEEG & LaBraM & -0.0006 [-0.0071, 0.0067] & -0.0010 [-0.0100, 0.0096] \\
+\bottomrule
+\end{tabular}
+\end{table}

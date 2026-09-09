@@ -1,0 +1,704 @@
+{
+  "grids": [
+    {
+      "dataset_id": "ds005540",
+      "models": [
+        "cbramod_pretrained",
+        "cbramod_random",
+        "de",
+        "eegnet_trained",
+        "emod_pretrained",
+        "emod_random",
+        "labram_pretrained",
+        "labram_random"
+      ],
+      "participant_doses": [
+        0,
+        1,
+        2,
+        4,
+        8
+      ],
+      "stimulus_doses": [
+        0,
+        1,
+        2,
+        4,
+        8
+      ],
+      "supported_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "cells_per_model": 125,
+      "result_sha256": "2d71960779cb52b343158713813651fd5aadfbda057f38c9c6255a8211fd466c",
+      "predictions_sha256": "d6502afcfae3384efca29d7fc6897cdd64f114575309f44cad9d6ef866684d73",
+      "fixed_test_support_sha256": {
+        "11": "eab715ce5dc97320a5d65f6de46a12c651ec8a1ef6d93ad0f6cc7878e88dcc64",
+        "23": "c07fc2d0a13e8ffdbbe9f1c05ad636ba1021b91e9b8ff3181e60682726046142",
+        "47": "5aae68c678555717532a6818a6929ae6b98ba4a6e9cad5fdc001511e928ad10f",
+        "71": "48e7ba95948e2f15bf4b9c5d9288242915410e9496caf44b18c4d0186c5e0ae1",
+        "101": "23c29e14c1b7fbe9e31f2377fde905a84294201d90d47d8e53c66b243ec88d28"
+      }
+    },
+    {
+      "dataset_id": "ds002721",
+      "models": [
+        "bandpower",
+        "labram_pretrained",
+        "labram_random"
+      ],
+      "participant_doses": [
+        0,
+        1,
+        2,
+        4,
+        8
+      ],
+      "stimulus_doses": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "supported_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "cells_per_model": 100,
+      "result_sha256": "11f645a1e4e33703c7869f9a53ecca9296310aa004a2a42aead9c7499547d176",
+      "predictions_sha256": "55331398caa0f93c328555b13a3f7efad8a73967e50ea526276f7cf62c71a1d5",
+      "fixed_test_support_sha256": {
+        "11": "47686751607dc420c1a89c0916347e7605d58b9cc097715b009919cabeccdda3",
+        "23": "f81a2983ce4780b2cb3aed4c93588975e848c33293ba9c1150b61eb1f443c7db",
+        "47": "300da5c4fd0d9ff840a97f44a6e8ed439b1477dd0d964e085bb6988e0b9fa722",
+        "71": "b41c1289e17e665e0a56371f1e460a9929d84505cb72a808fa3fd5afc73bb1df",
+        "101": "902c502b248174363ab4a638cf58f7cb04c9da27eb8e5d990c10de2282417a3d"
+      }
+    },
+    {
+      "dataset_id": "ds003751",
+      "models": [
+        "bandpower"
+      ],
+      "participant_doses": [
+        0,
+        1,
+        2
+      ],
+      "stimulus_doses": [
+        0,
+        1,
+        2
+      ],
+      "supported_seeds": [
+        23,
+        47,
+        71,
+        101
+      ],
+      "cells_per_model": 36,
+      "result_sha256": "76b8fcf694df7b0242d3a09c416edd567582b35a1461134ca378b185cda714ed",
+      "predictions_sha256": "7d6e0447312256ca5a48720540969358ce88963e2b787f6c6ecc664823cd4f9c",
+      "fixed_test_support_sha256": {
+        "23": "822f59f49e52532ff17a9fa9b75be355e03fb91a79ef7675cb1e1393b98c8bd9",
+        "47": "4911d47c17423ef6fc4d1c187acc287237837264c4cf80159fc584cffe57e26b",
+        "71": "d80f73f0437e2de6d58a42a04633ed78103631d237aca925c48956bca39c9380",
+        "101": "98b11198e3b721ea0062bd4012149ce6e305f52381642b1817c545f207c12d53"
+      }
+    },
+    {
+      "dataset_id": "ds006866",
+      "models": [
+        "bandpower"
+      ],
+      "participant_doses": [
+        0,
+        2,
+        8
+      ],
+      "stimulus_doses": [
+        0,
+        2,
+        8
+      ],
+      "supported_seeds": [
+        11,
+        23,
+        47,
+        71,
+        101
+      ],
+      "cells_per_model": 45,
+      "result_sha256": "8f95da91b0fcd4ce75e5bbb189825c065f9d4c3ead5bf2fbe7174641908af727",
+      "predictions_sha256": "4bfa5e13706cf7f75b7ed740d06548544ec58e2c8c9ada9a66f63230708906c7",
+      "fixed_test_support_sha256": {
+        "11": "28ffa7936fa2326114f65e30eed107ced0f806328e1cbbd8c05fea6f8e48eefc",
+        "23": "ebffb5c08d808d3743ed24391b1e27bb90a58328a67d71fd6bfd9809921bbbc3",
+        "47": "5128416340348f83a2e1b2f37bd8acfc18bbf545a79f1b1fb3efb2850a915104",
+        "71": "65a5594d3e9353b7d2255dae70494e8220be6fef11efaf4eec22e00d890ade59",
+        "101": "c96848e541259b66492497afd3a0fcc847fb199556bd1d001fb474c7266cb280"
+      }
+    }
+  ],
+  "extensions": [
+    {
+      "model": "EMOD",
+      "initialization": "pretrained",
+      "width": 128,
+      "depth": 3,
+      "checkpoint_strict_match": true,
+      "checkpoint_key_renaming": {
+        "attnpool_c.attn.weight": "projection_head.0.attn.weight",
+        "attnpool_c.attn.bias": "projection_head.0.attn.bias",
+        "attnpool_t.attn.weight": "projection_head.1.attn.weight",
+        "attnpool_t.attn.bias": "projection_head.1.attn.bias",
+        "projection_head.0.weight": "projection_head.3.weight",
+        "projection_head.1.weight": "projection_head.4.weight",
+        "projection_head.1.bias": "projection_head.4.bias",
+        "projection_head.1.running_mean": "projection_head.4.running_mean",
+        "projection_head.1.running_var": "projection_head.4.running_var",
+        "projection_head.1.num_batches_tracked": "projection_head.4.num_batches_tracked",
+        "projection_head.3.weight": "projection_head.6.weight",
+        "projection_head.3.bias": "projection_head.6.bias"
+      },
+      "official_commit": "3a219f51ba4f90b9e2d22824cfb90dde77a9875c",
+      "source_sha256": {
+        "model/EMOD.py": "026b524038e36b73537ae66aee5180fa6959dddb1c20688f235e4d3fda7dcfc8",
+        "model/AxialTransformer.py": "16efd8a24c4d4a6d7043fce48988236a489e8bdd05fec4840b95056943dfac14",
+        "data_preprocess/channel_idx.py": "395752928a74c2219ff7f344d4794d69af785391c295c4e825ba46a193574c8c"
+      },
+      "input_sha256": {
+        "ds005540_raw_100hz.npy": "316d5c16a52b17316bc28d81a16f2f696794493c5d3dd880380d107889562cce",
+        "ds005540_raw_100hz_trial_uids.npy": "22a57489721580babdafe953f64e3b90d9debb9767811572366f64c1a44c4cbc",
+        "EMOD_pretrained.ckpt": "633ee538484eb9d772c2cbeecfa250636feb2e9e23fd93f48b187e68269ee6de"
+      },
+      "output_sha256": "875c6b5983d021ae83b1130d387110139c3b705992e68b44b95ff1999b6ee124",
+      "seed": 20260902,
+      "input": "Benchmark 100-Hz archive, no new amplitude normalization, three nonoverlapping 10-s crops",
+      "output": "Mean of official L2-normalized projection embeddings over crops",
+      "retained_channels": [
+        "FP1",
+        "FPZ",
+        "FP2",
+        "AF3",
+        "AF4",
+        "F7",
+        "F5",
+        "F3",
+        "F1",
+        "FZ",
+        "F2",
+        "F4",
+        "F6",
+        "F8",
+        "FT7",
+        "FC5",
+        "FC3",
+        "FC1",
+        "FCZ",
+        "FC2",
+        "FC4",
+        "FC6",
+        "FT8",
+        "T7",
+        "C5",
+        "C3",
+        "C1",
+        "CZ",
+        "C2",
+        "C4",
+        "C6",
+        "T8",
+        "TP7",
+        "CP5",
+        "CP3",
+        "CP1",
+        "CPZ",
+        "CP2",
+        "CP4",
+        "CP6",
+        "TP8",
+        "P7",
+        "P5",
+        "P3",
+        "P1",
+        "PZ",
+        "P2",
+        "P4",
+        "P6",
+        "P8",
+        "PO7",
+        "PO3",
+        "POZ",
+        "PO4",
+        "PO8",
+        "O1",
+        "OZ",
+        "O2"
+      ],
+      "removed_unknown_channels": [
+        "AF7",
+        "AF8",
+        "F9",
+        "F10",
+        "TP9",
+        "TP10"
+      ],
+      "boundary": "Frozen official weights with explicit legacy-head name mapping, benchmark preprocessing and Ridge readout; not replication of original fine-tuning results or a current SOTA ranking claim",
+      "elapsed_seconds": 19.30322891200194,
+      "torch_version": "2.11.0+cu130",
+      "cuda_version": "13.0"
+    },
+    {
+      "model": "EMOD",
+      "initialization": "random",
+      "width": 128,
+      "depth": 3,
+      "checkpoint_strict_match": true,
+      "checkpoint_key_renaming": {
+        "attnpool_c.attn.weight": "projection_head.0.attn.weight",
+        "attnpool_c.attn.bias": "projection_head.0.attn.bias",
+        "attnpool_t.attn.weight": "projection_head.1.attn.weight",
+        "attnpool_t.attn.bias": "projection_head.1.attn.bias",
+        "projection_head.0.weight": "projection_head.3.weight",
+        "projection_head.1.weight": "projection_head.4.weight",
+        "projection_head.1.bias": "projection_head.4.bias",
+        "projection_head.1.running_mean": "projection_head.4.running_mean",
+        "projection_head.1.running_var": "projection_head.4.running_var",
+        "projection_head.1.num_batches_tracked": "projection_head.4.num_batches_tracked",
+        "projection_head.3.weight": "projection_head.6.weight",
+        "projection_head.3.bias": "projection_head.6.bias"
+      },
+      "official_commit": "3a219f51ba4f90b9e2d22824cfb90dde77a9875c",
+      "source_sha256": {
+        "model/EMOD.py": "026b524038e36b73537ae66aee5180fa6959dddb1c20688f235e4d3fda7dcfc8",
+        "model/AxialTransformer.py": "16efd8a24c4d4a6d7043fce48988236a489e8bdd05fec4840b95056943dfac14",
+        "data_preprocess/channel_idx.py": "395752928a74c2219ff7f344d4794d69af785391c295c4e825ba46a193574c8c"
+      },
+      "input_sha256": {
+        "ds005540_raw_100hz.npy": "316d5c16a52b17316bc28d81a16f2f696794493c5d3dd880380d107889562cce",
+        "ds005540_raw_100hz_trial_uids.npy": "22a57489721580babdafe953f64e3b90d9debb9767811572366f64c1a44c4cbc",
+        "EMOD_pretrained.ckpt": "633ee538484eb9d772c2cbeecfa250636feb2e9e23fd93f48b187e68269ee6de"
+      },
+      "output_sha256": "484e72ca6788611ff91a48e852d7ecff5e1373921ed3c31d669d0b6e175b506c",
+      "seed": 20260902,
+      "input": "Benchmark 100-Hz archive, no new amplitude normalization, three nonoverlapping 10-s crops",
+      "output": "Mean of official L2-normalized projection embeddings over crops",
+      "retained_channels": [
+        "FP1",
+        "FPZ",
+        "FP2",
+        "AF3",
+        "AF4",
+        "F7",
+        "F5",
+        "F3",
+        "F1",
+        "FZ",
+        "F2",
+        "F4",
+        "F6",
+        "F8",
+        "FT7",
+        "FC5",
+        "FC3",
+        "FC1",
+        "FCZ",
+        "FC2",
+        "FC4",
+        "FC6",
+        "FT8",
+        "T7",
+        "C5",
+        "C3",
+        "C1",
+        "CZ",
+        "C2",
+        "C4",
+        "C6",
+        "T8",
+        "TP7",
+        "CP5",
+        "CP3",
+        "CP1",
+        "CPZ",
+        "CP2",
+        "CP4",
+        "CP6",
+        "TP8",
+        "P7",
+        "P5",
+        "P3",
+        "P1",
+        "PZ",
+        "P2",
+        "P4",
+        "P6",
+        "P8",
+        "PO7",
+        "PO3",
+        "POZ",
+        "PO4",
+        "PO8",
+        "O1",
+        "OZ",
+        "O2"
+      ],
+      "removed_unknown_channels": [
+        "AF7",
+        "AF8",
+        "F9",
+        "F10",
+        "TP9",
+        "TP10"
+      ],
+      "boundary": "Frozen official weights with explicit legacy-head name mapping, benchmark preprocessing and Ridge readout; not replication of original fine-tuning results or a current SOTA ranking claim",
+      "elapsed_seconds": 19.074815850995947,
+      "torch_version": "2.11.0+cu130",
+      "cuda_version": "13.0"
+    }
+  ],
+  "public_archive_status": "not_published",
+  "eegnet": {
+    "input_sha256": {
+      "ds005540_trials.tsv.gz": "7a36e9465b265142ef6da6b8b6605254e7cd865fb01422f450d4976f5349aaf7",
+      "ds005540_raw_100hz.npy": "316d5c16a52b17316bc28d81a16f2f696794493c5d3dd880380d107889562cce",
+      "ds005540_raw_100hz_trial_uids.npy": "22a57489721580babdafe953f64e3b90d9debb9767811572366f64c1a44c4cbc",
+      "run_eegnet_exposure.py": "8df1b1b80d19c8a2aa313b53a2314893e2df18da2111cf42a0e79438f65632c9",
+      "eegnet_source": "f4b16bb02eb041b78bf6c290c024ea79f990444d841787b7b45997f05fde49f9"
+    },
+    "adaptation": "Supervised compact EEGNet; zero adversarial loss; validation-selected epochs, train+validation refit",
+    "config": {
+      "temporal_kernel": 51,
+      "separable_kernel": 15,
+      "f1": 2,
+      "depth_multiplier": 2,
+      "f2": 4,
+      "latent_dim": 8,
+      "dropout": 0.25,
+      "crop_samples": 1000,
+      "batch_size": 64,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "stimulus_loss_weight": 0.0,
+      "max_epochs": 40,
+      "patience": 6,
+      "minimum_delta": 1e-06,
+      "gradient_clip_norm": 5.0,
+      "thread_count": 2,
+      "device": "cuda"
+    },
+    "population_fits": 25,
+    "epoch_selection": [
+      {
+        "seed": 11,
+        "stimulus_dose": 0,
+        "direct": {
+          "selected_epochs": 1,
+          "validation_mae": 0.21040523606333567
+        },
+        "residual": {
+          "selected_epochs": 1,
+          "validation_mae": 0.21055850006033916
+        }
+      },
+      {
+        "seed": 11,
+        "stimulus_dose": 1,
+        "direct": {
+          "selected_epochs": 1,
+          "validation_mae": 0.21003426570353195
+        },
+        "residual": {
+          "selected_epochs": 1,
+          "validation_mae": 0.2097629321134033
+        }
+      },
+      {
+        "seed": 11,
+        "stimulus_dose": 2,
+        "direct": {
+          "selected_epochs": 1,
+          "validation_mae": 0.20981623555436207
+        },
+        "residual": {
+          "selected_epochs": 1,
+          "validation_mae": 0.20997687007848828
+        }
+      },
+      {
+        "seed": 11,
+        "stimulus_dose": 4,
+        "direct": {
+          "selected_epochs": 1,
+          "validation_mae": 0.21037808192129992
+        },
+        "residual": {
+          "selected_epochs": 1,
+          "validation_mae": 0.21001457748662178
+        }
+      },
+      {
+        "seed": 11,
+        "stimulus_dose": 8,
+        "direct": {
+          "selected_epochs": 1,
+          "validation_mae": 0.20972265120967384
+        },
+        "residual": {
+          "selected_epochs": 1,
+          "validation_mae": 0.209952058717693
+        }
+      },
+      {
+        "seed": 23,
+        "stimulus_dose": 0,
+        "direct": {
+          "selected_epochs": 8,
+          "validation_mae": 0.16486277437865499
+        },
+        "residual": {
+          "selected_epochs": 8,
+          "validation_mae": 0.16326504595355773
+        }
+      },
+      {
+        "seed": 23,
+        "stimulus_dose": 1,
+        "direct": {
+          "selected_epochs": 6,
+          "validation_mae": 0.16534478010629425
+        },
+        "residual": {
+          "selected_epochs": 6,
+          "validation_mae": 0.1643255560981279
+        }
+      },
+      {
+        "seed": 23,
+        "stimulus_dose": 2,
+        "direct": {
+          "selected_epochs": 7,
+          "validation_mae": 0.16540635184876087
+        },
+        "residual": {
+          "selected_epochs": 13,
+          "validation_mae": 0.16198608261840225
+        }
+      },
+      {
+        "seed": 23,
+        "stimulus_dose": 4,
+        "direct": {
+          "selected_epochs": 7,
+          "validation_mae": 0.16565761772046028
+        },
+        "residual": {
+          "selected_epochs": 13,
+          "validation_mae": 0.16287010073319488
+        }
+      },
+      {
+        "seed": 23,
+        "stimulus_dose": 8,
+        "direct": {
+          "selected_epochs": 18,
+          "validation_mae": 0.16330717067350412
+        },
+        "residual": {
+          "selected_epochs": 14,
+          "validation_mae": 0.16239600646122634
+        }
+      },
+      {
+        "seed": 47,
+        "stimulus_dose": 0,
+        "direct": {
+          "selected_epochs": 9,
+          "validation_mae": 0.19264922420907957
+        },
+        "residual": {
+          "selected_epochs": 9,
+          "validation_mae": 0.1917227924343726
+        }
+      },
+      {
+        "seed": 47,
+        "stimulus_dose": 1,
+        "direct": {
+          "selected_epochs": 9,
+          "validation_mae": 0.19213080741643482
+        },
+        "residual": {
+          "selected_epochs": 9,
+          "validation_mae": 0.1920242048292186
+        }
+      },
+      {
+        "seed": 47,
+        "stimulus_dose": 2,
+        "direct": {
+          "selected_epochs": 10,
+          "validation_mae": 0.1925257464636646
+        },
+        "residual": {
+          "selected_epochs": 8,
+          "validation_mae": 0.19229339783287727
+        }
+      },
+      {
+        "seed": 47,
+        "stimulus_dose": 4,
+        "direct": {
+          "selected_epochs": 15,
+          "validation_mae": 0.19226526752600673
+        },
+        "residual": {
+          "selected_epochs": 13,
+          "validation_mae": 0.19199893983174984
+        }
+      },
+      {
+        "seed": 47,
+        "stimulus_dose": 8,
+        "direct": {
+          "selected_epochs": 13,
+          "validation_mae": 0.19236415111907468
+        },
+        "residual": {
+          "selected_epochs": 13,
+          "validation_mae": 0.1919181202062538
+        }
+      },
+      {
+        "seed": 71,
+        "stimulus_dose": 0,
+        "direct": {
+          "selected_epochs": 9,
+          "validation_mae": 0.18571976414170815
+        },
+        "residual": {
+          "selected_epochs": 9,
+          "validation_mae": 0.1871794707279686
+        }
+      },
+      {
+        "seed": 71,
+        "stimulus_dose": 1,
+        "direct": {
+          "selected_epochs": 10,
+          "validation_mae": 0.18578854345836318
+        },
+        "residual": {
+          "selected_epochs": 8,
+          "validation_mae": 0.18737846960176852
+        }
+      },
+      {
+        "seed": 71,
+        "stimulus_dose": 2,
+        "direct": {
+          "selected_epochs": 11,
+          "validation_mae": 0.18528244257379434
+        },
+        "residual": {
+          "selected_epochs": 8,
+          "validation_mae": 0.18789039222186496
+        }
+      },
+      {
+        "seed": 71,
+        "stimulus_dose": 4,
+        "direct": {
+          "selected_epochs": 10,
+          "validation_mae": 0.18559924481365792
+        },
+        "residual": {
+          "selected_epochs": 8,
+          "validation_mae": 0.18735673778980916
+        }
+      },
+      {
+        "seed": 71,
+        "stimulus_dose": 8,
+        "direct": {
+          "selected_epochs": 8,
+          "validation_mae": 0.18588530053469063
+        },
+        "residual": {
+          "selected_epochs": 11,
+          "validation_mae": 0.18770259082865234
+        }
+      },
+      {
+        "seed": 101,
+        "stimulus_dose": 0,
+        "direct": {
+          "selected_epochs": 1,
+          "validation_mae": 0.18588128457615924
+        },
+        "residual": {
+          "selected_epochs": 5,
+          "validation_mae": 0.1797517482982549
+        }
+      },
+      {
+        "seed": 101,
+        "stimulus_dose": 1,
+        "direct": {
+          "selected_epochs": 1,
+          "validation_mae": 0.1859066228945468
+        },
+        "residual": {
+          "selected_epochs": 6,
+          "validation_mae": 0.18018831806387875
+        }
+      },
+      {
+        "seed": 101,
+        "stimulus_dose": 2,
+        "direct": {
+          "selected_epochs": 5,
+          "validation_mae": 0.18171516165857607
+        },
+        "residual": {
+          "selected_epochs": 6,
+          "validation_mae": 0.17659411090899632
+        }
+      },
+      {
+        "seed": 101,
+        "stimulus_dose": 4,
+        "direct": {
+          "selected_epochs": 4,
+          "validation_mae": 0.18267935178922412
+        },
+        "residual": {
+          "selected_epochs": 5,
+          "validation_mae": 0.17552184916817698
+        }
+      },
+      {
+        "seed": 101,
+        "stimulus_dose": 8,
+        "direct": {
+          "selected_epochs": 4,
+          "validation_mae": 0.18254359020034738
+        },
+        "residual": {
+          "selected_epochs": 4,
+          "validation_mae": 0.17755996566629223
+        }
+      }
+    ],
+    "torch_version": "2.11.0+cu130",
+    "cuda_version": "13.0"
+  }
+}

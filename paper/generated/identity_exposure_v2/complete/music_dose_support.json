@@ -1,0 +1,48 @@
+{
+  "dataset": "MusicEEG",
+  "configured_stimulus_doses": [
+    0,
+    1,
+    2,
+    4
+  ],
+  "probe_dose": 8,
+  "support_checks": [
+    {
+      "seed": 11,
+      "frozen_test_trials": 19,
+      "minimum_available_stimulus_dose": 5,
+      "frozen_test_trials_without_dose8": 2,
+      "can_preserve_test_set_at_dose8": false
+    },
+    {
+      "seed": 23,
+      "frozen_test_trials": 25,
+      "minimum_available_stimulus_dose": 4,
+      "frozen_test_trials_without_dose8": 9,
+      "can_preserve_test_set_at_dose8": false
+    },
+    {
+      "seed": 47,
+      "frozen_test_trials": 25,
+      "minimum_available_stimulus_dose": 8,
+      "frozen_test_trials_without_dose8": 0,
+      "can_preserve_test_set_at_dose8": true
+    },
+    {
+      "seed": 71,
+      "frozen_test_trials": 22,
+      "minimum_available_stimulus_dose": 4,
+      "frozen_test_trials_without_dose8": 7,
+      "can_preserve_test_set_at_dose8": false
+    },
+    {
+      "seed": 101,
+      "frozen_test_trials": 46,
+      "minimum_available_stimulus_dose": 4,
+      "frozen_test_trials_without_dose8": 7,
+      "can_preserve_test_set_at_dose8": false
+    }
+  ],
+  "boundary": "A higher-dose support filter would define a different estimand, not extend the existing fixed-test surface"
+}

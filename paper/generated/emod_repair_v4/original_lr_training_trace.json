@@ -1,0 +1,956 @@
+{
+  "mode": "trace",
+  "prepared_sha256": "463992a3eeb6096972e90e95a2ab84ed0ca503c5c3277aea3e77e28006aaa3e7",
+  "script_sha256": "014fed348b80411bca42fb56947b8ba300af1e07cf9c910d7222888883a8b7c9",
+  "input": {
+    "shape": [
+      50,
+      62,
+      200
+    ],
+    "mean": -1.2600806620355343e-08,
+    "std": 16.86075210571289,
+    "max_abs": 337.7747497558594,
+    "sample_std": 15.038883209228516,
+    "below_minus_10_fraction": 0.13189838826656342,
+    "finite": true
+  },
+  "training_labels": [
+    10,
+    10,
+    10,
+    10,
+    10
+  ],
+  "head_lr": 0.001,
+  "backbone_lr": 0.0005,
+  "boundary": "Training-only diagnostic; no validation or test outcome selection",
+  "trace": [
+    {
+      "step": 0,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.07245464622974396,
+          "std": 0.2631929814815521,
+          "max_abs": 11.595605850219727,
+          "sample_std": 0.13635610044002533,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.004264900926500559,
+          "std": 1.3352960348129272,
+          "max_abs": 11.535901069641113,
+          "sample_std": 0.2252058982849121,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -0.012373312376439571,
+          "std": 0.7732765078544617,
+          "max_abs": 3.0620832443237305,
+          "sample_std": 0.15397968888282776,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 0.0948386937379837,
+          "std": 0.6289412379264832,
+          "max_abs": 3.0620832443237305,
+          "sample_std": 0.12233945727348328,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": 0.006329190451651812,
+          "std": 0.36824116110801697,
+          "max_abs": 1.1604048013687134,
+          "sample_std": 0.07354992628097534,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": 0.03114052303135395,
+          "std": 0.3364190459251404,
+          "max_abs": 1.1604048013687134,
+          "sample_std": 0.06460504978895187,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": 0.10378275066614151,
+          "std": 0.11814625561237335,
+          "max_abs": 0.3145297169685364,
+          "sample_std": 0.036852143704891205,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "loss": 1.6112371683120728,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        0,
+        49,
+        0,
+        1
+      ]
+    },
+    {
+      "step": 1,
+      "gradient_norm": 15.4761323928833,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.07136999070644379,
+          "std": 0.2603198289871216,
+          "max_abs": 11.547210693359375,
+          "sample_std": 0.13538050651550293,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.0075562684796750546,
+          "std": 1.328207015991211,
+          "max_abs": 11.478352546691895,
+          "sample_std": 0.22215287387371063,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 0.14275239408016205,
+          "std": 32.27964401245117,
+          "max_abs": 43.07988739013672,
+          "sample_std": 0.49336960911750793,
+          "below_minus_10_fraction": 0.4592580497264862,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 14.808307647705078,
+          "std": 17.464374542236328,
+          "max_abs": 43.07988739013672,
+          "sample_std": 0.2558194398880005,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -5.914819240570068,
+          "std": 29.19090461730957,
+          "max_abs": 88.90692901611328,
+          "sample_std": 0.4618797302246094,
+          "below_minus_10_fraction": 0.4156249761581421,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": 8.1839599609375,
+          "std": 14.54793930053711,
+          "max_abs": 78.43999481201172,
+          "sample_std": 0.20246589183807373,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": -0.5148116946220398,
+          "std": 15.82009506225586,
+          "max_abs": 25.87419891357422,
+          "sample_std": 0.3613418638706207,
+          "below_minus_10_fraction": 0.20000000298023224,
+          "finite": true
+        }
+      },
+      "loss": 23.310182571411133,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        50,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 2,
+      "gradient_norm": 308.90771484375,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.07173161953687668,
+          "std": 0.2609248161315918,
+          "max_abs": 11.378730773925781,
+          "sample_std": 0.13596071302890778,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.008813116699457169,
+          "std": 1.2739431858062744,
+          "max_abs": 11.108519554138184,
+          "sample_std": 0.22353234887123108,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -0.6686649918556213,
+          "std": 50.66072463989258,
+          "max_abs": 73.85498809814453,
+          "sample_std": 0.8123841881752014,
+          "below_minus_10_fraction": 0.48424193263053894,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 22.977096557617188,
+          "std": 27.260997772216797,
+          "max_abs": 73.85498809814453,
+          "sample_std": 0.40005800127983093,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -13.674924850463867,
+          "std": 49.939430236816406,
+          "max_abs": 137.26239013671875,
+          "sample_std": 0.7596149444580078,
+          "below_minus_10_fraction": 0.5679687261581421,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": 13.6053466796875,
+          "std": 27.149747848510742,
+          "max_abs": 101.9468002319336,
+          "sample_std": 0.25474268198013306,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": 1.7166050672531128,
+          "std": 28.761301040649414,
+          "max_abs": 54.365596771240234,
+          "sample_std": 0.49375391006469727,
+          "below_minus_10_fraction": 0.20000000298023224,
+          "finite": true
+        }
+      },
+      "loss": 26.217504501342773,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        0,
+        0,
+        0,
+        50
+      ]
+    },
+    {
+      "step": 3,
+      "gradient_norm": 343.7930603027344,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.07253183424472809,
+          "std": 0.2629033923149109,
+          "max_abs": 11.188985824584961,
+          "sample_std": 0.13703468441963196,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.006224448326975107,
+          "std": 1.2212644815444946,
+          "max_abs": 10.71424388885498,
+          "sample_std": 0.2252347618341446,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -1.8178843259811401,
+          "std": 61.246334075927734,
+          "max_abs": 99.55607604980469,
+          "sample_std": 1.0925984382629395,
+          "below_minus_10_fraction": 0.5017741918563843,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 27.306270599365234,
+          "std": 32.899192810058594,
+          "max_abs": 99.55607604980469,
+          "sample_std": 0.5233046412467957,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -27.013471603393555,
+          "std": 68.5351791381836,
+          "max_abs": 164.41468811035156,
+          "sample_std": 1.0282368659973145,
+          "below_minus_10_fraction": 0.640625,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": 17.621070861816406,
+          "std": 35.04979705810547,
+          "max_abs": 147.33799743652344,
+          "sample_std": 0.32655417919158936,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": 6.153904438018799,
+          "std": 42.957542419433594,
+          "max_abs": 65.52741241455078,
+          "sample_std": 0.6614424586296082,
+          "below_minus_10_fraction": 0.4000000059604645,
+          "finite": true
+        }
+      },
+      "loss": 42.76998519897461,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        0,
+        0,
+        50,
+        0
+      ]
+    },
+    {
+      "step": 5,
+      "gradient_norm": 383.1717224121094,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.07546383142471313,
+          "std": 0.2708495259284973,
+          "max_abs": 10.749669075012207,
+          "sample_std": 0.14007669687271118,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": -0.000656111107673496,
+          "std": 1.1615124940872192,
+          "max_abs": 9.851358413696289,
+          "sample_std": 0.2283770591020584,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -4.153813362121582,
+          "std": 68.19377899169922,
+          "max_abs": 117.84490203857422,
+          "sample_std": 1.6034140586853027,
+          "below_minus_10_fraction": 0.5162177085876465,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 29.33974838256836,
+          "std": 36.278411865234375,
+          "max_abs": 117.84490203857422,
+          "sample_std": 0.7434808015823364,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -64.6984634399414,
+          "std": 77.3794937133789,
+          "max_abs": 204.81329345703125,
+          "sample_std": 1.6627870798110962,
+          "below_minus_10_fraction": 0.7556250095367432,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": 10.39858341217041,
+          "std": 26.493099212646484,
+          "max_abs": 123.02354431152344,
+          "sample_std": 0.27656450867652893,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": -0.8373790383338928,
+          "std": 16.818105697631836,
+          "max_abs": 32.513187408447266,
+          "sample_std": 0.47201284766197205,
+          "below_minus_10_fraction": 0.20000000298023224,
+          "finite": true
+        }
+      },
+      "loss": 19.42685317993164,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        0,
+        50,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 10,
+      "gradient_norm": 96.80427551269531,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.09095684438943863,
+          "std": 0.3118818700313568,
+          "max_abs": 9.765586853027344,
+          "sample_std": 0.15254895389080048,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": -0.004808955360203981,
+          "std": 1.463897943496704,
+          "max_abs": 11.017890930175781,
+          "sample_std": 0.23770998418331146,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -9.161078453063965,
+          "std": 45.148860931396484,
+          "max_abs": 176.62086486816406,
+          "sample_std": 2.860529899597168,
+          "below_minus_10_fraction": 0.5643306374549866,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 15.767996788024902,
+          "std": 24.708213806152344,
+          "max_abs": 176.62086486816406,
+          "sample_std": 1.1972228288650513,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -86.65546417236328,
+          "std": 39.12992477416992,
+          "max_abs": 185.54229736328125,
+          "sample_std": 4.727651596069336,
+          "below_minus_10_fraction": 0.9842187166213989,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -0.9992836713790894,
+          "std": 0.019312089309096336,
+          "max_abs": 1.0,
+          "sample_std": 0.001581900054588914,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": 0.4093441069126129,
+          "std": 0.27679508924484253,
+          "max_abs": 0.8703577518463135,
+          "sample_std": 0.0037775940727442503,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "loss": 1.6470990180969238,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        50,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 20,
+      "gradient_norm": 12.695307731628418,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.1078009307384491,
+          "std": 0.355463445186615,
+          "max_abs": 9.69839859008789,
+          "sample_std": 0.16596932709217072,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.015716906636953354,
+          "std": 1.6757208108901978,
+          "max_abs": 11.463635444641113,
+          "sample_std": 0.23798173666000366,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -17.394268035888672,
+          "std": 59.048858642578125,
+          "max_abs": 267.4208679199219,
+          "sample_std": 3.5794339179992676,
+          "below_minus_10_fraction": 0.7574193477630615,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 13.319734573364258,
+          "std": 37.12459945678711,
+          "max_abs": 267.4208679199219,
+          "sample_std": 0.5644821524620056,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -124.964599609375,
+          "std": 44.56085968017578,
+          "max_abs": 340.2708435058594,
+          "sample_std": 2.049577236175537,
+          "below_minus_10_fraction": 1.0,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -1.0,
+          "std": 0.0,
+          "max_abs": 1.0,
+          "sample_std": 0.0,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": 0.3907434344291687,
+          "std": 0.06930817663669586,
+          "max_abs": 0.4929165840148926,
+          "sample_std": 0.0,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "loss": 1.6118358373641968,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        50,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "step": 50,
+      "gradient_norm": 1.282321572303772,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.10600270330905914,
+          "std": 0.3467617332935333,
+          "max_abs": 9.135759353637695,
+          "sample_std": 0.16318753361701965,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.04174588620662689,
+          "std": 0.9841856956481934,
+          "max_abs": 9.868404388427734,
+          "sample_std": 0.21395450830459595,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -8.101797103881836,
+          "std": 56.906253814697266,
+          "max_abs": 239.33499145507812,
+          "sample_std": 1.7449111938476562,
+          "below_minus_10_fraction": 0.5896531939506531,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 18.464494705200195,
+          "std": 38.71324157714844,
+          "max_abs": 239.33499145507812,
+          "sample_std": 0.6856707334518433,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -211.2499237060547,
+          "std": 56.97774887084961,
+          "max_abs": 444.53643798828125,
+          "sample_std": 2.253727912902832,
+          "below_minus_10_fraction": 1.0,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -1.0,
+          "std": 0.0,
+          "max_abs": 1.0,
+          "sample_std": 0.0,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": 0.36879655718803406,
+          "std": 0.044077835977077484,
+          "max_abs": 0.42907142639160156,
+          "sample_std": 0.0,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "loss": 1.6104083061218262,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        0,
+        0,
+        50,
+        0
+      ]
+    },
+    {
+      "step": 100,
+      "gradient_norm": 1.363274097442627,
+      "layers": {
+        "embd": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.09948965162038803,
+          "std": 0.31332650780677795,
+          "max_abs": 8.506123542785645,
+          "sample_std": 0.14745859801769257,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "axial_transformer": {
+          "shape": [
+            50,
+            62,
+            5,
+            128
+          ],
+          "mean": 0.05973060801625252,
+          "std": 0.939351499080658,
+          "max_abs": 9.161219596862793,
+          "sample_std": 0.17484736442565918,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.1": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": -1.406614899635315,
+          "std": 43.375370025634766,
+          "max_abs": 162.38107299804688,
+          "sample_std": 0.8480889201164246,
+          "below_minus_10_fraction": 0.41474997997283936,
+          "finite": true
+        },
+        "classifier.2": {
+          "shape": [
+            50,
+            2480
+          ],
+          "mean": 15.216211318969727,
+          "std": 29.120107650756836,
+          "max_abs": 162.38107299804688,
+          "sample_std": 0.42041724920272827,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.4": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -170.1933135986328,
+          "std": 44.98413848876953,
+          "max_abs": 340.5352478027344,
+          "sample_std": 1.7620174884796143,
+          "below_minus_10_fraction": 1.0,
+          "finite": true
+        },
+        "classifier.5": {
+          "shape": [
+            50,
+            128
+          ],
+          "mean": -1.0,
+          "std": 0.0,
+          "max_abs": 1.0,
+          "sample_std": 0.0,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        },
+        "classifier.7": {
+          "shape": [
+            50,
+            5
+          ],
+          "mean": 0.3627983331680298,
+          "std": 0.034687820822000504,
+          "max_abs": 0.39197760820388794,
+          "sample_std": 0.0,
+          "below_minus_10_fraction": 0.0,
+          "finite": true
+        }
+      },
+      "loss": 1.6100317239761353,
+      "accuracy": 0.19999998807907104,
+      "predicted_counts": [
+        0,
+        0,
+        0,
+        0,
+        50
+      ]
+    }
+  ]
+}

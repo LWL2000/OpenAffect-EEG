@@ -1,0 +1,114 @@
+{
+  "population_states": 25,
+  "predictor_fits": 50,
+  "dose_cells": 125,
+  "selected_epoch_range": [
+    1,
+    24
+  ],
+  "selected_first_epoch_count": 14,
+  "all_finite_objectives_gradients_prediction_scales": true,
+  "source_manifests": [
+    {
+      "file": "seed-011_stimulus-00.json",
+      "sha256": "e176c48ad657bd93e4cea353b2ec15d83434f654f1c0a3cae287f97358dca98c"
+    },
+    {
+      "file": "seed-011_stimulus-01.json",
+      "sha256": "4926dfca15627f79c0f850f6f195432f553437a4ac79e86d86aeeac54bd37875"
+    },
+    {
+      "file": "seed-011_stimulus-02.json",
+      "sha256": "50105da22235552b8071a0779bc1664a2d0f44aa3132dc30c629776d3ce66d58"
+    },
+    {
+      "file": "seed-011_stimulus-04.json",
+      "sha256": "a8b81a60095d5afd2e97b99ea62d0478615d12688a0ce84a712968b11d477a5d"
+    },
+    {
+      "file": "seed-011_stimulus-08.json",
+      "sha256": "55d2ed8bdd3e6d5459bc8d9ecc2cdde4e66a2910b8f35a4e35a0492a331b4e0c"
+    },
+    {
+      "file": "seed-023_stimulus-00.json",
+      "sha256": "df8968794b906bed2c4de5af7d2642eaa70833211911b60fd759c53f606667c6"
+    },
+    {
+      "file": "seed-023_stimulus-01.json",
+      "sha256": "57cb19ab0d5d19938618e28cb64ebef8df1c3c92493247ab6f8e53a5d48f1ebf"
+    },
+    {
+      "file": "seed-023_stimulus-02.json",
+      "sha256": "bed0883b40c3aaa4bde8913d6afa25642aa487565d1d44bae87ffd98d9a97a2f"
+    },
+    {
+      "file": "seed-023_stimulus-04.json",
+      "sha256": "3123e93d161b347a00ce28932a05282e056ff2526488063e39026e97d5a3154c"
+    },
+    {
+      "file": "seed-023_stimulus-08.json",
+      "sha256": "b6ed416fa7dad520a83a82c57720cf2146a6cab4aaef4dfcc91ea02d2eb2cdad"
+    },
+    {
+      "file": "seed-047_stimulus-00.json",
+      "sha256": "36bda206460728a22661b99775a6aad7867b3eaada09878314bac549d92956bc"
+    },
+    {
+      "file": "seed-047_stimulus-01.json",
+      "sha256": "6d3c885d28ac13967a5c17d773be39467aaafd96a49399cb59ceb78c9f9c6c22"
+    },
+    {
+      "file": "seed-047_stimulus-02.json",
+      "sha256": "5c1ea9ebf36e0b6b961e6d9ec2fe43bf7e0181a59724f7a6a95dbf2f514788fa"
+    },
+    {
+      "file": "seed-047_stimulus-04.json",
+      "sha256": "7a7d452e6558b1fc8a27a97f583b418b585817c9bba4be52220cae794a1e7705"
+    },
+    {
+      "file": "seed-047_stimulus-08.json",
+      "sha256": "d6381b9fe0859b0cdef9b5f1e2fcca85cf792a5bbd2c7a408004d39fb761c37f"
+    },
+    {
+      "file": "seed-071_stimulus-00.json",
+      "sha256": "946e396d9c334d7a59afec5c8406ec75e4c81e713bbd74a68b4649022d4cd91b"
+    },
+    {
+      "file": "seed-071_stimulus-01.json",
+      "sha256": "9e9f7765aa1b2c8217ef0e57f4ce487b67c88246d36e11e6075b578a8122fd9a"
+    },
+    {
+      "file": "seed-071_stimulus-02.json",
+      "sha256": "25cb6702bd8057a124c53fb2469ab34e127d4e0fb1bd0da17cf7aeb7a6d7796d"
+    },
+    {
+      "file": "seed-071_stimulus-04.json",
+      "sha256": "e731b9e84641a24ae449a6b7f256f475a40f701fd00410a11ce8ba82d7654168"
+    },
+    {
+      "file": "seed-071_stimulus-08.json",
+      "sha256": "8547331432fe694bb901e9f1766c26e20c16083fa91134793d472c4ec2e80a53"
+    },
+    {
+      "file": "seed-101_stimulus-00.json",
+      "sha256": "9e58fa860c0be16b3927805d3be12d78448fe078667d2b7710fc19a98eb7c215"
+    },
+    {
+      "file": "seed-101_stimulus-01.json",
+      "sha256": "23f2353319a7974492149ff61110195f5a330753b29421db5867e46d54754df4"
+    },
+    {
+      "file": "seed-101_stimulus-02.json",
+      "sha256": "bd21edd656986e86dba52dc862b3bbeae825c226ee36818aff5f7d1cc394dca7"
+    },
+    {
+      "file": "seed-101_stimulus-04.json",
+      "sha256": "0479968d34264fa81af973e4366e833e511746bef984b8fe7b4b534eb66553b0"
+    },
+    {
+      "file": "seed-101_stimulus-08.json",
+      "sha256": "8a887a8ac32aed4360e1a720c86febfeff698cab158f01d8ed1d7ebfcc361adc"
+    }
+  ],
+  "boundary": "Implementation and finite optimization checks, not proof of optimal hyperparameters or converged generalization"
+}

@@ -1,0 +1,42 @@
+{
+  "checked_date": "2026-09-09",
+  "url": "https://anonymous.4open.science/#!/r/OpenAffect-EEG-1815/",
+  "checks": [
+    {
+      "file": "README.md",
+      "status": 200,
+      "type": "text/markdown; charset=utf-8",
+      "bytes": 19469,
+      "sha256": "b74c4e28cc2d638497d047384fb37f397b60e9ac1ff19315641b3a8b3e07df4b"
+    },
+    {
+      "file": "pyproject.toml",
+      "status": 200,
+      "type": "application/toml",
+      "bytes": 1439,
+      "sha256": "900a71111f89c816fc1fe8707fc148f50983f260d81689f70270fd401c33d3ba"
+    },
+    {
+      "file": "scripts/verify_review_artifact.py",
+      "status": 200,
+      "type": "text/plain; charset=utf-8",
+      "bytes": 898,
+      "sha256": "8d9f54874f150cd7b6749a57742eefc0d2a56d3d7179a090af57ebf17db10394"
+    },
+    {
+      "file": "configs/submission_release_v11.yaml",
+      "status": 200,
+      "type": "text/yaml; charset=utf-8",
+      "bytes": 4631,
+      "sha256": "1444809ae09284e0eeab0203b11d7ae6154098bfea9bd430373d1d7c1dd383dd"
+    },
+    {
+      "file": "src/openaffect_eeg/workflow_audit.py",
+      "status": 200,
+      "type": "text/plain; charset=utf-8",
+      "bytes": 9718,
+      "sha256": "8bfa7d68d379830d9bd7e4839adfb3e5a4cd38a58a046b7fe29c0a58a4fdc6cb"
+    }
+  ],
+  "scope": "Anonymous file HTTP access; not a complete archive execution or current-revision synchronization check."
+}

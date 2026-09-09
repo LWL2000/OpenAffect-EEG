@@ -1,0 +1,14 @@
+{
+  "version": "interval-diagnostics-v7",
+  "seed": 2026091700,
+  "replicates": 300,
+  "bootstrap_iterations": 499,
+  "sizes": [[8, 6], [32, 24]],
+  "densities": [1.0, 0.25],
+  "noise_sds": [0.5, 1.5],
+  "scenarios": ["labels_only", "trial_signal", "participant_constant", "independent_noise"],
+  "participant_doses": [0, 4],
+  "stimulus_doses": [0, 4],
+  "methods": ["percentile", "basic", "normal_t"],
+  "selection_rule": "Report every prespecified method. No automatic promotion to the empirical primary analysis."
+}

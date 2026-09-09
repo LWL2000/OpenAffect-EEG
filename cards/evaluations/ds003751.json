@@ -1,0 +1,41 @@
+{
+  "benchmark_id": "openaffect-eeg",
+  "dataset_id": "ds003751",
+  "dataset_name": "DENS",
+  "protocols": {
+    "dataset_holdout": {
+      "reason": "the dataset is a core cross-dataset benchmark domain",
+      "status": "supported"
+    },
+    "directional_context_transfer": {
+      "reason": "the dataset contains one naturalistic-video context",
+      "status": "not_applicable"
+    },
+    "stimulus_holdout": {
+      "reason": "naturalistic video identity is available for each trial",
+      "status": "supported"
+    },
+    "subject_holdout": {
+      "reason": "dataset-qualified participant identities are available",
+      "status": "supported"
+    },
+    "subject_stimulus_holdout": {
+      "reason": "participant and video identities are jointly available",
+      "status": "supported"
+    },
+    "trial_random": {
+      "reason": "complete trials can be assigned while auditing subject and stimulus overlap",
+      "status": "supported"
+    }
+  },
+  "schema_version": 1,
+  "seeds": [
+    11,
+    23,
+    47,
+    71,
+    101
+  ],
+  "source_contract": "configs/benchmark.yaml",
+  "source_contract_sha256": "31c1059e6aee235b04ca3eb29e138abdf1f9d6ca4c91269827b22de9fc805e73"
+}

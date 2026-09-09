@@ -244,6 +244,14 @@ def render_chinese_reading_tex(
     )
     if title is None:
         raise ChineseReadingError("Chinese main manuscript must begin with one H1 title")
+    main = main.replace(
+        "OPENAFFECTMATCHEDGRIDFIGURE",
+        r"\begin{figure}[ht]\centering"
+        r"\includegraphics[width=0.97\linewidth]{../generated/reviewer_revision_v12/matched_increment_heatmap.pdf}"
+        r"\caption{完整匹配 EEG 增量网格。数值与色标均为 CCC 差值乘以 1000，四舍五入的零不表示精确相等。"
+        r"全部 12 个网格和 300 个单元均保留；每格为五个身份块内配对差值的平均。完整条件区间见随附 CSV。}"
+        r"\end{figure}",
+    )
 
     preamble = r"""\documentclass[UTF8,11pt,a4paper]{ctexart}
 \usepackage[margin=2.25cm]{geometry}

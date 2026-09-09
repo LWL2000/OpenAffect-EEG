@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering\small
+\caption{Held-out deployment-selection comparison. Both policies use the same validation predictions. Differences are conditioned minus global, uniformly averaged across resource cells; intervals are paired crossed 95\% intervals conditional on fits and choices. CCC is primary; MAE is secondary and lower is better.}
+\label{tab:selection-utility}
+\begin{tabular}{@{}llrrl@{}}
+\toprule
+Dataset & Metric & Global & Conditioned & Difference [interval] \\
+\midrule
+EmoEEG-MC & CCC & 0.34221 & 0.34477 & +0.00256 [-0.00113, 0.00601] \\
+EmoEEG-MC & MAE & 0.19523 & 0.19464 & -0.00059 [-0.00103, -0.00013] \\
+MusicEEG & CCC & 0.24712 & 0.24600 & -0.00113 [-0.01101, 0.01027] \\
+MusicEEG & MAE & 0.29405 & 0.29021 & -0.00384 [-0.00675, -0.00094] \\
+\bottomrule
+\end{tabular}
+% evidence: paper/generated/deployment_utility_v5/ds005540.json; paper/generated/deployment_utility_v5/ds002721.json
+\end{table}

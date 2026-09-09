@@ -1,0 +1,22 @@
+{
+  "version": "evaluation_validation_v6",
+  "frozen_date": "2026-09-07",
+  "seed": 20260907,
+  "participants": 32,
+  "stimuli": 24,
+  "participant_doses": [0, 4],
+  "stimulus_doses": [0, 4],
+  "scenarios": ["labels_only", "trial_signal", "participant_constant", "independent_noise"],
+  "densities": [1.0, 0.25],
+  "noise_sd": [0.5, 1.5],
+  "replicates": 100,
+  "bootstrap_draws": 499,
+  "pipeline_replicates": 5,
+  "pipeline_noise_sd": 0.5,
+  "ridge_alphas": [0.1, 1.0, 10.0],
+  "primary": "pointwise 95-percent interval coverage for analytically known matched CCC increment; false positive probability when true increment is nonpositive",
+  "secondary": "detection rate for positive increments, simultaneous four-cell coverage, interval width, retained support, and full production-pipeline contrasts",
+  "missingness": "MCAR independent of labels and all latent variables; not a model of all real missingness",
+  "boundary": "Oracle simulation validates a specified fixed-predictor estimand; production tests do not establish a known analytic target for learned predictors. Neither layer establishes biological causal disentanglement.",
+  "stopping": "Run all prespecified settings once. Failures and wide intervals remain reported. Do not select settings by significance. Debugging changes require a new run identifier and preserved failed results."
+}

@@ -1,0 +1,183 @@
+{
+  "approval_policy": {
+    "candidate_count": 3,
+    "candidate_rule": "For each new scientific question, propose three genuinely different and scientifically suitable chart types or visual structures.",
+    "current_final_selection_count": 5,
+    "inheritance_rule": "A selection for one figure does not constrain the chart type of any later figure.",
+    "scope": "per_figure_task",
+    "selection_rule": "Render a final figure only after the user selects one candidate for that figure."
+  },
+  "figures": [
+    {
+      "b_refinements": {
+        "B1": "paper/style_previews/f1_b_refinements/f1_b1_spacious_columns.pdf",
+        "B2": "paper/style_previews/f1_b_refinements/f1_b2_data_ribbon.pdf",
+        "B3": "paper/style_previews/f1_b_refinements/f1_b3_matrix_first.pdf"
+      },
+      "candidate_status": "finalized_page_audited",
+      "detail_boundary": "The main figure shows the compact contract; the full dataset-by-protocol applicability matrix remains in Supplementary Table 4.",
+      "final_artifacts": {
+        "pdf": "paper/neurips2026/figures/figure1.pdf",
+        "png": "paper/neurips2026/figures/figure1.png",
+        "script": "scripts/preview_f1_b_refinements.py",
+        "selected_source": "paper/style_previews/f1_b_refinements/f1_b1_spacious_columns.pdf"
+      },
+      "id": "F1",
+      "minimum_font_points": 7.0,
+      "must_show": [
+        "four source datasets and their modality or context roles",
+        "trial assignment before any windowing or cropping",
+        "subject, stimulus, joint, context, and dataset isolation",
+        "separation of semantic prior, EEG-only, and residual prediction",
+        "identity shortcut audits and unsupported protocol states"
+      ],
+      "planned_placement": "main_figure_1",
+      "question": "What does the benchmark isolate, and when may stimulus or condition information enter training and inference?",
+      "selected_candidate": "B1",
+      "v2_candidates": {
+        "A": "paper/style_previews/f1_v2/f1_a_pipeline.pdf",
+        "B": "paper/style_previews/f1_v2/f1_b_isolation_matrix.pdf",
+        "C": "paper/style_previews/f1_v2/f1_c_identity_graph.pdf"
+      }
+    },
+    {
+      "b_refinements": {
+        "B1": "paper/style_previews/f2_b_refinements/f2_b1_spacious_side_by_side.pdf",
+        "B2": "paper/style_previews/f2_b_refinements/f2_b2_spacious_stacked.pdf",
+        "B3": "paper/style_previews/f2_b_refinements/f2_b3_separated_effect_lanes.pdf"
+      },
+      "candidate_status": "finalized_page_audited",
+      "candidates": {
+        "A": "paper/style_previews/identity_exposure_v1/identity_exposure_a_heatmap_atlas.pdf",
+        "B": "paper/style_previews/identity_exposure_v1/identity_exposure_b_deployment_corners.pdf",
+        "C": "paper/style_previews/identity_exposure_v1/identity_exposure_c_effect_bars.pdf"
+      },
+      "final_artifacts": {
+        "pdf": "paper/neurips2026/figures/figure2.pdf",
+        "png": "paper/neurips2026/figures/figure2.png",
+        "script": "scripts/preview_identity_exposure_candidates.py",
+        "selected_source": "paper/style_previews/identity_exposure_v1/identity_exposure_a_heatmap_atlas.pdf"
+      },
+      "id": "F2",
+      "must_show": [
+        "one fixed participant--stimulus-unseen test support per seed",
+        "labelled participant-calibration dose",
+        "other-participant ratings per test stimulus",
+        "transparent, pretrained, and matched-random representations",
+        "all response cells on a shared macro-CCC scale"
+      ],
+      "planned_placement": "main_figure_2",
+      "question": "How do affect performance and model ordering change as labelled participant calibration and repeated-stimulus exposure vary independently?",
+      "selected_candidate": "A"
+    },
+    {
+      "candidate_status": "finalized_page_audited",
+      "candidates": {
+        "A": "paper/style_previews/f3_candidates/f3_a_raw_facets.pdf",
+        "B": "paper/style_previews/f3_candidates/f3_b_overview_and_zoom.pdf",
+        "B_BAR": "paper/style_previews/bar_dot_b/identity_bar_dot_b.pdf",
+        "C": "paper/style_previews/f3_candidates/f3_c_chance_calibrated.pdf"
+      },
+      "final_artifacts": {
+        "pdf": "paper/neurips2026/figures/figure3.pdf",
+        "png": "paper/neurips2026/figures/figure3.png",
+        "script": "scripts/preview_bar_dot_style_b.py",
+        "selected_source": "paper/style_previews/bar_dot_b/identity_bar_dot_b.pdf"
+      },
+      "id": "F3",
+      "must_show": [
+        "observed identity performance",
+        "permuted-label control",
+        "uniform chance level",
+        "all five evaluation seeds or an equally transparent uncertainty summary",
+        "the large difference in scale between participant or dataset identity and stimulus identity"
+      ],
+      "planned_placement": "English historical appendix page 29; Chinese reading page 14",
+      "question": "Which participant, stimulus, and dataset identities remain recoverable from each EEG representation?",
+      "selected_candidate": "B_BAR"
+    },
+    {
+      "candidate_status": "finalized_page_audited",
+      "candidates": {
+        "A": "paper/style_previews/f4_candidates/f4_a_full_rank_curves.pdf",
+        "B": "paper/style_previews/f4_candidates/f4_b_pareto_trajectories.pdf",
+        "C": "paper/style_previews/f4_candidates/f4_c_endpoint_effects.pdf"
+      },
+      "final_artifacts": {
+        "pdf": "paper/neurips2026/figures/figure4.pdf",
+        "png": "paper/neurips2026/figures/figure4.png",
+        "script": "scripts/preview_f4_candidates.py",
+        "selected_source": "paper/style_previews/f4_candidates/f4_a_full_rank_curves.pdf"
+      },
+      "id": "F4",
+      "must_show": [
+        "zero-strength nested controls",
+        "affect-performance change",
+        "identity or stimulus-effect change",
+        "validation-selected operating points",
+        "uncertainty and inconsistent seed directions"
+      ],
+      "planned_placement": "supplementary_figure_S1",
+      "question": "Do debiasing methods improve affect prediction while reducing identity-related structure, or only trade one objective for another?",
+      "selected_candidate": "A"
+    },
+    {
+      "candidate_status": "finalized_page_audited",
+      "candidates": {
+        "A": "paper/style_previews/f5_candidates/f5_a_compact_audit_triptych.pdf",
+        "B": "paper/style_previews/f5_candidates/f5_b_feature_view_small_multiples.pdf",
+        "B_BAR": "paper/style_previews/bar_dot_b/external_validation_bar_dot_b.pdf",
+        "C": "paper/style_previews/f5_candidates/f5_c_effect_first_intervals.pdf"
+      },
+      "final_artifacts": {
+        "pdf": "paper/neurips2026/figures/figure5.pdf",
+        "png": "paper/neurips2026/figures/figure5.png",
+        "script": "scripts/preview_bar_dot_style_b.py",
+        "selected_source": "paper/style_previews/bar_dot_b/external_validation_bar_dot_b.pdf"
+      },
+      "id": "F5",
+      "must_show": [
+        "condition prior, EEG-only, and condition-plus-EEG residual performance",
+        "paired prior-versus-residual error difference",
+        "condition identity decoding from global and channel features",
+        "permutation and six-class chance controls",
+        "the subject-holdout-only interpretation boundary"
+      ],
+      "planned_placement": "Chinese reading page 14; numeric evidence remains in the English supplement",
+      "question": "Does the condition-decodable but residual-poor asymmetry replicate in the independent ds006866 image-regulation dataset?",
+      "selected_candidate": "B_BAR"
+    }
+  ],
+  "shared_output_requirements": {
+    "final_checks": [
+      "scientific fidelity",
+      "scientific-figure-making skill audit",
+      "scientific-visualization skill audit",
+      "minimum final-size font >= 5.8 pt",
+      "automated zero text-overlap check",
+      "color accessibility with redundant encoding",
+      "grayscale distinguishability",
+      "text fit at final column width",
+      "whole-page manuscript render inspection",
+      "no unlabeled axis truncation"
+    ],
+    "layout_budget": {
+      "main_content_page_limit": 9,
+      "main_figures": {
+        "F1": "5.5 x 2.00 inches",
+        "F2": "5.5 x 2.28 inches",
+        "F3": "5.5 x 2.55 inches",
+        "F5": "5.5 x 2.25 inches"
+      },
+      "stress_test_status": "response_surface_revision_passed_9_of_9",
+      "supplement_figures": {
+        "F4": "5.5 x 2.20 inches"
+      }
+    },
+    "raster_dpi": 300,
+    "raster_format": "PNG",
+    "vector_format": "PDF"
+  },
+  "target": "NeurIPS Evaluations & Datasets",
+  "version": "neurips_ed_zh_v2"
+}

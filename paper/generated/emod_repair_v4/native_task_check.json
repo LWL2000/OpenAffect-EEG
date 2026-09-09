@@ -1,0 +1,218 @@
+{
+  "loss": 1.7547204820623858,
+  "accuracy": 0.38835745440126884,
+  "balanced_accuracy": 0.3862061690926724,
+  "kappa": 0.23480082429673044,
+  "macro_f1": 0.3860154108494747,
+  "weighted_f1": 0.39428361406406054,
+  "confusion_matrix": [
+    [
+      2402,
+      1074,
+      1354,
+      828,
+      886
+    ],
+    [
+      1758,
+      2495,
+      1238,
+      839,
+      1254
+    ],
+    [
+      2267,
+      1426,
+      3754,
+      1103,
+      890
+    ],
+    [
+      1603,
+      1414,
+      2039,
+      4275,
+      925
+    ],
+    [
+      1302,
+      1012,
+      986,
+      483,
+      2745
+    ]
+  ],
+  "predicted_counts": [
+    9332,
+    7421,
+    9371,
+    7528,
+    6700
+  ],
+  "fingerprint": {
+    "prepared_manifest_sha256": "463992a3eeb6096972e90e95a2ab84ed0ca503c5c3277aea3e77e28006aaa3e7",
+    "checkpoint_sha256": "633ee538484eb9d772c2cbeecfa250636feb2e9e23fd93f48b187e68269ee6de",
+    "config_sha256": "40ca44a12d8fba547a2aee1020ab29a1b219020127b1eae369147cee86742395",
+    "config": {
+      "version": "emod_native_repair_v4_20260903",
+      "motivation": "Training-only counterfactual identified classifier ELU saturation after an oversized Adam update.",
+      "single_algorithm_change_from_v3": "classifier learning rate 0.001 -> 0.00001",
+      "head_lr": 1e-05,
+      "backbone_lr": 0.0005,
+      "optimizer": "Adam",
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0,
+      "label_smoothing": 0.1,
+      "batch_size": 64,
+      "epochs": 100,
+      "seed": 2025,
+      "scheduler": "CosineAnnealingLR T_max=100 eta_min=1e-8",
+      "model_selection": "maximum validation kappa, last tie",
+      "test_evaluation": "one evaluation after the fixed full training budget and validation checkpoint selection",
+      "scope": "Repair native learning using unchanged official architecture and prepared data; not a five-seed reproduction or unseen-participant affect validation",
+      "no_test_based_retry": true
+    },
+    "source_sha256": {
+      "EMOD.py": "026b524038e36b73537ae66aee5180fa6959dddb1c20688f235e4d3fda7dcfc8",
+      "AxialTransformer.py": "16efd8a24c4d4a6d7043fce48988236a489e8bdd05fec4840b95056943dfac14",
+      "channel_idx.py": "395752928a74c2219ff7f344d4794d69af785391c295c4e825ba46a193574c8c",
+      "run_emod_seedv_check_v4.py": "4f54286a19d5e5a94010be199835f899e3988478824fd0e09e16042fbfecba2e",
+      "diagnose_emod_native.py": "014fed348b80411bca42fb56947b8ba300af1e07cf9c910d7222888883a8b7c9",
+      "run_emod_seedv_check_v3.py": "d1dd020d886d424433faa39ed31c367fee4953eff5d7db953da6fb9fc4595cb1"
+    }
+  },
+  "best_validation_kappa": 0.2105579794494158,
+  "split_counts": {
+    "train": 34432,
+    "validation": 42960,
+    "test": 40352
+  },
+  "epochs_completed": 100,
+  "parameter_count": 99572477,
+  "determinism": "Fixed seeds; CUDA adaptive pooling backward remains nondeterministic",
+  "boundary": "Single-seed native learning repair with training-only head-LR diagnosis; not five-seed SOTA reproduction, zero-shot or unseen-user affect recognition",
+  "verified_metrics": {
+    "accuracy": 0.38835745440126884,
+    "balanced_accuracy": 0.3862061690926724,
+    "kappa": 0.23480082429673044,
+    "macro_f1": 0.3860154108494747,
+    "weighted_f1": 0.39428361406406054
+  },
+  "observed_test_labels": [
+    6544,
+    7584,
+    9440,
+    10256,
+    6528
+  ],
+  "predicted_test_labels": [
+    9332,
+    7421,
+    9371,
+    7528,
+    6700
+  ],
+  "output_integrity": "verified against prepared records and recomputed metrics",
+  "learning_diagnostic": "not automatically certified by output-integrity checks",
+  "best_validation_epoch_last_tie": 21,
+  "test_trials": 240,
+  "test_participants": 16,
+  "first_train_loss": 1.590225075257312,
+  "last_train_loss": 0.43046884643100897,
+  "validation_kappa_max": 0.2105579794494158,
+  "training_seconds": 12161.765588330803,
+  "mean_gradient_norm_range": [
+    1.489245356569503,
+    8.528183606477475
+  ],
+  "prepared_file_count": 48,
+  "input_microvolt_std_range": [
+    7.668708324432373,
+    345.3807678222656
+  ],
+  "packages": {
+    "torch": "2.11.0+cu130",
+    "numpy": "2.4.6",
+    "mne": "1.12.1",
+    "scikit-learn": "1.9.0"
+  },
+  "evidence_sha256": {
+    "task_check.json": "93ed4baf9224587fa1d3589d28a945f81e5f57167dfed2a2d059e0066760b43a",
+    "history.json": "8e2c94ee79de2d3e499f7c056162f6771076e17c169617a72b33754964b499f7",
+    "prepared_manifest.json": "463992a3eeb6096972e90e95a2ab84ed0ca503c5c3277aea3e77e28006aaa3e7",
+    "private_test_predictions.tsv.gz": "a5d7147cd108aa2c6a5ceef39450d16516fcece767b7b4edd66461952369bc59",
+    "summarize_emod_task_check_v3.py": "ff40f41cef88c3ba670c68538464a7a5a923b042d9864e44797d27c1e35707a3"
+  },
+  "training_counterfactual": {
+    "matched_training_windows": 50,
+    "original_lr": 0.001,
+    "repaired_lr": 1e-05,
+    "unchanged_backbone_lr": 0.0005,
+    "original_step_1_loss": 23.310182571411133,
+    "repaired_step_1_loss": 1.6982104778289795,
+    "original_step_20_elu_std": 0.0,
+    "repaired_step_20_elu_std": 0.6511306762695312,
+    "original_step_100_accuracy": 0.19999998807907104,
+    "repaired_step_100_accuracy": 1.0,
+    "boundary": "Paired training-only numerical intervention; not generalization or emotion-mechanism evidence"
+  },
+  "official_preprocessing_parity": {
+    "status": "pass",
+    "checked_training_label_files": 48,
+    "prepared_manifest_sha256": "463992a3eeb6096972e90e95a2ab84ed0ca503c5c3277aea3e77e28006aaa3e7",
+    "script_sha256": "c8a82ee9863c1b8d9ef13b04906ca0972669d9b5feed28b0112f8acfa6f4601c",
+    "source_sha256": {
+      "SEEDV_preprocess.py": "cd9aa01e538d0676b1cffa18e09ede8fe86aaaed99ae18aeb5a4ad1ddc222b0f",
+      "main_preprocessing.py": "3b9bee6b3f353f0ebded383b500b0f7306e766c5c178d5fdcd6561d0237e4672"
+    },
+    "raw_reprocessing_checks": [
+      {
+        "record_index": 0,
+        "raw_sha256": "07fe9adab2c4d151781aa702298d5334604f9cef7a5e12cb8c5b8b2b061eb9da",
+        "windows": 20,
+        "max_abs_microvolt_difference": 0.0,
+        "original_channel_order_matches": true,
+        "data_format": "auto"
+      },
+      {
+        "record_index": 18,
+        "raw_sha256": "daab5b2f26627e8a90781c41b14e6d7684f87fb0abcbba88fccd946298467069",
+        "windows": 20,
+        "max_abs_microvolt_difference": 0.0,
+        "original_channel_order_matches": true,
+        "data_format": "int32_fallback"
+      },
+      {
+        "record_index": 23,
+        "raw_sha256": "091d80d34e16b33c644c9c19848c33b6561184a1dcf78616792b25aea23d3e61",
+        "windows": 20,
+        "max_abs_microvolt_difference": 0.0,
+        "original_channel_order_matches": true,
+        "data_format": "auto"
+      },
+      {
+        "record_index": 41,
+        "raw_sha256": "46115a29a384b0891943930a224e0b932ac4699846a20c32d92cc05976fc1a4a",
+        "windows": 20,
+        "max_abs_microvolt_difference": 0.0,
+        "original_channel_order_matches": true,
+        "data_format": "auto"
+      },
+      {
+        "record_index": 47,
+        "raw_sha256": "5649b0b2102658272df20d8585a11645d4ae62a386108c8d5bcaac744728bec4",
+        "windows": 20,
+        "max_abs_microvolt_difference": 0.0,
+        "original_channel_order_matches": true,
+        "data_format": "auto"
+      }
+    ],
+    "boundary": "Training windows only; selected raw-file parity is not exhaustive independent ground-truth validation"
+  },
+  "diagnostic_sha256": {
+    "trace_original_lr_verified.json": "2df9cc2c0a7aa74173e8acce62467a9494de25319f82844ab5b53201235eacf8",
+    "trace_head_1e5.json": "2eeba92d6a9772924770db0636d19e75c12788fe8fd8a12d2988b45f8ca8ee60",
+    "preparation_parity.json": "9d98646b08eaef4211cf8fc724e05d1108abdacf59f7e4f66d14f56cfdc6efec",
+    "summarize_emod_repair_v4.py": "b9f3e97238c97763de95411612a3794c224920c7fd6fa5fa881f556ec6a56b7b"
+  }
+}

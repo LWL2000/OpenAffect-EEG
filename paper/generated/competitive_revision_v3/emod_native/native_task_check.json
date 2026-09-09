@@ -1,0 +1,114 @@
+{
+  "loss": 1.6182464989851997,
+  "accuracy": 0.23394131641554322,
+  "balanced_accuracy": 0.2,
+  "kappa": 0.0,
+  "macro_f1": 0.07583547557840617,
+  "fingerprint": {
+    "prepared_manifest_sha256": "463992a3eeb6096972e90e95a2ab84ed0ca503c5c3277aea3e77e28006aaa3e7",
+    "checkpoint_sha256": "633ee538484eb9d772c2cbeecfa250636feb2e9e23fd93f48b187e68269ee6de",
+    "script_sha256": "d1dd020d886d424433faa39ed31c367fee4953eff5d7db953da6fb9fc4595cb1",
+    "source_sha256": "026b524038e36b73537ae66aee5180fa6959dddb1c20688f235e4d3fda7dcfc8",
+    "epochs": 100,
+    "batch_size": 64
+  },
+  "loaded_backbone_tensors": 68,
+  "parameter_count": 99572477,
+  "best_validation_kappa": 0.0,
+  "split_counts": {
+    "train": 34432,
+    "validation": 42960,
+    "test": 40352
+  },
+  "epochs_completed": 100,
+  "determinism": "fixed seeds; deterministic algorithms warn-only; adaptive_avg_pool2d CUDA backward is nondeterministic",
+  "boundary": "Single-seed native within-participant classification check. No unseen-user, self-report, causal, independent replication or full SOTA-performance claim.",
+  "verified_metrics": {
+    "accuracy": 0.23394131641554322,
+    "balanced_accuracy": 0.2,
+    "kappa": 0.0,
+    "macro_f1": 0.07583547557840617
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      6544,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      7584,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      9440,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      10256,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      6528,
+      0,
+      0
+    ]
+  ],
+  "observed_test_labels": [
+    6544,
+    7584,
+    9440,
+    10256,
+    6528
+  ],
+  "predicted_test_labels": [
+    0,
+    0,
+    40352,
+    0,
+    0
+  ],
+  "output_integrity": "verified against prepared records and recomputed metrics",
+  "learning_diagnostic": "failed: single-class final-test predictions",
+  "best_validation_epoch_last_tie": 100,
+  "test_trials": 240,
+  "test_participants": 16,
+  "first_train_loss": 1.9415550198696803,
+  "last_train_loss": 1.5583828022932031,
+  "validation_kappa_max": 0.0,
+  "training_seconds": 12182.702184474212,
+  "mean_gradient_norm_range": [
+    0.09193486185765178,
+    6.6588150725931925
+  ],
+  "prepared_file_count": 48,
+  "input_microvolt_std_range": [
+    7.668708324432373,
+    345.3807678222656
+  ],
+  "packages": {
+    "torch": "2.11.0+cu130",
+    "numpy": "2.4.6",
+    "mne": "1.12.1",
+    "scikit-learn": "1.9.0"
+  },
+  "evidence_sha256": {
+    "task_check.json": "42039eaa8db694d9b02aa9fec832b2055ad2da3643ff43d69acf25afb210808a",
+    "history.json": "a69afa952da312aaf2d80be15ef41479e3c81be8f84d1277e1e6cd1b2cff99f2",
+    "prepared_manifest.json": "463992a3eeb6096972e90e95a2ab84ed0ca503c5c3277aea3e77e28006aaa3e7",
+    "private_test_predictions.tsv.gz": "464ba1e36537add85fa685030060ad004335201510d49139c5d68672724e000c",
+    "summarize_emod_task_check_v3.py": "ff40f41cef88c3ba670c68538464a7a5a923b042d9864e44797d27c1e35707a3"
+  }
+}

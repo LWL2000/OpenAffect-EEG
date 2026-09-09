@@ -1,6 +1,6 @@
 % constants-source: paper/neurips2026/supplement.tex
-\setcounter{figure}{0}
-\renewcommand{\thefigure}{S\arabic{figure}}
+\section*{Historical Supporting Analyses}
+These analyses retain their original test supports and estimators. They are supporting records, not independent replications of the current primary grid. The current design and diagnostics precede this historical supplement.
 
 \section{Data Sources and Trial Reconstruction}
 \label{app:data}
@@ -1044,3 +1044,25 @@ condition-plus-EEG residual are reported separately; paired residual effects and
 condition probes use the five fixed seeds. Image identity is unavailable, so
 this is condition-level evidence and cannot support a stimulus-holdout claim.}
 {fig:condition-audit}
+
+\clearpage
+\section{Historical Overview Figures}
+% constants-source: paper/figure_plan_zh.json
+The following approved figures retain earlier evidence without changing its
+source version. The initial data layer covers the original four datasets;
+Urban is the later source described above. These figures are not the latest
+matched-increment tables and must not be read as latent-emotion decompositions.
+\placeholderfigure{figures/figure1.pdf}{2in}{Original trial-first data and
+evaluation contract. Stimulus identity is unavailable for ds006866. The later
+Urban source and resource-matched predictor pairs are specified in the main
+methods and latest-evidence appendix.}{fig:benchmark-contract}
+\placeholderfigure{figures/figure2.pdf}{2.5in}{Original EmoEEG-MC and MusicEEG
+total calibrated prediction surfaces on fixed trials. This is total system
+CCC, not EEG added value. The new coverage analysis and matched contrasts are
+reported separately in the main tables; MusicEEG retains its original feasible
+grid rather than being relabelled as a full maximum-dose grid.}{fig:identity-exposure}
+\placeholderfigure{figures/figure3.pdf}{2.55in}{Original representation probes.
+Bars show the five-seed mean, error bars show sample standard deviation, and
+points retain every seed. Observed and permuted identity decoding describe
+available information, not proof that an affect predictor uses identity or
+that identity is a pure nuisance.}{fig:identity-audit}

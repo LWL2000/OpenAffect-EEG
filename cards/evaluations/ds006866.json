@@ -1,0 +1,41 @@
+{
+  "benchmark_id": "openaffect-eeg",
+  "dataset_id": "ds006866",
+  "dataset_name": "Socio-affective emotion regulation",
+  "protocols": {
+    "dataset_holdout": {
+      "reason": "this dataset is reserved for large-sample external validation",
+      "status": "not_applicable"
+    },
+    "directional_context_transfer": {
+      "reason": "the six regulation conditions are not matched video and imagery contexts",
+      "status": "not_applicable"
+    },
+    "stimulus_holdout": {
+      "reason": "the public event tables do not expose trial-level image identity",
+      "status": "blocked_by_source_metadata"
+    },
+    "subject_holdout": {
+      "reason": "participant identities are available for all modeled trials",
+      "status": "supported"
+    },
+    "subject_stimulus_holdout": {
+      "reason": "joint holdout requires the unavailable trial-level image identity",
+      "status": "blocked_by_source_metadata"
+    },
+    "trial_random": {
+      "reason": "complete image-presentation trials and condition labels are available",
+      "status": "supported"
+    }
+  },
+  "schema_version": 1,
+  "seeds": [
+    11,
+    23,
+    47,
+    71,
+    101
+  ],
+  "source_contract": "configs/benchmark.yaml",
+  "source_contract_sha256": "31c1059e6aee235b04ca3eb29e138abdf1f9d6ca4c91269827b22de9fc805e73"
+}

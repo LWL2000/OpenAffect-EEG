@@ -1,0 +1,52 @@
+{
+  "revision": "v3",
+  "design_status": "prospective_for_new_checks_retrospective_for_existing_data",
+  "primary_datasets": ["ds005540", "ds002721"],
+  "external_candidate": "DEAP",
+  "external_status": "authorization_and_project_use_check_required",
+  "external_emod_unseen_dataset_claim": "forbidden_known_pretraining_exposure",
+  "seeds": [11, 23, 47, 71, 101],
+  "eegnet": {
+    "architecture": "braindecode_eegnet",
+    "braindecode_version": "1.2.0",
+    "temporal_kernel": 64,
+    "separable_kernel": 16,
+    "f1": 8,
+    "depth_multiplier": 2,
+    "f2": 16,
+    "dropout": 0.25,
+    "crop_samples": 1000,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "max_epochs": 100,
+    "patience": 12,
+    "selection_metric": "validation_mae",
+    "thread_count": 2,
+    "device": "cuda"
+  },
+  "calibration_controls": ["unshrunk", "training_only_empirical_shrinkage"],
+  "emod_task_check": {
+    "dataset": "authorized_SEEDV",
+    "protocol": "official_within_participant_trial_blocks",
+    "seed": 2025,
+    "epochs": 100,
+    "batch_size": 64,
+    "selection": "validation_kappa_last_tie",
+    "input": "62_channels_200_Hz_microvolts_one_second",
+    "determinism": "fixed_seed_warn_only_for_official_cuda_adaptive_pool_backward",
+    "scope": "implementation_check_not_unseen_user_or_full_paper_replication"
+  },
+  "bootstrap_draws": 2000,
+  "primary_surface_aggregation": "uniform_cell_mean",
+  "secondary_surface_aggregation": "dose_weighted_trapezoidal_auc",
+  "selection": {
+    "global_policy": "uniform_validation_surface_mean",
+    "conditional_policy": "declared_validation_cell",
+    "tie_break": "lexicographic_candidate_name",
+    "primary_metric": "macro_ccc",
+    "test_labels_allowed_for_selection": false
+  },
+  "publication_status": "not_publicly_archived",
+  "independent_user_run_status": "not_performed"
+}

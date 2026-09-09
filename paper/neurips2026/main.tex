@@ -3,12 +3,13 @@
 \usepackage[eandd]{neurips_2026}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath,amsfonts,booktabs,graphicx,microtype,xcolor,url,hyperref,tabularx,array}
+\usepackage{amsmath,amsfonts,booktabs,graphicx,microtype,xcolor,url,tabularx,array,float,flafter}
+\usepackage{hyperref}
 \hypersetup{hidelinks}
 \input{../generated/claim_values.tex}
 \input{../generated/identity_exposure_v2/complete/paired_added_value_values.tex}
 \input{../generated/competitive_revision_v3/primary_values.tex}
-\title{OpenAffect-EEG: Resource-Matched Evaluation of EEG Added Value}
+\title{OpenAffect-EEG: Auditing EEG Added Value Under Matched Label Resources}
 \author{Anonymous Authors}
 \newcommand{\placeholderfigure}[4]{%
   \begin{figure}[t]\centering
@@ -18,80 +19,93 @@
 \begin{document}
 \maketitle
 
+% evidence: paper/generated/evidence_argument_v10/decomposition_maximum_dose.csv; paper/generated/final_closure_v9/percentile/table_added_value_summary.csv; paper/generated/submission_closure_v11/evaluation_method_validation.json
 \begin{abstract}
-EEG affect systems may benefit from labelled user calibration and repeated
-stimuli as well as EEG. A higher system score therefore does not, by itself,
-establish incremental value from EEG. We introduce OpenAffect-EEG, an evaluation
-method that fixes test trials, varies participant-calibration and
-repeated-stimulus label doses, preserves population-training size, and compares
-EEG predictors with EEG-free priors receiving the same labels. A complementary
-execution-contract checker tests observable resource parity, data lineage, and
-deployment claims. In a bounded sensitivity analysis on EmoEEG-MC and urban-image
-appraisal, two settings each of band-power regression, frozen LaBraM, and
-standard EEGNet cover complete dose grids. Label resources consistently improve
-the EEG-free prior, whereas all mean matched EEG-increment intervals include
-zero. This is not evidence of equivalence or absent EEG information: it limits
-attribution of total system gains. Executed paths from two pinned external
-toolkits illustrate why split names and trial-intersection checks do not by
-themselves certify broader evaluation contracts. We retain earlier auditory,
-condition-level, and representation audits, including uncertain results.
-The contribution is a reproducible comparison object and checkable evidence
-for its assumptions, not a new encoder or a latent-emotion decomposition.
+Attributing an affect-prediction gain to EEG requires a comparator with the
+same non-EEG label resources. A comparison against an uncalibrated baseline
+instead evaluates the system package. OpenAffect-EEG makes this distinction
+executable. It fixes test trials,
+independently doses participant-calibration and repeated-stimulus labels,
+preserves population-training size, and pairs each EEG predictor with an
+EEG-free predictor receiving the same labels. On EmoEEG-MC and urban-image
+appraisal, we evaluate complete $5\times5$ dose grids for two settings each of
+band-power regression, frozen LaBraM, and standard EEGNet: 1,500 model cells in
+total. At maximum dose, positive system gains of $+0.0961$ and $+0.0587$ for one
+LaBraM setting become matched EEG differences of $-0.0459$
+$[-0.1098,+0.0139]$ and $-0.0186$ $[-0.0563,+0.0126]$, respectively. Across all
+12 task--setting grids, intervals for the mean matched EEG increment include
+zero. These results do not establish equivalence or absence of EEG information;
+they show that the observed total gains cannot be attributed to EEG under the
+evaluated contracts. Crossed simulations verify intended positive-signal
+behaviour but reveal serious undercoverage on the primary five-block topology;
+the reported intervals are conditional diagnostics, not calibrated guarantees. A companion
+checker records trial lineage, predictor resources, and deployment requirements,
+returning allow, block, or unverifiable decisions. OpenAffect-EEG contributes a
+resource-matched evaluation object and auditable evidence, not a new encoder or
+a causal decomposition of emotion.
 \end{abstract}
 
 \section{Introduction}
-An EEG emotion system can use more than the current EEG recording. It may have
-ratings from a target user's previous trials, ratings of the same stimulus from
-other users, or source-released normative stimulus scores. These resources are
-legitimate when available at deployment. The evaluation problem arises when an
-EEG system receives them but its EEG-free comparator does not, or when a
-protocol name conceals their availability. Canonical affect datasets contain
-repeated stimuli and individual self-reports, making this distinction concrete
+An EEG affect system can use more than the current EEG recording. It may also
+receive ratings from the target user's earlier trials, ratings of the same
+stimulus from other users, or source-released normative stimulus scores. These
+resources can be legitimate at deployment. The attribution problem begins when
+an EEG system receives them but its EEG-free comparator does not. If the former
+scores higher, the difference combines EEG with unequal label access.
+Canonical affect datasets make this problem concrete because they repeatedly
+present stimuli and collect individual self-reports
 \citep{koelstra2012deap,daly2020musiceeg,openneuro_ds005540}.
 
-Existing research establishes the importance of trial-level leakage prevention,
-participant and stimulus holdout, target-user calibration, and identity audits
-\citep{brookshire2024leakage,lei2025leakage,bendrich2022feature,bhosale2022calibration,lin2026identitytrap}.
-Our question is narrower: \emph{on the same test trials, what changes when the
-EEG and EEG-free predictors are given the same participant and stimulus label
-resources?} A protocol can exclude every test trial and still leave this
-comparison unmatched. Conversely, resource matching alone does not establish
-generalization to identities that have been observed during calibration.
+This paper asks one diagnostic question: \emph{on identical test trials, does a
+reported gain remain when EEG and EEG-free predictors receive the same
+participant and stimulus label resources?} Trial-level leakage prevention is
+necessary but does not answer this question. A model can exclude every test
+trial while still being compared with a baseline that lacks its calibration
+labels. Conversely, resource matching does not restore an unseen-participant or
+unseen-stimulus claim once those identities have been exposed. The two checks
+address different scientific statements.
 
-We distinguish three score differences: total system gain against an
-uncalibrated prior, calibration gain available without EEG, and the remaining
-EEG difference against that calibrated comparator. The point is not that
-subtraction is new, or that more labels can help. It is that the comparison
-requires an explicit, executable resource design: fixed test support, controlled
-population-training size, identical calibration labels, and declared external
-priors. The same design also specifies which deployment claims can be checked.
-We make three contributions:
+OpenAffect-EEG turns the comparison into a controlled evaluation object. It
+separates total system gain into an EEG-free calibration gain and a matched EEG
+difference, while fixing test support, controlling population-training size,
+and recording every supplied label resource. The subtraction is elementary;
+the contribution is the executable design that makes its operands comparable.
+This follows the diagnostic-benchmark principle that aggregate performance can
+hide which input or capability produced it \citep{radevski2025dave}, but applies
+that principle to deployment resources in EEG affect prediction.
+
+The central empirical correction is concrete. In two tasks, favourable gains
+against an uncalibrated prior become uncertain when compared with an EEG-free
+predictor receiving the same calibration labels. We do not conclude that EEG is
+uninformative. We conclude that the favourable total gains observed here do not
+identify its incremental contribution. We make three contributions:
 \begin{enumerate}
 \item \textbf{A resource-matched evaluation object.} A fixed-support response
-surface independently doses target-participant calibration and other-participant
-ratings of test stimuli, with training-row replacement and paired EEG-free
-controls. We define its estimand and assumptions rather than claiming causal
-identity isolation.
-\item \textbf{Evidence about attribution under controlled resources.} Complete
-grids and bounded training sensitivity show how favourable total system gains
-can coexist with uncertain matched EEG increments. Earlier models, auditory
-results, and unsupported comparisons remain available instead of being replaced
-by a favourable subset.
-\item \textbf{Reusable checks of observable execution contracts.} Trial lineage,
-predictor resources, preprocessing and selection roles, and fixed test hashes
-produce allow, block, or unverifiable decisions. Pinned external code paths and
-separately identified synthetic faults document what these checks do and do
-not establish.
+surface independently doses target-participant calibration and
+other-participant ratings of test stimuli. Training-row replacement and paired
+EEG-free controls isolate the score contrast of interest without claiming
+causal identity or emotion disentanglement.
+\item \textbf{A controlled empirical audit.} Complete dose grids for three EEG
+model families, two tasks, paired crossed-bootstrap uncertainty, and
+known-truth simulations test whether total gains survive the matched comparator
+and where the evaluation itself becomes unreliable.
+\item \textbf{An executable claim contract.} Trial lineage, predictor resources,
+preprocessing and selection roles, and fixed test hashes produce allow, block,
+or unverifiable decisions. Pinned external paths and synthetic faults expose the
+difference between a valid split and a supported deployment claim.
 \end{enumerate}
 
 \section{Relation to Existing Evaluation Work}
 EEGain standardizes datasets, preprocessing, models, splits, metrics, and
 prediction logging \citep{kukhilava2025eegain}. FMScope audits frozen
 representations with subject-axis, spectral, layer, and within-subject
-diagnostics \citep{lin2026identitytrap}. Both address genuine problems;
-neither is a weak baseline to be defeated by adding more features to a checker.
-Table~\ref{tab:evaluation-objects} locates our contribution by the question and
-observable inputs, not by an unsupported claim that no related method exists.
+diagnostics \citep{lin2026identitytrap}. Calibration, joint person--stimulus
+holdout, and EEG toolboxes are also established
+\citep{li2021calibration,bendrich2022feature,liu2026eegemolib}. These efforts ask
+whether data partitions, models, or representations generalize. Our unit of
+analysis is instead a \emph{paired prediction contrast}: which labels each
+predictor received on a fixed test support, and what part of a system gain
+remains after matching those labels.
 
 \begin{table}[t]\centering\small
 \caption{Complementary evaluation objects. This is a scoped comparison of
@@ -105,18 +119,18 @@ FMScope \citep{lin2026identitytrap} & What identity structure is encoded, and ho
 OpenAffect-EEG & What can be attributed to EEG under a declared resource contract? & Paired score contrasts plus verifiable resource and execution records. \\
 \bottomrule\end{tabularx}\end{table}
 
-Calibration, joint person--stimulus holdout, and EEG toolboxes are established
-\citep{li2021calibration,bendrich2022feature,liu2026eegemolib}. Likewise,
-identity probes, linear erasure, data cards, and provenance hashes are not
+Identity probes, linear erasure, data cards, and provenance hashes are not
 claimed as individually novel
 \citep{lin2026identitytrap,gebru2021datasheets,mitchell2019modelcards,akhtar2024croissant}.
-Outside EEG, supervision-conditioned benchmarking, controlled metric stress
-tests, and documented benchmark criteria are also established
-\citep{han2022adbench,liu2024tsbad,reuel2024betterbench}. Dose curves,
-simulation, and checklists are therefore not separate novelty claims here.
-Our scope is resource-conditioned evaluation of observed self-reports. It is
-not the physiological mechanism audited by FMScope, nor a claim to exceed the
-dataset coverage or classification results of EEGain.
+Outside EEG, diagnostic benchmarks separate aggregate scores into controlled
+capabilities, stress-test metrics on configurable known-truth data, and pair
+standard protocols with reusable code
+\citep{radevski2025dave,tan2025syntsbench,ma2024imdlbenco,reuel2024betterbench}.
+OpenAffect-EEG adopts those benchmark qualities for a domain-specific estimand:
+resource-matched EEG added value in observed self-report prediction. Dose
+curves, simulation, and checklists are supporting mechanisms, not separate
+novelty claims. We neither audit physiological mechanisms nor claim broader
+dataset coverage or higher classification accuracy than existing EEG suites.
 
 \section{Resource-Matched Evaluation}
 \subsection{Trial graph and resource contract}
@@ -173,7 +187,11 @@ G_{\rm cal}(p,s)&=Q(PC)-Q(P),\\
 \end{align}
 Thus $G_{\rm total}=G_{\rm cal}+\Delta_{\rm EEG}$ exactly. This is a
 telescoping score identity, not an additive decomposition of CCC into neural
-mechanisms. $G_{\rm total}$ can assess an entire system package; it cannot
+mechanisms. At a fixed $s$, both $P$ and $EC$ already receive the same
+repeated-stimulus labels: the unmatched resource in this particular contrast
+is participant calibration. Changing $s$ studies the matched comparison under
+different shared stimulus resources, rather than estimating a pure causal
+effect of stimulus information. $G_{\rm total}$ can assess an entire system package; it cannot
 isolate EEG added value when calibration resources differ. At $p=0$, $PC=P$
 and the matched contrast reduces to $Q(E)-Q(P)$.
 
@@ -185,6 +203,14 @@ mean greater error. Uniform grid weighting is a specified benchmark utility,
 not an estimated deployment-frequency distribution. Endpoint tables illustrate
 comparison choice but do not replace this primary summary. Every grid cell is
 retained in the aggregate release.
+
+This estimand is specific to the fitted predictors and calibration rule.
+Equal label access does not imply equal ability to exploit those labels.
+Accordingly, a nonpositive increment diagnoses the evaluated pipeline, not
+the maximum information available in EEG. The uniform mean assigns equal
+weight to benchmark cells; it is not an optimal deployment policy. For an
+application, resource feasibility, participant time, recording cost, and
+application-specific cell weights must be specified separately.
 
 \subsection{Observable execution checks}
 The checker consumes a trial-identity table, an execution record, and boolean
@@ -203,119 +229,145 @@ calibration labels. These are different checks with different inputs. A basic
 intersection checker is not expected to infer undeclared resource use. The
 resource checker complements it; it is not a universally more accurate detector.
 
-\section{Experimental Evidence}
-\subsection{Coverage and bounded training sensitivity}
+\section{Controlled Evidence}
+\subsection{Evaluation coverage}
 % evidence: paper/generated/final_closure_v9/verification/verification.json; configs/final_robustness_v9.json
-The latest coverage analysis uses EmoEEG-MC (30 eligible participants, 42
-stimuli; valence and arousal) and Urban Appraisal (62 participants, 56 street
-images; genuine valence trials only)
-\citep{openneuro_ds005540,openneuro_ds006850}.
-Deterministic participant and stimulus blocks test every eligible identity
-once, producing 252 and 695 test trials respectively. Only diagonal identity
-blocks are tested, not all possible pairs. Urban is an external appraisal
-task, not an identical replication of the emotion-induction paradigm. These
-data have been used in earlier analyses; the new blocks are not an untouched
-confirmatory cohort.
+We evaluate EmoEEG-MC (30 eligible participants, 42 stimuli; valence and
+arousal) and Urban Appraisal (62 participants, 56 street images; genuine
+valence trials only) \citep{openneuro_ds005540,openneuro_ds006850}.
+Deterministic identity blocks test every eligible participant and stimulus once,
+yielding 252 and 695 fixed test trials. The design tests five diagonal blocks,
+not every possible participant--stimulus pair. Urban is an external appraisal
+task, not an identical replication of emotion induction, and neither dataset is
+an untouched confirmatory cohort.
 
-% evidence: configs/final_robustness_v9.json; paper/generated/final_closure_v9/verification/verification.json
-Each task includes band-power Ridge, frozen LaBraM, and the standard
-Braindecode EEGNet \citep{jiang2024labram,lawhern2018eegnet}, each with two bounded settings, across five blocks and all
-25 cells: 1,500 model-cell results in total, not independent observations.
-Ridge settings vary the candidate regularization grid; EEGNet settings vary
-learning rate. Validation selects hyperparameters and training duration;
-population refitting combines training and validation, never test or
-calibration trials. The direct and residual EEGNet branches have 200 recorded
-selection/refit learning histories. They are finite and nonconstant, which
-checks execution but does not establish optimal training. Full settings,
-coverage, preprocessing, and historical model panels appear in the Appendix.
+Each task includes band-power Ridge, frozen LaBraM, and standard Braindecode
+EEGNet \citep{jiang2024labram,lawhern2018eegnet}. Two bounded settings per model,
+five identity blocks, and all 25 dose cells yield 1,500 model-cell results; these
+cells are not independent observations. Ridge settings vary the candidate
+regularization grid, while EEGNet settings vary learning rate. Validation
+selects hyperparameters and training duration. Population refitting uses
+training and validation trials but never test or calibration trials. We record
+200 nonconstant EEGNet selection/refit histories as execution evidence, not as
+proof of optimization. The Appendix reports full preprocessing, coverage,
+budgets, and historical model panels.
 
-\subsection{Paired uncertainty}
-% evidence: paper/generated/final_closure_v9/percentile/added_value_statistics.json; paper/generated/final_closure_v9/normal_t/added_value_statistics.json
-Crossed bootstrap applies the same participant and stimulus multiplicities to
-all paired predictors, cells, and blocks. Of 2,000 draws, 1,985 are valid for
-EmoEEG-MC and 2,000 for Urban. We report percentile intervals and retain an
-explicitly heuristic small-cluster t-normal sensitivity analysis. Intervals
-condition on the fixed fitted predictions; they do not include full retraining
-uncertainty. Fixed blocks and settings are not independent study replications.
-Small-cluster coverage diagnostics remain in the release, and nominal coverage
-is not guaranteed. We distinguish pointwise intervals from separately supplied
-dose-family simultaneous bands; neither corrects all model comparisons.
+% evidence: paper/generated/reviewer_revision_v12/learning_diagnostics.csv
+The archived learning records quantify this qualification. Among 50 direct
+and 50 residual EEGNet fits per task, respectively 12/10 Emo fits and 8/7
+Urban fits select epoch one. Median selected epochs are 18/17.5 and 11/7.5.
+Training objectives decrease in the median for all four groups. These real-task
+records rule out an account in which every network simply remained at its
+initial fit; they do not establish optimal tuning or a positive held-out
+EEG signal. Appendix~\ref{app:revision-diagnostics} reports the reusable audit.
 
-\paragraph{Stress-testing the evaluator.}
-Before interpreting observed data, we pass the same matched-contrast analyzer
-through prespecified Gaussian crossed simulations with analytic population CCC.
-Across 16 trial-signal settings (100 replicates each), positive-detection rates
-are 0.85--1.00 and pointwise coverage is 0.92--1.00. A labels-only predictor
-gives exact zero, and no positive detection is observed in 16 independent-noise
-settings; the latter is finite simulation evidence, not a zero false-positive
-rate. Fresh 300-replicate diagnostics give 0.933 percentile coverage in the
-previous 32-participant/24-stimulus problem case, but the minimum falls to 0.837
-with 8 participants and 6 stimuli. We therefore validate the comparison's
-intended behavior while retaining small-support interval failure as a limit;
-Appendix~\ref{app:evaluator-validation} reports all scenario roles and methods.
-% evidence: paper/generated/submission_closure_v11/evaluation_method_validation.json
-
-\subsection{What the matched comparator changes}
+\subsection{A favourable total gain need not be an EEG gain}
 \input{../generated/evidence_argument_v10/decomposition.tex}
-\input{../generated/evidence_argument_v10/primary.tex}
 % evidence: paper/generated/evidence_argument_v10/decomposition_maximum_dose.csv
-Table~\ref{tab:resource-decomposition} retains every setting at the same
-predeclared maximum dose. For EmoEEG-MC LaBraM R1, total gain relative to $P$
-is $+0.0961$, while the EEG-free calibration gain is $+0.1420$. The matched EEG
-difference is $-0.0459$ with interval $[-0.1098,+0.0139]$. In Urban, the same
-setting has total gain $+0.0587$, EEG-free calibration gain $+0.0774$, and
-matched difference $-0.0186$ with interval $[-0.0563,+0.0126]$. Thus a positive
-system-level point gain is not evidence for a positive EEG-specific contrast.
-The latter comparisons remain uncertain; we do not claim a statistically
-established universal reversal or absence of EEG information.
+Table~\ref{tab:resource-decomposition} applies the same predeclared maximum dose
+to every setting. For EmoEEG-MC LaBraM R1, $EC$ improves on the uncalibrated
+prior $P$ by $+0.0961$. Yet the same calibration labels improve the EEG-free
+predictor by $+0.1420$, leaving a matched EEG difference of $-0.0459$
+$[-0.1098,+0.0139]$. In Urban, the corresponding quantities are $+0.0587$,
+$+0.0774$, and $-0.0186$ $[-0.0563,+0.0126]$. The system-level point gains are
+positive; the EEG-specific contrasts are not established as positive. This is
+the judgement that resource matching changes.
 
+\input{../generated/evidence_argument_v10/primary.tex}
 % evidence: paper/generated/final_closure_v9/percentile/table_added_value_summary.csv; paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv
-The full-grid primary summaries in Table~\ref{tab:primary-v9} have intervals
-including zero for all 12 task--setting combinations under both interval
-methods. No equivalence margin was prespecified. These findings therefore
-limit claims of a stable average positive increment in the evaluated settings;
-they do not establish equivalence or a ceiling on future EEG methods.
-The secondary MAE contrast for LaBraM R1 is positive in both tasks under both
-interval constructions, indicating increased error for that configuration;
-other configurations include uncertain and interval-sensitive effects.
-All CCC and MAE settings, rather than selected significant rows, are reported
-in Appendix~\ref{app:latest-evidence}.
+The primary full-grid summaries in Table~\ref{tab:primary-v9} tell the same
+bounded story: all 12 task--setting intervals include zero under both interval
+methods. No equivalence margin was prespecified, so this does not establish
+equivalence, universal reversal, absence of EEG information, or a ceiling on
+future EEG methods. The secondary MAE contrast for LaBraM R1 indicates increased
+error in both tasks under both interval constructions; other configurations are
+uncertain or interval-sensitive. Appendix~\ref{app:latest-evidence} reports all
+CCC and MAE settings rather than selected rows.
+
+% evidence: paper/generated/reviewer_revision_v12/figure_manifest.json
+\begin{figure}[tp]\centering
+\includegraphics[width=\linewidth]{../generated/reviewer_revision_v12/matched_increment_heatmap.pdf}
+\caption{All 12 matched-increment grids, with every dose retained. Entries and
+color scale are $1000\Delta_{\rm EEG}$; rounded zero is not exact equality.
+Rows distinguish tasks and settings (R1/L1, R2/L2); columns distinguish model
+families. Positive values favor EEG. Each value averages five block-level
+paired CCC contrasts. This is a descriptive display of already inspected
+data, not an additional confirmatory test. Conditional pointwise and
+within-model dose-family intervals accompany every cell in the released CSV.}
+\label{fig:matched-grid}
+\end{figure}
+
+% evidence: paper/generated/reviewer_revision_v12/heterogeneity_summary.json
+Figure~\ref{fig:matched-grid} exposes heterogeneity hidden by the uniform mean.
+For example, Urban EEGNet L2 has positive point estimates in every cell, ranging
+from $+0.0003$ to $+0.0177$; these do not establish positive increments at the
+reported precision. None of the 300 cells has a positive pointwise CCC
+interval. Two Urban LaBraM R1 cells have negative pointwise intervals, but
+neither survives its within-model dose-family band. We retain all 48
+task--setting--corner comparisons $(0,0),(8,0),(0,8),(8,8)$ in a separate table;
+no cell selection or averaging of interval endpoints is used.
 
 % evidence: paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv
-The EEG-free prior is itself resource-sensitive. From zero doses, increasing
-only participant calibration to eight trials changes $PC$ CCC by $+0.2036$
-in EmoEEG-MC and $+0.1564$ in Urban; changing only stimulus-label dose to eight
-changes it by $+0.4907$ and $+0.3408$. The corresponding percentile and
-t-normal intervals are positive. This is not novel evidence that labels help.
-It explains why a non-EEG resource comparator is necessary when interpreting
-the much smaller matched EEG contrasts.
+Why is the matched comparator material? From zero dose, eight target-user
+calibration trials increase EEG-free $PC$ CCC by $+0.2036$ in EmoEEG-MC and
+$+0.1564$ in Urban. Eight other-participant ratings per test stimulus increase
+it by $+0.4907$ and $+0.3408$, respectively; both interval constructions are
+positive. The fact that labels help is unsurprising. Their magnitude relative
+to the matched EEG contrasts shows why unequal label access can change the
+attribution attached to a system score.
 
-\subsection{Earlier evidence remains part of the record}
-The original EmoEEG-MC and MusicEEG surfaces, standard versus compact EEGNet,
-CBraMod, LaBraM, same-architecture random controls, frozen EMOD, and
-shrinkage-calibration analyses remain in Appendix~\ref{app:exposure-surface}.
-Their support and protocols are distinct from the latest coverage blocks and
-must not be pooled as repeated measurements of the same experiment.
-% evidence: paper/generated/competitive_revision_v3/table_provenance.json
-The earlier MusicEEG LaBraM uniform-grid increment is
-$\VThreeMusicMean$ [$\VThreeMusicLow,\VThreeMusicHigh$], an uncertain
-auditory case. We retain it rather than use Urban to erase a non-replicating
-result. Validation-frozen resource-conditioned model selection also lacks a
-stable mean CCC benefit (Appendix~\ref{app:selection-utility}); conditional
-ranking summaries are not evidence of a proven deployment-selection advantage.
+\subsection{Uncertainty and evaluator validity}
+% evidence: paper/generated/final_closure_v9/percentile/added_value_statistics.json; paper/generated/final_closure_v9/normal_t/added_value_statistics.json
+The crossed bootstrap applies identical participant and stimulus
+multiplicities to every paired predictor, cell, and block. Of 2,000 draws, 1,985
+are valid for EmoEEG-MC and 2,000 for Urban. Percentile intervals are primary;
+an explicitly heuristic small-cluster t-normal analysis is a sensitivity check.
+Both condition on fitted predictions and omit full retraining uncertainty.
+Pointwise intervals and separately released dose-family simultaneous bands do
+not correct all model comparisons.
 
-Identity probes and subspace perturbations remain representation diagnostics,
-not causal evidence. The ds006866 extension concerns conditions, not unknown
-image identities. DENS is missingness-limited; SEED-V is an authorized
-supplement, not an additional openly redistributed benchmark. EMOD's repaired
-single-seed learning check is distinct from its frozen audit and from complete
-original-task replication; mdJPT has no completed numerical audit here.
-These boundaries restrict model and domain coverage without making positive
-EEG performance a prerequisite for an evaluation contribution.
+% evidence: paper/generated/final_closure_v9/percentile/added_value_statistics.json
+The relevant cluster sizes are those within each scoring block: Emo has six
+participants and eight or nine stimuli per block; Urban has 12 or 13
+participants and 11 or 12 stimuli. The whole-dataset participant count does
+not by itself validate a mean of small-block CCCs. We therefore distinguish
+the earlier single-block simulations below from the topology-matched
+five-block check in Appendix~\ref{app:revision-diagnostics}.
 
-\section{What the Tool Can Reuse and Check}
+% evidence: results/block_validation_v12/summary.csv; results/block_validation_v12/completion.json
+The new topology-matched validation executes 300 replicates for each of four
+Gaussian scenarios per task, with 2,000 bootstrap draws and no failed runs.
+For trial signal, percentile coverage of the uniform mean is 0.900 for Emo
+and 0.927 for Urban; for participant-constant signal it is 0.903 and 0.970.
+The worst cell is Emo's zero-dose participant-constant case: coverage is
+0.193 (Monte Carlo interval $[0.153,0.242]$). Thus nominal 95\% coverage is
+not established, even on the intended topology. The t-normal sensitivity
+improves these mean-level checks but still undercovers that cell (0.887).
+We retain both predeclared constructions as conditional diagnostics and make
+no calibrated significance or equivalence claim. Earlier single-block tests
+in Appendix~\ref{app:evaluator-validation} cannot override this failure.
+
+\subsection{Scope checks and retained negative evidence}
+Earlier EmoEEG-MC and MusicEEG surfaces, compact versus standard EEGNet,
+CBraMod, LaBraM random controls, frozen EMOD, and calibration variants remain in
+Appendix~\ref{app:exposure-surface}. They use distinct supports or protocols and
+are not replications of the primary grid. The earlier MusicEEG LaBraM mean
+increment is $\VThreeMusicMean$ [$\VThreeMusicLow,\VThreeMusicHigh$], an
+uncertain auditory result that we retain rather than omit. Resource-conditioned
+model selection likewise has no stable mean CCC benefit
+(Appendix~\ref{app:selection-utility}).
+
+Identity probes and subspace perturbations are representation diagnostics, not
+causal evidence. The ds006866 analysis concerns condition exposure because
+image identity is unavailable. DENS is missingness-limited; SEED-V is an
+authorized aggregate supplement, not an openly redistributed benchmark. The
+repaired EMOD single-seed check is neither a full original-task reproduction nor
+evidence against EMOD, and mdJPT has no completed numerical audit here. These
+records bound model and domain coverage; none is promoted to primary evidence.
+
+\section{Executable Resource and Claim Audit}
 % evidence: paper/generated/final_closure_v9/external_audit/public_summary.json; scripts/run_workflow_contract_toy.py
-\begin{table}[t]\centering\small
+\begin{table}[H]\centering\small
 \caption{Executed external paths and reusable checks. The audit concerns the
 specified code configuration and claim, not the validity of an original
 paper's reported model scores.}
@@ -334,11 +386,13 @@ EmoEEG-MC trial identities and three generated marker windows per trial.
 For LibEER we also execute the precise empty-validation branch in its EEGNet
 training entry point; we do not train the external classifier
 \citep{kukhilava2025eegain,libeer_pinned_source}.
-Table~\ref{tab:execution-evidence} describes two scope-sensitive examples.
-An ordinary split checker detects these observed split violations too.
-The resource checker's additional role is checking declared predictor inputs
-and execution provenance, not claiming these violations as a novel detector's
-exclusive discovery.
+Table~\ref{tab:execution-evidence} contains two scope-sensitive examples. An
+ordinary split checker detects these observed split violations too. The added
+evaluation object is whether the executed evidence supports the requested
+claim: the same trace can block a validation-trial-isolation claim while
+allowing a narrower held-out-test-participant claim. Resource parity further
+requires declared predictor inputs, which a train/test intersection cannot
+infer.
 
 % evidence: paper/generated/final_closure_v9/external_audit/public_summary.json
 Twenty native or scope-qualified cases contain ten requested-rule violations
@@ -370,13 +424,20 @@ the claim; it does not repair or invalidate an external model score.
 
 \section{Discussion and Limitations}
 \paragraph{The judgement corrected.}
-We correct an \emph{attribution rule}: an EEG system's advantage over an
-uncalibrated prior is not, without resource parity, its incremental EEG value.
-The experiments show this distinction is numerically material in the evaluated
-tasks. They do not establish that earlier publications actually used that
-unmatched comparison. Nor does every existing subject-independent protocol
-become invalid: a properly scoped zero-calibration claim remains meaningful.
-The proposed resource ledger refines that claim rather than dismissing it.
+We operationalize an \emph{attribution rule}: without resource parity, an EEG system's
+advantage over an uncalibrated prior is not its incremental EEG value. The
+experiments show that this distinction changes the numerical conclusion in the
+evaluated tasks. They do not establish that earlier publications used the same
+unmatched comparison. Nor does every subject-independent protocol become
+invalid: a properly scoped zero-calibration claim remains meaningful. The
+resource ledger makes that scope explicit.
+
+The two evidence streams have different roles. Tables~\ref{tab:resource-decomposition}
+and~\ref{tab:primary-v9} change the interpretation of actual EEG predictions
+generated in this study. The external code cases validate scoped execution
+claims without reproducing an external classifier. Together they support a
+preventive evaluation workflow; they do not measure how often published EEG
+gains arose from resource mismatch.
 
 \paragraph{When is the method useful?}
 A researcher comparing encoders can hold test and labelled resources fixed; a
@@ -401,13 +462,18 @@ release; intervals condition on fixed fits and have small-cluster limitations.
 The independently collected tasks differ in elicitation and target definition,
 so they do not establish universal EEG-emotion behaviour.
 
+% evidence: paper/generated/reviewer_revision_v12/anonymous_access_check.json
 \section{Artifacts, Ethics, and Conclusion}
 Code, aggregate results, split rules, source versions, model/data cards,
-synthetic examples, and evidence hashes accompany the work. An anonymity-scanned,
-hash-manifested review archive is built with the manuscript; its exact archive
-must be placed at the accessible code URL supplied to reviewers. Developer-run
-clean-environment acceptance is reported separately from independent-human
-acceptance, which is not claimed. EEG recordings, derived individual features,
+synthetic examples, and evidence hashes accompany the work. The
+\href{https://anonymous.4open.science/\#!/r/OpenAffect-EEG-1815/}{anonymous code entry}
+provides unauthenticated access to the README, installation configuration,
+acceptance script, and workflow checker, verified on 9 September 2026.
+The manuscript and artifact version must be matched at submission; this file
+access check is distinct from full experimental reproduction. Developer-run
+clean-environment checks and author-reported colleague execution are recorded
+separately; no independent reproduction of all EEG experiments is claimed.
+EEG recordings, derived individual features,
 trial-level private predictions, stimulus materials, and model weights are not
 redistributed. Original consent and licensing apply; Urban's snapshot contains
 inconsistent license wording, documented without redistributing its recordings.
@@ -421,12 +487,18 @@ must be reported separately. Uncertain matched increments are retained as
 uncertain; the contribution is improved evaluation specificity and
 reproducibility, not a requirement that EEG either succeed or fail.
 
+% evidence: paper/neurips2026/main.tex
 \label{main-content-end}
 \bibliographystyle{plainnat}
 \bibliography{../references}
 \appendix
-\input{supplement}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theHfigure}{appendix.\arabic{figure}}
 \input{evidence_appendix}
-\newpage
+\input{reviewer_revision_appendix}
+\clearpage
+\input{supplement}
+\clearpage
 \input{checklist}
 \end{document}

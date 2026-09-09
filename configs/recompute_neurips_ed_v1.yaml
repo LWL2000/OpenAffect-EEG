@@ -1,0 +1,1284 @@
+version: neurips_ed_v1
+stages:
+  - manifests
+  - splits
+  - transparent_features
+  - foundation_features
+  - evaluations
+  - audits
+  - statistics
+  - compile
+
+steps:
+  - name: build_music_manifest
+    stage: manifests
+    environment: statistics
+    after: []
+    command:
+      - ${project_root}/scripts/build_music_eeg_trials.py
+      - ${data_root}/raw/openneuro/ds002721
+      - ${data_root}/raw/stimuli/eerola_soundtracks_osf_p6vkg/mean_ratings_set1.csv
+      - ${data_root}/derived/manifests
+    requires:
+      - ${data_root}/raw/openneuro/ds002721
+      - ${data_root}/raw/stimuli/eerola_soundtracks_osf_p6vkg/mean_ratings_set1.csv
+    produces:
+      - ${data_root}/derived/manifests/ds002721_trials.tsv.gz
+
+  - name: build_dens_manifest
+    stage: manifests
+    environment: statistics
+    after: []
+    command:
+      - ${project_root}/scripts/build_dens_trials.py
+      - ${data_root}/raw/openneuro/ds003751
+      - ${data_root}/derived/manifests
+    requires:
+      - ${data_root}/raw/openneuro/ds003751
+    produces:
+      - ${data_root}/derived/manifests/ds003751_trials.tsv.gz
+
+  - name: build_emo_manifest
+    stage: manifests
+    environment: statistics
+    after: []
+    command:
+      - ${project_root}/scripts/build_emo_eeg_trials.py
+      - ${data_root}/raw/openneuro/ds005540
+      - ${data_root}/derived/manifests
+    requires:
+      - ${data_root}/raw/openneuro/ds005540
+    produces:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+
+  - name: build_external_trials
+    stage: manifests
+    environment: statistics
+    after: []
+    command:
+      - ${project_root}/scripts/build_emotion_regulation_trials.py
+      - ${data_root}/raw/openneuro/ds006866
+      - ${data_root}/derived/trial_tables
+    requires:
+      - ${data_root}/raw/openneuro/ds006866
+    produces:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+
+  - name: build_external_foundation_manifest_v2
+    stage: manifests
+    environment: statistics
+    after: [build_external_trials]
+    command:
+      - ${project_root}/scripts/build_emotion_regulation_foundation_manifest.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+    produces:
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.json
+
+  - name: build_core_splits
+    stage: splits
+    environment: statistics
+    after: [build_music_manifest, build_dens_manifest, build_emo_manifest]
+    command:
+      - ${project_root}/scripts/build_strict_splits.py
+      - ${data_root}/derived/manifests/ds002721_trials.tsv.gz
+      - ${data_root}/derived/manifests/ds003751_trials.tsv.gz
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - --output-dir
+      - ${data_root}/derived/splits/core_v1
+    requires:
+      - ${data_root}/derived/manifests/ds002721_trials.tsv.gz
+      - ${data_root}/derived/manifests/ds003751_trials.tsv.gz
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+    produces:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+
+  - name: build_context_splits
+    stage: splits
+    environment: statistics
+    after: [build_emo_manifest]
+    command:
+      - ${project_root}/scripts/build_context_transfer_splits.py
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - --output-dir
+      - ${data_root}/derived/splits/emo_context_v1
+    requires:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+    produces:
+      - ${data_root}/derived/splits/emo_context_v1/video_to_imagery/seed-011.tsv.gz
+      - ${data_root}/derived/splits/emo_context_v1/imagery_to_video/seed-011.tsv.gz
+
+  - name: build_external_splits
+    stage: splits
+    environment: statistics
+    after: [build_external_trials]
+    command:
+      - ${project_root}/scripts/build_emotion_regulation_splits.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_subject_v1
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+    produces:
+      - ${data_root}/derived/splits/ds006866_subject_v1/subject_holdout/seed-011.tsv.gz
+
+  - name: build_external_subject_splits_v2
+    stage: splits
+    environment: statistics
+    after: [build_external_trials]
+    command:
+      - ${project_root}/scripts/build_emotion_regulation_splits.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+    produces:
+      - ${data_root}/derived/splits/ds006866_external_v2/subject_holdout/seed-011.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2/subject_holdout/seed-101.tsv.gz
+
+  - name: build_external_context_splits_v2
+    stage: splits
+    environment: statistics
+    after: [build_external_subject_splits_v2]
+    command:
+      - ${project_root}/scripts/build_emotion_regulation_context_splits.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2/subject_holdout/seed-011.tsv.gz
+    produces:
+      - ${data_root}/derived/splits/ds006866_external_v2/context_split_summary.json
+      - ${data_root}/derived/splits/ds006866_external_v2/context_only/nonsocial_to_social/seed-011.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2/context_only/social_to_nonsocial/seed-101.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2/subject_context_holdout/nonsocial_to_social/seed-011.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2/subject_context_holdout/social_to_nonsocial/seed-101.tsv.gz
+
+  - name: extract_music_bandpower
+    stage: transparent_features
+    environment: statistics
+    after: [build_music_manifest]
+    command:
+      - ${project_root}/scripts/extract_bandpower_features.py
+      - ${data_root}/derived/manifests/ds002721_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds002721
+      - ${data_root}/derived/features/ds002721_bandpower.npz
+    requires:
+      - ${data_root}/derived/manifests/ds002721_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds002721
+    produces:
+      - ${data_root}/derived/features/ds002721_bandpower.npz
+
+  - name: extract_dens_bandpower
+    stage: transparent_features
+    environment: statistics
+    after: [build_dens_manifest]
+    command:
+      - ${project_root}/scripts/extract_bandpower_features.py
+      - ${data_root}/derived/manifests/ds003751_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds003751
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+      - --skip-unreadable
+    requires:
+      - ${data_root}/derived/manifests/ds003751_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds003751
+    produces:
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+
+  - name: audit_dens_feature_missingness
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_dens_bandpower]
+    command:
+      - ${project_root}/scripts/analyze_feature_missingness.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+      - ${data_root}/derived/results/ds003751_feature_missingness_v1.json
+      - --dataset-id
+      - ds003751
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+    produces:
+      - ${data_root}/derived/results/ds003751_feature_missingness_v1.json
+
+  - name: extract_emo_de
+    stage: transparent_features
+    environment: statistics
+    after: [build_emo_manifest]
+    command:
+      - ${project_root}/scripts/extract_emo_de_features.py
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${data_root}/derived/features/ds005540_de.npz
+    requires:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+    produces:
+      - ${data_root}/derived/features/ds005540_de.npz
+
+  - name: build_support_matched_control
+    stage: splits
+    environment: statistics
+    after: [build_core_splits, extract_emo_de]
+    command:
+      - ${project_root}/scripts/build_support_matched_control.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/features/ds005540_de.npz
+      - ${data_root}/derived/splits/support_matched_control_v1
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_de.npz
+    produces:
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_control_manifest.json
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-011.tsv.gz
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-011.audit.json
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-023.tsv.gz
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-023.audit.json
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-047.tsv.gz
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-047.audit.json
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-071.tsv.gz
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-071.audit.json
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-101.tsv.gz
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_identity_overlap/seed-101.audit.json
+
+  - name: extract_external_bandpower
+    stage: transparent_features
+    environment: statistics
+    after: [build_external_trials]
+    command:
+      - ${project_root}/scripts/extract_bandpower_features.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - --skip-unreadable
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+    produces:
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+
+  - name: extract_external_labram_pretrained_v2
+    stage: foundation_features
+    environment: foundation
+    after: [build_external_foundation_manifest_v2]
+    command:
+      - ${project_root}/scripts/extract_labram_bids_features.py
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+      - ${labram_repository}
+      - ${labram_checkpoint}
+      - ${data_root}/derived/features/ds006866_labram_pretrained_v2.npz
+      - --device
+      - ${foundation_device}
+      - --preprocessing-device
+      - ${foundation_device}
+      - --batch-size
+      - "32"
+      - --exclude-channels
+      - HEO
+      - VEO
+      - EKG
+      - GSR
+      - Trigger
+      - EMG
+    requires:
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+      - ${labram_repository}
+      - ${labram_checkpoint}
+    produces:
+      - ${data_root}/derived/features/ds006866_labram_pretrained_v2.npz
+      - ${data_root}/derived/features/ds006866_labram_pretrained_v2.json
+
+  - name: extract_external_labram_random_v2
+    stage: foundation_features
+    environment: foundation
+    after: [build_external_foundation_manifest_v2]
+    command:
+      - ${project_root}/scripts/extract_labram_bids_features.py
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+      - ${labram_repository}
+      - ${labram_checkpoint}
+      - ${data_root}/derived/features/ds006866_labram_random_v2.npz
+      - --device
+      - ${foundation_device}
+      - --preprocessing-device
+      - ${foundation_device}
+      - --batch-size
+      - "32"
+      - --exclude-channels
+      - HEO
+      - VEO
+      - EKG
+      - GSR
+      - Trigger
+      - EMG
+      - --random-init
+      - --random-init-seed
+      - "20260821"
+    requires:
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+      - ${labram_repository}
+    produces:
+      - ${data_root}/derived/features/ds006866_labram_random_v2.npz
+      - ${data_root}/derived/features/ds006866_labram_random_v2.json
+
+  - name: extract_emo_raw_tensor
+    stage: transparent_features
+    environment: statistics
+    after: [build_emo_manifest]
+    command:
+      - ${project_root}/scripts/extract_emo_raw_trials.py
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${data_root}/derived/tensors/ds005540_raw_100hz.npy
+      - ${data_root}/derived/tensors/ds005540_raw_100hz_trial_uids.npy
+      - --target-frequency
+      - "100"
+    requires:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+    produces:
+      - ${data_root}/derived/tensors/ds005540_raw_100hz.npy
+      - ${data_root}/derived/tensors/ds005540_raw_100hz_trial_uids.npy
+
+  - name: extract_cbramod_pretrained
+    stage: foundation_features
+    environment: foundation
+    after: [build_emo_manifest]
+    command:
+      - ${project_root}/scripts/extract_cbramod_features.py
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${cbramod_repository}
+      - ${cbramod_checkpoint}
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+      - --device
+      - ${foundation_device}
+      - --batch-size
+      - "32"
+    requires:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${cbramod_repository}
+      - ${cbramod_checkpoint}
+    produces:
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+
+  - name: extract_cbramod_random
+    stage: foundation_features
+    environment: foundation
+    after: [build_emo_manifest]
+    command:
+      - ${project_root}/scripts/extract_cbramod_features.py
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${cbramod_repository}
+      - ${cbramod_checkpoint}
+      - ${data_root}/derived/features/ds005540_cbramod_random.npz
+      - --device
+      - ${foundation_device}
+      - --batch-size
+      - "32"
+      - --random-init
+    requires:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${cbramod_repository}
+    produces:
+      - ${data_root}/derived/features/ds005540_cbramod_random.npz
+
+  - name: extract_labram_pretrained
+    stage: foundation_features
+    environment: foundation
+    after: [build_emo_manifest]
+    command:
+      - ${project_root}/scripts/extract_labram_features.py
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${labram_repository}
+      - ${labram_checkpoint}
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+      - --device
+      - ${foundation_device}
+      - --batch-size
+      - "32"
+    requires:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${labram_repository}
+      - ${labram_checkpoint}
+    produces:
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+
+  - name: extract_labram_random
+    stage: foundation_features
+    environment: foundation
+    after: [build_emo_manifest]
+    command:
+      - ${project_root}/scripts/extract_labram_features.py
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${labram_repository}
+      - ${labram_checkpoint}
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+      - --device
+      - ${foundation_device}
+      - --batch-size
+      - "32"
+      - --random-init
+    requires:
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/raw/openneuro/ds005540
+      - ${labram_repository}
+    produces:
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+
+  - &de_core
+    name: evaluate_de_core
+    stage: evaluations
+    environment: statistics
+    after: [build_core_splits, extract_emo_de]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/features/ds005540_de.npz
+      - ${data_root}/derived/results/disentanglement_de_reference_core_v1.json
+      - --feature-view
+      - channel
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_de_reference_core_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_de.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_de_reference_core_v1.json
+      - ${data_root}/derived/results/disentanglement_de_reference_core_v1_predictions.tsv.gz
+
+  - name: evaluate_de_context
+    stage: evaluations
+    environment: statistics
+    after: [build_context_splits, extract_emo_de]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/emo_context_v1
+      - ${data_root}/derived/features/ds005540_de.npz
+      - ${data_root}/derived/results/disentanglement_de_reference_context_v1.json
+      - --feature-view
+      - channel
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_de_reference_context_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_de.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_de_reference_context_v1.json
+      - ${data_root}/derived/results/disentanglement_de_reference_context_v1_predictions.tsv.gz
+
+  - name: evaluate_de_support_matched_control
+    stage: evaluations
+    environment: statistics
+    after: [build_support_matched_control]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/support_matched_control_v1
+      - ${data_root}/derived/features/ds005540_de.npz
+      - ${data_root}/derived/results/disentanglement_de_support_matched_control_v1.json
+      - --feature-view
+      - channel
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_de_support_matched_control_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_de.npz
+      - ${data_root}/derived/splits/support_matched_control_v1/support_matched_control_manifest.json
+    produces:
+      - ${data_root}/derived/results/disentanglement_de_support_matched_control_v1.json
+      - ${data_root}/derived/results/disentanglement_de_support_matched_control_v1_predictions.tsv.gz
+
+  - name: evaluate_semantic_prior_ablation
+    stage: audits
+    environment: statistics
+    after: [build_core_splits]
+    command:
+      - ${project_root}/scripts/run_semantic_prior_ablation.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/results/semantic_prior_ablation_v1.json
+      - --predictions-output
+      - ${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+    produces:
+      - ${data_root}/derived/results/semantic_prior_ablation_v1.json
+      - ${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz
+
+  - name: evaluate_cbramod_core
+    stage: evaluations
+    environment: statistics
+    after: [build_core_splits, extract_cbramod_pretrained]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_core_v1.json
+      - --feature-view
+      - foundation
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_core_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_core_v1.json
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_core_v1_predictions.tsv.gz
+
+  - name: evaluate_cbramod_context
+    stage: evaluations
+    environment: statistics
+    after: [build_context_splits, extract_cbramod_pretrained]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/emo_context_v1
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_context_v1.json
+      - --feature-view
+      - foundation
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_context_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_context_v1.json
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_context_v1_predictions.tsv.gz
+
+  - name: evaluate_labram_pretrained_core
+    stage: evaluations
+    environment: statistics
+    after: [build_core_splits, extract_labram_pretrained]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_core_v1.json
+      - --feature-view
+      - foundation
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_core_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_core_v1.json
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_core_v1_predictions.tsv.gz
+
+  - name: evaluate_labram_random_core
+    stage: evaluations
+    environment: statistics
+    after: [build_core_splits, extract_labram_random]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+      - ${data_root}/derived/results/disentanglement_labram_random_core_v1.json
+      - --feature-view
+      - foundation
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_labram_random_core_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_labram_random_core_v1.json
+      - ${data_root}/derived/results/disentanglement_labram_random_core_v1_predictions.tsv.gz
+
+  - name: evaluate_labram_pretrained_context
+    stage: evaluations
+    environment: statistics
+    after: [build_context_splits, extract_labram_pretrained]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/emo_context_v1
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_context_v1.json
+      - --feature-view
+      - foundation
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_context_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_context_v1.json
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_context_v1_predictions.tsv.gz
+
+  - name: evaluate_labram_random_context
+    stage: evaluations
+    environment: statistics
+    after: [build_context_splits, extract_labram_random]
+    command:
+      - ${project_root}/scripts/run_disentanglement_baseline.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/emo_context_v1
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+      - ${data_root}/derived/results/disentanglement_labram_random_context_v1.json
+      - --feature-view
+      - foundation
+      - --predictions-output
+      - ${data_root}/derived/results/disentanglement_labram_random_context_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+    produces:
+      - ${data_root}/derived/results/disentanglement_labram_random_context_v1.json
+      - ${data_root}/derived/results/disentanglement_labram_random_context_v1_predictions.tsv.gz
+
+  - name: evaluate_eegnet_joint
+    stage: evaluations
+    environment: foundation
+    after: [build_core_splits, extract_emo_raw_tensor]
+    command:
+      - ${project_root}/scripts/run_eegnet_disentanglement.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/tensors/ds005540_raw_100hz.npy
+      - ${data_root}/derived/tensors/ds005540_raw_100hz_trial_uids.npy
+      - ${data_root}/derived/results/eegnet_joint_v1.json
+      - --protocol
+      - subject_stimulus_holdout
+      - --device
+      - ${foundation_device}
+      - --predictions-output
+      - ${data_root}/derived/results/eegnet_joint_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/tensors/ds005540_raw_100hz.npy
+      - ${data_root}/derived/tensors/ds005540_raw_100hz_trial_uids.npy
+    produces:
+      - ${data_root}/derived/results/eegnet_joint_v1.json
+      - ${data_root}/derived/results/eegnet_joint_v1_predictions.tsv.gz
+
+  - name: evaluate_external_bandpower
+    stage: evaluations
+    environment: statistics
+    after: [build_external_splits, extract_external_bandpower]
+    command:
+      - ${project_root}/scripts/run_emotion_regulation_baselines.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_subject_v1
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1.json
+      - --feature-view
+      - channel
+      - --predictions-output
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+    produces:
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1.json
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz
+
+  - name: evaluate_external_bandpower_global
+    stage: evaluations
+    environment: statistics
+    after: [build_external_splits, extract_external_bandpower]
+    command:
+      - ${project_root}/scripts/run_emotion_regulation_baselines.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_subject_v1
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - ${data_root}/derived/results/ds006866_bandpower_global_v1.json
+      - --feature-view
+      - global
+      - --predictions-output
+      - ${data_root}/derived/results/ds006866_bandpower_global_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+    produces:
+      - ${data_root}/derived/results/ds006866_bandpower_global_v1.json
+      - ${data_root}/derived/results/ds006866_bandpower_global_v1_predictions.tsv.gz
+
+  - name: evaluate_external_protocol_audit_v2
+    stage: evaluations
+    environment: statistics
+    after:
+      - build_external_context_splits_v2
+      - extract_external_bandpower
+      - extract_external_labram_pretrained_v2
+      - extract_external_labram_random_v2
+    command:
+      - ${project_root}/scripts/run_emotion_regulation_external_audit_v2.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - ${data_root}/derived/results/ds006866_external_audit_v2.json
+      - --pretrained-features
+      - ${data_root}/derived/features/ds006866_labram_pretrained_v2.npz
+      - --random-features
+      - ${data_root}/derived/features/ds006866_labram_random_v2.npz
+      - --bootstrap-iterations
+      - "500"
+      - --probe-device
+      - cuda
+      - --resume
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_external_v2/context_split_summary.json
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - ${data_root}/derived/features/ds006866_labram_pretrained_v2.npz
+      - ${data_root}/derived/features/ds006866_labram_random_v2.npz
+    produces:
+      - ${data_root}/derived/results/ds006866_external_audit_v2.json
+
+  - name: audit_external_channels_v2
+    stage: audits
+    environment: statistics
+    after: [build_external_foundation_manifest_v2]
+    command:
+      - ${project_root}/scripts/audit_emotion_regulation_channels.py
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+      - ${data_root}/derived/results/ds006866_channel_audit_v2.json
+      - --additional-exclusions
+      - EMG
+    requires:
+      - ${data_root}/derived/manifests/ds006866_foundation_v2.tsv.gz
+      - ${data_root}/raw/openneuro/ds006866
+    produces:
+      - ${data_root}/derived/results/ds006866_channel_audit_v2.json
+
+  - name: probe_external_condition_channel
+    stage: evaluations
+    environment: statistics
+    after: [build_external_splits, extract_external_bandpower]
+    command:
+      - ${project_root}/scripts/run_emotion_regulation_condition_probe.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_subject_v1
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - ${data_root}/derived/results/ds006866_condition_probe_channel_v1.json
+      - --feature-view
+      - channel
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+    produces:
+      - ${data_root}/derived/results/ds006866_condition_probe_channel_v1.json
+
+  - name: probe_external_condition_global
+    stage: evaluations
+    environment: statistics
+    after: [build_external_splits, extract_external_bandpower]
+    command:
+      - ${project_root}/scripts/run_emotion_regulation_condition_probe.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_subject_v1
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - ${data_root}/derived/results/ds006866_condition_probe_global_v1.json
+      - --feature-view
+      - global
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+    produces:
+      - ${data_root}/derived/results/ds006866_condition_probe_global_v1.json
+
+  - name: audit_identity_de
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_music_bandpower, extract_dens_bandpower, extract_emo_de]
+    command:
+      - ${project_root}/scripts/run_identity_probes.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/results/identity_probes_core_v1.json
+      - --features
+      - ${data_root}/derived/features/ds002721_bandpower.npz
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+      - ${data_root}/derived/features/ds005540_de.npz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds002721_bandpower.npz
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+      - ${data_root}/derived/features/ds005540_de.npz
+    produces:
+      - ${data_root}/derived/results/identity_probes_core_v1.json
+
+  - name: audit_identity_cbramod_pretrained
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_cbramod_pretrained]
+    command:
+      - ${project_root}/scripts/run_identity_probes.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/results/identity_probes_cbramod_core_v1.json
+      - --features
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_cbramod.npz
+    produces:
+      - ${data_root}/derived/results/identity_probes_cbramod_core_v1.json
+
+  - name: audit_identity_cbramod_random
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_cbramod_random]
+    command:
+      - ${project_root}/scripts/run_identity_probes.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/results/identity_probes_cbramod_random_core_v1.json
+      - --features
+      - ${data_root}/derived/features/ds005540_cbramod_random.npz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_cbramod_random.npz
+    produces:
+      - ${data_root}/derived/results/identity_probes_cbramod_random_core_v1.json
+
+  - name: audit_identity_labram_pretrained
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_labram_pretrained]
+    command:
+      - ${project_root}/scripts/run_identity_probes.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/results/identity_probes_labram_pretrained_core_v1.json
+      - --features
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+    produces:
+      - ${data_root}/derived/results/identity_probes_labram_pretrained_core_v1.json
+
+  - name: audit_identity_labram_random
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_labram_random]
+    command:
+      - ${project_root}/scripts/run_identity_probes.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/results/identity_probes_labram_random_core_v1.json
+      - --features
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_labram_random_v1.npz
+    produces:
+      - ${data_root}/derived/results/identity_probes_labram_random_core_v1.json
+
+  - name: audit_core_ablations
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_music_bandpower, extract_dens_bandpower, extract_emo_de]
+    command:
+      - ${project_root}/scripts/run_feature_ablations.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${project_root}/configs/channel_regions.yaml
+      - ${data_root}/derived/results/feature_ablations_core_v1.json
+      - --features
+      - ${data_root}/derived/features/ds002721_bandpower.npz
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+      - ${data_root}/derived/features/ds005540_de.npz
+      - --predictions-output
+      - ${data_root}/derived/results/feature_ablations_core_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds002721_bandpower.npz
+      - ${data_root}/derived/features/ds003751_bandpower.npz
+      - ${data_root}/derived/features/ds005540_de.npz
+    produces:
+      - ${data_root}/derived/results/feature_ablations_core_v1.json
+      - ${data_root}/derived/results/feature_ablations_core_v1_predictions.tsv.gz
+
+  - name: audit_external_ablations
+    stage: audits
+    environment: statistics
+    after: [build_external_splits, extract_external_bandpower]
+    command:
+      - ${project_root}/scripts/run_feature_ablations.py
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/splits/ds006866_subject_v1
+      - ${project_root}/configs/channel_regions.yaml
+      - ${data_root}/derived/results/feature_ablations_ds006866_v1.json
+      - --features
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+      - --protocols
+      - subject_holdout
+      - --predictions-output
+      - ${data_root}/derived/results/feature_ablations_ds006866_v1_predictions.tsv.gz
+    requires:
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+      - ${data_root}/derived/features/ds006866_bandpower.npz
+    produces:
+      - ${data_root}/derived/results/feature_ablations_ds006866_v1.json
+      - ${data_root}/derived/results/feature_ablations_ds006866_v1_predictions.tsv.gz
+
+  - name: compare_representations_core
+    stage: statistics
+    environment: statistics
+    after: [evaluate_de_core, evaluate_cbramod_core, evaluate_labram_pretrained_core, evaluate_labram_random_core]
+    command:
+      - ${project_root}/scripts/analyze_paired_predictions.py
+      - ${data_root}/derived/results/paired_representations_with_labram_core_v1.json
+      - --prediction
+      - de=${data_root}/derived/results/disentanglement_de_reference_core_v1_predictions.tsv.gz
+      - --prediction
+      - cbramod=${data_root}/derived/results/disentanglement_cbramod_reference_core_v1_predictions.tsv.gz
+      - --prediction
+      - labram_pretrained=${data_root}/derived/results/disentanglement_labram_pretrained_core_v1_predictions.tsv.gz
+      - --prediction
+      - labram_random=${data_root}/derived/results/disentanglement_labram_random_core_v1_predictions.tsv.gz
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260820"
+    requires:
+      - ${data_root}/derived/results/disentanglement_de_reference_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_labram_random_core_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/paired_representations_with_labram_core_v1.json
+
+  - name: compare_de_support_matched_control
+    stage: statistics
+    environment: statistics
+    after: [evaluate_de_core, evaluate_de_support_matched_control]
+    command:
+      - ${project_root}/scripts/analyze_support_matched_control.py
+      - ${data_root}/derived/results/disentanglement_de_reference_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_de_support_matched_control_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/paired_de_support_matched_vs_joint_v1.json
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260820"
+    requires:
+      - ${data_root}/derived/results/disentanglement_de_reference_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_de_support_matched_control_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/paired_de_support_matched_vs_joint_v1.json
+
+  - name: analyze_semantic_prior_ablation
+    stage: statistics
+    environment: statistics
+    after: [evaluate_semantic_prior_ablation]
+    command:
+      - ${project_root}/scripts/analyze_paired_predictions.py
+      - ${data_root}/derived/results/semantic_prior_ablation_statistics_v1.json
+      - --prediction
+      - full=${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz::full
+      - --prediction
+      - no_category=${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz::no_category
+      - --prediction
+      - no_context=${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz::no_context
+      - --prediction
+      - no_intensity=${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz::no_intensity
+      - --prediction
+      - no_description=${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz::no_description
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260820"
+    requires:
+      - ${data_root}/derived/results/semantic_prior_ablation_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/semantic_prior_ablation_statistics_v1.json
+
+  - name: evaluate_labram_subject_subspace_intervention
+    stage: audits
+    environment: statistics
+    after: [build_core_splits, extract_labram_pretrained]
+    command:
+      - ${project_root}/scripts/run_subject_subspace_intervention.py
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/splits/core_v1
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1.json
+      - --predictions-output
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1_predictions.tsv.gz
+      - --components
+      - "0,1,2,4,8,16,24,29"
+      - --permutation-repeats
+      - "100"
+    requires:
+      - ${data_root}/derived/splits/core_v1/core_trials.tsv.gz
+      - ${data_root}/derived/features/ds005540_labram_pretrained_v1.npz
+    produces:
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1.json
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1_predictions.tsv.gz
+
+  - name: analyze_labram_subject_subspace_intervention
+    stage: statistics
+    environment: statistics
+    after: [evaluate_labram_subject_subspace_intervention]
+    command:
+      - ${project_root}/scripts/analyze_subject_subspace_intervention.py
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1.json
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_summary_v1.json
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260820"
+    requires:
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1.json
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/labram_subject_subspace_intervention_summary_v1.json
+
+  - name: compare_representations_context
+    stage: statistics
+    environment: statistics
+    after: [evaluate_de_context, evaluate_cbramod_context, evaluate_labram_pretrained_context, evaluate_labram_random_context]
+    command:
+      - ${project_root}/scripts/analyze_paired_predictions.py
+      - ${data_root}/derived/results/paired_representations_with_labram_context_v1.json
+      - --prediction
+      - de=${data_root}/derived/results/disentanglement_de_reference_context_v1_predictions.tsv.gz
+      - --prediction
+      - cbramod=${data_root}/derived/results/disentanglement_cbramod_reference_context_v1_predictions.tsv.gz
+      - --prediction
+      - labram_pretrained=${data_root}/derived/results/disentanglement_labram_pretrained_context_v1_predictions.tsv.gz
+      - --prediction
+      - labram_random=${data_root}/derived/results/disentanglement_labram_random_context_v1_predictions.tsv.gz
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260820"
+    requires:
+      - ${data_root}/derived/results/disentanglement_de_reference_context_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_cbramod_reference_context_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_context_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/disentanglement_labram_random_context_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/paired_representations_with_labram_context_v1.json
+
+  - name: analyze_labram_pretrained_core_invariance
+    stage: statistics
+    environment: statistics
+    after: [evaluate_labram_pretrained_core]
+    command:
+      - ${project_root}/scripts/analyze_residual_invariance.py
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/residual_invariance_labram_pretrained_core_v1.json
+    requires:
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_core_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/residual_invariance_labram_pretrained_core_v1.json
+
+  - name: analyze_labram_random_core_invariance
+    stage: statistics
+    environment: statistics
+    after: [evaluate_labram_random_core]
+    command:
+      - ${project_root}/scripts/analyze_residual_invariance.py
+      - ${data_root}/derived/results/disentanglement_labram_random_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/residual_invariance_labram_random_core_v1.json
+    requires:
+      - ${data_root}/derived/results/disentanglement_labram_random_core_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/residual_invariance_labram_random_core_v1.json
+
+  - name: analyze_labram_pretrained_context_invariance
+    stage: statistics
+    environment: statistics
+    after: [evaluate_labram_pretrained_context]
+    command:
+      - ${project_root}/scripts/analyze_residual_invariance.py
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_context_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/residual_invariance_labram_pretrained_context_v1.json
+    requires:
+      - ${data_root}/derived/results/disentanglement_labram_pretrained_context_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/residual_invariance_labram_pretrained_context_v1.json
+
+  - name: analyze_labram_random_context_invariance
+    stage: statistics
+    environment: statistics
+    after: [evaluate_labram_random_context]
+    command:
+      - ${project_root}/scripts/analyze_residual_invariance.py
+      - ${data_root}/derived/results/disentanglement_labram_random_context_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/residual_invariance_labram_random_context_v1.json
+    requires:
+      - ${data_root}/derived/results/disentanglement_labram_random_context_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/residual_invariance_labram_random_context_v1.json
+
+  - name: compare_feature_ablations
+    stage: statistics
+    environment: statistics
+    after: [audit_core_ablations, audit_external_ablations]
+    command:
+      - ${project_root}/scripts/analyze_feature_ablations.py
+      - ${data_root}/derived/results/feature_ablations_statistics_v1.json
+      - --predictions
+      - ${data_root}/derived/results/feature_ablations_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/feature_ablations_ds006866_v1_predictions.tsv.gz
+      - --bootstrap
+      - "2000"
+    requires:
+      - ${data_root}/derived/results/feature_ablations_core_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/feature_ablations_ds006866_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/feature_ablations_statistics_v1.json
+
+  - name: analyze_external_condition_effects_channel
+    stage: statistics
+    environment: statistics
+    after: [evaluate_external_bandpower]
+    command:
+      - ${project_root}/scripts/analyze_external_conditions.py
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/ds006866_condition_effects_channel_v1.json
+      - --baseline
+      - condition_mean
+      - --candidate
+      - condition_plus_eeg_residual_ridge
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260818"
+    requires:
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/ds006866_condition_effects_channel_v1.json
+
+  - name: compare_external_channel_models
+    stage: statistics
+    environment: statistics
+    after: [evaluate_external_bandpower]
+    command:
+      - ${project_root}/scripts/analyze_paired_predictions.py
+      - ${data_root}/derived/results/paired_ds006866_channel_v1.json
+      - --prediction
+      - Condition=${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz::condition_mean
+      - --prediction
+      - EEG=${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz::eeg_bandpower_ridge
+      - --prediction
+      - Combined=${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz::condition_plus_eeg_residual_ridge
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260818"
+    requires:
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/paired_ds006866_channel_v1.json
+
+  - name: compare_external_feature_views
+    stage: statistics
+    environment: statistics
+    after: [evaluate_external_bandpower, evaluate_external_bandpower_global]
+    command:
+      - ${project_root}/scripts/analyze_paired_predictions.py
+      - ${data_root}/derived/results/paired_ds006866_feature_view_v1.json
+      - --prediction
+      - Global=${data_root}/derived/results/ds006866_bandpower_global_v1_predictions.tsv.gz::condition_plus_eeg_residual_ridge
+      - --prediction
+      - Channel=${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz::condition_plus_eeg_residual_ridge
+      - --bootstrap
+      - "2000"
+      - --seed
+      - "20260818"
+    requires:
+      - ${data_root}/derived/results/ds006866_bandpower_global_v1_predictions.tsv.gz
+      - ${data_root}/derived/results/ds006866_bandpower_channel_v1_predictions.tsv.gz
+    produces:
+      - ${data_root}/derived/results/paired_ds006866_feature_view_v1.json
+
+  - name: build_benchmark_scope
+    stage: compile
+    environment: statistics
+    after:
+      - build_music_manifest
+      - build_dens_manifest
+      - build_emo_manifest
+      - build_external_trials
+    command:
+      - ${project_root}/scripts/build_benchmark_scope.py
+      - ${project_root}/configs/benchmark_scope.yaml
+      - ${data_root}
+      - ${data_root}/derived/results/benchmark_scope_v1.json
+    requires:
+      - ${project_root}/configs/benchmark_scope.yaml
+      - ${data_root}/derived/manifests/ds002721_trials.tsv.gz
+      - ${data_root}/derived/manifests/ds003751_trials.tsv.gz
+      - ${data_root}/derived/manifests/ds005540_trials.tsv.gz
+      - ${data_root}/derived/trial_tables/ds006866_trials.tsv.gz
+    produces:
+      - ${data_root}/derived/results/benchmark_scope_v1.json
+
+  - name: compile_frozen_registry
+    stage: compile
+    environment: statistics
+    after:
+      - compare_representations_core
+      - compare_representations_context
+      - compare_de_support_matched_control
+      - analyze_labram_subject_subspace_intervention
+      - analyze_labram_pretrained_core_invariance
+      - analyze_labram_random_core_invariance
+      - analyze_labram_pretrained_context_invariance
+      - analyze_labram_random_context_invariance
+      - compare_feature_ablations
+      - audit_identity_de
+      - audit_identity_cbramod_pretrained
+      - audit_identity_cbramod_random
+      - audit_identity_labram_pretrained
+      - audit_identity_labram_random
+      - evaluate_eegnet_joint
+      - evaluate_external_bandpower
+      - evaluate_external_bandpower_global
+      - evaluate_external_protocol_audit_v2
+      - audit_external_channels_v2
+      - probe_external_condition_channel
+      - probe_external_condition_global
+      - analyze_external_condition_effects_channel
+      - compare_external_channel_models
+      - compare_external_feature_views
+      - build_benchmark_scope
+      - audit_dens_feature_missingness
+      - analyze_semantic_prior_ablation
+    command:
+      - -m
+      - openaffect_eeg.workflow
+      - compile-registry
+      - ${project_root}/configs/paper_artifacts.yaml
+      - ${data_root}
+      - ${output_root}/paper
+    requires:
+      - ${project_root}/configs/paper_artifacts.yaml
+    produces:
+      - ${output_root}/paper/artifact_manifest.json
+      - ${output_root}/paper/benchmark_metrics.csv
+      - ${output_root}/paper/paired_comparisons.csv
+      - ${output_root}/paper/prediction_index.csv
+      - ${output_root}/paper/summary_numeric_values.csv

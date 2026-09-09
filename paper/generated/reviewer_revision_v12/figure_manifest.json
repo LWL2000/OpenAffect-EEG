@@ -1,0 +1,19 @@
+{
+  "source_sha256": "f422fb98010e8f7935a2450d4a8f6f494166c20248bad582bc8b9fab4d6c39b1",
+  "learning_source_sha256": "492c253d78772d19fd74fe6b5b4a6f09c9e9ccf5712d64f36cfa0284037be65b",
+  "script_sha256": "e5e3f4e1854e8f0c0f37d86e3d1478050eefc7221f279887ec7cc95d9db56ea3",
+  "cells": 300,
+  "corner_rows": 48,
+  "color_limits": [
+    -0.07,
+    0.07
+  ],
+  "dimensions_inches": [
+    6.5,
+    6.7
+  ],
+  "estimand": "Mean of five block-level paired CCC differences at each dose.",
+  "uncertainty": "Full conditional pointwise and within-model dose-family intervals in companion CSV.",
+  "rounding": "Heatmap values and color scale multiplied by 1000; rounded integers are not exact zeros.",
+  "selection": "All 12 grids. Post-analysis presentation; no new fitting or hypothesis test."
+}

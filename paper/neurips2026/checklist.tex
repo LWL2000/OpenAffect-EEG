@@ -26,23 +26,23 @@
 \item {\bf Open access to data and code}
     \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
     \item[] Answer: \answerNo{}
-    \item[] Justification: Code, configurations, aggregates, metadata, and synthetic commands exist in a versioned public release. The anonymous review endpoint is still incomplete, so this working draft does not answer Yes. The answer can change only after actual anonymous access is checked. Source recordings remain with their original providers.
+    \item[] Justification: Code, configurations, aggregates, metadata, and synthetic commands exist in a versioned public release. Unauthenticated access to the anonymous code entry and key files was verified on 9 September 2026. Full raw-to-model reproduction and synchronization of the new revision with that endpoint have not been independently verified, so this working revision retains No. Source recordings remain with their original providers.
 
 
 \item {\bf Experimental setting/details}
     \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer) necessary to understand the results?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Section 4 gives the evaluation logic and model families; Appendices C--F provide split ratios, adaptation details, validation rules, crops, patches, controls, and statistical settings.
+    \item[] Justification: Section 4 gives the evaluation logic and model families; The source, protocol, model, and statistics appendices provide split ratios, adaptation details, validation rules, crops, patches, controls, and statistical settings.
 
 \item {\bf Experiment statistical significance}
     \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Section 4.2 and the latest-evidence appendix define shared crossed-identity paired intervals, invalid draws, fixed-fit uncertainty, and heuristic small-cluster sensitivity. Historical seed sign-flip tests are separately labelled and are not independent study replication.
+    \item[] Justification: The Results and new diagnostics appendix define shared crossed-identity intervals, invalid draws, fixed-fit uncertainty, and heuristic sensitivity; the five-block study exposes serious undercoverage, so no calibrated significance or equivalence claim is made. Historical seed sign-flip tests are separately labelled and are not independent study replication.
 
 \item {\bf Experiments compute resources}
     \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
     \item[] Answer: \answerNo{}
-    \item[] Justification: Appendix H reports CPU/GPU type, GPU memory, software versions, and component boundaries, but exact wall-clock and energy totals were not logged consistently for every preliminary and failed run.
+    \item[] Justification: The compute appendix reports CPU/GPU type, GPU memory, software versions, and component boundaries, but exact wall-clock and energy totals were not logged consistently for every preliminary and failed run.
     
 \item {\bf Code of ethics}
     \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
@@ -63,12 +63,12 @@
 \item {\bf Licenses for existing assets}
     \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
     \item[] Answer: \answerYes{}
-    \item[] Justification: Appendix A and the latest-evidence appendix cite source versions and unresolved license caveats, including the Urban snapshot's inconsistent declarations. Model cards record code, checkpoint provenance, and licensing boundaries.
+    \item[] Justification: The source and current-evidence appendices cite source versions and unresolved license caveats, including the Urban snapshot's inconsistent declarations. Model cards record code, checkpoint provenance, and licensing boundaries.
 
 \item {\bf New assets}
     \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The prepared release contains data/model/evaluation cards, Croissant metadata, protocol status, limitations, and reproducibility modes. Preparation is distinct from the still-incomplete anonymous hosting step.
+    \item[] Justification: The prepared release contains data/model/evaluation cards, Croissant metadata, protocol status, limitations, and reproducibility modes. Anonymous access to key files has been verified; matching the online artifact to this revised manuscript remains a separate version check.
 
 \item {\bf Crowdsourcing and research with human subjects}
     \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)? 

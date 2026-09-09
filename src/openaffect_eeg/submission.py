@@ -235,6 +235,11 @@ def build_submission(
             paper_dir / "evidence_appendix.tex", bibliography, ledger, citation_audit,
             forbidden_patterns=forbidden_patterns, source_root=root,
         )
+    if r"\input{reviewer_revision_appendix}" in main.read_text(encoding="utf-8"):
+        text_audits["reviewer_revision_appendix"] = audit_manuscript(
+            paper_dir / "reviewer_revision_appendix.tex", bibliography, ledger,
+            citation_audit, forbidden_patterns=forbidden_patterns, source_root=root,
+        )
     failed_text_audits = [
         name for name, audit in text_audits.items() if audit["status"] != "pass"
     ]
