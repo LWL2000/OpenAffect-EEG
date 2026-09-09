@@ -1,0 +1,41 @@
+{
+  "boundary": "This is a source-linked contract demonstration, not a reproduction or invalidation of EEGain's reported emotion-classification scores.",
+  "repair_options": [
+    "Report only the held-out test-participant claim supported by the trace.",
+    "If validation-trial isolation is required, split complete trials before window generation."
+  ],
+  "schema_version": "1.0",
+  "scoped_claim": {
+    "cases": [
+      "eegain_subject_test_fold0",
+      "eegain_subject_test_fold1",
+      "eegain_subject_test_fold2",
+      "eegain_subject_test_fold3",
+      "eegain_subject_test_fold4"
+    ],
+    "folds": 5,
+    "requested": "held-out test participants; no validation-trial isolation claim",
+    "status": "allow"
+  },
+  "shared_execution_basis": "The same pinned split function and eligible real-trial identity universe; three generated marker windows per trial are lineage markers, not new EEG.",
+  "source": "EEGain",
+  "source_commit": "d6892f5586181f345969651a9baedabd828bb1c5",
+  "source_sha256": {
+    "audit_cases": "ce7a13a9791054e3265251e48906db9bb1bd370c7729704396f0b2e37a5dd719",
+    "public_summary": "84c9151b36a2243e6847bf0a1a170f384d64b70b66082d5c8c3575246b2f3ab7",
+    "rule_catalog": "d6d83f885816f95cd37d3538f54e6e69c05657dcbb2e5ad6abcb1c2c3fde9594"
+  },
+  "strict_claim": {
+    "cases": [
+      "eegain_window_validation_fold0",
+      "eegain_window_validation_fold1",
+      "eegain_window_validation_fold2",
+      "eegain_window_validation_fold3",
+      "eegain_window_validation_fold4"
+    ],
+    "failed_check": "training_validation_trial_isolation",
+    "folds": 5,
+    "requested": "held-out test participants plus train/validation trial isolation",
+    "status": "block"
+  }
+}

@@ -1,0 +1,212 @@
+\section{Latest Resource-Matched Coverage Analysis}
+\label{app:latest-evidence}
+This section and the main resource-matched tables use the frozen
+\texttt{final\_closure\_v9} evidence. Earlier sections preserve the original
+experiments, figures, and their support. They are not additional independent
+replications of this panel, and their historical use of ``primary'' denotes
+their own frozen analysis plan rather than replacing the present main summary.
+
+\subsection{Source and coverage details}
+% evidence: configs/final_robustness_v9.json; paper/generated/final_closure_v9/verification/verification.json
+EmoEEG-MC uses snapshot 1.0.7; Urban Appraisal uses snapshot 1.0.0
+\citep{openneuro_ds005540,openneuro_ds006850}.
+Emo has 1,260 eligible trials from 30 participants and 42 stimulus identities.
+Urban uses 3,471 valence trials from 62 participants and 56 images; other
+scales are not copied into valence/arousal labels. A source recording with
+confirmed truncation was excluded before prediction inspection, as documented
+in the frozen coverage manifest. Urban's dataset-description license says CC0,
+while its README says CC BY 4.0. We document both declarations and do not
+redistribute the source recording or image material.
+
+% evidence: src/openaffect_eeg/final_robustness.py; configs/final_robustness_v9.json
+SHA-256 ordering with design seed 20260908 assigns participant and stimulus
+identities to five blocks. Block $b$ supplies test pairs; block $b+1$ modulo five
+supplies validation pairs; population training initially uses identities from
+the other blocks. Test pairs lie on diagonal blocks only. Coverage means every
+eligible participant and stimulus is tested once, not every possible trial.
+The same test support is retained throughout the dose grid. Stimulus-label
+injection may use participants from the validation block; only the tested
+participants are categorically excluded from population fitting at all doses.
+This is not a claim of fully disjoint validation identities after injection.
+
+\subsection{Bounded model settings and preprocessing}
+% evidence: configs/final_robustness_v9.json; scripts/prepare_urban_tensors_v9.py; src/openaffect_eeg/final_robustness.py
+Ridge R1 selects alpha from $\{0.1,1,10,100\}$ and R2 from
+$\{1,10,100,1000\}$. Both band-power and frozen LaBraM use the two grids.
+The historical Emo feature key \texttt{de} selects channel log-bandpower; it
+does not make this panel a separate differential-entropy implementation.
+Standard EEGNet is Braindecode 1.2.0 with F1=8, D=2, F2=16, dropout 0.25,
+AdamW weight decay $10^{-4}$, batch size 128, at most 100 epochs and patience
+15. L1 and L2 use learning rates $10^{-3}$ and $10^{-4}$. Validation MAE
+selects training length; the selected length is refitted on train plus
+validation. Both direct and residual branches are retained. Calibration changes
+post-fit offsets only; it is not a sweep of few-shot fine-tuning algorithms.
+
+% evidence: configs/final_robustness_v9.json; scripts/prepare_urban_tensors_v9.py
+Emo uses the existing 100-Hz raw trial archive and ten-second EEGNet crops.
+Urban uses 64 EEG channels in physical volts, excludes ECG and GSR, applies
+common-average reference and polyphase resampling from 500 to 100 Hz, and
+uses the three-second image interval before the rating response. At evaluation,
+window predictions are averaged within a trial. Downstream learned
+normalization is fitted without test or calibration trials. Frozen LaBraM
+uses the project's recorded checkpoint and channel/unit adaptation; its upstream
+training-data identity provenance is not certified here.
+
+\subsection{Complete primary and secondary summaries}
+% evidence: paper/generated/evidence_argument_v10/verification.json
+All tables below are generated from the same hashed aggregates as the main
+tables. No new fitting, bootstrap, or model selection was performed to produce
+this manuscript revision. The score identity $EC-P=(PC-P)+(EC-PC)$ is checked
+for all 300 task--setting--dose combinations after block aggregation, with
+maximum numerical error below $10^{-12}$. This validates a numerical identity,
+not a causal decomposition. Paired intervals are copied from paired contrast
+outputs, never constructed by subtracting separate confidence bounds.
+\input{../generated/evidence_argument_v10/full_sensitivity.tex}
+
+\subsection{Resource effects and statistical limits}
+% evidence: paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv
+For the EEG-free prior, participant-dose changes from $(0,0)$ to $(8,0)$ are
+$+0.2036$ $[+0.0955,+0.3116]$ on Emo and $+0.1564$ $[+0.0492,+0.2637]$ on
+Urban. Stimulus-dose changes to $(0,8)$ are $+0.4907$ $[+0.3581,+0.6233]$ and
+$+0.3408$ $[+0.2161,+0.4655]$. Joint changes to $(8,8)$ are $+0.6327$
+$[+0.4810,+0.7844]$ and $+0.4181$ $[+0.2928,+0.5435]$. These are heuristic
+t-normal sensitivity intervals; the corresponding percentile intervals also
+exclude zero. They are not the same contrasts as $PC-P$ at a fixed stimulus
+dose in the main endpoint table.
+
+The bootstrap reuses crossed participant and stimulus multiplicities across
+all fitted predictors. Averages are computed within block and then across
+blocks rather than pretending repeated grid predictions are new observations.
+The finite-cluster coverage diagnostics and invalid-draw counts constrain
+interpretation. These are fixed-fit uncertainty summaries, not repeated-training
+confidence statements or equivalence tests. Neither isolated pointwise
+intervals nor dose-family bands imply simultaneous coverage over every method,
+task, and secondary endpoint inspected during benchmark development.
+
+\subsection{Known-truth evaluator stress tests}
+\label{app:evaluator-validation}
+% evidence: paper/generated/submission_closure_v11/evaluation_method_validation.json
+We tested the estimator on outcomes with known construction before interpreting
+the EEG results. In the v6 oracle suite, 16 settings with 100 replicates each
+produced the following operating characteristics. ``Detection'' denotes a
+strictly positive interval and is not a universal power guarantee.
+
+\begin{center}
+\small\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.19\linewidth}>{\raggedright\arraybackslash}p{0.23\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+Generator & Recorded behavior & Interpretation boundary \\
+\midrule
+Labels only & mean difference exactly zero & algebraic negative control only \\
+Independent noise & 0/16 cells detected & finite evidence, not a proof of zero false positives \\
+Trial signal & detection 0.85--1.00; coverage 0.92--1.00 & detects the injected trial signal in these settings \\
+Participant constant & minimum coverage 0.82 & exposes finite-cluster weakness; no biological or causal interpretation \\
+\bottomrule
+\end{tabularx}
+\end{center}
+% evidence: paper/generated/submission_closure_v11/evaluation_method_validation.json
+
+The v7 finite-cluster study planned 9,600 fits; 9,584 were valid and 16 were
+rejected by the declared support rule. In the target $32\times24$ cluster
+setting, percentile, basic, and t-normal coverages were 0.933, 0.930, and
+0.957. Their minima in the deliberately small $8\times6$ setting were 0.837,
+0.820, and 0.940. The often wider t-normal interval is therefore retained as
+a sensitivity analysis, not promoted as a generally calibrated solution.
+% evidence: paper/generated/submission_closure_v11/evaluation_method_validation.json
+
+\subsection{Rule basis and three-state decisions}
+% source: configs/audit_rule_catalog.json
+The checker implements observable evidence rules rather than inferring
+scientific validity from a score. Every rule returns allow, block, or
+unverifiable; the last state is preserved when required provenance is absent.
+
+\begin{center}
+\small\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.18\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+Rule family & Required evidence & Example boundary \\
+\midrule
+Trial lineage & trial UIDs in every partition & repeated derived windows block trial-isolation claims \\
+Identity holdout & participant/stimulus UIDs & overlap blocks only the identity claim it violates \\
+Preprocess/selection & fit and selection UIDs & missing provenance is unverifiable, not a pass \\
+Matched resources & predictor-specific label access & unequal calibration blocks an EEG-added-value claim \\
+Fixed support & test-set hashes by comparator & unequal test support blocks a paired comparison \\
+\bottomrule
+\end{tabularx}
+\end{center}
+These rules operationalize documented leakage and benchmark-reporting concerns
+\citep{brookshire2024leakage,lei2025leakage,bendrich2022feature,reuel2024betterbench};
+they do not certify data truth, upstream pretraining history, or causal validity.
+
+\section{Source-Linked Execution Cases and Reuse}
+\label{app:execution-cases}
+% evidence: paper/generated/final_closure_v9/external_audit/public_summary.json
+The executed EEGain commit is
+\texttt{d6892f5586181f345969651a9baedabd828bb1c5}; its
+\texttt{EEGDataloader.split\_train\_val} is in
+\texttt{eegain/data/loader.py}. LibEER is pinned to
+\texttt{dddff9776dbdae21195fe320dff0a5ba61628a18}; we execute
+\texttt{get\_split\_index}, \texttt{index\_to\_data}, and the empty-validation
+branch at lines 100--102 of \texttt{LibEER/EEGNet\_train.py}.
+File hashes, selected source ranges, case origin, and outputs are recorded in
+\texttt{external\_audit/public\_summary.json} and its paired case table.
+Marker windows are generated from real trial identities, not independent EEG
+measurements. No external classifier score is inferred from the branch tests.
+
+The same EEGain execution record produces different answers to different
+contracts: its held-out test participants remain excluded, while an additional
+requirement that validation trials be disjoint from training can be violated.
+Changing the claim to what was actually isolated is one valid repair. When a
+strict validation-trial contract is required, partitioning complete trials
+before generating windows is the appropriate construction instead. LibEER's
+explicit train/validation/test path passes the exercised split checks; its
+empty-validation fallback should not be treated as independent validation.
+The machine-readable repair record
+\texttt{submission\_closure\_v11/external\_claim\_repair.json} verifies this
+strict-block/scoped-allow pair across all five exercised EEGain folds while
+holding the pinned function, trial universe, and execution output fixed. The
+repair changes the supportable claim; it does not alter or re-estimate a model
+score.
+
+\begin{small}\begin{verbatim}
+python scripts/run_workflow_contract_toy.py toy_contract
+python -m openaffect_eeg.workflow_audit \
+  --trials toy_contract/trials.tsv \
+  --execution toy_contract/unmatched_calibration_execution.json \
+  --contract toy_contract/unmatched_calibration_contract.json \
+  --output toy_contract/checked.json
+\end{verbatim}\end{small}
+The mismatch example exits with the documented blocked status; the matched
+example passes observable checks. Omitting preprocessing evidence preserves
+uncertainty. This is a developer-operated executable example, not independent
+human acceptance. The checker validates consistency of supplied execution
+records, not adversarially falsified provenance.
+
+\paragraph{AI-assisted development.}
+AI assistance was used for protocol and code drafting, debugging, literature
+triage, analysis support, and manuscript development. The recorded EEG
+predictions, bootstrap summaries, and contract decisions are generated by
+the documented numerical models and deterministic checks, not by an LLM
+acting as an emotion predictor or audit judge. Automated checks and agent-run
+examples are not independent human review. Authors remain responsible for
+source verification, scientific interpretation, and submission approval.
+
+\section{Historical Overview Figures}
+% constants-source: paper/figure_plan_zh.json
+The following approved figures retain earlier evidence without changing its
+source version. The initial data layer covers the original four datasets;
+Urban is the later source described above. These figures are not the latest
+matched-increment tables and must not be read as latent-emotion decompositions.
+\placeholderfigure{figures/figure1.pdf}{2in}{Original trial-first data and
+evaluation contract. Stimulus identity is unavailable for ds006866. The later
+Urban source and resource-matched predictor pairs are specified in the main
+methods and latest-evidence appendix.}{fig:benchmark-contract}
+\placeholderfigure{figures/figure2.pdf}{2.5in}{Original EmoEEG-MC and MusicEEG
+total calibrated prediction surfaces on fixed trials. This is total system
+CCC, not EEG added value. The new coverage analysis and matched contrasts are
+reported separately in the main tables; MusicEEG retains its original feasible
+grid rather than being relabelled as a full maximum-dose grid.}{fig:identity-exposure}
+\placeholderfigure{figures/figure3.pdf}{2.3in}{Original representation probes.
+Observed and permuted identity decoding describe available information,
+not proof that an affect predictor uses identity or that identity is a pure
+nuisance.}{fig:identity-audit}

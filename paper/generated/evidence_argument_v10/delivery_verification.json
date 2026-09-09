@@ -1,0 +1,149 @@
+{
+  "status": "passed",
+  "pdfs": {
+    "en": {
+      "path": "paper/neurips2026/main.pdf",
+      "sha256": "4afd3f960765ca0a2a6fe7f83acec720fd7ee9599b5e28f931c8c5c1e1e293c2",
+      "pages": 29,
+      "exact_endpoint_rows": 12,
+      "exact_full_sensitivity_rows": 24,
+      "contact_sheets": [
+        "tmp/pdfs/evidence_argument_v10/en_sheet_01.png",
+        "tmp/pdfs/evidence_argument_v10/en_sheet_07.png",
+        "tmp/pdfs/evidence_argument_v10/en_sheet_13.png",
+        "tmp/pdfs/evidence_argument_v10/en_sheet_19.png",
+        "tmp/pdfs/evidence_argument_v10/en_sheet_25.png"
+      ],
+      "text_lengths": [
+        3349,
+        3960,
+        3973,
+        3960,
+        4315,
+        4307,
+        3798,
+        3957,
+        3559,
+        4389,
+        3811,
+        4137,
+        4669,
+        4367,
+        3422,
+        3019,
+        3552,
+        3321,
+        3306,
+        4149,
+        3965,
+        3134,
+        3634,
+        3264,
+        3903,
+        2425,
+        2365,
+        3084,
+        2785
+      ],
+      "visual_review": "rendered_for_manual_review"
+    },
+    "zh": {
+      "path": "paper/chinese_reading/OpenAffect-EEG-zh.pdf",
+      "sha256": "3df4176accf9cc4cdf9de44edad852db3c0ca7df4bac01a606b34b5a8d7d9e01",
+      "pages": 25,
+      "exact_endpoint_rows": 12,
+      "exact_full_sensitivity_rows": 24,
+      "contact_sheets": [
+        "tmp/pdfs/evidence_argument_v10/zh_sheet_01.png",
+        "tmp/pdfs/evidence_argument_v10/zh_sheet_07.png",
+        "tmp/pdfs/evidence_argument_v10/zh_sheet_13.png",
+        "tmp/pdfs/evidence_argument_v10/zh_sheet_19.png",
+        "tmp/pdfs/evidence_argument_v10/zh_sheet_25.png"
+      ],
+      "text_lengths": [
+        340,
+        1396,
+        1183,
+        1126,
+        1679,
+        1253,
+        865,
+        1168,
+        1339,
+        1510,
+        1964,
+        1076,
+        1489,
+        1157,
+        1117,
+        1354,
+        1297,
+        1248,
+        1383,
+        1768,
+        960,
+        1040,
+        1119,
+        1186,
+        434
+      ],
+      "visual_review": "rendered_for_manual_review"
+    }
+  },
+  "cli": [
+    {
+      "case": "matched",
+      "exit_code": 0,
+      "observable_status": "allow",
+      "nonpassing_checks": []
+    },
+    {
+      "case": "unmatched_calibration",
+      "exit_code": 2,
+      "observable_status": "block",
+      "nonpassing_checks": [
+        "matched_calibration_trial_uids"
+      ]
+    },
+    {
+      "case": "missing_provenance",
+      "exit_code": 3,
+      "observable_status": "unverifiable",
+      "nonpassing_checks": [
+        "preprocessing_evidence",
+        "stimulus_preprocessing_selection_holdout"
+      ]
+    },
+    {
+      "case": "false_unseen_subject_claim",
+      "exit_code": 2,
+      "observable_status": "block",
+      "nonpassing_checks": [
+        "subject_holdout"
+      ]
+    }
+  ],
+  "source_checks": [
+    {
+      "project": "EEGain",
+      "file": "eegain/data/loader.py",
+      "commit": "d6892f5586181f345969651a9baedabd828bb1c5",
+      "git_blob_sha256": "a1b73f7dc1985ad73397be35d58d66f99b3307cc7b862537ca6705ddebc38299",
+      "boundary": "Git blob verified; Windows checkout may use different line endings"
+    },
+    {
+      "project": "LibEER",
+      "file": "LibEER/EEGNet_train.py",
+      "commit": "dddff9776dbdae21195fe320dff0a5ba61628a18",
+      "git_blob_sha256": "1e42fead0c095e325066b79e6068c667997bc270546faae070ed06dc315db244",
+      "boundary": "Git blob verified; Windows checkout may use different line endings"
+    },
+    {
+      "project": "LibEER",
+      "file": "LibEER/data_utils/split.py",
+      "commit": "dddff9776dbdae21195fe320dff0a5ba61628a18",
+      "git_blob_sha256": "49757dd41a50a0d53aa5d90c7208e7c1885471198e520c66368109cb675315e4",
+      "boundary": "Git blob verified; Windows checkout may use different line endings"
+    }
+  ]
+}

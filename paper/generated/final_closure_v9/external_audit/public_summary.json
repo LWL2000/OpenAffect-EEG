@@ -1,0 +1,192 @@
+{
+  "sources": {
+    "EEGain": {
+      "commit": "d6892f5586181f345969651a9baedabd828bb1c5",
+      "url": "https://github.com/EmotionLab/EEGain"
+    },
+    "LibEER": {
+      "commit": "dddff9776dbdae21195fe320dff0a5ba61628a18",
+      "url": "https://github.com/XJTU-EEG/LibEER"
+    }
+  },
+  "source_functions": [
+    {
+      "project": "LibEER",
+      "file": "split.py",
+      "function": "get_split_index",
+      "source_sha256": "49757dd41a50a0d53aa5d90c7208e7c1885471198e520c66368109cb675315e4",
+      "first_line": 46,
+      "last_line": 129
+    },
+    {
+      "project": "LibEER",
+      "file": "split.py",
+      "function": "index_to_data",
+      "source_sha256": "49757dd41a50a0d53aa5d90c7208e7c1885471198e520c66368109cb675315e4",
+      "first_line": 8,
+      "last_line": 43
+    },
+    {
+      "project": "LibEER",
+      "file": "EEGNet_train.py",
+      "source_sha256": "1e42fead0c095e325066b79e6068c667997bc270546faae070ed06dc315db244",
+      "first_line": 100,
+      "last_line": 102,
+      "function": "exact empty-validation branch; classifier training not executed"
+    },
+    {
+      "project": "EEGain",
+      "file": "loader.py",
+      "function": "EEGDataloader",
+      "source_sha256": "a1b73f7dc1985ad73397be35d58d66f99b3307cc7b862537ca6705ddebc38299",
+      "first_line": 18,
+      "last_line": 289
+    }
+  ],
+  "input_manifest_sha256": "28ab12e640f8c596ba15de977a51ccbbe97ae5b989b1c077837e9fb189fb0c80",
+  "implementation_sha256": {
+    "runner": "4cf7eaa07c1719c8f5694062059e62dd6e4cb007bd1eed1262061df9ccfe2c2d",
+    "workflow_audit": "8bfa7d68d379830d9bd7e4839adfb3e5a4cd38a58a046b7fe29c0a58a4fdc6cb"
+  },
+  "cases_sha256": "ce7a13a9791054e3265251e48906db9bb1bd370c7729704396f0b2e37a5dd719",
+  "summary": [
+    {
+      "origin": "injected_contract_fixture_not_upstream_defect",
+      "checker": "elementary_split",
+      "cases": 70,
+      "violations": 50,
+      "detected_violations": 0,
+      "false_observable_allows": 60,
+      "clean_cases": 10,
+      "false_blocks": 0,
+      "unknown_cases": 10,
+      "retained_unknown": 0,
+      "median_runtime_ms": 1.3816014979965985
+    },
+    {
+      "origin": "injected_contract_fixture_not_upstream_defect",
+      "checker": "resource_contract",
+      "cases": 70,
+      "violations": 50,
+      "detected_violations": 50,
+      "false_observable_allows": 0,
+      "clean_cases": 10,
+      "false_blocks": 0,
+      "unknown_cases": 10,
+      "retained_unknown": 10,
+      "median_runtime_ms": 2.1702005178667605
+    },
+    {
+      "origin": "native_function_on_three_marker_windows_per_real_trial",
+      "checker": "elementary_split",
+      "cases": 5,
+      "violations": 5,
+      "detected_violations": 5,
+      "false_observable_allows": 0,
+      "clean_cases": 0,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 1.4323849463835359
+    },
+    {
+      "origin": "native_function_on_three_marker_windows_per_real_trial",
+      "checker": "resource_contract",
+      "cases": 5,
+      "violations": 5,
+      "detected_violations": 5,
+      "false_observable_allows": 0,
+      "clean_cases": 0,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 2.0366250537335873
+    },
+    {
+      "origin": "observed_pinned_source_control_flow",
+      "checker": "elementary_split",
+      "cases": 5,
+      "violations": 5,
+      "detected_violations": 5,
+      "false_observable_allows": 0,
+      "clean_cases": 0,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 1.3583810068666935
+    },
+    {
+      "origin": "observed_pinned_source_control_flow",
+      "checker": "resource_contract",
+      "cases": 5,
+      "violations": 5,
+      "detected_violations": 5,
+      "false_observable_allows": 0,
+      "clean_cases": 0,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 1.6577219357714057
+    },
+    {
+      "origin": "observed_pinned_source_split",
+      "checker": "elementary_split",
+      "cases": 5,
+      "violations": 0,
+      "detected_violations": 0,
+      "false_observable_allows": 0,
+      "clean_cases": 5,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 1.3885770458728075
+    },
+    {
+      "origin": "observed_pinned_source_split",
+      "checker": "resource_contract",
+      "cases": 5,
+      "violations": 0,
+      "detected_violations": 0,
+      "false_observable_allows": 0,
+      "clean_cases": 5,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 1.7703650519251823
+    },
+    {
+      "origin": "same_native_trace_without_unclaimed_validation_trial_holdout",
+      "checker": "elementary_split",
+      "cases": 5,
+      "violations": 0,
+      "detected_violations": 0,
+      "false_observable_allows": 0,
+      "clean_cases": 5,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 1.400295994244516
+    },
+    {
+      "origin": "same_native_trace_without_unclaimed_validation_trial_holdout",
+      "checker": "resource_contract",
+      "cases": 5,
+      "violations": 0,
+      "detected_violations": 0,
+      "false_observable_allows": 0,
+      "clean_cases": 5,
+      "false_blocks": 0,
+      "unknown_cases": 0,
+      "retained_unknown": 0,
+      "median_runtime_ms": 2.0017119823023677
+    }
+  ],
+  "boundaries": [
+    "Control-flow/source-split execution, not official emotion classifier reproduction",
+    "Actual eligible trial identities; marker windows are generated, not measured independent EEG",
+    "Injected resource faults are not attributed to upstream libraries",
+    "Developer-designed finite fixtures do not estimate literature-wide failure prevalence",
+    "No independent human user acceptance was performed",
+    "No published benchmark result is invalidated by these traces"
+  ]
+}

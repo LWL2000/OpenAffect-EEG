@@ -1,0 +1,31 @@
+name: Reviewer artifact smoke test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install audit dependencies
+        run: python -m pip install ".[audit]"
+      - name: Verify review artifact
+        run: >-
+          python scripts/verify_review_artifact.py
+          --project-root .
+          --output acceptance-${{ matrix.python-version }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: acceptance-python-${{ matrix.python-version }}
+          path: acceptance-${{ matrix.python-version }}/independent_acceptance_report.json

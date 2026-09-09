@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "source": "final_closure_v9",
+  "inputs": {
+    "verification/verification.json": "492c253d78772d19fd74fe6b5b4a6f09c9e9ccf5712d64f36cfa0284037be65b",
+    "percentile/added_value_statistics.json": "314d7edbbf219face89e78bfaf8dc24d36375a45c75797a39e5494bbc33a01a0",
+    "percentile/table_added_value_scores.csv": "e90504bad3a99212346207d7e17eb30da71995ae5a49bf8d4eb61a80d3f87b03",
+    "percentile/table_added_value_contrasts.csv": "f422fb98010e8f7935a2450d4a8f6f494166c20248bad582bc8b9fab4d6c39b1",
+    "percentile/table_added_value_summary.csv": "438a34f88f54a54d69a214a760da4bd0a305d4d925514e0f211817157d9415b1",
+    "normal_t/added_value_statistics.json": "c57d277a94af3575d0ed82ebc68c6a494275a7ae1127838ceefa346d486baa85",
+    "normal_t/table_added_value_scores.csv": "9b4f1842dd462b989306d8b86aba7270aa34673f8120ea388216c41efe9cabeb",
+    "normal_t/table_added_value_contrasts.csv": "1b3a9edde3f8f62d2ceda677a0cb3927f1d7ec36b6ed1d7e3a689f1729725a62",
+    "normal_t/table_added_value_summary.csv": "8eacbdbdcb1d12c406e6a25ecd548d38fe3e4cb83ae7d2ac87659a799687bd7d"
+  },
+  "output_sha256": {
+    "decomposition_all_cells.csv": "2a708a7868e0c467418847ffd14e85185eb701ef98aecdb82f6a9f292599d651",
+    "decomposition_maximum_dose.csv": "37c0988efaa762008ea31c79f07b3d7290f54092414bd4a3fdc41449db5f4b9c",
+    "decomposition.tex": "a6180c0c40f12811386eca9e09e4c8b87fb7f65a6af666d77d5b07f1718f7667",
+    "decomposition_en.md": "bf07755ce8aa61cf3ef65912119a1082d895645fa7556d3ef8295fb23f1d32cb",
+    "decomposition_zh.md": "a3de7479550d237fbc5b5c199397cc5a86579a3ee20322f57dfc5a97646e8eab",
+    "primary.tex": "7dbf1852e651f3dd84dd1074c4e428f35989c0cc15b8490fd5d2dc83cb49e95d",
+    "primary_zh.md": "c6b27e12ac0941b31fc2a6f9a7f454ec0b9f7629e56f5994dbb475b604928b22",
+    "full_sensitivity.tex": "6841d4e1aa96048bab37abbf1bb9ce29cf093de403a893dba062b257fe877980"
+  },
+  "cells": 300,
+  "maximum_dose_rows": 12,
+  "primary_rows": 12,
+  "maximum_arithmetic_error": 1.214306433183765e-16,
+  "intervals": "Copied paired contrasts; no endpoint subtraction or new bootstrap",
+  "interpretation": "Predictive score decomposition, not causal or latent-information decomposition"
+}

@@ -1,0 +1,89 @@
+\section*{NeurIPS Paper Checklist}
+
+\begin{enumerate}
+
+\item {\bf Claims}
+    \item[] Question: Do the main claims made in the abstract and introduction accurately reflect the paper's contributions and scope?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The abstract and Introduction state the benchmark contributions, identity assumptions, and protocol-dependent scope; the Results and Limitations preserve those same boundaries.
+
+\item {\bf Limitations}
+    \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The Discussion contains a dedicated Limitations paragraph, with further source-metadata, compute-accounting, and licensing limitations in the appendix.
+
+\item {\bf Theory assumptions and proofs}
+    \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: Section 3 defines resource-conditioned score contrasts and their arithmetic identity, not a theorem about latent emotion or a causal decomposition.
+
+    \item {\bf Experimental result reproducibility}
+    \item[] Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper (regardless of whether the code and data are provided or not)?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Sections 3--5, the historical appendices, and the latest-evidence appendix specify sources, trial construction, resource budgets, estimators, paired statistics, and the recomputation commands.
+
+
+\item {\bf Open access to data and code}
+    \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
+    \item[] Answer: \answerNo{}
+    \item[] Justification: Code, configurations, aggregates, metadata, and synthetic commands exist in a versioned public release. The anonymous review endpoint is still incomplete, so this working draft does not answer Yes. The answer can change only after actual anonymous access is checked. Source recordings remain with their original providers.
+
+
+\item {\bf Experimental setting/details}
+    \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer) necessary to understand the results?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Section 4 gives the evaluation logic and model families; Appendices C--F provide split ratios, adaptation details, validation rules, crops, patches, controls, and statistical settings.
+
+\item {\bf Experiment statistical significance}
+    \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Section 4.2 and the latest-evidence appendix define shared crossed-identity paired intervals, invalid draws, fixed-fit uncertainty, and heuristic small-cluster sensitivity. Historical seed sign-flip tests are separately labelled and are not independent study replication.
+
+\item {\bf Experiments compute resources}
+    \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
+    \item[] Answer: \answerNo{}
+    \item[] Justification: Appendix H reports CPU/GPU type, GPU memory, software versions, and component boundaries, but exact wall-clock and energy totals were not logged consistently for every preliminary and failed run.
+    
+\item {\bf Code of ethics}
+    \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The work uses consented public research data under source terms, preserves submission anonymity, avoids re-identification, and releases no raw physiological recordings or restricted stimuli.
+
+
+\item {\bf Broader impacts}
+    \item[] Question: Does the paper discuss both potential positive societal impacts and negative societal impacts of the work performed?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Sections 6--7 discuss scoped evaluation benefits, privacy and identification risk, and why self-report prediction is not clinical or private-state access.
+    
+\item {\bf Safeguards}
+    \item[] Question: Does the paper describe safeguards that have been put in place for responsible release of data or models that have a high risk for misuse (e.g., pre-trained language models, image generators, or scraped datasets)?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The release excludes raw EEG, source derivatives, restricted media, checkpoints, and real-identity linkage; identity probes are documented as risk measurements rather than identification tools.
+
+\item {\bf Licenses for existing assets}
+    \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: Appendix A and the latest-evidence appendix cite source versions and unresolved license caveats, including the Urban snapshot's inconsistent declarations. Model cards record code, checkpoint provenance, and licensing boundaries.
+
+\item {\bf New assets}
+    \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The prepared release contains data/model/evaluation cards, Croissant metadata, protocol status, limitations, and reproducibility modes. Preparation is distinct from the still-incomplete anonymous hosting step.
+
+\item {\bf Crowdsourcing and research with human subjects}
+    \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)? 
+    \item[] Answer: \answerNA{}
+    \item[] Justification: This work performs secondary analysis of public datasets and recruits no participants or crowd workers; collection procedures remain documented by the cited source studies.
+
+\item {\bf Institutional review board (IRB) approvals or equivalent for research with human subjects}
+    \item[] Question: Does the paper describe potential risks incurred by study participants, whether such risks were disclosed to the subjects, and whether Institutional Review Board (IRB) approvals (or an equivalent approval/review based on the requirements of your country or institution) were obtained?
+    \item[] Answer: \answerNA{}
+    \item[] Justification: The authors conduct no new human-subject data collection. Ethical approvals and consent for the source recordings are the responsibility of, and documented by, the cited data providers.
+
+\item {\bf Declaration of LLM usage}
+    \item[] Question: Does the paper describe the usage of LLMs if it is an important, original, or non-standard component of the core methods in this research? Note that if the LLM is used only for writing, editing, or formatting purposes and does \emph{not} impact the core methodology, scientific rigor, or originality of the research, declaration is not required.
+    %this research? 
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The latest-evidence appendix discloses AI assistance in protocol and code drafting, debugging, literature triage, and manuscript development. EEG predictions and audit decisions are produced by the documented numerical models and deterministic code, not by an LLM. Authors retain responsibility for verification before submission.
+
+\end{enumerate}

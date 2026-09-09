@@ -1,0 +1,34 @@
+[
+  {
+    "density": 0.25,
+    "error": "Fewer than four fixed-support test trials remain",
+    "error_type": "ExposureError",
+    "noise_sd": 0.5,
+    "replicate": 2,
+    "scenario": "labels_only"
+  },
+  {
+    "density": 0.25,
+    "error": "Fewer than four fixed-support test trials remain",
+    "error_type": "ExposureError",
+    "noise_sd": 0.5,
+    "replicate": 2,
+    "scenario": "trial_signal"
+  },
+  {
+    "density": 0.25,
+    "error": "Fewer than four fixed-support test trials remain",
+    "error_type": "ExposureError",
+    "noise_sd": 0.5,
+    "replicate": 2,
+    "scenario": "participant_constant"
+  },
+  {
+    "density": 0.25,
+    "error": "Fewer than four fixed-support test trials remain",
+    "error_type": "ExposureError",
+    "noise_sd": 0.5,
+    "replicate": 2,
+    "scenario": "independent_noise"
+  }
+]

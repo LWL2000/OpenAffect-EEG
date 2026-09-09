@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "scope": "Observable execution-contract checks for paired EEG and no-EEG evaluation. The catalog does not certify hidden provenance, identity authenticity, or upstream pretraining exposure.",
+  "decision_semantics": {
+    "allow": "All required supplied evidence for this rule is present and consistent.",
+    "block": "Supplied evidence contains an observed contradiction or malformed value.",
+    "unverifiable": "Required evidence is absent or cannot establish the requested property. This is not a pass or a violation."
+  },
+  "rules": [
+    {
+      "id": "trial_lineage",
+      "evaluator_checks": ["trial_schema", "train_test_trial_isolation", "validation_test_trial_isolation", "calibration_test_trial_isolation", "training_validation_trial_isolation"],
+      "question": "Do complete trial identities, rather than derived windows, respect the requested partition boundaries?",
+      "basis": ["brookshire2024leakage", "lei2025leakage", "OpenAffect-EEG benchmark contract"],
+      "required_evidence": "A unique trial table and executed trial UID lists for each requested role.",
+      "allow_example": "No complete trial UID crosses a requested boundary.",
+      "block_example": "Windows from one trial appear in both training and validation while validation-trial isolation is requested.",
+      "unverifiable_example": "The execution supplies window indices but no parent trial UIDs.",
+      "unsupported_inference": "An allow decision does not prove that the supplied UIDs correspond to authentic raw recordings."
+    },
+    {
+      "id": "identity_holdout",
+      "evaluator_checks": ["subject_holdout", "stimulus_holdout"],
+      "question": "Are requested participant or stimulus identities absent from development roles?",
+      "basis": ["bendrich2022feature", "bhosale2022calibration", "OpenAffect-EEG benchmark contract"],
+      "required_evidence": "Complete participant/stimulus IDs linked to trial UIDs and executed development/test roles.",
+      "allow_example": "Test participant IDs do not occur in training, validation, or calibration.",
+      "block_example": "A calibrated test participant is described as completely unseen.",
+      "unverifiable_example": "Stimulus IDs are not released by the source dataset.",
+      "unsupported_inference": "Identity holdout does not imply session, device, or pretraining-data holdout."
+    },
+    {
+      "id": "preprocessing_and_selection",
+      "evaluator_checks": ["preprocessing_test_exclusion", "model_selection_test_exclusion", "subject_preprocessing_selection_holdout", "stimulus_preprocessing_selection_holdout"],
+      "question": "Were final-test trials and requested identities excluded from learned preprocessing and model selection?",
+      "basis": ["brookshire2024leakage", "lei2025leakage", "OpenAffect-EEG benchmark contract"],
+      "required_evidence": "Trial UID lists used to fit preprocessing and select models.",
+      "allow_example": "All fitted transforms and selection scores exclude final-test trials.",
+      "block_example": "The test array is reused as validation data for early stopping.",
+      "unverifiable_example": "A pretrained feature file is supplied without its fitting-trial history.",
+      "unsupported_inference": "A source hash binds bytes but does not prove a complete historical training record."
+    },
+    {
+      "id": "matched_predictor_resources",
+      "evaluator_checks": ["matched_calibration_trial_uids", "matched_population_label_trial_uids", "matched_evaluation_trial_uids", "matched_additional_label_resources"],
+      "question": "Do paired EEG and no-EEG predictors receive identical non-EEG labels and evaluation support?",
+      "basis": ["OpenAffect-EEG matched-resource estimand"],
+      "required_evidence": "Per-predictor calibration, population-label, evaluation UID lists, and declared external label resources.",
+      "allow_example": "PC and EC use the same calibration labels and test trials.",
+      "block_example": "Only the EEG system receives target-user calibration labels.",
+      "unverifiable_example": "An opaque model exposes predictions but not its label resources.",
+      "unsupported_inference": "Resource parity does not make the no-EEG baseline optimal or identify a causal EEG effect."
+    },
+    {
+      "id": "fixed_evaluation_support",
+      "evaluator_checks": ["fixed_evaluation_support"],
+      "question": "Is the evaluated trial support identical to the predeclared support?",
+      "basis": ["OpenAffect-EEG benchmark contract", "reuel2024betterbench"],
+      "required_evidence": "A predeclared digest of sorted evaluation trial UIDs.",
+      "allow_example": "The computed support digest equals the frozen digest.",
+      "block_example": "A dose cell silently drops difficult test trials.",
+      "unverifiable_example": "No predeclared support digest is supplied.",
+      "unsupported_inference": "Fixed support does not make the observed sample representative of all deployments."
+    }
+  ]
+}

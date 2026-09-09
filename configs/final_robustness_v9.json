@@ -1,0 +1,37 @@
+{
+  "version": "final_robustness_v9",
+  "design_seed": 20260908,
+  "fold_count": 5,
+  "doses": [0, 1, 2, 4, 8],
+  "ridge_settings": {"ridge_base": [0.1, 1.0, 10.0, 100.0], "ridge_strong": [1.0, 10.0, 100.0, 1000.0]},
+  "eegnet_settings": {"eegnet_lr1e3": 0.001, "eegnet_lr1e4": 0.0001},
+  "eegnet": {"max_epochs": 100, "patience": 15, "batch_size": 128, "weight_decay": 0.0001, "dropout": 0.25},
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 20260909,
+  "datasets": {
+    "ds005540": {
+      "trials": "derived/manifests/ds005540_trials.tsv.gz",
+      "harmonize": true,
+      "targets": ["target_valence", "target_arousal"],
+      "tensors": "derived/tensors/ds005540_raw_100hz.npy",
+      "uids": "derived/tensors/ds005540_raw_100hz_trial_uids.npy",
+      "crop_samples": 1000,
+      "features": {
+        "de": {"path": "derived/features/ds005540_de.npz", "array": "channel_log_bandpower"},
+        "labram": {"path": "derived/features/ds005540_labram_pretrained_v1.npz", "array": "features"}
+      }
+    },
+    "ds006850": {
+      "trials": "derived/urban_confirmation_v7_metadata4/valence_trials.tsv.gz",
+      "harmonize": false,
+      "targets": ["target_valence"],
+      "tensors": "derived/final_robustness_v9_inputs/urban_100hz.npy",
+      "uids": "derived/final_robustness_v9_inputs/urban_100hz_trial_uids.npy",
+      "crop_samples": 300,
+      "features": {
+        "bandpower": {"path": "derived/urban_confirmation_v7_features/ds006850_valence_bandpower.npz", "array": "channel_log_bandpower"},
+        "labram": {"path": "derived/urban_confirmation_v7_features/ds006850_valence_labram.npz", "array": "features"}
+      }
+    }
+  }
+}

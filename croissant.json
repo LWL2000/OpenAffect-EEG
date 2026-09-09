@@ -1,0 +1,137 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "conformsTo": "dct:conformsTo",
+    "citeAs": "cr:citeAs",
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "field": "cr:field",
+    "recordSet": "cr:recordSet"
+  },
+  "@type": "sc:Dataset",
+  "name": "OpenAffect-EEG Metadata and Evaluation Benchmark",
+  "description": "Leakage-resistant trial metadata, frozen split definitions, evaluation cards, aggregate audit results, and reproducibility code for auditing what EEG affect models predict. Raw EEG, derived feature arrays, and restricted stimuli are not distributed.",
+  "url": "https://replace-before-submission.invalid/OpenAffect-EEG",
+  "version": "0.2.0",
+  "dateCreated": "2026-08-31",
+  "dateModified": "2026-08-31",
+  "license": "https://spdx.org/licenses/MIT.html",
+  "creator": [
+    {
+      "@type": "sc:Organization",
+      "name": "OpenAffect-EEG authors"
+    }
+  ],
+  "publisher": {
+    "@type": "sc:Organization",
+    "name": "OpenAffect-EEG authors"
+  },
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.0",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "citeAs": "@software{openaffect_eeg_2026, title={OpenAffect-EEG: Auditing What EEG Emotion Models Actually Predict}, author={Anonymous}, year={2026}}",
+  "rai:dataCollection": "This release is a secondary harmonization of published EEG emotion-study metadata. It preserves only source-permitted trial identifiers, experimental contexts, split assignments, and aggregate evaluation outputs; recordings and media remain with the original providers.",
+  "rai:dataCollectionType": [
+    "Secondary Data analysis",
+    "Experiments",
+    "Self-reporting"
+  ],
+  "rai:dataCollectionRawData": "Authoritative source recordings, event files, and dataset terms are available from OpenNeuro datasets ds002721, ds003751, ds005540, and ds006866. Users obtain source data independently and must follow each source's access and reuse terms.",
+  "rai:dataCollectionMissingData": "Availability differs by source and trial. The public release records label availability and does not impute missing self-report values. Some source modalities, recordings, stimuli, and restricted derivatives are intentionally absent from the release.",
+  "rai:dataAnnotationAnalysis": "Affect targets are normalized from source-provided self-report scales into valence and arousal where documented. Nominal stimulus labels and source ratings are retained only as documented metadata and are never silently substituted for participant self-reports.",
+  "rai:dataUseCases": [
+    "Reproducing and auditing leakage-resistant trial-level EEG affect evaluations.",
+    "Testing whether claims are supported under participant, stimulus, context, and dataset isolation.",
+    "Method development only when source licenses, ethics requirements, and split boundaries are respected."
+  ],
+  "rai:dataLimitations": [
+    "This is an evaluation metadata resource, not a redistribution of raw EEG, precomputed features, audiovisual stimuli, or foundation-model checkpoints.",
+    "Emotion labels are heterogeneous source self-reports with imperfect agreement; benchmark scores must not be interpreted as direct readouts of private affect.",
+    "Not every source supports every isolation protocol, and the benchmark must report unavailable cells rather than fill them with proxy results."
+  ],
+  "rai:dataBiases": [
+    "Participant samples, elicitation paradigms, devices, preprocessing, and rating scales differ across source studies.",
+    "Stimulus repetition and source-specific experimental structure can make random trial splits optimistic and can confound identity with target labels.",
+    "The resource is not validated for clinical diagnosis, population-level affect inference, or high-stakes individual decisions."
+  ],
+  "rai:personalSensitiveInformation": [
+    "The release contains pseudonymous trial, participant, and stimulus identifiers required to reproduce splits; it contains no direct names, contact details, raw EEG, audio, video, or images.",
+    "Users must consult upstream source documentation for any sensitive attributes or consent restrictions not redistributed here."
+  ],
+  "rai:dataSocialImpact": "The audit can discourage overstated EEG-emotion claims by exposing optimistic split protocols and identity information. Misuse could nevertheless enable unwarranted inference about a person's emotional state; the resource is not a tool for surveillance, diagnosis, employment, education, policing, or other high-stakes decisions.",
+  "rai:dataReleaseMaintenancePlan": "Versioned split definitions, input hashes, correction policy, and aggregate artifacts are maintained in the public repository. Corrections will preserve prior versions, document affected claims, and never replace released source data.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "name": "OpenAffect-EEG anonymous release archive",
+      "description": "Code, source-permitted metadata, split definitions, cards, and aggregate audit results. This explicit staging URL must be replaced by a live anonymous artifact URL before submission.",
+      "contentUrl": "https://replace-before-submission.invalid/OpenAffect-EEG-anonymous.tar.gz",
+      "encodingFormat": "application/gzip"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "MusicEEG source",
+      "description": "Authoritative OpenNeuro source; users obtain recordings under source terms.",
+      "contentUrl": "https://openneuro.org/datasets/ds002721",
+      "encodingFormat": "text/html"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "DENS source",
+      "description": "Authoritative OpenNeuro source; users obtain recordings under source terms.",
+      "contentUrl": "https://openneuro.org/datasets/ds003751",
+      "encodingFormat": "text/html"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "EmoEEG-MC source",
+      "description": "Authoritative OpenNeuro source; users obtain recordings under source terms.",
+      "contentUrl": "https://openneuro.org/datasets/ds005540",
+      "encodingFormat": "text/html"
+    },
+    {
+      "@type": "cr:FileObject",
+      "name": "Emotion-regulation source",
+      "description": "Authoritative OpenNeuro source; users obtain recordings under source terms.",
+      "contentUrl": "https://openneuro.org/datasets/ds006866",
+      "encodingFormat": "text/html"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "name": "trial_metadata",
+      "description": "Harmonized trial-level identities, contexts, label availability, and source self-report targets permitted by the source terms.",
+      "key": "trial_uid",
+      "field": [
+        {"@type": "cr:Field", "name": "trial_uid", "dataType": "Text"},
+        {"@type": "cr:Field", "name": "dataset_id", "dataType": "Text"},
+        {"@type": "cr:Field", "name": "subject_uid", "dataType": "Text"},
+        {"@type": "cr:Field", "name": "stimulus_uid", "dataType": "Text"},
+        {"@type": "cr:Field", "name": "context", "dataType": "Text"},
+        {"@type": "cr:Field", "name": "target_valence", "dataType": "Float"},
+        {"@type": "cr:Field", "name": "target_arousal", "dataType": "Float"}
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "name": "split_assignments",
+      "description": "Versioned complete-trial train, validation, test, and preexcluded roles for fixed protocol seeds.",
+      "key": "trial_uid",
+      "field": [
+        {"@type": "cr:Field", "name": "protocol", "dataType": "Text"},
+        {"@type": "cr:Field", "name": "seed", "dataType": "Integer"},
+        {"@type": "cr:Field", "name": "trial_uid", "dataType": "Text"},
+        {"@type": "cr:Field", "name": "split", "dataType": "Text"}
+      ]
+    }
+  ]
+}

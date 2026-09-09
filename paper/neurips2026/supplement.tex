@@ -1,0 +1,1046 @@
+% constants-source: paper/neurips2026/supplement.tex
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\section{Data Sources and Trial Reconstruction}
+\label{app:data}
+
+\subsection{Version-pinned sources}
+
+OpenAffect-EEG uses fixed OpenNeuro snapshots rather than a floating latest
+version: MusicEEG ds002721 version 1.0.3, DENS ds003751 version 1.0.6,
+EmoEEG-MC ds005540 version 1.0.7, and external validation ds006866 version
+1.0.0
+\citep{openneuro_ds002721,openneuro_ds003751,openneuro_ds005540,openneuro_ds006866}.
+Snapshot manifests, byte counts or annex keys, and derived trial-table hashes
+record the source state. Across the \claimvalue{C39} datasets we reconstruct
+\claimvalue{C41} trials from \claimvalue{C40} dataset-qualified participants;
+\claimvalue{C42} trials have complete harmonizable continuous targets. The core
+tier contains \claimvalue{C35} participants, \claimvalue{C36} trials,
+\claimvalue{C37} qualified stimulus identities, and \claimvalue{C38} supervised
+trials.
+
+\begin{table}[t]
+  \caption{Source and redistribution boundaries. License entries describe the
+  fixed source metadata; companion media and code retain separate terms.}
+  \label{tab:licenses}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabularx}{\linewidth}{@{}lXXX@{}}
+    \toprule
+    Dataset & OpenNeuro snapshot & Companion boundary & Benchmark release \\
+    \midrule
+    MusicEEG & CC0 & OSF metadata/audio: CC BY 4.0 & Metadata, splits, scores \\
+    DENS & CC0 field; ODbL/DbCL conflict & Videos not mirrored & Conservative attribution \\
+    EmoEEG-MC & CC0 & Stimuli/code/checkpoints separate & No EEG, DE, media, weights \\
+    ds006866 & CC0 & OSF table: CC BY 4.0; source images separate & No EEG or images \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: fixed dataset_description.json files; paper/generated/table_benchmark_scope.csv
+\end{table}
+
+\begin{table}[t]
+  \caption{Observed-data and probe-coverage disclosure. EEG feature counts are
+  applied after a frozen trial assignment; missing signals never redefine a
+  split. Probe coverage is the test fraction whose class was observed in fit.}
+  \label{tab:coverage}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabularx}{\linewidth}{@{}lrrXr@{}}
+    \toprule
+    Dataset & Labeled & EEG features & Main role & Stimulus probe \\
+    \midrule
+    MusicEEG & 1,240 & 1,240 & Transparent spectral audit & 0.8708 \\
+    DENS & 365 & 162 & Transparent, missingness-limited & 0.9826 \\
+    EmoEEG-MC & 1,260 & 1,260 & DE and foundation case study & 1.0000 \\
+    ds006866 & 35,504 & 35,504 & Condition-level external audit & N/A \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/table_benchmark_scope.csv; paper/generated/table_identity_probes.csv
+\end{table}
+
+The DENS gap originates from unreadable public signal windows rather than an
+explicit target filter, but the resulting complete-case set is not ignorable.
+Only \claimvalue{C75} of \claimvalue{C76} label-eligible trials are available
+(missing fraction \claimvalue{C74}); \claimvalue{C78} participants have no
+available trial, and the available-versus-missing valence standardized mean
+difference is \claimvalue{C77}. Missingness summaries and probe seen-class
+fractions are published per dataset and seed. Subject probes in the LaBraM case study have complete test
+coverage; permutation labels are shuffled only in the training partition while
+the assignment, features, estimator, and test labels remain fixed.
+
+\paragraph{MusicEEG.}
+Participants listened to film-music excerpts and completed eight self-report
+items \citep{daly2020musiceeg}. The benchmark retains 1,240 task trials. Public
+events do not directly provide canonical audio filenames, so
+\texttt{stimulus\_uid} is aligned from event codes to the public OSF Set 1 after
+checking uniqueness, code range, and the availability of audio and normative
+ratings for every candidate. Because the README, event description, and early
+paper do not fully agree on the material set, this mapping is labeled
+\texttt{audited\_inference}, not \texttt{source\_verified}. The OpenNeuro
+snapshot declares CC0 and the companion OSF resource declares CC BY 4.0; audio
+is not redistributed. % evidence: paper/generated/table_benchmark_scope.csv; cards/datasets/ds002721.md
+
+\paragraph{DENS.}
+DENS uses naturalistic videos and collects dimensional and categorical ratings
+\citep{asif2023dens}. Events and behavior are joined by normalized stimulus
+name, never row position. Several public \texttt{.fdt} lengths disagree with
+their \texttt{.set} headers; unreadable full windows are recorded through an
+availability mask rather than padded, wrapped, or treated as valid EEG. Public
+events contain twenty local stimulus names, but the snapshot lacks the
+documented stimulus and code directories, and the cited AFDI entry cannot be
+reliably linked to those local identities. They are therefore valid grouping
+keys but not claims of recovered source films. Conflicting CC0 and ODbL/DbCL
+statements are handled under the more conservative attribution and share-alike
+boundary. % evidence: paper/generated/table_benchmark_scope.csv; cards/datasets/ds003751.md
+
+\paragraph{EmoEEG-MC.}
+The dataset combines video viewing and text-guided imagery
+\citep{xu2025emoeeg}. A published behavioral \texttt{video\_name} field repeats
+one erroneous value for some participants and cannot be joined by row order.
+The supervised subset is restricted to globally verifiable stimulus codes, and
+context direction is cross-checked against source EDF trigger types. Other
+reconstructed trials remain in provenance with unavailable targets. Public DE
+arrays, reordered EEG, model features, and checkpoints are excluded from the
+anonymous package. % evidence: cards/datasets/ds005540.md
+
+\paragraph{External emotion regulation.}
+ds006866 studies social and nonsocial images under neutral viewing, negative
+viewing, and reappraisal conditions \citep{maka2026discrepancy}. It contributes
+\claimvalue{C43} participants and \claimvalue{C44} image-presentation trials,
+of which \claimvalue{C33} have complete valence and arousal. Public events
+recover condition but not trial-level image identity, and EEGLAB annotations do
+not restore it. Stimulus and joint holdout are consequently blocked by source
+metadata. The OpenNeuro snapshot declares CC0; companion metadata declare CC BY
+4.0, while source images can have separate terms. Neither images nor a
+substitute media index are distributed. % evidence: cards/datasets/ds006866.md
+
+\section{Target Harmonization}
+
+MusicEEG pleasantness and energetic-arousal reports define valence and arousal;
+the other datasets use their released valence and arousal fields. MusicEEG,
+DENS, and ds006866 map an original one-to-nine scale by $(x-1)/8$; EmoEEG-MC
+maps zero-to-seven by $x/7$. Original values, scale labels, and transformation
+expressions remain in trial metadata or result provenance.
+% constants-source: src/openaffect_eeg/baselines.py
+
+The supervised target is the participant's trial-level report. Nominal stimulus
+category, normative rating, and experimental condition can be inputs,
+stratification variables, or audit labels, but do not replace the participant
+target. Trials missing either continuous dimension remain in metadata and are
+excluded only from metrics requiring both dimensions.
+
+\section{Split Protocols}
+\label{app:splits}
+
+\paragraph{Single-factor protocols and the optimistic control.}
+Complete trials are assigned before windowing. Random-trial, subject, and
+stimulus holdout use 70/10/20 train/validation/test proportions within each
+dataset, with at least one identity reserved for validation and test in small
+groups. Random-trial splitting isolates only \texttt{trial\_uid} and records
+subject and stimulus overlaps. Strict single-factor splits require an empty
+train--test intersection for the held identity.
+% constants-source: src/openaffect_eeg/splits.py; scripts/build_strict_splits.py
+
+\paragraph{Joint holdout.}
+Subjects and stimuli are independently assigned 60/20/20. A trial is retained
+only when both identities receive the same partition; cross-partition edges are
+marked \texttt{excluded}. This sacrifices coverage in sparse subject--stimulus
+graphs to obtain a genuine double cold start. The ratio was fixed before model
+evaluation because smaller validation identity sets did not provide adequate
+validation coverage across seeds.
+% constants-source: scripts/build_strict_splits.py
+
+\paragraph{Support-matched identity-overlap control.}
+For each joint-holdout seed, the control freezes the exact test trial IDs and
+matches the joint split's train and validation row counts. It then samples those
+training-side rows so that both test subjects and test stimuli occur in the fit
+partition. Consequently, the control preserves test support and sample counts
+while changing training-side identity overlap and the associated graph. It is
+an estimand for the practical effect of available identity structure, not a
+claim that all higher-order graph properties are identical.
+Across seeds, test sets contain \claimvalue{C79}--\claimvalue{C80} trials from
+\claimvalue{C81}--\claimvalue{C82} participants and exactly
+\claimvalue{C83} held-out stimuli.
+% constants-source: src/openaffect_eeg/reviewer_controls.py; scripts/build_support_matched_control.py
+
+% constants-source: paper/figure_plan_zh.json
+\placeholderfigure{figures/figureS_protocol_audit.pdf}{2.20in}{Protocol-level
+audit retained as supporting evidence. \textbf{A:} five fixed split seeds and
+their mean macro-CCC for semantic prior, direct EEG, and prior-plus-EEG residual;
+random-trial splitting is an optimistic control. \textbf{B:} pretrained versus
+fixed-random LaBraM comparisons and support-matched identity-overlap effects.
+These estimates motivate the response-surface analysis but do not by themselves
+separate participant calibration from repeated-stimulus exposure.}{fig:protocol-audit}
+
+\paragraph{Context and dataset holdout.}
+Directional EmoEEG-MC transfer first holds out subjects. Only source-context
+trials enter training and validation, and only target-context trials from unseen
+subjects enter test. Video-to-imagery and imagery-to-video are evaluated
+separately. Context and dataset holdout treat a complete domain as a group.
+% constants-source: src/openaffect_eeg/splits.py; scripts/build_context_transfer_splits.py
+
+All main representation audits use \claimvalue{C47} fixed seeds. Each assignment
+stores trial roles and an audit JSON. Builders check UID uniqueness, nonempty
+identity fields, legal roles, and the required empty identity intersections.
+Models apply target and feature-availability masks only after loading an
+assignment, so representation missingness cannot silently alter the split.
+
+\subsection{Held-out deployment-selection utility}
+\label{app:selection-utility}
+
+To test a practical consequence rather than assume that ranking changes help,
+we compare a validation-cell selector with one global validation-mean selector.
+Both receive identical predictions from seven candidates: a personalized
+EEG-free prior and direct/combined predictions from spectral features and frozen
+pretrained/random LaBraM. Candidates, dose grids, role seed and rules are fixed
+before this analysis. No candidate is removed based on test performance.
+% constants-source: configs/deployment_utility_v5.json
+
+Participant and stimulus identities have disjoint fitting, inner tuning,
+selector-validation and test roles. All trials containing the other phase's
+participant or stimulus identities are quarantined, including resource trials.
+Assignments use constant placeholders for target-block labels. Ridge tuning
+uses only inner tuning outcomes; selector choices are hashed before test
+evaluation. Five resource seeds share the same role partition and target
+support, not five independent cohorts. The EEG-free and EEG predictors receive
+identical calibration labels and stimulus-label resources.
+% constants-source: configs/deployment_utility_v5.json; src/openaffect_eeg/deployment_benchmark.py
+
+EmoEEG-MC has 48 trials from six participants and eight stimuli in each of the
+two phases. MusicEEG has 25 validation trials (six participants, eight stimuli)
+and 23 test trials (six participants, nine stimuli), after maximum-dose
+feasibility filtering. The sparse support limits precision and coverage. All
+2,000 paired crossed draws are valid. They condition on fits and validation
+choices, not selector-training uncertainty. Source, assignment and prediction
+hashes are verified, and a separate centered-moment implementation reproduces
+the scores and intervals. This is developer verification, not an independent
+human reproduction.
+% evidence: paper/generated/deployment_utility_v5/ds005540_verification.json; paper/generated/deployment_utility_v5/ds002721_verification.json
+% constants-source: configs/deployment_utility_v5.json
+
+\input{../generated/deployment_utility_v5/table_selection_utility}
+
+Neither primary CCC interval excludes zero. Both secondary MAE differences
+are small and negative, but no practical-importance threshold was established;
+they cannot replace the primary endpoint or identify EEG added value. The
+global choices are random-LaBraM combined prediction for EmoEEG-MC and spectral
+combined prediction for MusicEEG. These choices describe this candidate set and
+validation block, not population-level model superiority. This analysis uses
+datasets already examined during project development: role isolation protects
+the current selection procedure, but is not untouched external confirmation.
+% evidence: paper/generated/deployment_utility_v5/ds005540.json; paper/generated/deployment_utility_v5/ds002721.json
+
+\subsection{Identity-exposure response surface}
+\label{app:exposure-surface}
+
+Identity availability is not represented as one binary variable. A deployment
+state can separately specify whether the participant ID is known, whether
+unlabelled target-participant data are available, how many labelled calibration
+trials are available, whether calibration comes from the same session, and
+whether the test stimulus, dataset, and device occurred during fitting. The
+present response surface varies exactly two labelled resources: $p$, complete
+calibration trials per target participant, and $s$, other-participant ratings
+per test stimulus (or experimental condition where stimulus identity is
+unavailable). Released normative stimulus metadata, where present, is held fixed
+and reported as a separate prior rather than counted as $s$. It fixes unlabelled
+target-participant adaptation at zero. Session
+and device are not separately isolated by the available metadata and are
+therefore blocked claims, not implicit successes.
+
+For each seed, we begin from one strict participant--stimulus joint assignment.
+The test set is restricted once to participants and stimuli supporting the
+predeclared maximum doses; its trial IDs are then hash-fixed for every $(p,s)$
+cell. Participant calibration candidates contain a test participant under a
+non-test stimulus. They never enter population-model fitting. Repeated-stimulus
+candidates contain a test stimulus rated by a non-test participant. Dose samples
+are deterministic and nested, so every lower dose is a subset of every higher
+dose on the same axis.
+
+Adding $s$ repeated-stimulus rows would otherwise increase sample size. Each
+added row therefore replaces one base-training donor selected deterministically
+within context and nearest in the two training targets. Population-training size
+is exactly constant across cells, while validation and test trials are unchanged.
+Donor selection reads training labels only. The intervention intentionally
+changes which stimulus identities are represented during fitting; it does not
+claim all graph or target-distribution properties are causally matched.
+
+% constants-source: src/openaffect_eeg/identity_exposure.py; configs/identity_exposure_response_v1.yaml
+Let $f_{s}$ be a population predictor fit with stimulus exposure dose $s$. For a
+target participant $i$, labelled calibration produces only the post-fit offset
+\begin{equation}
+  \widehat{\boldsymbol\delta}_{i,p}
+  = \frac{1}{p}\sum_{j\in\mathcal C_{i,p}}
+  \left(\mathbf y_{ij}-f_s(\mathbf x_{ij})\right),
+\end{equation}
+with zero offset at $p=0$. Test prediction is
+$f_s(\mathbf x_{i,t})+\widehat{\boldsymbol\delta}_{i,p}$. Thus a nonzero $p$
+cell is explicitly a known-participant, labelled-calibration result; it is not
+subject independent. The same construction is applied to the prior-plus-EEG
+predictor and to the EEG-free prior with exactly the same calibration rows.
+Population and personalized outputs are stored separately.
+
+\input{../generated/identity_exposure_v2/complete/table_paired_added_value}
+
+\paragraph{Matched model extension and reproducibility.}
+The EmoEEG-MC extension evaluates EEGNet and frozen EMOD on every existing
+assignment, asserting identical test IDs, targets, priors, and calibrated priors.
+EEGNet selects its epoch count by validation MAE, then refits on train plus
+validation; target-participant calibration does not update network weights.
+Direct and residual models are fitted separately. Population fits are reused
+across participant doses only after verifying unchanged fit assignments.
+The compact model uses the previously specified custom EEGNet-style architecture with zero
+adversarial loss. All preprocessing statistics are estimated from its fit data.
+
+% constants-source: scripts/extract_emod_audit_features.py
+EMOD uses official repository revision
+\texttt{3a219f51ba4f90b9e2d22824cfb90dde77a9875c}.
+Its checkpoint has legacy pooling/projection names; the adapter records a
+one-to-one name mapping and then requires a strict match of all tensors.
+It uses the benchmark's 100-Hz raw archive, three nonoverlapping ten-second
+crops, and mean pooled official projection embeddings. Channels absent from the
+official channel vocabulary are excluded and listed in the extraction manifest.
+Input scaling/preprocessing and head adaptation differ from the paper's full
+fine-tuning pipeline. This audits the supplied frozen weights, not a claim that
+EMOD's original reported SOTA performance was reproduced. Neither third-party
+weights nor raw feature arrays are redistributed.
+
+\paragraph{Failed native-task learning check.}
+A separate bounded SEED-V check used the official SEEDV model branch and
+checkpoint backbone with 62 channels, 200 Hz, microvolt inputs and one-second
+windows. Within each participant/session, the first five, middle five and last
+five trials formed train, validation and test. Across 48 source files there
+were 117,744 windows; 40,352 test windows represented 240 trials from 16
+participants. A single fixed seed, 100 epochs, and validation-kappa checkpoint
+selection yielded test balanced accuracy 0.20 and kappa 0: all test windows
+received one class. Prepared-input hashes, test identities, finite gradients
+and recomputed metrics were verified, but native-task learning was not
+recovered. The released SEEDV branch uses a large multilayer head, whereas the
+paper describes a linear classifier; the per-task selected fine-tuning recipe
+is not fully specified. This failed compatibility check neither reproduces nor
+refutes the published scores. It cannot validate the frozen regression audit
+as a full SOTA test. CUDA pooling backward is nondeterministic despite fixed
+seeds; this is recorded with the aggregate training history.
+% evidence: paper/generated/competitive_revision_v3/emod_native/native_task_check.json; paper/generated/competitive_revision_v3/emod_native/training_history.json
+% constants-source: scripts/run_emod_seedv_check_v3.py; scripts/prepare_emod_seedv_v3.py
+
+\paragraph{Training-only diagnosis and repair.}
+We retained that failed run and reproduced its numerical failure on 50 fixed
+training windows, ten per class, without validation/test-based parameter
+selection. With classifier learning rate $10^{-3}$, the first update increased
+the first dense layer's output standard deviation from 0.773 to 32.280;
+by step 20, the second hidden ELU produced constant outputs. The official SEEDV
+head flattens 39,680 features into a 2,480-unit layer. Keeping the architecture,
+inputs, initialization, optimizer and backbone learning rate $5\times10^{-4}$
+unchanged, reducing only the classifier learning rate to $10^{-5}$ prevented
+saturation and fitted the diagnostic batch by step 50. This establishes a
+configuration-specific numerical remedy, not an emotion-mechanism finding.
+All 48 training-label files matched the official constants. Reprocessing 100
+training windows across five source files, including the format-fallback and
+largest-amplitude cases, matched the prepared float32 inputs exactly; this is
+selected-file parity, not exhaustive independent data validation.
+% evidence: paper/generated/emod_repair_v4/native_task_check.json; paper/generated/emod_repair_v4/original_lr_training_trace.json; paper/generated/emod_repair_v4/repaired_lr_training_trace.json
+% constants-source: configs/emod_native_repair_v4.json; scripts/check_emod_preparation_parity.py
+
+The repaired run completed the fixed 100-epoch budget. Validation kappa selected
+epoch 21, after which the test set was evaluated once. Recomputed test BACC was
+38.62\%, kappa 0.2348 and weighted F1 39.43\%; all five classes were predicted.
+The published five-run BACC is $41.24\pm0.86\%$ \citep{chen2026emod}, leaving
+a 2.62 percentage-point gap to that mean. This single-seed check demonstrates
+recovered learning, not statistical equivalence or a five-run reproduction.
+It uses within-participant classification, not the self-report exposure
+response surface, and cannot establish unseen-user transfer or pretrained
+benefit without a matched random-initialization comparison. Aggregate traces,
+input/source hashes and a fail-fast input-sensitivity check accompany the
+repair. The original failed results remain archived.
+% evidence: paper/generated/emod_repair_v4/native_task_check.json; paper/generated/emod_repair_v4/training_history.json
+% external-values: chen2026emod, Table 2
+
+\paragraph{Standard implementation and stronger calibration control.}
+The added standard regression model uses Braindecode 1.2.0 EEGNet with
+$F_1=8$, $D=2$, $F_2=16$, temporal kernels 64/16, dropout 0.25, and two raw
+regression outputs. AdamW uses learning rate 0.001 and weight decay 0.0001;
+validation MAE selects among at most 100 epochs with patience 12. All 25
+population states and 125 dose cells use the archived assignments. Its 50
+direct/residual fits have finite logged objectives and gradients; selected
+epochs range from 1 to 24, with 14 fits selecting epoch one. Synthetic learning
+and training-only tiny-subset fitting checks pass, but do not demonstrate
+optimal benchmark tuning or held-out emotion information.
+% constants-source: configs/competitive_revision_v3.json
+% evidence: paper/generated/competitive_revision_v3/standard_training_diagnostics/training_verification.json; paper/generated/competitive_revision_v3/standard_training_diagnostics/learning_checks.json
+
+An additional empirical calibration control estimates within-participant
+residual variance $\sigma^2$ and nonnegative noise-corrected between-participant
+mean variance $\tau^2$ from population-fit data. It multiplies every calibrated
+offset by $w_p=p\tau^2/(p\tau^2+\sigma^2)$, with $w_0=0$. These are heuristic
+prediction weights, not identified latent variance components. The same weights
+apply to $PC$ and $EC$. Table~\ref{tab:v3-calibration} reports uniform cell means;
+the historical dose-weighted integrals remain separate secondary summaries.
+Neither calibration rule establishes a positive surface-average EEG increment
+for the displayed models at the reported precision.
+% evidence: paper/generated/competitive_revision_v3/table_provenance.json
+
+\input{../generated/competitive_revision_v3/table_calibration_sensitivity}
+\input{../generated/competitive_revision_v3/table_calibration_mae}
+
+\paragraph{Revised uncertainty.}
+% evidence: paper/generated/identity_exposure_v2/complete/added_value_statistics.json
+The paired tables use 2,000 shared crossed-identity draws across fixed splits.
+The same draws compare every predictor, dose, and model; a degenerate draw is
+not repaired by silently dropping a seed. The tables expose valid draw counts.
+The legacy resource-effect table below preserves the original seedwise bootstrap
+for traceability and is not the revised estimator used in the main text.
+In particular, MusicEEG's revised joint interval crosses zero. For ds006866,
+each fixed split holds out one condition; its condition factor cannot support
+a within-split resampling claim about new conditions.
+
+% evidence: paper/generated/identity_exposure_v2/complete/music_dose_support.json
+MusicEEG's frozen grid is five participant doses by four stimulus doses,
+ending at $s=4$. Raising $s$ to eight cannot preserve the same test support in
+four of the five seeds: their available other-participant observations are
+insufficient. Only one seed supports that extension without dropping test
+trials. We do not fill unavailable cells or compare a changed test set as if
+it were the same response surface.
+
+% constants-source: src/openaffect_eeg/identity_exposure.py; src/openaffect_eeg/audit_cli.py
+The artifact emits one deterministic claim card per cell. It records ID and
+label requirements and blocks latent-emotion disentanglement, causal identity
+removal, unseen-participant claims when $p>0$, unseen-stimulus claims when
+$s>0$, and session/dataset/device transfer unless those factors are separately
+held out. This is rule-based compilation from split lineage, not free-form
+language-model judgment.
+
+\begin{table}[t]
+  \caption{Legacy fixed-support identity-exposure summary (original seedwise
+  bootstrap, retained for traceability). Values are macro-CCC changes
+  from the zero-resource cell; brackets are crossed participant--stimulus 95\%
+  intervals. For ds006866, $S$ denotes experimental-condition exposure because
+  source metadata do not expose trial-level image identity.}
+  \label{tab:exposure-summary}
+  \centering
+  \scriptsize
+  \setlength{\tabcolsep}{2.5pt}
+  \resizebox{\linewidth}{!}{%
+  \begin{tabular}{@{}llcccccc@{}}
+    \toprule
+    Dataset & Representation & Zero & Maximum & Surface AUC & $\Delta P$ & $\Delta S$ & $\Delta(P{+}S)$ \\
+    \midrule
+    EmoEEG-MC & LaBraM pretrained
+      & \claimvalue{C105} & \claimvalue{C106} & \claimvalue{C107}
+      & \claimvalue{C111} [\claimvalue{C112}, \claimvalue{C113}]
+      & \claimvalue{C114} [\claimvalue{C115}, \claimvalue{C116}]
+      & \claimvalue{C117} [\claimvalue{C118}, \claimvalue{C119}] \\
+    MusicEEG & LaBraM pretrained
+      & \claimvalue{C108} & \claimvalue{C109} & \claimvalue{C110}
+      & \claimvalue{C120} [\claimvalue{C121}, \claimvalue{C122}]
+      & \claimvalue{C123} [\claimvalue{C124}, \claimvalue{C125}]
+      & \claimvalue{C126} [\claimvalue{C127}, \claimvalue{C128}] \\
+    ds006866 & Band power
+      & -- & -- & --
+      & \claimvalue{C137} [\claimvalue{C138}, \claimvalue{C139}]
+      & \claimvalue{C140} [\claimvalue{C141}, \claimvalue{C142}]
+      & \claimvalue{C143} [\claimvalue{C144}, \claimvalue{C145}] \\
+    \bottomrule
+  \end{tabular}}
+  % evidence: paper/generated/identity_exposure_v1/analysis/table_identity_exposure_effects.csv
+  % evidence: paper/generated/identity_exposure_v1/analysis/table_identity_exposure_deployment.csv
+\end{table}
+
+% evidence: paper/generated/identity_exposure_v1/analysis/table_identity_exposure_seed_scores.csv
+\placeholderfigure{figures/figureS_exposure_corners.pdf}{2.35in}{Deployment
+corners for the three main representations. Large markers and connecting lines
+show seed means; faint points are the five fixed split seeds. ``Participant''
+uses the maximum labelled calibration dose with unseen stimuli, ``Stimulus''
+uses the maximum repeated-stimulus dose with unseen participants, and ``Both''
+uses both resources. The large MusicEEG spread is why endpoint means are not
+treated as independent replications.}{fig:exposure-corners}
+
+% evidence: paper/generated/identity_exposure_v1/analysis/table_identity_exposure_effects.csv
+\placeholderfigure{figures/figureS_exposure_effects.pdf}{2.35in}{Maximum-dose
+minus zero-resource changes. Bars distinguish transparent features, pretrained
+LaBraM, and fixed-random LaBraM; whiskers are crossed participant--stimulus
+bootstrap 95\% intervals. EmoEEG-MC supports positive marginal and joint
+changes under the legacy estimator. The revised shared-identity interval for
+MusicEEG's joint change crosses zero; this legacy plot is not evidence of a
+confirmed external resource effect.}{fig:exposure-effects}
+
+\begin{table}[t]
+  \caption{Dataset--protocol applicability matrix. ``Blocked'' denotes missing
+  source identity metadata, not model failure.}
+  \label{tab:protocol-matrix}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{@{}lcccccc@{}}
+    \toprule
+    Dataset & Random & Subject & Stimulus & Joint & Context & Dataset \\
+    \midrule
+    MusicEEG & Yes & Yes & Yes & Yes & N/A & Yes \\
+    DENS & Yes & Yes & Yes & Yes & N/A & Yes \\
+    EmoEEG-MC & Yes & Yes & Yes & Yes & Yes & Yes \\
+    ds006866 & Yes & Yes & Blocked & Blocked & Yes & N/A \\
+    \bottomrule
+  \end{tabular}
+  % evidence: cards/evaluations/evaluation_matrix.tsv
+\end{table}
+
+\begin{table}[t]
+  \caption{Executed analysis coverage. This table is intentionally distinct
+  from protocol applicability: ``supported'' does not imply that every model
+  was run in that cell. V/I denotes directional video--imagery transfer.}
+  \label{tab:executed-matrix}
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{@{}l l X@{}}
+    \toprule
+    Dataset & Representation or analysis & Executed protocols \cr
+    \midrule
+    EmoEEG-MC & DE, CBraMod, LaBraM affect heads & Random, subject, stimulus, joint, V/I; exposure grid \cr
+    EmoEEG-MC & EEGNet & Joint; complete exposure grid \cr
+    EmoEEG-MC & EMOD frozen and random & Complete exposure grid \cr
+    MusicEEG & Band power, LaBraM pretrained/random & Complete feasible exposure grid \cr
+    MusicEEG, DENS, EmoEEG-MC & Transparent identity probes & Dataset, subject, stimulus as applicable \cr
+    ds006866 & Channel/global bandpower & Subject holdout and condition probe \cr
+    \bottomrule
+  \end{tabularx}
+  % evidence: configs/recompute_neurips_ed_v1.yaml; paper/generated/registry/artifact_manifest.json
+\end{table}
+
+\section{EEG Representations and Models}
+\label{app:models}
+
+\paragraph{Transparent spectra.}
+Core transparent features use delta, theta, alpha, beta, and gamma DE or Welch
+log power. Global views aggregate channels; channel views retain the
+channel-by-band layout. Standardization is fitted on training data only. Ridge
+regularization is selected by validation MAE and refitted on train plus
+validation. Single-band, leave-one-band, single-region, and leave-one-region
+views test predictive sensitivity, not source localization or causal anatomy.
+
+\paragraph{CBraMod.}
+Official pretrained and same-architecture random encoders receive identical
+EmoEEG-MC trials. Each 30-second, 64-channel, 200-Hz trial is organized into
+one-second patches; channel and time tokens are mean-pooled into a 200-dimensional
+trial representation. Source commit, checkpoint SHA-256, trial UIDs, and
+feature hashes accompany the artifact. The encoder is frozen and only the
+common downstream head is trained.
+% constants-source: src/openaffect_eeg/foundation.py; cards/models/cbramod.md
+
+\paragraph{LaBraM.}
+LaBraM uses the official channel-location map and base checkpoint. Thirty
+one-second patches are processed as three eight-patch windows and one six-patch
+window, then pooled with patch-count weighting into a 200-dimensional trial
+representation. Pretraining masks and decoder heads are excluded, while the
+official final normalization path is retained. The random control instantiates
+the same architecture without loading a checkpoint.
+% constants-source: src/openaffect_eeg/labram.py; cards/models/labram.md
+
+\paragraph{Historical compact EEGNet-style control.}
+The custom task-specific control is trained from EmoEEG-MC waveforms resampled with
+anti-aliasing to 100 Hz. Each epoch uses one deterministic 10-second training
+crop; validation and test average three nonoverlapping crops. The network uses
+temporal convolution, depthwise spatial convolution, separable temporal
+convolution, and an eight-dimensional latent. It tests architecture dependence,
+not an exhaustive architecture search.
+% constants-source: scripts/run_eegnet_disentanglement.py; cards/models/eegnet.md
+
+\begin{table}[t]
+  \caption{Representation controls and training state.}
+  \label{tab:representations}
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{@{}lXXX@{}}
+    \toprule
+    Representation & Trial view & Pretraining control & Downstream state \\
+    \midrule
+    DE / Welch & Global, channel, band, region & N/A & Validation-selected Ridge \\
+    CBraMod & Frozen 200-D embedding & Same architecture, random & Frozen encoder \\
+    LaBraM & Frozen 200-D embedding & Same architecture, random & Frozen encoder \\
+    EEGNet & Raw deterministic crops & Zero adversary & End-to-end control \\
+    EMOD & Frozen 128-D embedding & Same architecture, random & Validation-selected Ridge \\
+    \bottomrule
+  \end{tabularx}
+  % constants-source: cards/models/de_ridge.md; cards/models/cbramod.md; cards/models/labram.md; cards/models/eegnet.md
+  % evidence: paper/generated/identity_exposure_v2/complete/execution_evidence.json
+\end{table}
+
+\section{Predictors, Debiasing, and Identity Probes}
+
+\paragraph{Predictors.}
+\texttt{direct\_eeg} predicts normalized targets from EEG.
+\texttt{semantic\_stimulus\_prior} combines one-hot nominal category, context,
+and source stimulus-intensity code with lower-cased TF--IDF description
+unigrams/bigrams (at most 1,024 features, sublinear term frequency). A Ridge
+model is fitted to one mean target row per training stimulus; alpha is selected
+from $\{0.01,0.1,1,10,100,1000\}$ by trial-level validation MAE. The intensity
+code identifies source stimulus variants and never uses a held-out participant's
+rating. The historical registry identifier
+\texttt{disentangled\_prior\_plus\_eeg\_residual} uses a training-only
+stimulus report mean for seen stimuli and the semantic estimate for unseen
+stimuli, forms leave-one-trial-out residual targets, predicts them from EEG, and
+adds the hybrid prior. All branches share the assignment and validation rule;
+none reads test targets. The identifier denotes arithmetic residualization and
+does not claim causal or latent-state disentanglement.
+% constants-source: scripts/run_disentanglement_baseline.py; src/openaffect_eeg/disentanglement.py
+
+\begin{table}[t]
+  \caption{Optimization and selection budget. Every choice is made on the
+  validation partition and then reused for the paired test comparison.}
+  \label{tab:model-budget}
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{@{}lXl@{}}
+    \toprule
+    Component & Validation search & Training budget \cr
+    \midrule
+    Ridge prior/EEG/residual heads & Six alphas from $10^{-2}$ to $10^3$ & Closed-form per seed/protocol \cr
+    Linear nuisance controls & Five strengths from 0 to 1 & Closed-form per strength \cr
+    Gradient-reversal residual & Six adversary strengths & At most 200 epochs; patience 25 \cr
+    Adversarial EEGNet & Three adversary strengths & At most 100 epochs; patience 12 \cr
+    Subject-subspace audit & Eight ranks, three direction types & Head refit at every point \cr
+    \bottomrule
+  \end{tabularx}
+  % constants-source: scripts/run_disentanglement_baseline.py; scripts/run_adversarial_disentanglement.py; scripts/run_eegnet_disentanglement.py; scripts/run_subject_subspace_intervention.py
+\end{table}
+
+\paragraph{Debiasing counterfactuals.}
+We evaluate stimulus centering, conditional covariance penalties,
+response-preserving stimulus-subspace projection, gradient-reversal residual
+networks, and adversarial EEGNet. Every method contains a zero-strength setting;
+adversarial strength, projection rank, and epoch are selected by validation
+residual MAE only. Test-time residual prediction does not use stimulus ID. A
+successful counterfactual must jointly improve target performance and reduce
+the relevant identity effect. Variance shrinkage or inconsistent seed
+direction is reported as a negative result.
+
+% constants-source: paper/figure_plan_zh.json
+\placeholderfigure{figures/figure4.pdf}{2.20in}{Subject-subspace intervention
+audit. \textbf{A} plots affect macro-CCC and \textbf{B} participant balanced
+accuracy across the fixed removal-rank grid. Faint trajectories are the five
+evaluation seeds; opaque lines and markers are their means. Triangles remove
+subject-aligned directions, squares remove equal-rank PCA directions, and
+circles remove equal-rank random directions. The vertical dashed line is the
+nested zero-rank control; the horizontal dotted line in \textbf{B} is chance.
+The figure exposes an accuracy--identity trade-off and does not identify
+participant structure as a pure nuisance factor.}{fig:debiasing-audit}
+
+\paragraph{Identity probes.}
+Dataset identity is predicted under subject holdout; stimulus identity under
+subject holdout is evaluated only on classes observed in training; subject
+identity under stimulus holdout is likewise evaluated on training-seen people.
+Each probe uses a matched training-label permutation and reports balanced
+accuracy, class count, uniform chance, coverage, and per-seed values.
+
+\paragraph{Subject-subspace intervention.}
+For each stimulus-holdout seed, between-subject centroid differences are
+estimated on training data, decomposed by SVD, and the leading directions are
+removed from fit and test LaBraM representations. The requested removal grid is
+$\{0,1,2,4,8,16,24,29\}$. At every rank, we also remove the same number of
+training-estimated PCA directions and seeded random orthonormal directions.
+Semantic, direct, residual, and subject-probe heads are refitted with the same
+validation-only selection. The zero-removal point is the nested control.
+This intervention destroys linearly decodable subject structure but can also
+remove participant-related affect variation; it is not interpreted as a pure
+nuisance projector.
+% constants-source: src/openaffect_eeg/reviewer_controls.py; scripts/run_subject_subspace_intervention.py
+
+\section{Statistical Analysis}
+
+Continuous predictions report valence, arousal, macro CCC, MAE, and RMSE.
+Identity tasks report balanced accuracy and, where available, macro-F1. Model
+comparisons are paired on identical trial-level predictions. In the legacy
+non-surface analyses, the hierarchical
+bootstrap first resamples evaluation seeds and then complete held-out identity
+clusters; joint holdout separately resamples crossed subject and stimulus
+factors. Those historical intervals use 2,000 resamples and a fixed statistical
+seed. This is not the revised primary response-surface estimator, which holds
+split seeds fixed and shares crossed identity weights across every model/cell.
+% constants-source: configs/recompute_neurips_ed_v1.yaml; scripts/analyze_paired_predictions.py
+
+With \claimvalue{C47} seeds, the exact two-sided sign-flip test has a minimum
+nonzero $p$-value of \claimvalue{C45}. We therefore interpret bootstrap
+intervals as effect uncertainty and the sign-flip test as a finite-seed
+resolution statement. Historical targeted robustness analyses comprise the
+support-matched CCC contrast, subject-subspace endpoint CCC contrast,
+unseen-stimulus LaBraM pretraining contrast, and external condition-prior paired
+contrasts. These were selected during benchmark development and reviewer-driven
+audit rather than preregistered. Other reported cells are exploratory. Seeds
+represent Monte Carlo split variability; participant, stimulus, or crossed
+cluster resampling supplies the corresponding generalization uncertainty.
+Intervals are pointwise and are not presented as simultaneous family-wise
+coverage.
+
+\begin{table}[t]
+  \caption{Selected paired macro-CCC comparisons. Intervals are hierarchical
+  paired-bootstrap 95\% intervals.}
+  \label{tab:paired}
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{@{}lXrrX@{}}
+    \toprule
+    Comparison & Protocol & $\Delta$CCC & Interval & Scope \\
+    \midrule
+    LaBraM pretrained $-$ random & Stimulus & \claimvalue{C04} &
+      [\claimvalue{C05}, \claimvalue{C06}] & Known subjects, new stimuli \\
+    LaBraM pretrained $-$ random & Subject & \claimvalue{C07} & Includes zero & New subjects \\
+    LaBraM pretrained $-$ random & Joint & \claimvalue{C08} & Includes zero & New subjects and stimuli \\
+    Identity overlap $-$ joint, direct EEG & Matched support & \claimvalue{C61} &
+      [\claimvalue{C62}, \claimvalue{C63}] & Same test and fit counts \\
+    Identity overlap $-$ joint, full pipeline & Matched support & \claimvalue{C50} &
+      [\claimvalue{C51}, \claimvalue{C52}] & Includes prior and residual \\
+    Max subject removal $-$ zero & Stimulus & \claimvalue{C55} &
+      [\claimvalue{C56}, \claimvalue{C57}] & LaBraM intervention \\
+    Subject removal $-$ equal-rank PCA & Stimulus & \claimvalue{C66} &
+      [\claimvalue{C67}, \claimvalue{C68}] & Direction specificity \\
+    Subject removal $-$ equal-rank random & Stimulus & \claimvalue{C69} &
+      [\claimvalue{C70}, \claimvalue{C71}] & Direction specificity \\
+    Condition prior $-$ EEG-only & External subject & \claimvalue{C27} &
+      [\claimvalue{C28}, \claimvalue{C29}] & New subjects, repeated conditions \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/table_representation_comparisons.csv; paper/generated/table_external_validation.csv; paper/generated/table_reviewer_controls.csv
+\end{table}
+
+Under the same support-matched contrast, the semantic stimulus prior changes by
+\claimvalue{C64} CCC and the hybrid stimulus prior by \claimvalue{C65}. These
+branches are reported separately so the full-pipeline effect is not attributed
+to EEG alone. Component ablations further separate nominal category, context,
+source intensity code, and description text (Table~\ref{tab:prior-ablation}).
+
+\begin{table}[t]
+  \caption{Semantic-prior component audit. Positive values favor the full prior;
+  intervals use the holdout identity required by each protocol.}
+  \label{tab:prior-ablation}
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{@{}llrr@{}}
+    \toprule
+    Protocol & Omitted component & Full $-$ ablated CCC & 95\% interval \cr
+    \midrule
+    Stimulus & Nominal category & \claimvalue{C87} & [\claimvalue{C88}, \claimvalue{C89}] \cr
+    Subject & Description text & \claimvalue{C90} & [\claimvalue{C91}, \claimvalue{C92}] \cr
+    Joint & Nominal category & \claimvalue{C93} & [\claimvalue{C94}, \claimvalue{C95}] \cr
+    Joint & Context & \claimvalue{C96} & [\claimvalue{C97}, \claimvalue{C98}] \cr
+    Joint & Intensity code & \claimvalue{C99} & [\claimvalue{C100}, \claimvalue{C101}] \cr
+    Joint & Description text & \claimvalue{C102} & [\claimvalue{C103}, \claimvalue{C104}] \cr
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/table_reviewer_controls.csv
+\end{table}
+
+The strong nominal-category effect under unseen-stimulus and joint holdout
+shows that the semantic prior's transferable score is largely experiment-label
+structure. Description text contributes under subject holdout, whereas context,
+intensity, and description do not have stable independent joint-holdout effects.
+These are predictive ablations, not causal interventions on stimulus content.
+
+\begin{table}[t]
+  \caption{Identity-probe summary. Permuted values use the same representation,
+  split, and estimator with shuffled training labels.}
+  \label{tab:identity-probes}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabularx}{\linewidth}{@{}Xlrrr@{}}
+    \toprule
+    Representation and task & Holdout & Observed & Permuted & Chance \\
+    \midrule
+    LaBraM pretrained, subject & Stimulus & \claimvalue{C09} & 0.0192 & \claimvalue{C46} \\
+    LaBraM random, subject & Stimulus & \claimvalue{C10} & 0.0425 & \claimvalue{C46} \\
+    DE, dataset & Subject & \claimvalue{C11} & 0.3913 & \claimvalue{C48} \\
+    LaBraM pretrained, stimulus & Subject & \claimvalue{C12} & 0.0260 & \claimvalue{C49} \\
+    External channel, condition & Subject & \claimvalue{C23} & \claimvalue{C24} & \claimvalue{C25} \\
+    External global, condition & Subject & \claimvalue{C26} & 0.1692 & \claimvalue{C25} \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/table_identity_probes.csv; paper/generated/table_external_validation.csv
+\end{table}
+
+\section{External Validation Details}
+\label{app:external-validation}
+
+The initial subject-holdout analysis found that the condition prior exceeded
+EEG-only macro-CCC by \claimvalue{C27}, with interval [\claimvalue{C28},
+\claimvalue{C29}]. The v2 audit extends this case to exactly matched bandpower,
+pretrained-LaBraM, and fixed-random-LaBraM representations under five protocols.
+Table~\ref{tab:ds006866-v2-affect} reports every frozen cell rather than only
+the favorable repeated-participant setting.
+
+\begin{table*}[t]
+  \caption{Complete ds006866 v2 affect audit. Entries are five-seed mean
+  macro-CCC. BP denotes 320-dimensional channel bandpower; Pre. and Rand.
+  denote frozen pretrained and fixed-random LaBraM. Hybrid is the transferable
+  condition-family prior plus the EEG residual.}
+  \label{tab:ds006866-v2-affect}
+  \centering
+  \scriptsize
+  \setlength{\tabcolsep}{3.2pt}
+  \begin{tabularx}{\textwidth}{@{}Xrrrrrrr@{}}
+    \toprule
+    Protocol & Prior & EEG BP & EEG Pre. & EEG Rand. & Hybrid BP & Hybrid Pre. & Hybrid Rand. \\
+    \midrule
+    Unseen participant & 0.3776 & 0.0369 & 0.0335 & 0.0198 & 0.3425 & 0.3742 & 0.3797 \\
+    Nonsocial $\rightarrow$ social, repeated participant & 0.3757 & 0.2319 & 0.2604 & 0.2539 & 0.5144 & 0.5507 & 0.5476 \\
+    Social $\rightarrow$ nonsocial, repeated participant & 0.3780 & 0.2226 & 0.2526 & 0.2455 & 0.5116 & 0.5486 & 0.5462 \\
+    Nonsocial $\rightarrow$ social, unseen participant & 0.3704 & 0.0208 & 0.0323 & 0.0152 & 0.3318 & 0.3718 & 0.3726 \\
+    Social $\rightarrow$ nonsocial, unseen participant & 0.3792 & 0.0172 & 0.0289 & 0.0220 & 0.3472 & 0.3761 & 0.3844 \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/ds006866_external_audit_v2.json
+\end{table*}
+
+For repeated participants, the hybrid improves over the prior in both
+directions and all five participant-clustered MAE intervals lie below zero for
+each representation. Under joint participant--context holdout, no LaBraM
+hybrid interval establishes an improvement over the prior. Pretrained-minus-
+random hybrid CCC is $-0.0008$ and $-0.0082$ across the two joint directions,
+with only two of five seeds positive in each. Thus the strict result does not
+support a pretraining-specific residual advantage.
+% evidence: paper/generated/ds006866_external_audit_v2.json
+
+\begin{table*}[t]
+  \caption{Matched ds006866 v2 identity probes. Each cell is observed/permuted
+  five-seed mean balanced accuracy. Chance reflects the fitted class set.}
+  \label{tab:ds006866-v2-probes}
+  \centering
+  \scriptsize
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabularx}{\textwidth}{@{}XXrrrr@{}}
+    \toprule
+    Protocol & Probe & BP & Pretrained & Random & Chance \\
+    \midrule
+    Unseen participant & Six-condition & 0.2448/0.1669 & 0.1713/0.1667 & 0.1675/0.1653 & 0.1667 \\
+    Nonsocial $\rightarrow$ social, repeated participant & Participant & 0.9910/0.0066 & 0.9997/0.0074 & 0.9963/0.0057 & 0.0068 \\
+    Social $\rightarrow$ nonsocial, repeated participant & Participant & 0.9890/0.0063 & 0.9999/0.0045 & 0.9973/0.0046 & 0.0068 \\
+    Nonsocial $\rightarrow$ social, unseen participant & Condition family & 0.4091/0.3238 & 0.3399/0.3317 & 0.3306/0.3333 & 0.3333 \\
+    Social $\rightarrow$ nonsocial, unseen participant & Condition family & 0.4206/0.3268 & 0.3384/0.3336 & 0.3308/0.3315 & 0.3333 \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/ds006866_external_audit_v2.json
+\end{table*}
+
+The near-perfect repeated-participant probes establish information available
+to a fixed linear readout; they do not show that the affect head causally uses
+identity. Public events expose condition but not trial-level image identity, so
+stimulus holdout remains blocked. Header-only conformance confirms the same
+ordered 64-channel EEG set in all 148 recordings; 146 match the base source
+pattern and two contain one additional, predeclared EMG channel.
+% evidence: paper/generated/ds006866_channel_audit_v2.json
+
+\section{Authorized SEED-V Protocol-Audit Case Study}
+\label{app:seedv}
+
+SEED-V is a stimulus-induced five-class EEG and eye-movement study with
+16 participants, three sessions, and fifteen film clips per session
+\citep{li2019seedv}. We report a separately authorized raw-EEG analysis as an
+independent case study rather than a fifth OpenAffect-EEG source. Its source
+recordings, feature arrays, media, trial predictions, participant codes, and
+project paths are not redistributed. The public artifact contains only the
+source-safe aggregate in \texttt{paper/generated/seedv\_case\_study.json},
+its input and code hashes, and this interpretation boundary.
+
+The authorized project compared a raw-temporal baseline against a pre-existing
+SDSA variant under a strict leave-one-participant-out protocol and a joint
+participant--stimulus protocol. Table~\ref{tab:seedv-case} reports all frozen
+cells rather than selecting the favorable joint cell. The strict SDSA contrast
+is negative, and both bootstrap intervals include zero. Its frozen decision
+gate therefore fails; the contrast is evidence of protocol sensitivity, not a
+model-improvement claim. Separately, the authorized project's strict-to-
+PaperStyle ladder rises from 0.2786 to 0.5922, so the large protocol gap cannot
+be attributed to a model variant alone \citep{li2019seedv}.
+
+\begin{table}[t]
+  \caption{Authorized SEED-V aggregate audit. Values are mean trial macro-F1
+  across the frozen result rows; $\Delta$ is SDSA minus raw temporal. No
+  participant-level or trial-level values are released.}
+  \label{tab:seedv-case}
+  \centering
+  \small
+  \setlength{\tabcolsep}{5pt}
+  \begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+    \toprule
+    Protocol & Raw temporal & SDSA & $\Delta$ & 95\% interval \\
+    \midrule
+    Strict participant holdout & 0.2418 & 0.2297 & -0.0121 & [-0.0439, 0.0178] \\
+    Joint participant--stimulus holdout & 0.1788 & 0.1856 & 0.0068 & [-0.0154, 0.0292] \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/seedv_case_study.json
+\end{table}
+
+\section{Independent MusicEEG Protocol Audits}
+\label{app:music-labram}
+
+To test whether the EmoEEG-MC representation finding is confined to one visual
+paradigm, we run two prespecified audits on independent MusicEEG
+\citep{daly2020musiceeg}. Each uses 1,240 labelled 12-second music trials from
+31 participants, five frozen complete-trial splits, and source-safe aggregate
+reporting. First, a transparent channel log-bandpower Ridge readout reaches
+macro CCC 0.1031 under random-trial evaluation, 0.0175 with unseen
+participants, 0.1130 with unseen music but known participants, and 0.0227
+under joint participant--music holdout. The paired random-minus-joint
+difference is 0.0804 (seed SD 0.0357). Thus holding out music alone does not
+substitute for holding out participants in this auditory source.
+
+The same bandpower representation identifies training-seen participants under
+unseen music at balanced accuracy 0.9995 (permuted 0.0431; 31-class uniform
+chance 0.0323). In contrast, the seen-class music probe under unseen
+participants is 0.0000 balanced accuracy (permuted 0.0033; 78.8--91.3\% test
+coverage across seeds). These probes establish available information under
+their stated coverage, not causal use by the affect predictor.
+% evidence: paper/generated/music_eeg_external_audit_v2.json
+
+The self-report diagnostic also constrains interpretation. Leave-one-rating-out
+same-music consensus CCC is 0.1437 for valence and 0.1634 for arousal (1,123
+supported ratings each). Descriptive in-sample additive models assign more
+R-squared to music identity (0.3579 and 0.3484) than participant identity
+(0.1170 and 0.1782); they are neither test--retest reliability estimates nor
+causal variance decompositions.
+% evidence: paper/generated/music_eeg_external_audit_v2.json
+
+Second, we apply the frozen official LaBraM base encoder to exactly the same
+MusicEEG split family. Each trial uses its 19 recorded 10--20 channels and its
+observed event window; MNE volts are converted to microvolts, common-average
+referenced within trial, resampled to 200~Hz, and final tokens pooled. There is
+no padding, cross-trial window, fine-tuning, or feature release. Pretrained and
+fixed-random initializations use the same 200-dimensional Ridge readout,
+manifests, five split seeds, and nested validation selection.
+% constants-source: cards/datasets/ds002721.md; scripts/extract_labram_bids_features.py
+
+Table~\ref{tab:music-labram} is a separate foundation-model audit rather
+than a new model claim. Pretraining has a positive matched macro-CCC point difference
+in all four audited protocols, including participant and joint holdout, but the
+corresponding unseen-music subject probe is also substantially higher for
+pretrained features. This external source therefore qualifies, rather than
+reverses, the main case study: pretrained features have higher report-prediction
+point estimates in this auditory source while retaining participant structure, so neither
+the positive gain nor a single identity probe supports a general invariant-
+emotion conclusion.
+
+\begin{table}[t]
+  \caption{Independent MusicEEG frozen LaBraM audit. Values summarize five
+  fixed split seeds; $\Delta$ is pretrained minus fixed-random macro-CCC.
+  Subject probes predict training-seen participants under unseen music.}
+  \label{tab:music-labram}
+  \centering
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabularx}{\linewidth}{@{}Xrrr@{}}
+    \toprule
+    Protocol & Pretrained CCC & Random CCC & $\Delta$ CCC \\
+    \midrule
+    Random trial & 0.0923 & 0.0191 & 0.0732 \\
+    Unseen participant & 0.0697 & -0.0006 & 0.0703 \\
+    Unseen music & 0.0847 & 0.0145 & 0.0703 \\
+    Unseen participant and music & 0.0422 & 0.0085 & 0.0337 \\
+    \midrule
+    Unseen-music subject probe (BA) & 0.9136 & 0.4239 & --- \\
+    Permuted subject probe (BA) & 0.0313 & 0.0297 & chance 0.0323 \\
+    \bottomrule
+  \end{tabularx}
+  % evidence: paper/generated/music_eeg_external_audit_v2.json
+\end{table}
+
+\section{Compute and Software Environment}
+
+Transparent features, linear baselines, probes, paired statistics, artifact
+compilation, and tests run in a CPU environment on Linux x86-64 with Python
+3.11, NumPy 2.4.6, pandas 3.0.5, SciPy 1.17.1, scikit-learn 1.9.0, and MNE
+1.12.1. Foundation feature extraction and EEGNet use one NVIDIA RTX 6000 Ada
+Generation GPU with 49,140 MiB memory, PyTorch 2.11.0, and CUDA 13.0. CPU-only
+adversarial residual runs use four threads to avoid competing with GPU jobs.
+% evidence: docs/reproduction_report.md; configs/recompute_neurips_ed_v1.yaml
+
+The typed recomputation graph separates feature extraction, evaluation,
+statistics, and manuscript compilation. Exact historical wall-clock and energy
+totals were not captured consistently for every preliminary or failed run; the
+release therefore reports component environments and DAG boundaries rather
+than inventing a project-wide total. The final cold-run release log is designed
+to record per-step wall times and will be published with the executable
+artifact. This limitation does not affect frozen scores but constrains precise
+compute-cost replication.
+
+\section{Release, Licensing, and Reproduction Boundaries}
+
+The anonymous package contains code, tests, configurations, evaluation cards,
+dataset and model cards, Croissant metadata, generated table sources, and claim
+configuration. It explicitly excludes raw EEG, source feature arrays,
+foundation checkpoints, movie, music, and image stimuli, office documents, Git
+history, and machine-local paths.
+
+\texttt{metadata} mode validates the benchmark contract without source data.
+\texttt{smoke} uses deterministic synthetic trials to exercise splitting,
+baselines, probes, and a small registry. \texttt{full} requires an explicit
+user-provided data root and verifies frozen input hashes and paper assets. The
+typed \texttt{recompute plan/run} interface covers trial construction, feature
+extraction, evaluation, probes, statistics, and paper compilation;
+\texttt{--resume} skips a step only when all declared outputs exist.
+
+The shortest exact verification sequence from a clean checkout is:
+\begin{small}
+\begin{verbatim}
+conda env create -f environment.yml
+conda activate openaffect-eeg
+python -m pip install -e ".[smoke]"
+python scripts/run_benchmark.py metadata \
+  --output-root /tmp/openaffect-metadata
+python scripts/run_benchmark.py smoke \
+  --output-root /tmp/openaffect-smoke
+export D=/path/to/OpenAffect-EEG-data
+python scripts/run_benchmark.py full \
+  --data-root "$D" --output-root "$D/reproduction"
+python scripts/build_neurips_submission.py
+\end{verbatim}
+\end{small}
+The first two modes never read EEG. Full mode verifies the frozen registry and
+rebuilds evidence-linked tables; it is not mislabeled as raw feature extraction
+or model retraining. The separately documented \texttt{recompute\_benchmark.py
+plan/run} commands expose that typed raw-to-paper DAG and require explicit paths
+to source data, checkpoints, and foundation-model repositories.
+
+Full-mode verification of frozen outputs is not described as a cold download
+and multi-day retraining run. The existing isolated-environment verification
+was performed on the same compute host and is not represented as independent
+laboratory reproduction.
+
+\section{Machine-Readable Attachments}
+
+The full registry retains per-seed identity results, all paired model
+comparisons, band and region sensitivity cells, prediction-key audits, source
+hashes, and unsupported protocol states. These files prevent selective
+compression of null or unfavorable results into the PDF. Region analyses are
+predictive sensitivity tests and are not interpreted as neural source
+localization.
+
+\section{Position Relative to Closest Evaluation Resources}
+
+\begin{table}[t]
+  \caption{The closest resources address complementary layers of the problem.
+  The final column states the additional evaluation object introduced here,
+  rather than asserting that prior work is invalid.}
+  \label{tab:related-benchmarks}
+  \centering
+  \small
+  \begin{tabularx}{\linewidth}{@{}lXX@{}}
+    \toprule
+    Resource & Primary evaluation object & Additional OpenAffect-EEG object \\
+    \midrule
+    Leakage audit \citep{lei2025leakage} & Trial-segment and test-data leakage on DEAP & Subject, stimulus, joint, context, and dataset identity contracts \\
+    mdJPT \citep{zhang2025mdjpt} & Multi-dataset affect pretraining and new-dataset transfer & Deployment-specific identity isolation plus matched random encoders \\
+    EMOD \citep{chen2026emod} & Discrete/continuous label alignment in a common V--A space & Self-report prior/residual separation and stimulus provenance states \\
+    EEG-FM-Compass \citep{liu2026compass} & Cross-task FM comparison under subject transfer and calibration & Affect-specific stimulus and condition audits with predictor-linked interventions \\
+    FMScope \citep{lin2026identitytrap} & Subject-axis diagnosis and erasure across clinical EEG-FMs & Joint subject--stimulus--context contracts and report-level affect estimands \\
+    EEG concept audit \citep{tang2026capture} & Encoded-versus-used physiological concepts under erasure & Experiment-metadata priors separated from trial-level self-reports \\
+    Emotion protocol audit \citep{suo2026protocols} & Subject-dependent versus subject-disjoint SEED evaluation & Stimulus, joint, context, and dataset isolation with provenance states \\
+    OpenAffect-EEG & Executable evidence and applicability contract & Hash registry, claim ledger, cards, blocked cells, and matched controls \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+\placeholderfigure{figures/figureS_condition_audit.pdf}{2.00in}{Initial
+ds006866 subject-holdout condition audit. The condition prior, direct EEG, and
+condition-plus-EEG residual are reported separately; paired residual effects and
+condition probes use the five fixed seeds. Image identity is unavailable, so
+this is condition-level evidence and cannot support a stimulus-holdout claim.}
+{fig:condition-audit}

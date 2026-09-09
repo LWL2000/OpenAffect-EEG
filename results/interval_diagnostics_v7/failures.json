@@ -1,0 +1,162 @@
+[
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "labels_only",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "labels_only",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "trial_signal",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "trial_signal",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "participant_constant",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "participant_constant",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "independent_noise",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 0.5,
+    "scenario": "independent_noise",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "labels_only",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "labels_only",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "trial_signal",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "trial_signal",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "participant_constant",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "participant_constant",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "independent_noise",
+    "replicate": 21,
+    "seed": 2026091721,
+    "error": "More than 5% of crossed draws are degenerate"
+  },
+  {
+    "participants": 8,
+    "stimuli": 6,
+    "density": 0.25,
+    "noise_sd": 1.5,
+    "scenario": "independent_noise",
+    "replicate": 64,
+    "seed": 2026091764,
+    "error": "More than 5% of crossed draws are degenerate"
+  }
+]

@@ -1,0 +1,973 @@
+{
+  "archive_root": "OpenAffect-EEG-anonymous",
+  "file_count": 161,
+  "files": [
+    {
+      "mode": "644",
+      "path": ".gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "size_bytes": 8
+    },
+    {
+      "mode": "644",
+      "path": ".github/workflows/reviewer-artifact.yml",
+      "sha256": "b94ef3c29d2a6cd038eacce744847a06c30f462ae8d92fde279ee34838044fe3",
+      "size_bytes": 885
+    },
+    {
+      "mode": "644",
+      "path": "CITATION.cff",
+      "sha256": "d5f6fb4f97bdd0105e11648c1e68a8324fa36f6f6fe8580ef51ff0a63a4a437f",
+      "size_bytes": 494
+    },
+    {
+      "mode": "644",
+      "path": "LICENSE",
+      "sha256": "c0fa3722e1673ee07d915cee96834eb4e51ebfa3e4e1f20f75dea43ae48d0670",
+      "size_bytes": 1084
+    },
+    {
+      "mode": "644",
+      "path": "README.md",
+      "sha256": "62862cbecdff7fe1d6831857161bba6a91ab063f132e696704cde9dff693ea71",
+      "size_bytes": 19337
+    },
+    {
+      "mode": "644",
+      "path": "THIRD_PARTY_LICENSES.md",
+      "sha256": "b2c1b8f0191f103f1537e7bf6aff787fbee7c22aff75862902433ff790b7603f",
+      "size_bytes": 2131
+    },
+    {
+      "mode": "644",
+      "path": "configs/audit_rule_catalog.json",
+      "sha256": "d6d83f885816f95cd37d3538f54e6e69c05657dcbb2e5ad6abcb1c2c3fde9594",
+      "size_bytes": 4998
+    },
+    {
+      "mode": "644",
+      "path": "configs/final_robustness_v9.json",
+      "sha256": "a6ccf3a5e30441f4c4cb9b53349ee187c02d2fcc30a70d63dc85326e2a6fdcaf",
+      "size_bytes": 1652
+    },
+    {
+      "mode": "644",
+      "path": "configs/submission_release_v11.yaml",
+      "sha256": "39467903a07a988402301d38093854560002b08d8abb659006b3304da4b86730",
+      "size_bytes": 4631
+    },
+    {
+      "mode": "644",
+      "path": "croissant.json",
+      "sha256": "3bc7936e3b45f086a283cb15738f1c695619239d0e1a1937525d04cc5025494f",
+      "size_bytes": 7947
+    },
+    {
+      "mode": "644",
+      "path": "docs/REVIEWER_QUICKSTART.md",
+      "sha256": "fe8b58daf87e945d56862058135ef23595250f2dd99ad5831eb95cc01f1c54b3",
+      "size_bytes": 1195
+    },
+    {
+      "mode": "644",
+      "path": "docs/independent_acceptance_form.md",
+      "sha256": "3140fcc242b8c1cf8d9f0e48ceaee16b179ad4927a7ba8567f6bec5c8313ccc4",
+      "size_bytes": 1181
+    },
+    {
+      "mode": "644",
+      "path": "docs/independent_acceptance_task_zh.md",
+      "sha256": "890d6e586f2883c429bacd78af3734de2ef4c504f4462264d020e287461ed94c",
+      "size_bytes": 3472
+    },
+    {
+      "mode": "644",
+      "path": "docs/public_release.md",
+      "sha256": "5918511f2222542f1405928ec011ca90c3418954c458704c6abeea5ab4dfc35d",
+      "size_bytes": 5957
+    },
+    {
+      "mode": "644",
+      "path": "docs/reproducibility.md",
+      "sha256": "56801ad70f40c6d632335408a6dd1a1ef9e3afe3bd00e0ea96ea0edf1e864462",
+      "size_bytes": 5099
+    },
+    {
+      "mode": "644",
+      "path": "environment.yml",
+      "sha256": "21bb90358016e67a4d1242e2c611ce42168578c0b9c4530ebdd1bdacff2dc8af",
+      "size_bytes": 291
+    },
+    {
+      "mode": "644",
+      "path": "paper/README.md",
+      "sha256": "50db90c54b99545b3798e3d520004233ecbec8aa38df378460ddbcb2da0823a7",
+      "size_bytes": 8811
+    },
+    {
+      "mode": "644",
+      "path": "paper/benchmark_data_card.md",
+      "sha256": "50f6a416f77b132ee97e43099a71f1772f3c842a55c57454bdd41172a137fe50",
+      "size_bytes": 4721
+    },
+    {
+      "mode": "644",
+      "path": "paper/citation_audit.tsv",
+      "sha256": "8e40e08d22ea28ead6f5fb1b3feebe330f74e92a20a66c93eb0c528afbd40f1b",
+      "size_bytes": 6903
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/claim_ledger.tsv",
+      "sha256": "3392e10d1e3e3d48dcac7519dcbf12e89af67a083df0a9f6610442d10e7edf58",
+      "size_bytes": 55972
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/claim_values.tex",
+      "sha256": "5563bf41ff58de6100b6cdbfe1caa6eb4c18a3f95033205be4fed09565a015f4",
+      "size_bytes": 11163
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/appendix_text_audit.json",
+      "sha256": "6e89caf9a7b36d01e96ffcad1cfdb50558da3ee290a1491cf304a3223907b473",
+      "size_bytes": 3964
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/chinese_text_audit.json",
+      "sha256": "1e7e251519c88d410ba40cfbb809fee00dd228052f89e46ae8d4c252845c6e71",
+      "size_bytes": 4343
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/decomposition.tex",
+      "sha256": "a6180c0c40f12811386eca9e09e4c8b87fb7f65a6af666d77d5b07f1718f7667",
+      "size_bytes": 1475
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/decomposition_all_cells.csv",
+      "sha256": "2a708a7868e0c467418847ffd14e85185eb701ef98aecdb82f6a9f292599d651",
+      "size_bytes": 139728
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/decomposition_en.md",
+      "sha256": "bf07755ce8aa61cf3ef65912119a1082d895645fa7556d3ef8295fb23f1d32cb",
+      "size_bytes": 1040
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/decomposition_maximum_dose.csv",
+      "sha256": "37c0988efaa762008ea31c79f07b3d7290f54092414bd4a3fdc41449db5f4b9c",
+      "size_bytes": 6248
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/decomposition_zh.md",
+      "sha256": "a3de7479550d237fbc5b5c199397cc5a86579a3ee20322f57dfc5a97646e8eab",
+      "size_bytes": 1039
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/delivery_verification.json",
+      "sha256": "290cea7af22b303ee164e8ce34b14370039a70cf13a08e112b5f211845658bcf",
+      "size_bytes": 3986
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/full_sensitivity.tex",
+      "sha256": "6841d4e1aa96048bab37abbf1bb9ce29cf093de403a893dba062b257fe877980",
+      "size_bytes": 2967
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/main_text_audit.json",
+      "sha256": "f81e6d4506c65ebce22a70c8eccddb901d34b8d2d9f3f5bcece63a492980856a",
+      "size_bytes": 4295
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/primary.tex",
+      "sha256": "7dbf1852e651f3dd84dd1074c4e428f35989c0cc15b8490fd5d2dc83cb49e95d",
+      "size_bytes": 888
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/primary_zh.md",
+      "sha256": "c6b27e12ac0941b31fc2a6f9a7f454ec0b9f7629e56f5994dbb475b604928b22",
+      "size_bytes": 535
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/evidence_argument_v10/verification.json",
+      "sha256": "5803c12590dd25436b04a44c1f9ee1f0c82b48ef7b160126ce5e93f12339f6b8",
+      "size_bytes": 2223
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/external_audit/audit_cases.csv",
+      "sha256": "ce7a13a9791054e3265251e48906db9bb1bd370c7729704396f0b2e37a5dd719",
+      "size_bytes": 28772
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/external_audit/public_summary.json",
+      "sha256": "84c9151b36a2243e6847bf0a1a170f384d64b70b66082d5c8c3575246b2f3ab7",
+      "size_bytes": 5990
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/normal_t/added_value_statistics.json",
+      "sha256": "c57d277a94af3575d0ed82ebc68c6a494275a7ae1127838ceefa346d486baa85",
+      "size_bytes": 3877
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/normal_t/table_added_value_contrasts.csv",
+      "sha256": "1b3a9edde3f8f62d2ceda677a0cb3927f1d7ec36b6ed1d7e3a689f1729725a62",
+      "size_bytes": 330038
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/normal_t/table_added_value_scores.csv",
+      "sha256": "9b4f1842dd462b989306d8b86aba7270aa34673f8120ea388216c41efe9cabeb",
+      "size_bytes": 235784
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv",
+      "sha256": "8eacbdbdcb1d12c406e6a25ecd548d38fe3e4cb83ae7d2ac87659a799687bd7d",
+      "size_bytes": 19895
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/percentile/added_value_statistics.json",
+      "sha256": "314d7edbbf219face89e78bfaf8dc24d36375a45c75797a39e5494bbc33a01a0",
+      "size_bytes": 3881
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/percentile/table_added_value_contrasts.csv",
+      "sha256": "f422fb98010e8f7935a2450d4a8f6f494166c20248bad582bc8b9fab4d6c39b1",
+      "size_bytes": 330431
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/percentile/table_added_value_scores.csv",
+      "sha256": "e90504bad3a99212346207d7e17eb30da71995ae5a49bf8d4eb61a80d3f87b03",
+      "size_bytes": 235890
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/percentile/table_added_value_summary.csv",
+      "sha256": "438a34f88f54a54d69a214a760da4bd0a305d4d925514e0f211817157d9415b1",
+      "size_bytes": 19910
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/final_closure_v9/verification/verification.json",
+      "sha256": "492c253d78772d19fd74fe6b5b4a6f09c9e9ccf5712d64f36cfa0284037be65b",
+      "size_bytes": 96241
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/submission_build_report.json",
+      "sha256": "e1a500c179c06d12b6816ade4d5a8b5c6740b4107d9eaab9e38e11cfeeff2f07",
+      "size_bytes": 772
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/submission_closure_v11/evaluation_method_validation.json",
+      "sha256": "f6d9e5b883b02bfc571db0d170f6e8cc570f11cc9b51dbdf79e63b27c1f613c2",
+      "size_bytes": 1787
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/submission_closure_v11/external_claim_repair.json",
+      "sha256": "7fcb9a7206b05e72bca571a77d723b693c0b4390aed2f0c7db814cc031701d80",
+      "size_bytes": 1752
+    },
+    {
+      "mode": "644",
+      "path": "paper/generated/submission_closure_v11/manifest.json",
+      "sha256": "9bb7f151a11f7111159f6b8d3644f5fa171e583258a20230c2c0eaae67a6dc71",
+      "size_bytes": 639
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/checklist.tex",
+      "sha256": "4b38cd22a4f52b8a855d5013008f88a65c09c4dfdbfc48ff811e42791e60865e",
+      "size_bytes": 8273
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/evidence_appendix.tex",
+      "sha256": "534ab1bb8a83daf445a64cd1d63a0a0d7c98506cd6c405e59b431e2315f3abc9",
+      "size_bytes": 13250
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure1.pdf",
+      "sha256": "70f9ab550b842f3360de6a1c84d310b56dafc27229d1e10278727e31eee4db10",
+      "size_bytes": 26657
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure1.png",
+      "sha256": "66444606d0375502d16eb2d23bad6a65f433796da0534d17a1888237ce4af093",
+      "size_bytes": 136163
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure2.pdf",
+      "sha256": "7eda7c06ca0c4f8e1e094de81c74212978cdf53015067314213510dd56b7e9d9",
+      "size_bytes": 32059
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure2.png",
+      "sha256": "17fa102875334d93975946e653add5a96815c5d4d9e8528eee9183242ebf6748",
+      "size_bytes": 302604
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure3.pdf",
+      "sha256": "4ea195b9a0e8cf83f5ec3cedf680373ab4d85ddaeecaa22d7d20ccd82a7a9569",
+      "size_bytes": 37540
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure3.png",
+      "sha256": "cdb117158a8ccbc19c2b00210891df5d2e5bdd62ddff4fa89c04384f08de3658",
+      "size_bytes": 112331
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure4.pdf",
+      "sha256": "c0f699791aff564fcca751bfe13eb6e6134b51855f4e59d35554c766f930e085",
+      "size_bytes": 23923
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure4.png",
+      "sha256": "7673af285ddb1e81edd11ae375181047d00c86b998def2f658fd978c8d525382",
+      "size_bytes": 152558
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure5.pdf",
+      "sha256": "43f0bbed0a312583c758b959abcfd22968daab6119469b28ed0db6ae342a0ee1",
+      "size_bytes": 26494
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figure5.png",
+      "sha256": "c527c1c84f7fcdbf0c68ee129b34fdc89ce23a4618e47979e431f388bcb4708f",
+      "size_bytes": 109694
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figureS_condition_audit.pdf",
+      "sha256": "43f0bbed0a312583c758b959abcfd22968daab6119469b28ed0db6ae342a0ee1",
+      "size_bytes": 26494
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figureS_condition_audit.png",
+      "sha256": "c527c1c84f7fcdbf0c68ee129b34fdc89ce23a4618e47979e431f388bcb4708f",
+      "size_bytes": 109694
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figureS_exposure_corners.pdf",
+      "sha256": "cf85f486b98d42f2e5aae01bd38120f1f21bc8a8388f27520f3bbb4736a2e295",
+      "size_bytes": 32425
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figureS_exposure_effects.pdf",
+      "sha256": "32ba739e57c487a7ea06eaa5e8a3199de5ee92563689ff0204aab8f2a2e81bc4",
+      "size_bytes": 45644
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figureS_protocol_audit.pdf",
+      "sha256": "bfe357c31912d1841d3fbb5b8ac50431003aa107075e908850879a37156b9ef5",
+      "size_bytes": 26642
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/figures/figureS_protocol_audit.png",
+      "sha256": "8d1d2fa31c489f34817afe994f6eccdb12e79dbd57329c0448565b7a9295c473",
+      "size_bytes": 103776
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/main.pdf",
+      "sha256": "e701fad0bf8e48a028e740684b1f233e7cedcd59c7fcba5ef1984f553aff3441",
+      "size_bytes": 669586
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/main.tex",
+      "sha256": "a146bb40d4ff6beba70d696f7e120d1ef5d574f3103473c899997f1745387cc5",
+      "size_bytes": 27506
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/neurips_2026.sty",
+      "sha256": "fcca3eab0b0c857ac7c02027add1f495e6f424d19c15708f7794d97efd1a88eb",
+      "size_bytes": 14166
+    },
+    {
+      "mode": "644",
+      "path": "paper/neurips2026/supplement.tex",
+      "sha256": "25f3caf583ed05a8132f35c233be36f65694db3f616f05fcdb258aacbabf291b",
+      "size_bytes": 60589
+    },
+    {
+      "mode": "644",
+      "path": "paper/references.bib",
+      "sha256": "561a565a7d51ea27dbcde0e6c4ed9c244129ac8372ae41c91acc9405deca5519",
+      "size_bytes": 16380
+    },
+    {
+      "mode": "644",
+      "path": "pyproject.toml",
+      "sha256": "900a71111f89c816fc1fe8707fc148f50983f260d81689f70270fd401c33d3ba",
+      "size_bytes": 1439
+    },
+    {
+      "mode": "644",
+      "path": "results/evaluation_validation_v6/oracle_full/completion.json",
+      "sha256": "6935a3a5afb6ee2e1b612230d3bfc0dbe987dbfbc7dff699b96e9c231f3a9c48",
+      "size_bytes": 494
+    },
+    {
+      "mode": "644",
+      "path": "results/evaluation_validation_v6/oracle_full/failures.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "size_bytes": 3
+    },
+    {
+      "mode": "644",
+      "path": "results/evaluation_validation_v6/oracle_full/operating_characteristics.csv",
+      "sha256": "b3addf122e5290eeeea415774f41b2472a7e6add131b2795bf14a2f6f76bcaa9",
+      "size_bytes": 63413
+    },
+    {
+      "mode": "644",
+      "path": "results/evaluation_validation_v6/oracle_full/replicate_results.csv",
+      "sha256": "b92f9dd61b8eb5128e597e307d7750b4b5c561a8e877c21f75c1df0fe2d666a9",
+      "size_bytes": 7090756
+    },
+    {
+      "mode": "644",
+      "path": "results/evaluation_validation_v6/pipeline_full/completion.json",
+      "sha256": "d5985f8b4013fc87a9c115a21b2ce412884d1130d3e885c69418c51c12a8f847",
+      "size_bytes": 502
+    },
+    {
+      "mode": "644",
+      "path": "results/evaluation_validation_v6/pipeline_full/failures.json",
+      "sha256": "e39cdfabeb1fdd66334d161a9c97bae99ab07704c1cc9e9a8aa5c422e959a066",
+      "size_bytes": 823
+    },
+    {
+      "mode": "644",
+      "path": "results/evaluation_validation_v6/pipeline_full/replicate_results.csv",
+      "sha256": "5d8cf35be6b474c963c205e74ddd07e6157d4ce9b3378208864239b9b329c6be",
+      "size_bytes": 162420
+    },
+    {
+      "mode": "644",
+      "path": "results/interval_diagnostics_v7/completion.json",
+      "sha256": "16c8f23c6a2fdb73724fb7abe495ca48a2a07d87384abe4f8e328cff26661439",
+      "size_bytes": 206
+    },
+    {
+      "mode": "644",
+      "path": "results/interval_diagnostics_v7/failures.json",
+      "sha256": "588bb3a35b204f5590f97e67e92576a54c3cd07ee83aeda77df12027eaca9fc2",
+      "size_bytes": 3715
+    },
+    {
+      "mode": "644",
+      "path": "results/interval_diagnostics_v7/replicates.csv",
+      "sha256": "8165a8381dc46980b1a1708b913187949f87f007a0b6d87d8a3438e6674431b4",
+      "size_bytes": 21588330
+    },
+    {
+      "mode": "644",
+      "path": "results/interval_diagnostics_v7/summary.csv",
+      "sha256": "be9680e5eccbbe696095cf8ee9b7f09b51b74d56f9142f744fe605b9adef8059",
+      "size_bytes": 83156
+    },
+    {
+      "mode": "644",
+      "path": "scripts/append_identity_exposure_claims.py",
+      "sha256": "4cf0b374a5d1688e2538b2a69227a0b1eb4cf3d8340b81848633b4fbc67700d1",
+      "size_bytes": 12540
+    },
+    {
+      "mode": "644",
+      "path": "scripts/build_neurips_submission.py",
+      "sha256": "9d40d120e3273d27ef716a00193822f13a08ac49024ef19bcc71615c611ea8a5",
+      "size_bytes": 1864
+    },
+    {
+      "mode": "644",
+      "path": "scripts/build_paper_bundle.py",
+      "sha256": "cb47a5fcb703150f081b9c0b7b8774b2c548bb450f68ec37052d2d1bdee812f1",
+      "size_bytes": 1627
+    },
+    {
+      "mode": "644",
+      "path": "scripts/build_public_release.py",
+      "sha256": "191c4e2f66f3325a34e78d15df8194c2de0225987f2e4d46f3c324f30c106780",
+      "size_bytes": 1331
+    },
+    {
+      "mode": "644",
+      "path": "scripts/build_submission_closure_v11.py",
+      "sha256": "c80139853828257722a43cd8b3877d39a158252f90df068db3b97291afd47c51",
+      "size_bytes": 761
+    },
+    {
+      "mode": "644",
+      "path": "scripts/freeze_public_release.py",
+      "sha256": "2ec0ed5bc84aa33e82783aae72394abc7a18fc69a289391c23189d6947e95ac2",
+      "size_bytes": 989
+    },
+    {
+      "mode": "644",
+      "path": "scripts/run_workflow_contract_toy.py",
+      "sha256": "da774f2f11a3100ceec84af65f01445db26070bbb12aa5b93264fbdf3f8e286f",
+      "size_bytes": 2798
+    },
+    {
+      "mode": "644",
+      "path": "scripts/verify_review_artifact.py",
+      "sha256": "8d9f54874f150cd7b6749a57742eefc0d2a56d3d7179a090af57ebf17db10394",
+      "size_bytes": 898
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/__init__.py",
+      "sha256": "1299269fa9e07e951b30de6f5bc0c400050acb48607587cbde24160f2e4655d3",
+      "size_bytes": 69
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/ablation_statistics.py",
+      "sha256": "673b6a9d471a93e46742e6d7eb06d75cc3d82d1727742c49ac03a25b949e53a5",
+      "size_bytes": 9901
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/ablations.py",
+      "sha256": "728b02e8f6f555545c394707c782c252b9be5a7c7c041150a7e379d2d62bf27a",
+      "size_bytes": 7453
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/adversarial.py",
+      "sha256": "92def7421ce6f45c208cb878e5e6d59c92ca818ef29e7331193dfd36991103e5",
+      "size_bytes": 14488
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/annex_download.py",
+      "sha256": "9df624d7b445587f93ea9378a6e9bfae30f7808a44f1c330757def901d7fa447",
+      "size_bytes": 8764
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/artifacts.py",
+      "sha256": "a06ba7f27ebf537a7dc398ddb3d8e5c2f8172c43fadd6240484148dbd0d50333",
+      "size_bytes": 19959
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/audit_cli.py",
+      "sha256": "4f8bed01f53a42da1ae89a70e9e5cb21975cdaba359176a66dd9191630fcf43c",
+      "size_bytes": 19157
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/audit_evidence.py",
+      "sha256": "9cf55cea4094b21cef0f077cbd3ca1e73ef33947ba6dda3df6ea2cadf47390f1",
+      "size_bytes": 5042
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/baselines.py",
+      "sha256": "1c859950eb48a49dffa4f041aa0f97e9458aa72425b1911bdce1332334cd85ef",
+      "size_bytes": 6692
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/benchmark_scope.py",
+      "sha256": "6f6ae81e42dc78dd546c6bb00fcabde2b3b20ddadf1651a22f7e9749db65997d",
+      "size_bytes": 4383
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/calibration_controls.py",
+      "sha256": "48fb3ec287421fa4985e14b4dc5a9fd81c958aa45b97d2b58a1c821b5f0a3bef",
+      "size_bytes": 3291
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/chinese_reading.py",
+      "sha256": "432a8f33ab825adb6dbe747c887390b1b77b741fa9fd7829c3e97c78f1c9e951",
+      "size_bytes": 12684
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/croissant_validation.py",
+      "sha256": "ed27c01b9d13475467fe4999689c7b28fcb54d118b1de9f3a4e9f043641daf5b",
+      "size_bytes": 4582
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/dens.py",
+      "sha256": "1b98953a58fca73f47f8cb88a975e34bb236e0601936912c726a7af1a63ee14a",
+      "size_bytes": 8705
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/deployment_benchmark.py",
+      "sha256": "ce674c3880274fc6614f8112f40d7e708f1715581332df58039fcb3c484e97de",
+      "size_bytes": 5578
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/deployment_selection.py",
+      "sha256": "c82dcb9819b6233f20912839bd8d40065570fe5234f40ba48eb3dab30843cc9b",
+      "size_bytes": 7909
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/disentanglement.py",
+      "sha256": "3ac84b2079574915a8d925b1b33765851cfd683ac5a564d703aee4b5cc651a6a",
+      "size_bytes": 10555
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/eegain_adapter.py",
+      "sha256": "7b3a4a0bac3f139e7f84aeea12347cb105fa6a87383ee882a3b5b9d7b9da955a",
+      "size_bytes": 2755
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/eegnet.py",
+      "sha256": "8266d1c9a8f047a31674c874c75d20b76cfc77d3cdc4a0a2d3c94332cedcffc5",
+      "size_bytes": 26190
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/emo_eeg.py",
+      "sha256": "83c2a713612b3ce62aead05579a3bba0a8da2e7d56751218a542697f86f47f4c",
+      "size_bytes": 25747
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/emotion_regulation.py",
+      "sha256": "4c7e712fa202a6bfd51cfdae8ef05a96718ec67d7efee45544926c61dcb8a673",
+      "size_bytes": 8160
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/emotion_regulation_audit.py",
+      "sha256": "f3789433d9dfe15a021f15786f5751c2163b632c9adfb12151d8813cbd04cc24",
+      "size_bytes": 17104
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/environment.py",
+      "sha256": "e477ed1f460170669e40f2b4ba7ec9630d7c68adaa971bc54f1c914d74c3e329",
+      "size_bytes": 3819
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/evaluation_cards.py",
+      "sha256": "b8a098e118d35306e96f6d297d7565797a91d06c0a4a1bac153879ce85881046",
+      "size_bytes": 4403
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/evaluation_validation.py",
+      "sha256": "96b0a13a48feadf8664e9c8e725852d11d0a585d4b4a3bb100d7556ee2d0fd4f",
+      "size_bytes": 7523
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/evidence_argument.py",
+      "sha256": "13a927d1ce480cc1e4133e6ab8a38b113aa4326e8d302540ac7724ecfbc7e958",
+      "size_bytes": 11952
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/exposure_statistics.py",
+      "sha256": "071ca4a36aca8c68991ad15eda73cae778d90e1c5dc08dac25ecaad81678351b",
+      "size_bytes": 13676
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/external_validation.py",
+      "sha256": "fbe091cd29c2bafae892079c20f1087a168a7e4f7bbbd7b9cfec351f6d78f259",
+      "size_bytes": 10441
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/features.py",
+      "sha256": "f07ec1e96d1c545ccdab078686b0624497409a3d6a45cc4547ba3e6daedb5fea",
+      "size_bytes": 4113
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/figure_finalization.py",
+      "sha256": "6dc1ebb4be73dffe4ffed380f2d3c33100db0727bcc926931fac35fdc6c52678",
+      "size_bytes": 8448
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/final_robustness.py",
+      "sha256": "c51c5cad40dd965159e4576d34f50353721d6b60c4a667c22d93b3f8a3f0bce1",
+      "size_bytes": 12255
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/foundation.py",
+      "sha256": "427029549874560557865cddf5eea59bd858cc785e679f1ce9bc64ab4b9bf580",
+      "size_bytes": 4858
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/identity_exposure.py",
+      "sha256": "9da03d78b005b3ef443ad29931781133a6660a12f3a8b9c66257ceabe654e502",
+      "size_bytes": 32249
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/interval_diagnostics.py",
+      "sha256": "bd5cd9babb04a70a094fb824f8ddf54bfd8fb7c915db33616f0d7eab146e54e6",
+      "size_bytes": 2533
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/labram.py",
+      "sha256": "17b68ce7ba06aecf5d11253c5b8cfb775a6138ae34e034a758f30e33201c3140",
+      "size_bytes": 5402
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/manifest.py",
+      "sha256": "a7f02eea4b5beb33f6ade231e212d68d4442eeff3427c90a0262c6a78151f632",
+      "size_bytes": 2351
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/manuscript_assets.py",
+      "sha256": "e776b6c6e6a5dc64409c964ab53cefca23a6804aaa589fd80bbdd6d60effc137",
+      "size_bytes": 76813
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/manuscript_audit.py",
+      "sha256": "8e07fafb922f35cad3835f20dcb5fea2ee7b765023f74a63655fe96a27ce8556",
+      "size_bytes": 16454
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/music_audit.py",
+      "sha256": "06a122fcdd6dae96d43b44c23761004562f95dcb71a4764931e2514c75d0d240",
+      "size_bytes": 15067
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/music_eeg.py",
+      "sha256": "7ebdd5d17f9f274649f6b529b9c227bdca39e305afbef2cc83ec37cdad231bee",
+      "size_bytes": 10544
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/music_public_aggregate.py",
+      "sha256": "67d8c2f3cd87082a8c27514093c6cfe020f4b1fa8c78423bb820ca7ae0d300ef",
+      "size_bytes": 5993
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/openneuro.py",
+      "sha256": "5cdb23dd539adfe3b71ae51fd062f086452338db22a0afe21e562f2f12a89963",
+      "size_bytes": 4108
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/openneuro_api.py",
+      "sha256": "fd50b8d47611f798ad254d317ae52dfc89b38c9831559eb097a827513c4cbca9",
+      "size_bytes": 8485
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/probes.py",
+      "sha256": "35510dba9748e1bf64ab67c11c56d6ca3eb3a2201385dc89fd6fc8ae87bfb76f",
+      "size_bytes": 2108
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/raw_trials.py",
+      "sha256": "6e029a9c1facf43c01e12b59d19050e25018c64650ff0b8d16d1c1336a89ce6c",
+      "size_bytes": 4142
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/recompute.py",
+      "sha256": "643b2e2a0459d675ee6219168fc2e9fd0be9a4cc587fe7ae77cd172a4e5db65d",
+      "size_bytes": 7906
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/release.py",
+      "sha256": "001e4b8820f85b9226fd9f874174913fe5251ea8745748c5f6d0d1dfaaf12f5c",
+      "size_bytes": 8292
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/release_snapshot.py",
+      "sha256": "93b91d067125d5466ef2a63af0030021683e75e9429b4f02383d3ac879e91ffc",
+      "size_bytes": 3622
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/reviewer_acceptance.py",
+      "sha256": "6315735830d2e8af17be3295502abf8cb799d3dd49b3419c4864046f22a40a9e",
+      "size_bytes": 6420
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/reviewer_controls.py",
+      "sha256": "6eddd650d0010c03716ee96964d7331f65adc4e4f76f562a39c057f50638744c",
+      "size_bytes": 12568
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/seedv_case_study.py",
+      "sha256": "1f2b89443688a61d8e01af4e60f154826f14a30bcec566ffdeb4ff6228753479",
+      "size_bytes": 9719
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/semantic_prior_audit.py",
+      "sha256": "8548d089ca277fb774ff7f65594e1240b1b7b2b79deb6b7dd941ba79c3e1bf2b",
+      "size_bytes": 4014
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/splits.py",
+      "sha256": "0c8a28d3a42c69854d0505cac25ca56b1ea3890eb3de50a7cda92c276412604d",
+      "size_bytes": 10299
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/statistics.py",
+      "sha256": "ace362815e04cf810d6e2a41a8c5037cfac9b6860a636350603ed51c6c58a9b6",
+      "size_bytes": 4486
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/submission.py",
+      "sha256": "99dd47184f790a346e42aa9410eacd880cae82d0046ae354ac31b2f959ae27be",
+      "size_bytes": 9971
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/submission_closure.py",
+      "sha256": "4cfc776c9cfb59dc38390c8eab85d6f148e4910a97233d0fe2f6b24de7a3e31c",
+      "size_bytes": 10755
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/urban_appraisal.py",
+      "sha256": "ff65077bd1dae5029ca53c04bef8646bbdf6c1ec385f2a3b7c61ca435bc27207",
+      "size_bytes": 5058
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/urban_brainvision.py",
+      "sha256": "335f334a5540948f91b67cfad8a219d8c48e9c4749ea84569bd5d0bc7190968c",
+      "size_bytes": 6762
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/urban_public_aggregate.py",
+      "sha256": "79322e7d2d8ccf590ff68315ec2adedcd39d588d4047bfa557f4b5712f0edfa4",
+      "size_bytes": 2785
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/workflow.py",
+      "sha256": "df0da082a0d07dfe4dfbbc66a0d127ac443024ebaa3e41421dd5350cd85302cb",
+      "size_bytes": 9155
+    },
+    {
+      "mode": "644",
+      "path": "src/openaffect_eeg/workflow_audit.py",
+      "sha256": "8bfa7d68d379830d9bd7e4839adfb3e5a4cd38a58a046b7fe29c0a58a4fdc6cb",
+      "size_bytes": 9718
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_audit_evidence.py",
+      "sha256": "b41d8e27f920eb6ba2cc8a8a3d7b9ca61f315ff91c00af431f22a88a94b5d9f8",
+      "size_bytes": 3992
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_chinese_reading_pdf.py",
+      "sha256": "256137f79a753fb7d3b56c84db2857e0e0c081c30547ff2d03ed9ce3c739fb19",
+      "size_bytes": 4372
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_manuscript_audit.py",
+      "sha256": "417120f35e6670eed0e1ecb878c139b50c1073786135deeae436ed9e8f28c455",
+      "size_bytes": 10076
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_release.py",
+      "sha256": "d664becd5a0fefa03b354fe038e58b996a0a3b157a81d8f4b69a959d217e4824",
+      "size_bytes": 6087
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_reviewer_acceptance.py",
+      "sha256": "7fcd683b3040abaf007d9a3632e38ed199608c5a780541e64b600513971fe928",
+      "size_bytes": 1341
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_submission.py",
+      "sha256": "7811ad55d8b8a0815308479988e1927a45d6ed7ad6dc3e05768f62c8adefb935",
+      "size_bytes": 2547
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_submission_closure.py",
+      "sha256": "e3bdbb47ad8e0c0306764b9ebd477624680e21285d2111139ef8aadaae3c2d3e",
+      "size_bytes": 1674
+    },
+    {
+      "mode": "644",
+      "path": "tests/test_workflow_audit.py",
+      "sha256": "281681b38e26b349ec79eef0f725173879d444c8b85396237110d02900d7027b",
+      "size_bytes": 5716
+    }
+  ],
+  "version": "submission_closure_v11_acceptance1_20260909"
+}

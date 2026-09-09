@@ -1,0 +1,11 @@
+{
+  "completed_replicates": 1600,
+  "elapsed_seconds_this_invocation": 38.76725831697695,
+  "failed_replicates": 0,
+  "interpretation": "Execution complete is not statistical validation passed; inspect coverage and failures.",
+  "requested_replicates_per_setting": 100,
+  "result_sha256": "b92f9dd61b8eb5128e597e307d7750b4b5c561a8e877c21f75c1df0fe2d666a9",
+  "run_manifest_sha256": "1e9f48ed9cdd632a88ff9e3d52ca723639f445c55f05f4a95b045395455fa08a",
+  "settings": 16,
+  "status": "completed"
+}

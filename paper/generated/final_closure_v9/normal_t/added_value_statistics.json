@@ -1,0 +1,122 @@
+{
+  "datasets": [
+    {
+      "dataset_id": "ds005540",
+      "input_sha256": "c792c8ff546795892df5447868d20dc849bd8fba368483af00f0014e5f1e69f4",
+      "iterations": 2000,
+      "bootstrap_seed": 20260909,
+      "fixed_seeds": [
+        20260908,
+        20260909,
+        20260910,
+        20260911,
+        20260912
+      ],
+      "target_names": [
+        "valence",
+        "arousal"
+      ],
+      "pointwise_interval_method": "normal_t",
+      "conservative_cluster_df": 5,
+      "interval_boundary": "Finite-sample coverage not guaranteed; t-normal is a heuristic sensitivity analysis; max-deviation simultaneous bands unchanged",
+      "supports": [
+        {
+          "seed": 20260908,
+          "n_trials": 54,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 9
+        },
+        {
+          "seed": 20260909,
+          "n_trials": 54,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 9
+        },
+        {
+          "seed": 20260910,
+          "n_trials": 48,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 20260911,
+          "n_trials": 48,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 20260912,
+          "n_trials": 48,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 8
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": false,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "paired_model_contrasts": [],
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    },
+    {
+      "dataset_id": "ds006850",
+      "input_sha256": "543e868fef9b00f2f397f11b1a369d876f159c2c979cb00c00f8e2a89c82e7e4",
+      "iterations": 2000,
+      "bootstrap_seed": 20260909,
+      "fixed_seeds": [
+        20260908,
+        20260909,
+        20260910,
+        20260911,
+        20260912
+      ],
+      "target_names": [
+        "valence"
+      ],
+      "pointwise_interval_method": "normal_t",
+      "conservative_cluster_df": 10,
+      "interval_boundary": "Finite-sample coverage not guaranteed; t-normal is a heuristic sensitivity analysis; max-deviation simultaneous bands unchanged",
+      "supports": [
+        {
+          "seed": 20260908,
+          "n_trials": 156,
+          "n_participants": 13,
+          "n_stimuli_or_conditions": 12
+        },
+        {
+          "seed": 20260909,
+          "n_trials": 143,
+          "n_participants": 13,
+          "n_stimuli_or_conditions": 11
+        },
+        {
+          "seed": 20260910,
+          "n_trials": 132,
+          "n_participants": 12,
+          "n_stimuli_or_conditions": 11
+        },
+        {
+          "seed": 20260911,
+          "n_trials": 132,
+          "n_participants": 12,
+          "n_stimuli_or_conditions": 11
+        },
+        {
+          "seed": 20260912,
+          "n_trials": 132,
+          "n_participants": 12,
+          "n_stimuli_or_conditions": 11
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": false,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "paired_model_contrasts": [],
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    }
+  ],
+  "output_sha256": {
+    "table_added_value_scores.csv": "9b4f1842dd462b989306d8b86aba7270aa34673f8120ea388216c41efe9cabeb",
+    "table_added_value_contrasts.csv": "1b3a9edde3f8f62d2ceda677a0cb3927f1d7ec36b6ed1d7e3a689f1729725a62",
+    "table_added_value_summary.csv": "8eacbdbdcb1d12c406e6a25ecd548d38fe3e4cb83ae7d2ac87659a799687bd7d"
+  }
+}

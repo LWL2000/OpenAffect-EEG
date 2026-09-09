@@ -1,0 +1,13 @@
+name: openaffect-eeg
+channels:
+  - conda-forge
+dependencies:
+  # Direct versions validated on linux-64 during the anonymous-package gate.
+  - python=3.11.15
+  - pip=26.2.1
+  - datalad=1.6.1
+  - boto3=1.43.72
+  - botocore=1.43.72
+  - git=2.55.0
+  - git-annex=10.20260601
+  - git-lfs=3.7.1

@@ -1,0 +1,43 @@
+cite_key	persistent_id	canonical_source	verified_on	status	intended_support
+lin1989ccc	10.2307/2532051	https://doi.org/10.2307/2532051	2026-08-20	verified	Definition and use of concordance correlation coefficient
+russell1980circumplex	10.1037/h0077714	https://doi.org/10.1037/h0077714	2026-08-20	verified	Valence-arousal dimensional affect framing
+koelstra2012deap	10.1109/T-AFFC.2011.15	https://doi.org/10.1109/T-AFFC.2011.15	2026-08-20	verified	Canonical multimodal EEG affect dataset and self-report setting
+zheng2015de	10.1109/TAMD.2015.2431497	https://doi.org/10.1109/TAMD.2015.2431497	2026-08-20	verified	Differential-entropy EEG emotion baseline
+lawhern2018eegnet	10.1088/1741-2552/aace8c	https://doi.org/10.1088/1741-2552/aace8c	2026-08-20	verified	Compact specialist raw-EEG architecture
+pernet2019eegbids	10.1038/s41597-019-0104-8	https://doi.org/10.1038/s41597-019-0104-8	2026-08-20	verified	EEG-BIDS data organization standard
+markiewicz2021openneuro	10.7554/eLife.71774	https://doi.org/10.7554/eLife.71774	2026-08-20	verified	OpenNeuro repository role and versioned neuroscience data sharing
+daly2020musiceeg	10.1038/s41597-020-0507-6	https://doi.org/10.1038/s41597-020-0507-6	2026-08-20	verified	MusicEEG paradigm and participant count
+asif2023dens	10.1109/ACCESS.2023.3266804	https://doi.org/10.1109/ACCESS.2023.3266804	2026-08-20	verified	DENS naturalistic-video paradigm
+xu2025emoeeg	10.1038/s41597-025-05349-2	https://doi.org/10.1038/s41597-025-05349-2	2026-08-20	verified	EmoEEG-MC multi-context paradigm
+maka2026discrepancy	10.1093/cercor/bhaf340	https://doi.org/10.1093/cercor/bhaf340	2026-08-20	verified	ds006866 socio-affective and regulation paradigm
+chen2023faced	10.1038/s41597-023-02650-w	https://doi.org/10.1038/s41597-023-02650-w	2026-08-20	verified	FACED source dataset used by the stimulus-identity critique
+jiang2024labram	openreview:QzTpTRVtrP	https://openreview.net/forum?id=QzTpTRVtrP	2026-08-20	verified	LaBraM architecture, pretraining scale, and claimed transfer scope
+wang2025cbramod	openreview:NPNUHgHF2w	https://openreview.net/forum?id=NPNUHgHF2w	2026-08-20	verified	CBraMod architecture and downstream evaluation scope
+zhang2025mdjpt	10.52202/085713-5515	https://doi.org/10.52202/085713-5515	2026-08-20	verified	Multi-dataset joint pretraining for emotional EEG
+chen2026emod	10.1609/aaai.v40i21.38796	https://doi.org/10.1609/aaai.v40i21.38796	2026-08-20	verified	Unified discrete and valence-arousal emotion representation
+liu2026compass	10.1093/nsr/nwag466	https://doi.org/10.1093/nsr/nwag466	2026-08-20	verified	Broad EEG foundation-model benchmark and specialist-baseline conclusion
+brookshire2024leakage	10.3389/fnins.2024.1373515	https://doi.org/10.3389/fnins.2024.1373515	2026-08-20	verified	Trial and subject leakage risks in translational EEG
+lei2025leakage	ceur:4115/paper7	https://ceur-ws.org/Vol-4115/paper7.pdf	2026-08-20	verified	Trial-wise and test-data leakage in EEG emotion classification
+gerster2026stimulus	10.64898/2026.06.12.731889	https://doi.org/10.64898/2026.06.12.731889	2026-08-20	verified_preprint	Stimulus identity as a driver of FACED classification
+reuel2024betterbench	10.52202/079017-0685	https://doi.org/10.52202/079017-0685	2026-08-20	verified	Benchmark auditing and best-practice motivation
+liu2024tsbad	10.52202/079017-3437	https://doi.org/10.52202/079017-3437	2026-09-09	verified	Controlled predictions used to stress-test benchmark measures and expose unreliable evaluation behavior
+han2022adbench	10.52202/068431-2329	https://doi.org/10.52202/068431-2329	2026-09-09	verified	Evaluation conditioned on supervision levels, anomaly types, and data corruption
+gebru2021datasheets	10.1145/3458723	https://doi.org/10.1145/3458723	2026-08-20	verified	Dataset documentation principles
+mitchell2019modelcards	10.1145/3287560.3287596	https://doi.org/10.1145/3287560.3287596	2026-08-20	verified	Model-card reporting principles
+akhtar2024croissant	10.52202/079017-2610	https://doi.org/10.52202/079017-2610	2026-08-20	verified	Machine-readable dataset metadata
+openneuro_ds002721	10.18112/openneuro.ds002721.v1.0.3	https://doi.org/10.18112/openneuro.ds002721.v1.0.3	2026-08-20	verified	Version-pinned MusicEEG source snapshot
+openneuro_ds003751	10.18112/openneuro.ds003751.v1.0.6	https://doi.org/10.18112/openneuro.ds003751.v1.0.6	2026-08-20	verified	Version-pinned DENS source snapshot
+openneuro_ds005540	10.18112/openneuro.ds005540.v1.0.7	https://doi.org/10.18112/openneuro.ds005540.v1.0.7	2026-08-20	verified	Version-pinned EmoEEG-MC source snapshot
+openneuro_ds006866	10.18112/openneuro.ds006866.v1.0.0	https://doi.org/10.18112/openneuro.ds006866.v1.0.0	2026-08-20	verified	Version-pinned external validation snapshot
+li2019seedv	10.1109/NER.2019.8716943	https://doi.org/10.1109/NER.2019.8716943	2026-08-21	verified	SEED-V stimulus-induced five-emotion study and study design
+lin2026identitytrap	arxiv:2606.06647	https://arxiv.org/abs/2606.06647	2026-08-21	verified_preprint	Subject-axis audit and erasure across LaBraM, CBraMod, and REVE
+tang2026capture	arxiv:2605.11410	https://arxiv.org/abs/2605.11410	2026-08-21	verified_preprint	Encoded-versus-used concept audit with subspace erasure
+suo2026protocols	arxiv:2607.27655	https://arxiv.org/abs/2607.27655	2026-08-21	verified_preprint	Evaluation protocols for cross-subject EEG emotion recognition
+wang2026fmaudit	arxiv:2605.26910	https://arxiv.org/abs/2605.26910	2026-08-21	verified_preprint	Tuning, ablation, and physiological probing audit for EEG-FMs
+bendrich2022feature	10.3390/s22239282	https://doi.org/10.3390/s22239282	2026-09-01	verified	Known/unknown participant and movie evaluation protocols for continuous EEG emotion recognition
+bhosale2022calibration	10.1016/j.bspc.2021.103289	https://doi.org/10.1016/j.bspc.2021.103289	2026-09-01	verified	Few-shot and zero-calibration subject-independent EEG emotion recognition settings
+li2021calibration	10.1109/EMBC46164.2021.9629649	https://doi.org/10.1109/EMBC46164.2021.9629649	2026-09-01	verified	Labelled target-user calibration under domain adaptation
+kukhilava2025eegain	arxiv:2505.18175	https://arxiv.org/abs/2505.18175	2026-09-01	verified_preprint	Unified EEG emotion evaluation protocol and EEGain framework
+liu2026eegemolib	10.1093/nsr/nwag460	https://doi.org/10.1093/nsr/nwag460	2026-09-01	verified	Standardized subject-dependent and subject-independent EEG emotion benchmarks and EEGEmoLib toolbox
+openneuro_ds006850	10.18112/openneuro.ds006850.v1.0.0	https://raw.githubusercontent.com/OpenNeuroDatasets/ds006850/1.0.0/dataset_description.json	2026-09-08	verified	Urban snapshot identity; README license disagreement explicitly recorded
+libeer_pinned_source	git:dddff9776dbdae21195fe320dff0a5ba61628a18	https://github.com/XJTU-EEG/LibEER/blob/dddff9776dbdae21195fe320dff0a5ba61628a18/LibEER/EEGNet_train.py	2026-09-08	verified	Pinned source control flow only; not reproduction or invalidation of published scores

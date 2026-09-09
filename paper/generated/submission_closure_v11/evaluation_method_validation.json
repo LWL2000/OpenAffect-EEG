@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "scope": "Known-truth and production-pipeline stress tests of the fixed-fit resource-matched evaluator; not biological validation or retraining uncertainty.",
+  "source_sha256": {
+    "v6_oracle_replicates": "b92f9dd61b8eb5128e597e307d7750b4b5c561a8e877c21f75c1df0fe2d666a9",
+    "v6_pipeline_replicates": "5d8cf35be6b474c963c205e74ddd07e6157d4ce9b3378208864239b9b329c6be",
+    "v7_replicates": "8165a8381dc46980b1a1708b913187949f87f007a0b6d87d8a3438e6674431b4"
+  },
+  "v6": {
+    "completed_replicates": 1600,
+    "independent_noise_positive_detection_rate_range": [
+      0.0,
+      0.0
+    ],
+    "interpretation": "The evaluator detects the prespecified trial-varying signal and preserves exact null identities, but one finite-sample setting undercovers.",
+    "labels_only_max_abs_mean_delta": 0.0,
+    "oracle_settings": 16,
+    "participant_constant_min_pointwise_coverage": 0.82,
+    "pipeline_completed_replicates": 36,
+    "pipeline_failed_replicates": 4,
+    "replicates_per_setting": 100,
+    "trial_signal_pointwise_coverage_range": [
+      0.92,
+      1.0
+    ],
+    "trial_signal_positive_detection_rate_range": [
+      0.85,
+      1.0
+    ]
+  },
+  "v7": {
+    "interpretation": "Fresh simulations improve the original target diagnostic, while small crossed supports retain material undercoverage for percentile/basic intervals.",
+    "planned_replicates": 9600,
+    "rejected_replicates": 16,
+    "small_8_by_6_min_coverage": {
+      "basic": 0.82,
+      "normal_t": 0.94,
+      "percentile": 0.8366666666666667
+    },
+    "target_32_by_24_coverage": {
+      "basic": 0.93,
+      "normal_t": 0.9566666666666667,
+      "percentile": 0.9333333333333333
+    },
+    "valid_replicates": 9584
+  }
+}

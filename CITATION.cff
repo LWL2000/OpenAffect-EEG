@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "Please cite the OpenAffect-EEG paper and the upstream datasets and models used in your run."
+title: "OpenAffect-EEG: Auditing What EEG Emotion Models Actually Predict"
+type: software
+version: 0.1.0
+date-released: 2026-08-21
+license: MIT
+authors:
+  - family-names: "Anonymous"
+    given-names: "OpenAffect-EEG authors"
+abstract: >-
+  An executable, claim-locked benchmark for subject, stimulus, context, and
+  dataset isolation in trial-level EEG affect evaluation.
