@@ -35,3 +35,16 @@ def test_submission_closure_rebuilds_from_frozen_sources(tmp_path: Path) -> None
     assert repair["strict_claim"]["folds"] == 5
     assert repair["scoped_claim"]["status"] == "allow"
     assert repair["scoped_claim"]["folds"] == 5
+
+
+def test_submission_closure_outputs_use_platform_independent_newlines(
+    tmp_path: Path,
+) -> None:
+    build_submission_closure(ROOT, tmp_path)
+
+    for name in (
+        "evaluation_method_validation.json",
+        "external_claim_repair.json",
+        "manifest.json",
+    ):
+        assert b"\r\n" not in (tmp_path / name).read_bytes()

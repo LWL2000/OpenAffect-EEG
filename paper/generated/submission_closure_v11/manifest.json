@@ -6,8 +6,8 @@
     "No independent-human usability test is claimed."
   ],
   "outputs": {
-    "evaluation_method_validation.json": "f6d9e5b883b02bfc571db0d170f6e8cc570f11cc9b51dbdf79e63b27c1f613c2",
-    "external_claim_repair.json": "7fcb9a7206b05e72bca571a77d723b693c0b4390aed2f0c7db814cc031701d80"
+    "evaluation_method_validation.json": "afa060359415e2f4ce7bd709d9e7d7e192cb4a3c71f7fd51ddf9935e3de72a28",
+    "external_claim_repair.json": "ace8fd3af51afdb1ec9aea3d2244a9beb819414f098ae71bc6fff7bdfe7209bb"
   },
   "schema_version": "1.0",
   "status": "generated_from_hash_verified_frozen_sources"

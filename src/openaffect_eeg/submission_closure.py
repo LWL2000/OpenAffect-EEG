@@ -27,9 +27,8 @@ def _read_csv(path: Path) -> list[dict[str, str]]:
 
 def _write_json(path: Path, value: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(value, indent=2, sort_keys=True) + "\n")
 
 
 def _float_range(rows: list[dict[str, str]], field: str) -> list[float]:
