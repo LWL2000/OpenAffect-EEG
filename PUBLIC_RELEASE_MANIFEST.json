@@ -53,7 +53,7 @@
     {
       "mode": "644",
       "path": "configs/submission_release_v11.yaml",
-      "sha256": "39467903a07a988402301d38093854560002b08d8abb659006b3304da4b86730",
+      "sha256": "2ec8938a7061328ea15a0843dd04d8df7bcc6a89a5464d33f03e61d2e88ceaf5",
       "size_bytes": 4631
     },
     {
@@ -281,20 +281,20 @@
     {
       "mode": "644",
       "path": "paper/generated/submission_closure_v11/evaluation_method_validation.json",
-      "sha256": "f6d9e5b883b02bfc571db0d170f6e8cc570f11cc9b51dbdf79e63b27c1f613c2",
-      "size_bytes": 1787
+      "sha256": "afa060359415e2f4ce7bd709d9e7d7e192cb4a3c71f7fd51ddf9935e3de72a28",
+      "size_bytes": 1740
     },
     {
       "mode": "644",
       "path": "paper/generated/submission_closure_v11/external_claim_repair.json",
-      "sha256": "7fcb9a7206b05e72bca571a77d723b693c0b4390aed2f0c7db814cc031701d80",
-      "size_bytes": 1752
+      "sha256": "ace8fd3af51afdb1ec9aea3d2244a9beb819414f098ae71bc6fff7bdfe7209bb",
+      "size_bytes": 1711
     },
     {
       "mode": "644",
       "path": "paper/generated/submission_closure_v11/manifest.json",
-      "sha256": "9bb7f151a11f7111159f6b8d3644f5fa171e583258a20230c2c0eaae67a6dc71",
-      "size_bytes": 639
+      "sha256": "ce95d24efc88f153fc1adb2c7d8939514c3d7a9c2080c565a8ad77102af209a6",
+      "size_bytes": 625
     },
     {
       "mode": "644",
@@ -887,8 +887,8 @@
     {
       "mode": "644",
       "path": "src/openaffect_eeg/submission_closure.py",
-      "sha256": "4cfc776c9cfb59dc38390c8eab85d6f148e4910a97233d0fe2f6b24de7a3e31c",
-      "size_bytes": 10755
+      "sha256": "6e0c032b6622370ff0be1704c4574cb5780a35995b02721b8033918f8c2a1f60",
+      "size_bytes": 10791
     },
     {
       "mode": "644",
@@ -959,8 +959,8 @@
     {
       "mode": "644",
       "path": "tests/test_submission_closure.py",
-      "sha256": "e3bdbb47ad8e0c0306764b9ebd477624680e21285d2111139ef8aadaae3c2d3e",
-      "size_bytes": 1674
+      "sha256": "bda9d2c4920766b3fb5608b70012bc0d5e36d53fddc1a0a57aa5fa7a6e4ddaba",
+      "size_bytes": 2018
     },
     {
       "mode": "644",
@@ -969,5 +969,5 @@
       "size_bytes": 5716
     }
   ],
-  "version": "submission_closure_v11_acceptance1_20260909"
+  "version": "submission_closure_v11_acceptance2_20260909"
 }
