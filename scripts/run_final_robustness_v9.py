@@ -45,6 +45,10 @@ def main():
     parser.add_argument("--fold", type=int)
     args = parser.parse_args()
     config = json.loads(args.config.read_text())
+    training_seed_offset = int(config.get("training_seed_offset", 0))
+    eegnet_branches = tuple(config.get("eegnet_branches", ("direct", "residual")))
+    if not eegnet_branches or not set(eegnet_branches) <= {"direct", "residual"}:
+        raise ValueError("eegnet_branches must contain direct and/or residual")
     spec = config["datasets"][args.dataset]
     targets = tuple(spec["targets"])
     names = tuple(t.removeprefix("target_") for t in targets)
@@ -72,7 +76,9 @@ def main():
     if (raw_indices < 0).any() or table.trial_uid.duplicated().any():
         raise ValueError("Raw/label identity mismatch")
     paths = [args.config, args.data_root / spec["trials"], args.data_root / spec["tensors"], args.data_root / spec["uids"],
-             Path(__file__), Path(inspect.getfile(coverage_assignments)), Path(inspect.getfile(compile_exposure_cell))]
+             Path(__file__), Path(inspect.getfile(coverage_assignments)),
+             Path(inspect.getfile(compile_exposure_cell)),
+             Path(inspect.getfile(regression_metrics))]
     paths += [args.data_root / value["path"] for value in spec["features"].values()]
     hashes = {str(path): sha256_file(path) for path in paths}
     fingerprint = hashlib.sha256(json.dumps(hashes, sort_keys=True).encode()).hexdigest()
@@ -141,7 +147,9 @@ def main():
         predictions.to_csv(destination, sep="\t", index=False)
         records = [json.loads(path.read_text()) for path in sorted((output / "cells").glob("*/*.json"))]
         write_json(output / "identity_exposure_response.json", dict(results=records, fingerprint=fingerprint,
-            predictions_sha256=sha256_file(destination), target_names=names, adaptation="bounded v9 robustness, not a new cohort"))
+            predictions_sha256=sha256_file(destination), target_names=names,
+            training_seed_offset=training_seed_offset,
+            adaptation="bounded v9 robustness, not a new cohort"))
         print(args.dataset, "complete verified grid", len(observed), flush=True)
         return
     gpu_tensors = None
@@ -159,6 +167,7 @@ def main():
         if args.fold is not None and args.fold != fold:
             continue
         seed = config["design_seed"] + fold
+        training_seed = seed + training_seed_offset
         folder = output / "assignments" / f"seed-{seed}"
         for s in doses:
             base_assignment = pd.read_csv(folder / f"participant-00_stimulus-{s:02d}.tsv.gz", sep="\t")
@@ -179,16 +188,19 @@ def main():
                             direct, residual = stored["direct"], stored["residual"]
                     else:
                         predictions, training = {}, {}
-                        for kind in ("direct", "residual"):
+                        for kind in eegnet_branches:
                             is_residual = kind == "residual"
                             predictions[kind], training[kind] = fit_gpu_regression(gpu_tensors,
                                 base["train"].tensor_index.to_numpy(), base["train_y"] - base["train_loo"] if is_residual else base["train_y"],
                                 base["validation"].tensor_index.to_numpy(), base["val_y"] - base["val_prior"] if is_residual else base["val_y"],
                                 base["fit"].tensor_index.to_numpy(), base["fit_y"] - base["fit_loo"] if is_residual else base["fit_y"],
-                                seed=seed, config=train_config, checkpoint=cache.parent / f"{cache.name}_{kind}.pt")
-                        direct, residual = predictions["direct"], predictions["residual"]
+                                seed=training_seed, config=train_config, checkpoint=cache.parent / f"{cache.name}_{kind}.pt")
+                        template = next(iter(predictions.values()))
+                        direct = predictions.get("direct", np.zeros_like(template))
+                        residual = predictions.get("residual", np.zeros_like(template))
                         np.savez_compressed(cache_npz, direct=direct, residual=residual)
                         metadata = dict(fingerprint=fingerprint, prediction_sha256=sha256_file(cache_npz),
+                                        training_seed=training_seed,
                                         config=asdict(train_config), training=training)
                         write_json(cache_json, metadata)
                     neural[setting] = (base["all_prior"], direct, residual, metadata)

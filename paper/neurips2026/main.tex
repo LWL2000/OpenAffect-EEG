@@ -33,12 +33,12 @@ band-power regression, frozen LaBraM, and standard EEGNet: 1,500 model cells in
 total. At maximum dose, positive system gains of $+0.0961$ and $+0.0587$ for one
 LaBraM setting become matched EEG differences of $-0.0459$
 $[-0.1098,+0.0139]$ and $-0.0186$ $[-0.0563,+0.0126]$, respectively. Across all
-12 task--setting grids, intervals for the mean matched EEG increment include
-zero. These results do not establish equivalence or absence of EEG information;
+12 task--setting grids, 95\% five-block $t$ intervals for the mean matched EEG
+increment include zero. These results do not establish equivalence or absence of EEG information;
 they show that the observed total gains cannot be attributed to EEG under the
-evaluated contracts. Crossed simulations verify intended positive-signal
-behaviour but reveal serious undercoverage on the primary five-block topology;
-the reported intervals are conditional diagnostics, not calibrated guarantees. A companion
+evaluated contracts. On four topology-matched simulation families, coverage of
+the primary uniform-grid mean is 0.980--1.000; cellwise ranges remain
+descriptive and all intervals condition on the fitted models. A companion
 checker records trial lineage, predictor resources, and deployment requirements,
 returning allow, block, or unverifiable decisions. OpenAffect-EEG contributes a
 resource-matched evaluation object and auditable evidence, not a new encoder or
@@ -101,8 +101,12 @@ prediction logging \citep{kukhilava2025eegain}. FMScope audits frozen
 representations with subject-axis, spectral, layer, and within-subject
 diagnostics \citep{lin2026identitytrap}. Calibration, joint person--stimulus
 holdout, and EEG toolboxes are also established
-\citep{li2021calibration,bendrich2022feature,liu2026eegemolib}. These efforts ask
-whether data partitions, models, or representations generalize. Our unit of
+\citep{li2021calibration,bhosale2022calibration,bendrich2022feature,liu2026eegemolib}.
+Most closely, \citet{pandilova2026identity} pair an EEG-free participant
+label-tendency baseline with calibrated and population qEEG comparisons on
+DEAP and DREAMER. They do not jointly dose target-participant calibration and
+other-participant ratings for test stimuli on a constant-size population fit.
+These efforts ask whether data partitions, models, or representations generalize. Our unit of
 analysis is instead a \emph{paired prediction contrast}: which labels each
 predictor received on a fixed test support, and what part of a system gain
 remains after matching those labels.
@@ -116,6 +120,7 @@ Approach & Question addressed & Additional object evaluated here \\\midrule
 Trial/identity holdout & Do forbidden trials or identities cross partitions? & Dose-controlled resources with a fixed test and population size. \\
 EEGain \citep{kukhilava2025eegain} & How do models compare in a standardized pipeline? & Does an EEG gain persist against a comparator with the same calibration labels? \\
 FMScope \citep{lin2026identitytrap} & What identity structure is encoded, and how does erasure affect decoding? & What labelled resources supported this prediction contrast and deployment claim? \\
+Matched personalization \citep{pandilova2026identity} & How much do participant identity and target-user data explain qEEG performance? & A two-axis participant--stimulus label-resource surface with constant population size. \\
 OpenAffect-EEG & What can be attributed to EEG under a declared resource contract? & Paired score contrasts plus verifiable resource and execution records. \\
 \bottomrule\end{tabularx}\end{table}
 
@@ -253,13 +258,11 @@ proof of optimization. The Appendix reports full preprocessing, coverage,
 budgets, and historical model panels.
 
 % evidence: paper/generated/reviewer_revision_v12/learning_diagnostics.csv
-The archived learning records quantify this qualification. Among 50 direct
-and 50 residual EEGNet fits per task, respectively 12/10 Emo fits and 8/7
-Urban fits select epoch one. Median selected epochs are 18/17.5 and 11/7.5.
-Training objectives decrease in the median for all four groups. These real-task
-records rule out an account in which every network simply remained at its
-initial fit; they do not establish optimal tuning or a positive held-out
-EEG signal. Appendix~\ref{app:revision-diagnostics} reports the reusable audit.
+The archived records show that, among 50 direct and 50 residual EEGNet fits per
+task, 12/10 Emo and 8/7 Urban fits select epoch one; median selected epochs are
+18/17.5 and 11/7.5. Training objectives decrease in the median for all four
+groups. This rules out every network remaining at its initial fit, but does not
+establish optimal tuning or a positive held-out EEG signal.
 
 \subsection{A favourable total gain need not be an EEG gain}
 \input{../generated/evidence_argument_v10/decomposition.tex}
@@ -273,16 +276,27 @@ $+0.0774$, and $-0.0186$ $[-0.0563,+0.0126]$. The system-level point gains are
 positive; the EEG-specific contrasts are not established as positive. This is
 the judgement that resource matching changes.
 
-\input{../generated/evidence_argument_v10/primary.tex}
-% evidence: paper/generated/final_closure_v9/percentile/table_added_value_summary.csv; paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv
-The primary full-grid summaries in Table~\ref{tab:primary-v9} tell the same
-bounded story: all 12 task--setting intervals include zero under both interval
-methods. No equivalence margin was prespecified, so this does not establish
+\input{../generated/final_revision_v13/primary.tex}
+% evidence: paper/generated/final_revision_v13/block_t/table_added_value_summary.csv
+The primary full-grid summaries in Table~\ref{tab:primary-v13} tell the same
+bounded story: all 12 task--setting block-$t$ intervals include zero. The
+conclusion is unchanged under released percentile, basic, and earlier t-normal
+sensitivities. No equivalence margin was prespecified, so this does not establish
 equivalence, universal reversal, absence of EEG information, or a ceiling on
 future EEG methods. The secondary MAE contrast for LaBraM R1 indicates increased
-error in both tasks under both interval constructions; other configurations are
+error in both tasks under the primary construction; other configurations are
 uncertain or interval-sensitive. Appendix~\ref{app:latest-evidence} reports all
 CCC and MAE settings rather than selected rows.
+
+% evidence: paper/generated/final_revision_v13/sensitivity/sensitivity_summary.json
+Post-primary checks preserve that interpretation. An alternative identity
+partition and complete refit shifts any point estimate by at most 0.0135 (Emo)
+or 0.0154 (Urban), with all 12 intervals covering zero. Across three EEGNet
+initialization schedules at the four resource corners, all 12 task--setting--run
+intervals cover zero and the largest point span is 0.0097. Last-block LaBraM
+residual fine-tuning gives $-0.0110$ [$-0.1041,+0.0820$] and $-0.0404$
+[$-0.1159,+0.0351$]. These are bounded sensitivities run after the primary
+analysis, not independent cohorts or an unconditional retraining interval.
 
 % evidence: paper/generated/reviewer_revision_v12/figure_manifest.json
 \begin{figure}[tp]\centering
@@ -292,8 +306,8 @@ color scale are $1000\Delta_{\rm EEG}$; rounded zero is not exact equality.
 Rows distinguish tasks and settings (R1/L1, R2/L2); columns distinguish model
 families. Positive values favor EEG. Each value averages five block-level
 paired CCC contrasts. This is a descriptive display of already inspected
-data, not an additional confirmatory test. Conditional pointwise and
-within-model dose-family intervals accompany every cell in the released CSV.}
+data, not an additional confirmatory test. Conditional pointwise stability
+ranges and within-model dose-family bands accompany every cell in the released CSV.}
 \label{fig:matched-grid}
 \end{figure}
 
@@ -302,8 +316,9 @@ Figure~\ref{fig:matched-grid} exposes heterogeneity hidden by the uniform mean.
 For example, Urban EEGNet L2 has positive point estimates in every cell, ranging
 from $+0.0003$ to $+0.0177$; these do not establish positive increments at the
 reported precision. None of the 300 cells has a positive pointwise CCC
-interval. Two Urban LaBraM R1 cells have negative pointwise intervals, but
-neither survives its within-model dose-family band. We retain all 48
+range. Two Urban LaBraM R1 cells have negative pointwise ranges, but
+neither survives its within-model dose-family band. These ranges are descriptive
+because the cell estimands failed full calibration. We retain all 48
 task--setting--corner comparisons $(0,0),(8,0),(0,8),(8,8)$ in a separate table;
 no cell selection or averaging of interval endpoints is used.
 
@@ -320,11 +335,13 @@ attribution attached to a system score.
 % evidence: paper/generated/final_closure_v9/percentile/added_value_statistics.json; paper/generated/final_closure_v9/normal_t/added_value_statistics.json
 The crossed bootstrap applies identical participant and stimulus
 multiplicities to every paired predictor, cell, and block. Of 2,000 draws, 1,985
-are valid for EmoEEG-MC and 2,000 for Urban. Percentile intervals are primary;
-an explicitly heuristic small-cluster t-normal analysis is a sensitivity check.
-Both condition on fitted predictions and omit full retraining uncertainty.
-Pointwise intervals and separately released dose-family simultaneous bands do
-not correct all model comparisons.
+are valid for EmoEEG-MC and 2,000 for Urban. The primary two-sided 95\% interval uses the
+crossed-bootstrap standard error and a $t_{4}$ critical value because the final
+estimand averages five predeclared identity blocks. Percentile, basic, and the
+earlier within-block t-normal constructions are sensitivity checks. Every
+construction conditions on fitted predictions and omits retraining uncertainty.
+Pointwise ranges and separately released dose-family bands do not support
+calibrated cell selection or all-model multiple comparisons.
 
 % evidence: paper/generated/final_closure_v9/percentile/added_value_statistics.json
 The relevant cluster sizes are those within each scoring block: Emo has six
@@ -334,18 +351,20 @@ not by itself validate a mean of small-block CCCs. We therefore distinguish
 the earlier single-block simulations below from the topology-matched
 five-block check in Appendix~\ref{app:revision-diagnostics}.
 
-% evidence: results/block_validation_v12/summary.csv; results/block_validation_v12/completion.json
+% evidence: results/block_t_validation_v13/summary.csv; results/block_t_validation_v13/completion.json
 The new topology-matched validation executes 300 replicates for each of four
 Gaussian scenarios per task, with 2,000 bootstrap draws and no failed runs.
-For trial signal, percentile coverage of the uniform mean is 0.900 for Emo
-and 0.927 for Urban; for participant-constant signal it is 0.903 and 0.970.
-The worst cell is Emo's zero-dose participant-constant case: coverage is
-0.193 (Monte Carlo interval $[0.153,0.242]$). Thus nominal 95\% coverage is
-not established, even on the intended topology. The t-normal sensitivity
-improves these mean-level checks but still undercovers that cell (0.887).
-We retain both predeclared constructions as conditional diagnostics and make
-no calibrated significance or equivalence claim. Earlier single-block tests
-in Appendix~\ref{app:evaluator-validation} cannot override this failure.
+For the primary uniform mean, block-$t$ coverage is 0.993 for Emo and 1.000
+for Urban under trial signal, and 0.980 and 0.983 under participant-constant
+signal; the two non-signal checks cover at 1.000. The corresponding Wilson
+Monte Carlo lower bounds are 0.957--0.987. The minimum cellwise coverage is
+still 0.917, so this validation supports only the predeclared uniform mean.
+The block-$t$ correction was introduced after the earlier interval diagnostics
+failed, but its critical value follows the five-block aggregation and does not
+use the observed EEG effect signs or magnitudes. Its evidence remains limited
+to these four Gaussian families. We therefore make no calibrated cellwise,
+equivalence, or unconditional retraining claim. Earlier single-block tests in
+Appendix~\ref{app:evaluator-validation} cannot widen that scope.
 
 \subsection{Scope checks and retained negative evidence}
 Earlier EmoEEG-MC and MusicEEG surfaces, compact versus standard EEGNet,
@@ -433,7 +452,7 @@ invalid: a properly scoped zero-calibration claim remains meaningful. The
 resource ledger makes that scope explicit.
 
 The two evidence streams have different roles. Tables~\ref{tab:resource-decomposition}
-and~\ref{tab:primary-v9} change the interpretation of actual EEG predictions
+and~\ref{tab:primary-v13} change the interpretation of actual EEG predictions
 generated in this study. The external code cases validate scoped execution
 claims without reproducing an external classifier. Together they support a
 preventive evaluation workflow; they do not measure how often published EEG
@@ -458,7 +477,8 @@ participant and stimulus dose axes are resource interventions on a trial graph,
 not randomized interventions on latent affect. Extra normative labels and
 unverifiable pretraining exposure must remain visible in the contract.
 Uniform-grid averages can obscure heterogeneous cells, hence the complete
-release; intervals condition on fixed fits and have small-cluster limitations.
+release; the primary interval conditions on fixed fits, and cellwise ranges
+retain small-cluster calibration limitations.
 The independently collected tasks differ in elicitation and target definition,
 so they do not establish universal EEG-emotion behaviour.
 
@@ -468,7 +488,7 @@ Code, aggregate results, split rules, source versions, model/data cards,
 synthetic examples, and evidence hashes accompany the work. The
 \href{https://anonymous.4open.science/\#!/r/OpenAffect-EEG-1815/}{anonymous code entry}
 provides unauthenticated access to the README, installation configuration,
-acceptance script, and workflow checker, verified on 9 September 2026.
+acceptance script, and workflow checker, verified on 11 September 2026.
 The manuscript and artifact version must be matched at submission; this file
 access check is distinct from full experimental reproduction. Developer-run
 clean-environment checks and author-reported colleague execution are recorded

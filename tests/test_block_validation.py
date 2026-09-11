@@ -3,6 +3,7 @@ import pytest
 
 from openaffect_eeg.block_validation import block_primary_draws, simulate_blocks
 from openaffect_eeg.exposure_statistics import analyze_predictions
+from openaffect_eeg.interval_diagnostics import intervals
 
 
 @pytest.mark.parametrize('target_names', [('valence',), ('valence', 'arousal')])
@@ -34,3 +35,12 @@ def test_labels_only_cancels_and_wrong_support_is_rejected():
     np.testing.assert_allclose(draws, 0, atol=1e-12)
     with pytest.raises(ValueError, match='Different test support'):
         block_primary_draws(table.iloc[1:], iterations=100, seed=97, target_names=['valence'])
+
+
+def test_block_t_uses_five_block_degrees_of_freedom():
+    point = np.array([0.1])
+    draws = np.linspace(-0.1, 0.3, 101)[:, None]
+    result = intervals(point, draws, cluster_df=10, block_df=4)
+    normal_width = result['normal_t'][1] - result['normal_t'][0]
+    block_width = result['block_t'][1] - result['block_t'][0]
+    assert block_width > normal_width

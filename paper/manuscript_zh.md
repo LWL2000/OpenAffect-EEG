@@ -1,11 +1,11 @@
 # OpenAffect-EEG：在标签资源匹配条件下审计 EEG 的额外价值
 
 > 英文题目：OpenAffect-EEG: Auditing EEG Added Value Under Matched Label Resources  
-> 定位：评测方法与可执行审计工具。本文复用冻结 v9 的全部 EEG 预测，新增五块统计验证与完整匹配增量图。匿名入口关键文件已于 2026-09-09 实测可访问；发布版本需与本轮稿件核对。
+> 定位：评测方法与可执行审计工具。本文复用冻结 v9 的全部 EEG 预测，新增五块统计验证与完整匹配增量图。匿名入口关键文件已于 2026-09-11 实测可访问；发布版本需与本轮稿件核对。
 
 ## 摘要
 
-将情感预测收益归因于 EEG，需要无 EEG 对照获得相同的非 EEG 标签资源。与未校准基线相比的差值评价的是整个系统包。OpenAffect-EEG 将这一区别变成可执行评测：固定测试试次，分别控制参与者校准和重复刺激标签剂量，保持群体训练规模，并让 EEG 预测器与无 EEG 预测器获得相同标签。在 EmoEEG-MC 和街景评价任务上，我们对频带功率回归、冻结 LaBraM 和标准 EEGNet 各两组设置完成 5×5 剂量网格，共 1,500 个模型格点。最大剂量下，某 LaBraM 设置相对未校准先验的系统收益在两任务分别为 +0.0961 和 +0.0587，但匹配资源后的 EEG 差值变为 -0.0459，区间 [-0.1098,+0.0139]，以及 -0.0186，区间 [-0.0563,+0.0126]。12 个任务—设置网格的平均匹配 EEG 增量区间均包含零。这不证明等价或 EEG 无信息，而是说明在当前资源契约下，观察到的系统总收益不能归因于 EEG。交叉模拟支持正向信号的预期行为，但在主分析五块拓扑下暴露严重欠覆盖；本文区间仅作为固定拟合的条件性诊断，不是已校准的置信保证。配套检查器记录试次血缘、预测器资源和部署要求，返回允许、阻断或不可验证。本文贡献是资源匹配评测对象及其可审计证据，不是新编码器或情绪的因果分解。
+将情感预测收益归因于 EEG，需要无 EEG 对照获得相同的非 EEG 标签资源。与未校准基线相比的差值评价的是整个系统包。OpenAffect-EEG 将这一区别变成可执行评测：固定测试试次，分别控制参与者校准和重复刺激标签剂量，保持群体训练规模，并让 EEG 预测器与无 EEG 预测器获得相同标签。在 EmoEEG-MC 和街景评价任务上，我们对频带功率回归、冻结 LaBraM 和标准 EEGNet 各两组设置完成 5×5 剂量网格，共 1,500 个模型格点。最大剂量下，某 LaBraM 设置相对未校准先验的系统收益在两任务分别为 +0.0961 和 +0.0587，但匹配资源后的 EEG 差值变为 -0.0459，描述性区间 [-0.1098,+0.0139]，以及 -0.0186，描述性区间 [-0.0563,+0.0126]。12 个任务—设置网格的五块 t 主区间均包含零。这不证明等价或 EEG 无信息，而是说明在当前资源契约下，观察到的系统总收益不能归因于 EEG。四类拓扑匹配模拟中，主估计量“均匀网格平均”的覆盖率为 0.980--1.000；单格范围仍是描述性的，全部区间均条件于已拟合模型。配套检查器记录试次血缘、预测器资源和部署要求，返回允许、阻断或不可验证。本文贡献是资源匹配评测对象及其可审计证据，不是新编码器或情绪的因果分解。
 
 ## 1 引言
 
@@ -92,17 +92,19 @@ Q 在同一测试支持上计算。等式是分数差恒等式，不是神经机
 
 在 EmoEEG-MC 的 LaBraM R1 中，EC 相对未校准先验 P 的收益为 +0.0961；相同校准标签使无 EEG 预测器提高 +0.1420，故匹配 EEG 差值为 -0.0459，区间 [-0.1098,+0.0139]。Urban 对应值为 +0.0587、+0.0774 和 -0.0186，区间 [-0.0563,+0.0126]。系统层面的点收益为正，但 EEG 特有差值没有被建立为正。这是资源匹配实际改变的判断。<!-- evidence: paper/generated/evidence_argument_v10/decomposition_maximum_dose.csv -->
 
-主要的均匀网格平均 EC-PC CCC 如下，报告配对 percentile 区间。<!-- evidence: paper/generated/final_closure_v9/percentile/table_added_value_summary.csv -->
+主要的均匀网格平均 EC-PC CCC 如下，报告五个身份块对应的 block-t 主区间（df=4）。<!-- evidence: paper/generated/final_revision_v13/block_t/table_added_value_summary.csv -->
 
 <!-- primary-v10-table -->
 
-12 个任务—设置组合在两种区间方法下都包含零。由于没有预设等价界值，本文不把它写成模型等价、普遍反转、EEG 无信息或未来方法的能力上限。次要 MAE 中，LaBraM R1 在两个任务、两种区间下均显示误差增加；其他配置不确定或对区间方法敏感。附录报告全部 CCC 与 MAE，而不是只选择显著行。<!-- evidence: paper/generated/final_closure_v9/percentile/table_added_value_summary.csv; paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv -->
+12 个任务—设置组合的 block-t 主区间均包含零，percentile、basic 和旧 t-normal 敏感性分析不改变这一判断。由于没有预设等价界值，本文不把它写成模型等价、普遍反转、EEG 无信息或未来方法的能力上限。次要 MAE 中，LaBraM R1 在两个任务的主区间下均显示误差增加；其他配置不确定或对区间方法敏感。附录报告全部 CCC 与 MAE，而不是只选择显著行。<!-- evidence: paper/generated/final_revision_v13/block_t/table_added_value_summary.csv -->
+
+主分析后补做的稳健性检查仍支持这一有界解释。替代身份分块并完整重拟合后，Emo/Urban 任一点估计的最大位移为 0.0135/0.0154，12 个区间均跨零。四个资源角点上的三组 EEGNet 初始化中，全部 12 个任务—设置—运行区间跨零，最大点估计跨度为 0.0097。只解冻最后一个 transformer block 与归一化层的 LaBraM 残差微调在 Emo/Urban 分别为 -0.0110 [-0.1041,+0.0820] 和 -0.0404 [-0.1159,+0.0351]。这些是看到主结果后执行的敏感性分析，不是独立队列，也不构成无条件重训练区间。<!-- evidence: paper/generated/final_revision_v13/sensitivity/sensitivity_summary.json -->
 
 匹配对照为什么具有实质影响？从双轴零剂量出发，八个目标用户校准试次使无 EEG 的 PC CCC 在 Emo/Urban 分别提高 +0.2036/+0.1564；每个测试刺激加入八个其他参与者评分后，分别提高 +0.4907/+0.3408，两种区间构造均为正。“标签有用”并不新颖，但它相对匹配 EEG 差值的量级说明，标签访问不对等会改变系统分数的归因。<!-- evidence: paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv -->
 
 ### 4.3 不确定性与评测器有效性
 
-参与者和刺激交叉 bootstrap 对所有配对预测器、格点和身份块使用同一组重采样重数。2,000 次抽样中，EmoEEG-MC 有 1,985 次有效，Urban 有 2,000 次有效。主分析使用 percentile 区间，小簇 t-normal 仅作为明确标注的启发式敏感性分析。两者都条件于已拟合预测，不包含完整重训练不确定性。点区间和另行发布的剂量族同时带也没有统一校正全部模型比较。<!-- evidence: paper/generated/final_closure_v9/percentile/added_value_statistics.json; paper/generated/final_closure_v9/normal_t/added_value_statistics.json -->
+参与者和刺激交叉 bootstrap 对所有配对预测器、格点和身份块使用同一组重采样重数。2,000 次抽样中，EmoEEG-MC 有 1,985 次有效，Urban 有 2,000 次有效。主区间使用交叉 bootstrap 标准误和五块聚合对应的 $t_4$ 临界值；percentile、basic 和旧的块内 t-normal 是敏感性分析。全部构造都条件于已拟合预测，不包含完整重训练不确定性。单格范围和剂量族带不支持已校准的单格筛选或全部模型多重比较。<!-- evidence: paper/generated/final_revision_v13/block_t/added_value_statistics.json -->
 
 同一分析器还在具有解析总体 CCC 的预设高斯交叉模拟上接受检验。16 个 trial-signal 设置各 100 次重复时，正向检出率为 0.85--1.00，点区间覆盖率为 0.92--1.00；仅标签预测器精确返回零，16 个独立噪声设置在有限模拟中没有产生正向检出。新的 300 次重复检查在 32 名参与者、24 个刺激时给出 0.933 的 percentile 覆盖，但在 8 名参与者、6 个刺激时最低降到 0.837。模拟支持评测器的预期方向行为，也明确暴露小支持下的失败边界；它不保证任意小 EEG 数据集都达到名义覆盖。<!-- evidence: paper/generated/submission_closure_v11/evaluation_method_validation.json -->
 
@@ -128,18 +130,18 @@ OPENAFFECTMATCHEDGRIDFIGURE
 
 主分析先在每块内计算 CCC，再平均身份块和剂量。Emo 每块仅 6 人、8 或 9 个刺激；Urban 每块为 12 或 13 人、11 或 12 个刺激。总体参与者数不能自动证明这种小块 CCC 平均的区间可靠。新增实现匹配实际五块完整对角拓扑、目标维数和全部 25 个剂量单元，复用生产分析器的全局交叉身份权重，任何块无效时均不删除该块补救。单元点估计、平均值、区间端点和有效重复数已与生产分析器通过数值一致性测试。
 
-冻结方案每任务、每种场景运行 300 个新随机重复，每重复 2,000 次 bootstrap，保留 label-only、trial-signal、participant-constant 和 independent-noise 四场景，固定比较 percentile、basic、t-normal，不根据 EEG 结果选择方法。模拟匹配测试图和固定拟合估计器，不复刻实际 EEG 分布、跨块训练资源依赖或重训练随机性。有限块估计偏差也是被检验对象，结果须带 Monte Carlo 不确定性解释。
+冻结方案每任务、每种场景运行 300 个新随机重复，每重复 2,000 次 bootstrap，保留 label-only、trial-signal、participant-constant 和 independent-noise 四场景。主 block-t 保留同一交叉 bootstrap 标准误，以五个身份块作为聚合单位（df=4）；percentile、basic 和旧 t-normal 保留为敏感性方法。该修正在早期诊断失败后引入，但临界值由估计量拓扑决定，没有使用真实 EEG 效应的符号或大小。模拟不复刻实际 EEG 分布、跨块训练资源依赖或重训练随机性。
 
-五块模拟已完成全部 2,400 个重复，失败为零，完整发布 187,200 行（包含同一重复的各格点和三种区间，不能当作独立重复数）。trial-signal 的网格平均 percentile 覆盖率在 Emo/Urban 分别为 0.900/0.927，participant-constant 分别为 0.903/0.970。最差的 Emo 零剂量 participant-constant 单元仅为 0.193，Wilson Monte Carlo 区间 [0.153,0.242]，相对总体真值的平均偏差 -0.0756；即便 t-normal 该单元也只有 0.887。Emo trial-signal 的最差单元覆盖为 0.770。这说明有限块 CCC 偏差和 bootstrap 失配是实质问题，不能继续声称区间具有已验证的名义 95% 覆盖。<!-- evidence: results/block_validation_v12/summary.csv; results/block_validation_v12/completion.json -->
+五块模拟已完成全部 2,400 个重复，失败为零。原始三种候选方法有 187,200 行，派生 block-t 另有 62,400 行；这些行包含同一模拟的格点和均值，不能当作独立重复数。block-t 对主均匀网格平均的覆盖率在 trial-signal 下为 Emo 0.993、Urban 1.000，在 participant-constant 下为 0.980/0.983，两个无信号检查均为 1.000；Wilson 下界为 0.957--0.987。最差单格覆盖仍只有 0.917，因此校准证据只支持主均值，不支持单格推断。<!-- evidence: results/block_t_validation_v13/summary.csv; results/block_t_validation_v13/completion.json -->
 
-| 任务 | 场景 | Percentile 覆盖 [MC 区间] | Basic | t-normal |
+| 任务 | 场景 | Block-t 覆盖 [MC 区间] | Percentile | Basic |
 | --- | --- | --- | --- | --- |
-| Emo | 试次信号 | 0.900 [0.861,0.929] | 0.983 | 0.990 |
-| Emo | 参与者恒定信号 | 0.903 [0.865,0.932] | 0.910 | 0.973 |
-| Urban | 试次信号 | 0.927 [0.891,0.951] | 0.977 | 0.993 |
-| Urban | 参与者恒定信号 | 0.970 [0.944,0.984] | 0.920 | 0.977 |
+| Emo | 试次信号 | 0.993 [0.976,0.998] | 0.900 | 0.983 |
+| Emo | 参与者恒定信号 | 0.980 [0.957,0.991] | 0.903 | 0.910 |
+| Urban | 试次信号 | 1.000 [0.987,1.000] | 0.927 | 0.977 |
+| Urban | 参与者恒定信号 | 0.983 [0.962,0.993] | 0.970 | 0.920 |
 
-仅标签场景的区间退化为零，覆盖为 1 是代数检查；独立噪声在有限运行中无正向区间，不等于对所有零假设控制误报。t-normal 在网格平均上表现较好，也不能据此事后选方法并宣布校准成功。原有构造保留作条件性诊断，全文不作已校准显著性或等价声明。可靠的总体推断仍需另行验证的方法，或改变支持/估计对象后重新评价；本轮没有将这一研究问题写成“已解决”。资源分解的代数恒等式和配对点差值不依赖显著性阈值。
+仅标签场景的区间退化为零，覆盖为 1 是代数检查；独立噪声在有限运行中无正向区间，不等于对所有零假设控制误报。block-t 证据局限于四类高斯信号和固定拟合的均匀网格平均，不能外推到真实 EEG 分布、任意信号族、单格选择或重训练不确定性。全文不作等价声明；资源分解的代数恒等式和描述性配对点差值不依赖显著性阈值。
 
 ## 5 可执行资源与声明审计
 

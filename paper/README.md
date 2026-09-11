@@ -5,11 +5,13 @@ NeurIPS Evaluations & Datasets submission.
 
 ## Current writing artifacts
 
-The current local V11 manuscript integrates resource-matched contrasts from the
-frozen V9 results, known-truth evaluator diagnostics, and a source-linked claim
-repair. See `reviews/evaluation_argument_evidence_v10_zh.md` for the original
-claim-to-evidence argument. The V11 archive is a review-ready local artifact;
-an externally accessible anonymous code URL must still be supplied at submission.
+The V13 final-review manuscript integrates resource-matched contrasts from
+the frozen V9 results, topology-matched evaluator diagnostics, post-primary
+partition/initialization/fine-tuning checks, and a source-linked claim repair.
+See `reviews/evaluation_argument_evidence_v10_zh.md`
+for the original claim-to-evidence argument. The versioned reviewer artifact is
+available through the anonymous URL recorded in the manuscript and Croissant
+metadata.
 
 - `manuscript_zh.md`: Chinese mother manuscript with inline frozen-claim IDs.
 - `supplement_zh.md`: Chinese supplementary-methods and evidence-boundary draft.

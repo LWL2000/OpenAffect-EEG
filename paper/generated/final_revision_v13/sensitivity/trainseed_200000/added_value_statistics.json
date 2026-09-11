@@ -1,0 +1,124 @@
+{
+  "datasets": [
+    {
+      "dataset_id": "ds005540",
+      "input_sha256": "e682dd0d5b25fd0b0c6a92f3eba660f6720037ff2780aa425c9b8c0025c156f9",
+      "iterations": 2000,
+      "bootstrap_seed": 20260909,
+      "fixed_seeds": [
+        20260908,
+        20260909,
+        20260910,
+        20260911,
+        20260912
+      ],
+      "target_names": [
+        "valence",
+        "arousal"
+      ],
+      "pointwise_interval_method": "block_t",
+      "conservative_cluster_df": 5,
+      "identity_block_df": 4,
+      "interval_boundary": "The block-t interval uses crossed-bootstrap standard errors and a five-block t critical value; topology-matched coverage is reported for the uniform-grid primary estimand; cellwise ranges remain descriptive; max-deviation simultaneous bands unchanged",
+      "supports": [
+        {
+          "seed": 20260908,
+          "n_trials": 54,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 9
+        },
+        {
+          "seed": 20260909,
+          "n_trials": 54,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 9
+        },
+        {
+          "seed": 20260910,
+          "n_trials": 48,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 20260911,
+          "n_trials": 48,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 8
+        },
+        {
+          "seed": 20260912,
+          "n_trials": 48,
+          "n_participants": 6,
+          "n_stimuli_or_conditions": 8
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": false,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "paired_model_contrasts": [],
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    },
+    {
+      "dataset_id": "ds006850",
+      "input_sha256": "609421d040861fe1462a442a60a5852039844e9daf6c33d9646ad463fbe52b9a",
+      "iterations": 2000,
+      "bootstrap_seed": 20260909,
+      "fixed_seeds": [
+        20260908,
+        20260909,
+        20260910,
+        20260911,
+        20260912
+      ],
+      "target_names": [
+        "valence"
+      ],
+      "pointwise_interval_method": "block_t",
+      "conservative_cluster_df": 10,
+      "identity_block_df": 4,
+      "interval_boundary": "The block-t interval uses crossed-bootstrap standard errors and a five-block t critical value; topology-matched coverage is reported for the uniform-grid primary estimand; cellwise ranges remain descriptive; max-deviation simultaneous bands unchanged",
+      "supports": [
+        {
+          "seed": 20260908,
+          "n_trials": 156,
+          "n_participants": 13,
+          "n_stimuli_or_conditions": 12
+        },
+        {
+          "seed": 20260909,
+          "n_trials": 143,
+          "n_participants": 13,
+          "n_stimuli_or_conditions": 11
+        },
+        {
+          "seed": 20260910,
+          "n_trials": 132,
+          "n_participants": 12,
+          "n_stimuli_or_conditions": 11
+        },
+        {
+          "seed": 20260911,
+          "n_trials": 132,
+          "n_participants": 12,
+          "n_stimuli_or_conditions": 11
+        },
+        {
+          "seed": 20260912,
+          "n_trials": 132,
+          "n_participants": 12,
+          "n_stimuli_or_conditions": 11
+        }
+      ],
+      "resampling": "shared participant x stimulus multiplicities across fixed splits",
+      "degenerate_stimulus_factor": false,
+      "simultaneous_family": "dose cells within each model and named contrast, not all analyses",
+      "paired_model_contrasts": [],
+      "boundary": "Conditional on fitted predictions; no training refits; no independent-seed replication claim"
+    }
+  ],
+  "output_sha256": {
+    "table_added_value_scores.csv": "7e2ccc06f2872d65a9a859d16448a8da226ed008e444512e44e6563a1120a6a8",
+    "table_added_value_contrasts.csv": "0d34e36f1d55c32b8dbe37cf8fc94822cd403783d4dc1bde67c2c9d614462dff",
+    "table_added_value_summary.csv": "b1c211517ab188841b771af10d6c125a268e53134043622365d86c415e324b9c"
+  }
+}

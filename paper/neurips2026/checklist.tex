@@ -25,8 +25,8 @@
 
 \item {\bf Open access to data and code}
     \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
-    \item[] Answer: \answerNo{}
-    \item[] Justification: Code, configurations, aggregates, metadata, and synthetic commands exist in a versioned public release. Unauthenticated access to the anonymous code entry and key files was verified on 9 September 2026. Full raw-to-model reproduction and synchronization of the new revision with that endpoint have not been independently verified, so this working revision retains No. Source recordings remain with their original providers.
+    \item[] Answer: \answerYes{}
+    \item[] Justification: The anonymous artifact provides code, configurations, aggregate results, metadata, and documented synthetic and source-linked verification commands. Unauthenticated access and file hashes were checked against the final release. Source recordings remain with their original providers and must be obtained under their terms. The independent clean-install check establishes artifact execution, not third-party raw-to-paper reproduction.
 
 
 \item {\bf Experimental setting/details}
@@ -37,7 +37,7 @@
 \item {\bf Experiment statistical significance}
     \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The Results and new diagnostics appendix define shared crossed-identity intervals, invalid draws, fixed-fit uncertainty, and heuristic sensitivity; the five-block study exposes serious undercoverage, so no calibrated significance or equivalence claim is made. Historical seed sign-flip tests are separately labelled and are not independent study replication.
+    \item[] Justification: The Results and diagnostics appendix define the paired estimand, shared crossed-identity resampling, invalid draws, fixed-fit scope, and sensitivity methods. Topology-matched simulations support the primary five-block uniform-mean interval; failed cellwise calibration is disclosed, so cell ranges are descriptive and no equivalence or unconditional retraining claim is made.
 
 \item {\bf Experiments compute resources}
     \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
@@ -68,7 +68,7 @@
 \item {\bf New assets}
     \item[] Question: Are new assets introduced in the paper well documented and is the documentation provided alongside the assets?
     \item[] Answer: \answerYes{}
-    \item[] Justification: The prepared release contains data/model/evaluation cards, Croissant metadata, protocol status, limitations, and reproducibility modes. Anonymous access to key files has been verified; matching the online artifact to this revised manuscript remains a separate version check.
+    \item[] Justification: The final anonymous release contains data/model/evaluation cards, valid Croissant metadata, protocol status, limitations, reproducibility modes, and hashes linking the online artifact to this manuscript revision.
 
 \item {\bf Crowdsourcing and research with human subjects}
     \item[] Question: For crowdsourcing experiments and research with human subjects, does the paper include the full text of instructions given to participants and screenshots, if applicable, as well as details about compensation (if any)? 

@@ -1,0 +1,13 @@
+dataset_id,representation,contrast,estimate,ci_low,ci_high,valid_bootstrap,setting
+ds005540,de_ridge_base,matched_eeg_added_uniform_mean_ccc,-0.0068676623474821,-0.0464197059577946,0.0326843812628303,1985,Band-power R1
+ds005540,de_ridge_strong,matched_eeg_added_uniform_mean_ccc,-0.0091448875864661,-0.0408660505965078,0.0225762754235755,1985,Band-power R2
+ds005540,eegnet_lr1e3,matched_eeg_added_uniform_mean_ccc,-5.675289283329353e-05,-0.0065005273100867,0.0063870215244201,1985,EEGNet L1
+ds005540,eegnet_lr1e4,matched_eeg_added_uniform_mean_ccc,0.0002908223828825,-0.0046073698388889,0.005189014604654,1985,EEGNet L2
+ds005540,labram_ridge_base,matched_eeg_added_uniform_mean_ccc,-0.0320470017141445,-0.0883264997366836,0.0242324963083946,1985,LaBraM R1
+ds005540,labram_ridge_strong,matched_eeg_added_uniform_mean_ccc,-0.0136753143138508,-0.0492361257626602,0.0218854971349584,1985,LaBraM R2
+ds006850,bandpower_ridge_base,matched_eeg_added_uniform_mean_ccc,-0.0060389448968049,-0.0631493643647811,0.0510714745711712,2000,Band-power R1
+ds006850,bandpower_ridge_strong,matched_eeg_added_uniform_mean_ccc,-0.0068505395490294,-0.0444044533919132,0.0307033742938543,2000,Band-power R2
+ds006850,eegnet_lr1e3,matched_eeg_added_uniform_mean_ccc,0.0073139855488095,-0.0117318558887595,0.0263598269863786,2000,EEGNet L1
+ds006850,eegnet_lr1e4,matched_eeg_added_uniform_mean_ccc,0.0085527072306014,-0.0094153085022904,0.0265207229634932,2000,EEGNet L2
+ds006850,labram_ridge_base,matched_eeg_added_uniform_mean_ccc,-0.0173200026424137,-0.0607384222463377,0.0260984169615102,2000,LaBraM R1
+ds006850,labram_ridge_strong,matched_eeg_added_uniform_mean_ccc,-0.003478081017271,-0.0311586792322895,0.0242025171977474,2000,LaBraM R2

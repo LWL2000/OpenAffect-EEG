@@ -6,19 +6,22 @@ from scipy.stats import t
 
 from openaffect_eeg.exposure_statistics import weighted_scores
 
-METHODS = ("percentile", "basic", "normal_t")
+METHODS = ("percentile", "basic", "normal_t", "block_t")
 
 
-def intervals(point, draws, cluster_df):
-    """Three conventional candidates; t correction is heuristic, not exact."""
+def intervals(point, draws, cluster_df, block_df=None):
+    """Conventional candidates plus a five-block t correction."""
     samples = np.asarray(draws, float)
     if samples.ndim != 2 or not np.isfinite(samples).all() or cluster_df < 1:
         raise ValueError("Invalid draws or cluster degrees of freedom")
     point = np.asarray(point, float)
     lo, hi = np.quantile(samples, [.025, .975], axis=0)
     radius = t.ppf(.975, cluster_df)*samples.std(axis=0, ddof=1)
+    block_df = cluster_df if block_df is None else int(block_df)
+    block_radius = t.ppf(.975, block_df)*samples.std(axis=0, ddof=1)
     return {"percentile": (lo, hi), "basic": (2*point-hi, 2*point-lo),
-            "normal_t": (point-radius, point+radius)}
+            "normal_t": (point-radius, point+radius),
+            "block_t": (point-block_radius, point+block_radius)}
 
 
 def paired_primary_draws(table, *, iterations, seed):

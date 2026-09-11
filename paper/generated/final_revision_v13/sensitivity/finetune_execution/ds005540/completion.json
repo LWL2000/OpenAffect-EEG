@@ -1,0 +1,6 @@
+{
+  "boundary": "Key-corner sensitivity only; no full 5x5 fine-tuned surface or retraining interval.",
+  "predictions_sha256": "4c08a65854fac8a401a5e758b1f8c4de7713ec08fa6c12720232bd1db2e8b301",
+  "rows": 1008,
+  "status": "complete"
+}

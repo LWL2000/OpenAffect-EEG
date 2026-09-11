@@ -1,0 +1,14 @@
+\begin{table}[ht]\centering\small
+\caption{Post-primary robustness checks. Block-$t$ intervals remain conditional on each fitted run. Alternative partitions and initialization schedules are sensitivity analyses, not independent cohorts.}
+\begin{tabularx}{\linewidth}{p{0.09\linewidth}p{0.22\linewidth}p{0.18\linewidth}X}\toprule
+Task & Check & Setting & Result\\\midrule
+Emo & New blocks + refit & Six settings & max point shift 0.0135; 6/6 cover 0\\
+Urban & New blocks + refit & Six settings & max point shift 0.0154; 6/6 cover 0\\
+Emo & Three train seeds & EEGNet L1 & [-0.0094, -0.0015]; 3/3 cover 0\\
+Emo & Three train seeds & EEGNet L2 & [-0.0018, +0.0003]; 3/3 cover 0\\
+Urban & Three train seeds & EEGNet L1 & [+0.0097, +0.0134]; 3/3 cover 0\\
+Urban & Three train seeds & EEGNet L2 & [+0.0013, +0.0109]; 3/3 cover 0\\
+Emo & Last-block fine-tune & LaBraM residual & -0.0110 [-0.1041, +0.0820]\\
+Urban & Last-block fine-tune & LaBraM residual & -0.0404 [-0.1159, +0.0351]\\
+\bottomrule\end{tabularx}
+\end{table}

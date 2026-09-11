@@ -1,0 +1,11 @@
+{
+  "dataset_id": "ds006850",
+  "model_repository_commit": "c431221e6cfd23dbfa9950e0180682fb322b0548",
+  "scope": "Residual LaBraM last-block fine-tuning at the four p/s resource corners.",
+  "sources": {
+    "final_robustness.py": "c51c5cad40dd965159e4576d34f50353721d6b60c4a667c22d93b3f8a3f0bce1",
+    "final_robustness_v9.json": "a6ccf3a5e30441f4c4cb9b53349ee187c02d2fcc30a70d63dc85326e2a6fdcaf",
+    "labram-base.pth": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+    "run_labram_finetune_v13.py": "7369288b14f1f789b7c79e25dec16eb1d207d95e8e3bb46a5cc4be10bcd0e502"
+  }
+}

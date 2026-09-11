@@ -6,13 +6,16 @@ non-EEG predictors with matched resources. It does not establish causal or
 latent-emotion disentanglement. The anonymous review artifact contains no raw
 EEG, stimulus media, participant-level predictions, feature arrays, or weights.
 
-## Current revision: V12
+## Current revision: V13
 
-[Revision, limitations, and reproduction commands](docs/reviewer_revision_v12.md)
+[Revision, limitations, and reproduction commands](docs/reviewer_revision_v13.md)
 include the complete matched-increment heatmap and an executed five-block
-coverage study. The study exposes severe small-block undercoverage; reported
-intervals are conditional diagnostics, not calibrated confidence guarantees.
-Primary EEG predictions and training records are reused.
+coverage study. The primary block-t interval is supported for the predeclared
+uniform-grid mean on the tested topology; cellwise ranges remain descriptive.
+Primary EEG predictions and training records are reused. Post-primary evidence
+adds a fully refitted alternative identity partition, three EEGNet
+initialization schedules at the resource corners, and bounded last-block
+LaBraM fine-tuning; these remain same-data sensitivity checks.
 
 ## Reviewer acceptance
 
@@ -21,7 +24,7 @@ Reviewers and independent testers should begin with
 [detailed Chinese independent-user procedure](docs/independent_acceptance_task_zh.md)
 is also available. In a Python 3.11 or 3.12 environment, the
 following command verifies the release manifest, dependency consistency,
-synthetic audit path, and frozen V11 evidence hashes:
+synthetic audit path, and frozen evidence hashes:
 
 ```bash
 python -m pip install ".[audit]"

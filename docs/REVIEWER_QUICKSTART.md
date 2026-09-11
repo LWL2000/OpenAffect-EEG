@@ -24,8 +24,10 @@ py -3.12 -m venv .venv
 
 A successful run writes `acceptance-run/independent_acceptance_report.json` and
 returns exit code zero. It verifies every file against the release manifest,
-runs `pip check`, executes the synthetic audit, and rebuilds the two V11
-source-linked evidence summaries with their frozen hashes.
+runs `pip check`, executes the synthetic audit, rebuilds the source-linked
+evidence summaries with their frozen hashes, and verifies the V13 five-block
+block-$t$ derivation and simulation artifacts. The final release manifest
+records every included file.
 
 A passing report establishes executable behavior on the tested machine. It is
 independent-user evidence only if the operator did not participate in artifact

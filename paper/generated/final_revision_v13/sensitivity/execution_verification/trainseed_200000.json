@@ -1,0 +1,674 @@
+{
+  "runtime": {
+    "packages": {
+      "torch": "2.11.0+cu130",
+      "braindecode": "1.2.0",
+      "numpy": "2.4.6",
+      "pandas": "3.0.5",
+      "scikit-learn": "1.9.0",
+      "scipy": "1.17.1"
+    },
+    "eegnet_source_sha256": "748687668cfbc4c208d6a2ab4b4ffffc859dcb5c60d90acc322a9481324cf44f",
+    "cuda": "13.0",
+    "gpu": "NVIDIA RTX 6000 Ada Generation",
+    "verifier_sha256": "4d89edeb9a553b3acf29bd17d313961ab5c4c14826275493ea5f99b01e98315e",
+    "config_sha256": "df4339e410362b1b512f2a298527d6b5e4638d545be1c3a59332856096972d88"
+  },
+  "datasets": {
+    "ds005540": {
+      "status": "passed",
+      "coverage": {
+        "all_identities_covered": true,
+        "folds": [
+          {
+            "fold": 0,
+            "seed": 20260908,
+            "test_participants": 6,
+            "test_stimuli": 9,
+            "test_trials": 54
+          },
+          {
+            "fold": 1,
+            "seed": 20260909,
+            "test_participants": 6,
+            "test_stimuli": 9,
+            "test_trials": 54
+          },
+          {
+            "fold": 2,
+            "seed": 20260910,
+            "test_participants": 6,
+            "test_stimuli": 8,
+            "test_trials": 48
+          },
+          {
+            "fold": 3,
+            "seed": 20260911,
+            "test_participants": 6,
+            "test_stimuli": 8,
+            "test_trials": 48
+          },
+          {
+            "fold": 4,
+            "seed": 20260912,
+            "test_participants": 6,
+            "test_stimuli": 8,
+            "test_trials": 48
+          }
+        ],
+        "tested_participants": 30,
+        "tested_stimuli": 42,
+        "tested_trials": 252,
+        "total_participants": 30,
+        "total_stimuli": 42,
+        "total_trials": 1260
+      },
+      "verified_model_cells": 40,
+      "verified_prediction_rows": 2016,
+      "tested_unique_trials": 252,
+      "support": [
+        {
+          "fold": 0,
+          "test_trials": 54,
+          "population_train_trials": 432
+        },
+        {
+          "fold": 1,
+          "test_trials": 54,
+          "population_train_trials": 450
+        },
+        {
+          "fold": 2,
+          "test_trials": 48,
+          "population_train_trials": 468
+        },
+        {
+          "fold": 3,
+          "test_trials": 48,
+          "population_train_trials": 468
+        },
+        {
+          "fold": 4,
+          "test_trials": 48,
+          "population_train_trials": 450
+        }
+      ],
+      "input_fingerprint": "3634388de430253d57d88674d1420cc2b5f3ab6249e9ca43349589f56fa727fc",
+      "predictions_sha256": "e682dd0d5b25fd0b0c6a92f3eba660f6720037ff2780aa425c9b8c0025c156f9",
+      "targets": [
+        "valence",
+        "arousal"
+      ],
+      "learning": [
+        {
+          "fit": "eegnet_lr1e3_fold-0_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 13,
+          "selection_epochs": 28,
+          "validation_mae": 0.2541502805383284,
+          "initial_train_objective": 1.1697018146514893,
+          "final_train_objective": 0.9373688101768494,
+          "minimum_fit_prediction_std": 0.0021318213548511267,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-0_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 23,
+          "selection_epochs": 38,
+          "validation_mae": 0.2541016188071529,
+          "initial_train_objective": 1.1552650928497314,
+          "final_train_objective": 0.9969556927680969,
+          "minimum_fit_prediction_std": 0.002200696850195527,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-1_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 2,
+          "selection_epochs": 17,
+          "validation_mae": 0.19320433844868323,
+          "initial_train_objective": 1.0871275663375854,
+          "final_train_objective": 0.9500851035118103,
+          "minimum_fit_prediction_std": 0.0011319475015625358,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-1_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 45,
+          "selection_epochs": 60,
+          "validation_mae": 0.1870965712640904,
+          "initial_train_objective": 1.0924302339553833,
+          "final_train_objective": 0.7917309999465942,
+          "minimum_fit_prediction_std": 0.008108154870569706,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-2_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.21199729486288807,
+          "initial_train_objective": 1.0927730798721313,
+          "final_train_objective": 0.9679462313652039,
+          "minimum_fit_prediction_std": 0.0015342693077400327,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-2_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.21193962843066205,
+          "initial_train_objective": 1.1228710412979126,
+          "final_train_objective": 0.9858881235122681,
+          "minimum_fit_prediction_std": 0.0016744937747716904,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-3_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 67,
+          "selection_epochs": 82,
+          "validation_mae": 0.2047488506922263,
+          "initial_train_objective": 1.0451205968856812,
+          "final_train_objective": 0.7448209524154663,
+          "minimum_fit_prediction_std": 0.025541722774505615,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-3_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 4,
+          "selection_epochs": 19,
+          "validation_mae": 0.21200754319127948,
+          "initial_train_objective": 1.0739099979400635,
+          "final_train_objective": 0.9246021509170532,
+          "minimum_fit_prediction_std": 0.0010007333476096392,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-4_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 63,
+          "selection_epochs": 78,
+          "validation_mae": 0.17948063223887906,
+          "initial_train_objective": 1.088011384010315,
+          "final_train_objective": 0.7826710939407349,
+          "minimum_fit_prediction_std": 0.015530670993030071,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-4_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 41,
+          "selection_epochs": 56,
+          "validation_mae": 0.18228169620231782,
+          "initial_train_objective": 1.095847487449646,
+          "final_train_objective": 0.8699412941932678,
+          "minimum_fit_prediction_std": 0.00629153847694397,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-0_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.2553951810071546,
+          "initial_train_objective": 1.1856483221054077,
+          "final_train_objective": 1.096161127090454,
+          "minimum_fit_prediction_std": 0.00240744068287313,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-0_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.25524549901974275,
+          "initial_train_objective": 1.1611366271972656,
+          "final_train_objective": 1.0979887247085571,
+          "minimum_fit_prediction_std": 0.002384400926530361,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-1_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 14,
+          "selection_epochs": 29,
+          "validation_mae": 0.19309626439354402,
+          "initial_train_objective": 1.0962480306625366,
+          "final_train_objective": 1.0222456455230713,
+          "minimum_fit_prediction_std": 0.0022374934051185846,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-1_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 22,
+          "selection_epochs": 37,
+          "validation_mae": 0.19244153724504284,
+          "initial_train_objective": 1.0991045236587524,
+          "final_train_objective": 1.0095391273498535,
+          "minimum_fit_prediction_std": 0.0031480826437473297,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-2_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 23,
+          "selection_epochs": 38,
+          "validation_mae": 0.21157109613322475,
+          "initial_train_objective": 1.0928421020507812,
+          "final_train_objective": 1.0247901678085327,
+          "minimum_fit_prediction_std": 0.003860510652884841,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-2_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 22,
+          "selection_epochs": 37,
+          "validation_mae": 0.21157921988142556,
+          "initial_train_objective": 1.1176071166992188,
+          "final_train_objective": 1.0138829946517944,
+          "minimum_fit_prediction_std": 0.003593622939661145,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-3_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 20,
+          "selection_epochs": 35,
+          "validation_mae": 0.21230720227031466,
+          "initial_train_objective": 1.0554695129394531,
+          "final_train_objective": 1.011852741241455,
+          "minimum_fit_prediction_std": 0.002857618033885956,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-3_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 17,
+          "selection_epochs": 32,
+          "validation_mae": 0.21225976044844494,
+          "initial_train_objective": 1.0875910520553589,
+          "final_train_objective": 1.0135524272918701,
+          "minimum_fit_prediction_std": 0.0024340043310076,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-4_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 54,
+          "selection_epochs": 69,
+          "validation_mae": 0.18649613479389343,
+          "initial_train_objective": 1.0944048166275024,
+          "final_train_objective": 0.9944732189178467,
+          "minimum_fit_prediction_std": 0.005051765125244856,
+          "target_count": 2,
+          "parameter_count": 3122
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-4_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 49,
+          "selection_epochs": 64,
+          "validation_mae": 0.18699102342994126,
+          "initial_train_objective": 1.1044894456863403,
+          "final_train_objective": 1.003603219985962,
+          "minimum_fit_prediction_std": 0.004163936711847782,
+          "target_count": 2,
+          "parameter_count": 3122
+        }
+      ],
+      "boundary": "Observed trial resources and this executed training adapter only; not upstream pretraining provenance or latent emotion identification"
+    },
+    "ds006850": {
+      "status": "passed",
+      "coverage": {
+        "all_identities_covered": true,
+        "folds": [
+          {
+            "fold": 0,
+            "seed": 20260908,
+            "test_participants": 13,
+            "test_stimuli": 12,
+            "test_trials": 156
+          },
+          {
+            "fold": 1,
+            "seed": 20260909,
+            "test_participants": 13,
+            "test_stimuli": 11,
+            "test_trials": 143
+          },
+          {
+            "fold": 2,
+            "seed": 20260910,
+            "test_participants": 12,
+            "test_stimuli": 11,
+            "test_trials": 132
+          },
+          {
+            "fold": 3,
+            "seed": 20260911,
+            "test_participants": 12,
+            "test_stimuli": 11,
+            "test_trials": 132
+          },
+          {
+            "fold": 4,
+            "seed": 20260912,
+            "test_participants": 12,
+            "test_stimuli": 11,
+            "test_trials": 132
+          }
+        ],
+        "tested_participants": 62,
+        "tested_stimuli": 56,
+        "tested_trials": 695,
+        "total_participants": 62,
+        "total_stimuli": 56,
+        "total_trials": 3471
+      },
+      "verified_model_cells": 40,
+      "verified_prediction_rows": 5560,
+      "tested_unique_trials": 695,
+      "support": [
+        {
+          "fold": 0,
+          "test_trials": 156,
+          "population_train_trials": 1188
+        },
+        {
+          "fold": 1,
+          "test_trials": 143,
+          "population_train_trials": 1257
+        },
+        {
+          "fold": 2,
+          "test_trials": 132,
+          "population_train_trials": 1291
+        },
+        {
+          "fold": 3,
+          "test_trials": 132,
+          "population_train_trials": 1292
+        },
+        {
+          "fold": 4,
+          "test_trials": 132,
+          "population_train_trials": 1221
+        }
+      ],
+      "input_fingerprint": "74617de8e81ee263a4eca47b2a195960955c9346cb548c07d8d42752f17bc8c9",
+      "predictions_sha256": "609421d040861fe1462a442a60a5852039844e9daf6c33d9646ad463fbe52b9a",
+      "targets": [
+        "valence"
+      ],
+      "learning": [
+        {
+          "fit": "eegnet_lr1e3_fold-0_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 22,
+          "selection_epochs": 37,
+          "validation_mae": 0.2182958121293801,
+          "initial_train_objective": 1.1343392133712769,
+          "final_train_objective": 0.7612728476524353,
+          "minimum_fit_prediction_std": 0.04604573920369148,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-0_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 20,
+          "selection_epochs": 35,
+          "validation_mae": 0.2216150083046641,
+          "initial_train_objective": 1.1325620412826538,
+          "final_train_objective": 0.7608776092529297,
+          "minimum_fit_prediction_std": 0.042123060673475266,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-1_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 13,
+          "selection_epochs": 28,
+          "validation_mae": 0.1832828994003281,
+          "initial_train_objective": 1.0910075902938843,
+          "final_train_objective": 0.7929366827011108,
+          "minimum_fit_prediction_std": 0.018470201641321182,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-1_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 3,
+          "selection_epochs": 18,
+          "validation_mae": 0.18452851010186477,
+          "initial_train_objective": 1.095882534980774,
+          "final_train_objective": 0.8318923711776733,
+          "minimum_fit_prediction_std": 0.0025303056463599205,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-2_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 6,
+          "selection_epochs": 21,
+          "validation_mae": 0.21709954953471491,
+          "initial_train_objective": 1.0912808179855347,
+          "final_train_objective": 0.8537120223045349,
+          "minimum_fit_prediction_std": 0.007213626988232136,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-2_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 2,
+          "selection_epochs": 17,
+          "validation_mae": 0.21697799231182666,
+          "initial_train_objective": 1.0829943418502808,
+          "final_train_objective": 0.8981044888496399,
+          "minimum_fit_prediction_std": 0.0038387381937354803,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-3_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 2,
+          "selection_epochs": 17,
+          "validation_mae": 0.22533042650508558,
+          "initial_train_objective": 1.1168473958969116,
+          "final_train_objective": 0.8908410668373108,
+          "minimum_fit_prediction_std": 0.0029512278269976377,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-3_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.2250568307565112,
+          "initial_train_objective": 1.1182005405426025,
+          "final_train_objective": 0.8954603672027588,
+          "minimum_fit_prediction_std": 0.00296703539788723,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-4_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 10,
+          "selection_epochs": 25,
+          "validation_mae": 0.16550324477812803,
+          "initial_train_objective": 1.0779047012329102,
+          "final_train_objective": 0.8361403346061707,
+          "minimum_fit_prediction_std": 0.015372472815215588,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e3_fold-4_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 8,
+          "selection_epochs": 23,
+          "validation_mae": 0.16514731890274406,
+          "initial_train_objective": 1.0688403844833374,
+          "final_train_objective": 0.8216997981071472,
+          "minimum_fit_prediction_std": 0.008228453807532787,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-0_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 34,
+          "selection_epochs": 49,
+          "validation_mae": 0.22714752576940087,
+          "initial_train_objective": 1.2317728996276855,
+          "final_train_objective": 0.9187759757041931,
+          "minimum_fit_prediction_std": 0.03445480763912201,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-0_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 28,
+          "selection_epochs": 43,
+          "validation_mae": 0.2282662669272181,
+          "initial_train_objective": 1.2294548749923706,
+          "final_train_objective": 0.9496324062347412,
+          "minimum_fit_prediction_std": 0.026109177619218826,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-1_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.185581871050117,
+          "initial_train_objective": 1.1482951641082764,
+          "final_train_objective": 1.0060172080993652,
+          "minimum_fit_prediction_std": 0.004660528618842363,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-1_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.18568939903150602,
+          "initial_train_objective": 1.1491516828536987,
+          "final_train_objective": 1.0126314163208008,
+          "minimum_fit_prediction_std": 0.0048540569841861725,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-2_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.21759085468027484,
+          "initial_train_objective": 1.112560510635376,
+          "final_train_objective": 1.0254271030426025,
+          "minimum_fit_prediction_std": 0.005917948205024004,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-2_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.21755445846780444,
+          "initial_train_objective": 1.1067060232162476,
+          "final_train_objective": 1.02333402633667,
+          "minimum_fit_prediction_std": 0.005999367218464613,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-3_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.22495200729896603,
+          "initial_train_objective": 1.1282920837402344,
+          "final_train_objective": 1.0178422927856445,
+          "minimum_fit_prediction_std": 0.004281261004507542,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-3_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.2249484233695274,
+          "initial_train_objective": 1.142622470855713,
+          "final_train_objective": 1.0153392553329468,
+          "minimum_fit_prediction_std": 0.004240233451128006,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-4_stimulus-0",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.1651836248116742,
+          "initial_train_objective": 1.0834364891052246,
+          "final_train_objective": 0.9836291670799255,
+          "minimum_fit_prediction_std": 0.003540116362273693,
+          "target_count": 1,
+          "parameter_count": 2273
+        },
+        {
+          "fit": "eegnet_lr1e4_fold-4_stimulus-8",
+          "branch": "residual",
+          "selected_epochs": 1,
+          "selection_epochs": 16,
+          "validation_mae": 0.1651325718512434,
+          "initial_train_objective": 1.081514596939087,
+          "final_train_objective": 1.0036778450012207,
+          "minimum_fit_prediction_std": 0.003479426261037588,
+          "target_count": 1,
+          "parameter_count": 2273
+        }
+      ],
+      "boundary": "Observed trial resources and this executed training adapter only; not upstream pretraining provenance or latent emotion identification"
+    }
+  }
+}

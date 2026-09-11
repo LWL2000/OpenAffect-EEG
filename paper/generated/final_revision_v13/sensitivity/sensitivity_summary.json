@@ -1,0 +1,76 @@
+{
+  "alternative_blocks": [
+    {
+      "dataset_id": "ds005540",
+      "largest_absolute_point_shift": 0.013461114459446998,
+      "intervals_covering_zero": 6,
+      "settings": 6
+    },
+    {
+      "dataset_id": "ds006850",
+      "largest_absolute_point_shift": 0.015375317707173299,
+      "intervals_covering_zero": 6,
+      "settings": 6
+    }
+  ],
+  "training_seeds": [
+    {
+      "dataset_id": "ds005540",
+      "representation": "eegnet_lr1e3",
+      "label": "EEGNet L1",
+      "estimate_min": -0.0093794928266264,
+      "estimate_max": -0.0014553187245467,
+      "point_span": 0.007924174102079701,
+      "intervals_covering_zero": 3,
+      "runs": 3
+    },
+    {
+      "dataset_id": "ds005540",
+      "representation": "eegnet_lr1e4",
+      "label": "EEGNet L2",
+      "estimate_min": -0.0017616205235612,
+      "estimate_max": 0.0002984783187154,
+      "point_span": 0.0020600988422766,
+      "intervals_covering_zero": 3,
+      "runs": 3
+    },
+    {
+      "dataset_id": "ds006850",
+      "representation": "eegnet_lr1e3",
+      "label": "EEGNet L1",
+      "estimate_min": 0.0097383569262914,
+      "estimate_max": 0.0134129768779885,
+      "point_span": 0.0036746199516971,
+      "intervals_covering_zero": 3,
+      "runs": 3
+    },
+    {
+      "dataset_id": "ds006850",
+      "representation": "eegnet_lr1e4",
+      "label": "EEGNet L2",
+      "estimate_min": 0.0012868800323595,
+      "estimate_max": 0.0109391545214262,
+      "point_span": 0.009652274489066701,
+      "intervals_covering_zero": 3,
+      "runs": 3
+    }
+  ],
+  "fine_tuning": [
+    {
+      "dataset_id": "ds005540",
+      "representation": "labram_lastblock_residual",
+      "estimate": -0.0110444338325727,
+      "ci_low": -0.1041140143807262,
+      "ci_high": 0.0820251467155807,
+      "covers_zero": true
+    },
+    {
+      "dataset_id": "ds006850",
+      "representation": "labram_lastblock_residual",
+      "estimate": -0.040378021582656,
+      "ci_low": -0.1158797328755376,
+      "ci_high": 0.0351236897102255,
+      "covers_zero": true
+    }
+  ]
+}

@@ -123,7 +123,12 @@ def verify_dataset(root, spec, config):
             if result["target_count"] != len(names):
                 raise ValueError("Fabricated or missing target dimension")
             learning.append(dict(fit=path.stem, branch=branch, **result))
-    if len(learning) != config["fold_count"] * len(config["doses"]) * len(config["eegnet_settings"]) * 2:
+    expected_branches = set(config.get("eegnet_branches", ["direct", "residual"]))
+    expected_fit_count = (
+        config["fold_count"] * len(config["doses"])
+        * len(config["eegnet_settings"]) * len(expected_branches)
+    )
+    if len(learning) != expected_fit_count or {item["branch"] for item in learning} != expected_branches:
         raise ValueError("Missing neural fits")
     return dict(status="passed", coverage=coverage, verified_model_cells=verified_cells,
                 verified_prediction_rows=len(table), tested_unique_trials=len(all_test), support=support,

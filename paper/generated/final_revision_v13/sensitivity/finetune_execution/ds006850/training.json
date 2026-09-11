@@ -1,0 +1,1226 @@
+[
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 48.15382608794607,
+    "fold": 0,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.10549242643374952
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.06869835742335742
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.0716225893077861
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06249517066912218
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.060502461333367986
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.057469611336735296
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.059472287187085485
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.05484537798197622
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.05681897962366522
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05488435069279596
+      }
+    ],
+    "selected_epochs": 10,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.12056566870172417,
+        "validation_mae": 0.30815258269981277
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07569170037052447,
+        "validation_mae": 0.29501603391873277
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.07177540483047264,
+        "validation_mae": 0.24989451932277248
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06532147686351529,
+        "validation_mae": 0.28314325551305636
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06300679646332055,
+        "validation_mae": 0.25444083647069926
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.056502372117380704,
+        "validation_mae": 0.2812368599033735
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.052678785277436475,
+        "validation_mae": 0.24150796618197423
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.054799159938588686,
+        "validation_mae": 0.24916040391296182
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.052640004927035335,
+        "validation_mae": 0.26533350012985074
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.060832166072194424,
+        "validation_mae": 0.23546413653273723
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.049219151689147304,
+        "validation_mae": 0.27381901239052614
+      },
+      {
+        "epoch": 12,
+        "train_mse": 0.053697677253924235,
+        "validation_mae": 0.25382400429702673
+      },
+      {
+        "epoch": 13,
+        "train_mse": 0.05334279889410192,
+        "validation_mae": 0.23598828694882765
+      },
+      {
+        "epoch": 14,
+        "train_mse": 0.046505507658728046,
+        "validation_mae": 0.24039785756038856
+      },
+      {
+        "epoch": 15,
+        "train_mse": 0.04529087508555113,
+        "validation_mae": 0.24538928353001394
+      }
+    ],
+    "stimulus_dose": 0,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.23546413653273723
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 50.85160002100747,
+    "fold": 0,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.12007560580968857
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07249219054643101
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06901919691467268
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.0646115955550316
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.059734723683947645
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06582958908971318
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05962511364462947
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.061586485421362004
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.05670557009331899
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05361452823956822
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.05511319884788287
+      }
+    ],
+    "selected_epochs": 11,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.10961153494940462,
+        "validation_mae": 0.27523345145183103
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07357637988723288,
+        "validation_mae": 0.268987342486155
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06744566083155096,
+        "validation_mae": 0.273061793276741
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06748788260073975,
+        "validation_mae": 0.2438138186789864
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06013538280144484,
+        "validation_mae": 0.24729017903622838
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06349862732545093,
+        "validation_mae": 0.24366002182635926
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05800405238137302,
+        "validation_mae": 0.24675436258591107
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.057971654604079347,
+        "validation_mae": 0.25413793418470926
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.0603030894064542,
+        "validation_mae": 0.28327775262561966
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05747710100942689,
+        "validation_mae": 0.24499720138948952
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.06144842467825822,
+        "validation_mae": 0.24006605802870448
+      },
+      {
+        "epoch": 12,
+        "train_mse": 0.04886488694860679,
+        "validation_mae": 0.2584551001299048
+      },
+      {
+        "epoch": 13,
+        "train_mse": 0.04904734767245925,
+        "validation_mae": 0.2737824720080135
+      },
+      {
+        "epoch": 14,
+        "train_mse": 0.048607099525354525,
+        "validation_mae": 0.24494603853970529
+      },
+      {
+        "epoch": 15,
+        "train_mse": 0.04731874034335517,
+        "validation_mae": 0.2470766928733126
+      },
+      {
+        "epoch": 16,
+        "train_mse": 0.045893900899172634,
+        "validation_mae": 0.2701338977979436
+      }
+    ],
+    "stimulus_dose": 8,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.24006605802870448
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 21.910579444956966,
+    "fold": 1,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.11959219738757915
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07508457388763723
+      }
+    ],
+    "selected_epochs": 2,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.12500456526768805,
+        "validation_mae": 0.32998266404247706
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07884096173464351,
+        "validation_mae": 0.1943542557096519
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06637810736112208,
+        "validation_mae": 0.20617845117584557
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06761980837977112,
+        "validation_mae": 0.19624837377527113
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.0619198304060891,
+        "validation_mae": 0.200294736375379
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06297055269719687,
+        "validation_mae": 0.19557567161602268
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05859583919733028,
+        "validation_mae": 0.2061135437652881
+      }
+    ],
+    "stimulus_dose": 0,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.1943542557096519
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 38.40634010802023,
+    "fold": 1,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.12324589489549506
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07576651920888323
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06746679479477537
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06892961313005314
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.058894608647189095
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06661776020919101
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.06080396660610958
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.05881811808285158
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.05392212290759349
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.055010379261898425
+      }
+    ],
+    "selected_epochs": 10,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.12823908496870345,
+        "validation_mae": 0.26604329050772707
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.08583370831483114,
+        "validation_mae": 0.21451976999867858
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.0757346595907932,
+        "validation_mae": 0.22570586057963535
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.07040203716561447,
+        "validation_mae": 0.2245341748453975
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06512045509891522,
+        "validation_mae": 0.2013154266074913
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.05902999915481177,
+        "validation_mae": 0.21540028755616714
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.06317326525158072,
+        "validation_mae": 0.20552881339750417
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.05979170944236438,
+        "validation_mae": 0.20515482101694243
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.055979940735022986,
+        "validation_mae": 0.2089937578323926
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.06214830299465959,
+        "validation_mae": 0.19699867233637225
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.06124465388906031,
+        "validation_mae": 0.21365370708699258
+      },
+      {
+        "epoch": 12,
+        "train_mse": 0.058591436392595425,
+        "validation_mae": 0.22889950708737042
+      },
+      {
+        "epoch": 13,
+        "train_mse": 0.05337185922863041,
+        "validation_mae": 0.20471579069652238
+      },
+      {
+        "epoch": 14,
+        "train_mse": 0.055893756935258845,
+        "validation_mae": 0.22545241206020084
+      },
+      {
+        "epoch": 15,
+        "train_mse": 0.051488902437587344,
+        "validation_mae": 0.20398910142011992
+      }
+    ],
+    "stimulus_dose": 8,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.19699867233637225
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 23.64306798100006,
+    "fold": 2,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.11673842073376968
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.08316120182806057
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.07077539792298768
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06571382555380223
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06384355318028996
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.060333315071009114
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.0626231164253269
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.05862202591675734
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.0645352431762118
+      }
+    ],
+    "selected_epochs": 9,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.18927340401086948,
+        "validation_mae": 0.2558458271970817
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07230221403158169,
+        "validation_mae": 0.2492993909397716
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.07477052925308945,
+        "validation_mae": 0.2498316428942448
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06885277900605309,
+        "validation_mae": 0.24007830389133097
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06581638814588557,
+        "validation_mae": 0.24896104685608758
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06081337553588204,
+        "validation_mae": 0.28891323513932404
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.06260672400364296,
+        "validation_mae": 0.2966982941754763
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.06254007428376643,
+        "validation_mae": 0.24771001036031773
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.0578228748244061,
+        "validation_mae": 0.23469028840464462
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05669202314477665,
+        "validation_mae": 0.25040707654120054
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.05593218495398414,
+        "validation_mae": 0.2488461667080036
+      },
+      {
+        "epoch": 12,
+        "train_mse": 0.05145625560995304,
+        "validation_mae": 0.2714761298237178
+      },
+      {
+        "epoch": 13,
+        "train_mse": 0.054088660698358076,
+        "validation_mae": 0.25068949887504227
+      },
+      {
+        "epoch": 14,
+        "train_mse": 0.05020409786394176,
+        "validation_mae": 0.25887516686925477
+      }
+    ],
+    "stimulus_dose": 0,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.23469028840464462
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 19.874305515899323,
+    "fold": 2,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.11362492780574844
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.08204527082509418
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.07217770130049571
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06849745980929256
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06653229997101294
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.0670841973973929
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.06010283902811066
+      }
+    ],
+    "selected_epochs": 7,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.20499338053807467,
+        "validation_mae": 0.26933725890404114
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.08889636584636225,
+        "validation_mae": 0.24721756274243004
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.07283685741387741,
+        "validation_mae": 0.26381065604681314
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.07382105915907462,
+        "validation_mae": 0.2828682575629211
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.064310642032892,
+        "validation_mae": 0.27459401757303614
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06300460937917002,
+        "validation_mae": 0.2519348286363526
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.06552647403351194,
+        "validation_mae": 0.23336342800682908
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.059652868721787086,
+        "validation_mae": 0.24063747388008203
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.05929007601659488,
+        "validation_mae": 0.25211525661795425
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05865795080464169,
+        "validation_mae": 0.23571293071366006
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.06033730582787859,
+        "validation_mae": 0.27771496088340325
+      },
+      {
+        "epoch": 12,
+        "train_mse": 0.05632939399165945,
+        "validation_mae": 0.2390515653582785
+      }
+    ],
+    "stimulus_dose": 8,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.23336342800682908
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 18.51636492193211,
+    "fold": 3,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.09447778128296806
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.06921753222436718
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06084978405721067
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.058211892272942184
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06021161310981666
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.05811473455416102
+      }
+    ],
+    "selected_epochs": 6,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.1237203732865283,
+        "validation_mae": 0.2652017480828926
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.06714631456754894,
+        "validation_mae": 0.25331755384113613
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.07584652100508057,
+        "validation_mae": 0.2677528709886176
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.05907577451537637,
+        "validation_mae": 0.31589327968859027
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06206957897280946,
+        "validation_mae": 0.3261865862248617
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06282257092626471,
+        "validation_mae": 0.2403128911433608
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05594333497974618,
+        "validation_mae": 0.2711226905932267
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.05099013129439516,
+        "validation_mae": 0.24637672129240146
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.049762465025157014,
+        "validation_mae": 0.24398990339069276
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.0502331271773383,
+        "validation_mae": 0.24453172111435187
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.04835320698910454,
+        "validation_mae": 0.24173874090733144
+      }
+    ],
+    "stimulus_dose": 0,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.2403128911433608
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 22.873439480899833,
+    "fold": 3,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.1036576803438784
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07426842128376612
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06834866242546044
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.0627459002072724
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06415552557629188
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.06897632706533657
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05782491602840718
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.060327841541886834
+      }
+    ],
+    "selected_epochs": 8,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.11685400275692298,
+        "validation_mae": 0.25675596879049545
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07389517672844347,
+        "validation_mae": 0.3251206004068231
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06528796353334151,
+        "validation_mae": 0.24679998841962555
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06281468991893732,
+        "validation_mae": 0.26431806539994873
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.05799321623248028,
+        "validation_mae": 0.3053960115715647
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.0543133728782828,
+        "validation_mae": 0.24239426936829492
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05346927188060047,
+        "validation_mae": 0.2472639884294696
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.0565934337606371,
+        "validation_mae": 0.23886434655440483
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.049883456560480335,
+        "validation_mae": 0.2499520120818459
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05499344419445785,
+        "validation_mae": 0.24430621906140584
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.04833984417673604,
+        "validation_mae": 0.26438191975132697
+      },
+      {
+        "epoch": 12,
+        "train_mse": 0.050068114820763975,
+        "validation_mae": 0.24415498335015454
+      },
+      {
+        "epoch": 13,
+        "train_mse": 0.04664031240869971,
+        "validation_mae": 0.23947250329706662
+      }
+    ],
+    "stimulus_dose": 8,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.23886434655440483
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 29.494879839010537,
+    "fold": 4,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.11314402065140425
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07208819232323764
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.0661961183926821
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.060671765035317266
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.06142454113900531
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.059398503534457955
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.054254336043735446
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.053570643805925106
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.05715265510280494
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05265250270232591
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.05110071813478016
+      }
+    ],
+    "selected_epochs": 11,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.18079439586640186,
+        "validation_mae": 0.21891057072484074
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.08189206135922236,
+        "validation_mae": 0.29278988644833365
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.06912872524143339,
+        "validation_mae": 0.23171904722979705
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06559582579923667,
+        "validation_mae": 0.24701820482002362
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.0559943167524783,
+        "validation_mae": 0.2211482453524995
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.05760224196788329,
+        "validation_mae": 0.19672563717439817
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05738461343152029,
+        "validation_mae": 0.24119981808885618
+      },
+      {
+        "epoch": 8,
+        "train_mse": 0.061983857819479474,
+        "validation_mae": 0.18245650396205054
+      },
+      {
+        "epoch": 9,
+        "train_mse": 0.05736059764435211,
+        "validation_mae": 0.19612428169378263
+      },
+      {
+        "epoch": 10,
+        "train_mse": 0.05291761266621384,
+        "validation_mae": 0.1947718094006012
+      },
+      {
+        "epoch": 11,
+        "train_mse": 0.050119627413571025,
+        "validation_mae": 0.18053558853653456
+      },
+      {
+        "epoch": 12,
+        "train_mse": 0.049350870646579066,
+        "validation_mae": 0.21616838369844352
+      },
+      {
+        "epoch": 13,
+        "train_mse": 0.04782037786608539,
+        "validation_mae": 0.187525817328998
+      },
+      {
+        "epoch": 14,
+        "train_mse": 0.0472914311580244,
+        "validation_mae": 0.19967042061244106
+      },
+      {
+        "epoch": 15,
+        "train_mse": 0.04607289519395914,
+        "validation_mae": 0.22064217163475583
+      },
+      {
+        "epoch": 16,
+        "train_mse": 0.04805992233103948,
+        "validation_mae": 0.18550780636146885
+      }
+    ],
+    "stimulus_dose": 0,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.18053558853653456
+  },
+  {
+    "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
+    "checkpoint_load": {
+      "checkpoint_sha256": "7c50583826afac76c4ab18f43d958df40496c8229accc09ed6a227c9bb57c37c",
+      "missing_checkpoint_keys": [],
+      "model_initialization": "pretrained",
+      "random_init_seed": null,
+      "unexpected_checkpoint_keys": []
+    },
+    "elapsed_seconds": 11.032323327031918,
+    "fold": 4,
+    "input_scale_factor": 1000000.0,
+    "optimization": {
+      "backbone_lr": 1e-05,
+      "batch_size": 8,
+      "head_lr": 0.001,
+      "max_epochs": 30,
+      "patience": 5,
+      "weight_decay": 0.01
+    },
+    "refit_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.14616876602248602
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.07043853426215523
+      }
+    ],
+    "selected_epochs": 2,
+    "selection_history": [
+      {
+        "epoch": 1,
+        "train_mse": 0.16044260945589106,
+        "validation_mae": 0.20293741178731872
+      },
+      {
+        "epoch": 2,
+        "train_mse": 0.06719350557923805,
+        "validation_mae": 0.19705950180934828
+      },
+      {
+        "epoch": 3,
+        "train_mse": 0.060687873265374205,
+        "validation_mae": 0.21492314887929512
+      },
+      {
+        "epoch": 4,
+        "train_mse": 0.06106382138862364,
+        "validation_mae": 0.22297352908772586
+      },
+      {
+        "epoch": 5,
+        "train_mse": 0.05779801019872436,
+        "validation_mae": 0.2022492502920245
+      },
+      {
+        "epoch": 6,
+        "train_mse": 0.05790589695504998,
+        "validation_mae": 0.21961927424955383
+      },
+      {
+        "epoch": 7,
+        "train_mse": 0.05721051971764471,
+        "validation_mae": 0.20955557598776592
+      }
+    ],
+    "stimulus_dose": 8,
+    "trainable_parameters": 483081,
+    "validation_mae": 0.19705950180934828
+  }
+]

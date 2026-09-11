@@ -46,6 +46,24 @@ self-report regression task. None of these records spans full fine-tuning,
 all calibration algorithms, or repeated-training uncertainty. The scope of
 the matched increment remains the specified fitted predictor pair.
 
+\subsection{Post-primary partition, initialization, and fine-tuning checks}
+% evidence: paper/generated/final_revision_v13/sensitivity/sensitivity_summary.json; paper/generated/final_revision_v13/sensitivity/finetune_execution
+\input{../generated/final_revision_v13/sensitivity/sensitivity.tex}
+The alternative partition repeats assignment, fitting, aggregation, and
+verification with a new design seed; because the fitted data also change, it is
+a partition/refit sensitivity rather than an isolated partition effect. The
+three EEGNet schedules share the original assignments and four resource
+corners, changing only declared training initialization offsets. The LaBraM
+check uses the official checkpoint, freezes all but the final transformer block
+and normalization, fits a residual head, selects epochs on validation data, and
+then refits on training plus validation. Its 100-Hz analysis tensors are
+linearly resampled to the official 200-Hz patch interface; the Urban voltage
+conversion is checked from recorded metadata. All checks condition their
+block-$t$ intervals on the resulting fitted predictions. They were specified
+after the primary results, cover neither a new cohort nor the full $5\times5$
+fine-tuning surface, and cannot certify invariance to arbitrary partitions,
+optimizers, checkpoints, or adaptation methods.
+
 \subsection{Five-block interval validation}
 The production statistic first computes paired CCC differences within each
 identity block, then averages blocks and dose cells. It does not pool all
@@ -64,9 +82,13 @@ supports in the primary verification record: $6\times9,6\times9,6\times8,
 two targets for Emo and one for Urban. Four previously defined Gaussian
 scenarios exercise label-only cancellation, trial signal, participant-constant
 signal, and independent noise. Each scenario uses 300 fresh simulation
-replicates per task and 2,000 bootstrap draws. Percentile, basic, and heuristic
-t-normal intervals are retained as fixed candidates; the production method
-is not selected using the observed EEG results.
+replicates per task and 2,000 bootstrap draws. The primary block-$t$ interval
+retains the crossed-bootstrap standard error and uses the five identity blocks
+as the independent aggregation units (df=4). Percentile, basic, and the earlier
+within-block t-normal intervals remain sensitivity checks. The correction was
+introduced after the initial interval diagnostics failed, but its critical
+value is fixed by the estimand topology and does not use the real EEG effect
+signs or magnitudes.
 
 The estimand is the scenario's analytic population matched CCC difference,
 averaged uniformly over dose cells. Finite-block estimation bias is part of
@@ -78,25 +100,24 @@ tested constructions. Executed results are recorded in the accompanying
 validation artifact.
 
 
-% evidence: results/block_validation_v12/summary.csv; results/block_validation_v12/completion.json
-\input{../generated/reviewer_revision_v12/five_block_coverage.tex}
-All 2,400 simulation replicates completed without a failed run. The released
-187,200 rows include every cell, uniform mean, and candidate interval, not
-187,200 independent simulations. Labels-only cancellation gives degenerate
+% evidence: results/block_t_validation_v13/summary.csv; results/block_t_validation_v13/completion.json
+\input{../generated/final_revision_v13/five_block_coverage.tex}
+All 2,400 simulation replicates completed without a failed run. The original
+187,200 candidate rows and 62,400 derived block-$t$ rows include every cell and
+uniform mean; they are not 249,600 independent simulations. Labels-only cancellation gives degenerate
 zero differences; its coverage of one is an algebraic check, not calibration
 of a nondegenerate interval. Independent noise produces no positive interval
 in these runs, which does not establish false-positive control for every null.
 
-% evidence: paper/generated/reviewer_revision_v12/five_block_all_coverage.csv
-The percentile failure is substantive. At Emo's zero-dose participant-constant
-cell, population-target bias is $-0.0756$ and coverage is $0.193$
-(Monte Carlo interval $[0.153,0.242]$); t-normal coverage is only $0.887$.
-For trial signal, the worst Emo cell covers at $0.770$. These constructions
-expose finite-block CCC bias and bootstrap miscalibration. They do not diagnose
-which component dominates in the real EEG data. The mean-level t-normal
-coverage of $0.973$--$1.000$ across these scenarios is not a reason to select
-that method post hoc or claim general calibration. Statistical intervals
-throughout this revision are conditional diagnostics; the resource identity
-and descriptive paired differences do not depend on a nominal significance
-threshold. Calibrated inference would require a separately validated procedure
-or a redesigned support/estimand and is not claimed complete by this study.
+% evidence: results/block_t_validation_v13/summary.csv; paper/generated/reviewer_revision_v12/five_block_all_coverage.csv
+The earlier percentile failure is substantive. At Emo's zero-dose
+participant-constant cell, its population-target bias is $-0.0756$ and coverage
+is $0.193$ (Monte Carlo interval $[0.153,0.242]$); the earlier t-normal coverage
+is $0.887$. The block-$t$ construction raises the minimum cell coverage to
+$0.917$, which still does not validate cellwise inference. Its uniform-mean
+coverage is $0.980$--$1.000$ across the eight task--scenario combinations, with
+Wilson lower bounds of $0.957$--$0.987$. These tests support the primary
+uniform-grid mean under the simulated topology, not every cell, the actual EEG
+distribution, arbitrary signal families, or retraining uncertainty. Resource
+identity and descriptive paired differences do not depend on a nominal
+significance threshold; no equivalence claim is made.

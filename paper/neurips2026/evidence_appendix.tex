@@ -54,9 +54,10 @@ training-data identity provenance is not certified here.
 
 \subsection{Complete primary and secondary summaries}
 % evidence: paper/generated/evidence_argument_v10/verification.json
-All tables below are generated from the same hashed aggregates as the main
-tables. No new fitting, bootstrap, or model selection was performed to produce
-this manuscript revision. The score identity $EC-P=(PC-P)+(EC-PC)$ is checked
+All tables below are generated from the same hashed fitted predictions as the
+main tables. The V13 primary interval recomputes the crossed bootstrap with a
+five-block critical value; it performs no new fitting or model selection. The
+score identity $EC-P=(PC-P)+(EC-PC)$ is checked
 for all 300 task--setting--dose combinations after block aggregation, with
 maximum numerical error below $10^{-12}$. This validates a numerical identity,
 not a causal decomposition. Paired intervals are copied from paired contrast
@@ -78,9 +79,10 @@ The bootstrap reuses crossed participant and stimulus multiplicities across
 all fitted predictors. Averages are computed within block and then across
 blocks rather than pretending repeated grid predictions are new observations.
 The finite-cluster coverage diagnostics and invalid-draw counts constrain
-interpretation. These are fixed-fit uncertainty summaries, not repeated-training
-confidence statements or equivalence tests. Neither isolated pointwise
-intervals nor dose-family bands imply simultaneous coverage over every method,
+interpretation. The primary block-$t$ interval addresses the uniform-grid mean
+only and remains a fixed-fit uncertainty summary, not a repeated-training
+confidence statement or equivalence test. Neither isolated pointwise
+ranges nor dose-family bands imply simultaneous coverage over every method,
 task, and secondary endpoint inspected during benchmark development.
 
 \subsection{Known-truth evaluator stress tests}

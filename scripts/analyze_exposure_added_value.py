@@ -15,7 +15,7 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--bootstrap", type=int, default=2000)
     parser.add_argument("--seed", type=int, default=20260902)
-    parser.add_argument("--interval-method", choices=["percentile", "basic", "normal_t"], default="percentile")
+    parser.add_argument("--interval-method", choices=["percentile", "basic", "normal_t", "block_t"], default="percentile")
     parser.add_argument(
         "--paired-model-contrast",
         action="append",

@@ -9,6 +9,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import pandas as pd
+
 from openaffect_eeg.artifacts import sha256_file
 from openaffect_eeg.audit_cli import main as audit_main
 from openaffect_eeg.submission_closure import build_submission_closure
@@ -140,6 +142,28 @@ def run_reviewer_acceptance(project_root: Path, output: Path) -> dict[str, objec
         return {"output_sha256": rebuilt_manifest["outputs"]}
 
     _record_check(checks, "source_linked_evidence_rebuild", closure_check)
+
+    def block_t_check() -> dict[str, object]:
+        source = project_root / "results/block_validation_v12/replicates.csv"
+        folder = project_root / "results/block_t_validation_v13"
+        completion = json.loads((folder / "completion.json").read_text(encoding="utf-8"))
+        if sha256_file(source) != completion["source_replicates_sha256"]:
+            raise ReviewerAcceptanceError("Block-t source simulation hash differs")
+        derived = folder / "replicates.csv"
+        if sha256_file(derived) != completion["replicates_sha256"]:
+            raise ReviewerAcceptanceError("Block-t derived-row hash differs")
+        summary = pd.read_csv(folder / "summary.csv")
+        primary = summary.loc[summary.estimand.eq("uniform_grid_mean")]
+        if len(primary) != 8 or not primary.replicates.eq(300).all():
+            raise ReviewerAcceptanceError("Block-t primary validation is incomplete")
+        return {
+            "primary_rows": len(primary),
+            "replicates_per_row": 300,
+            "coverage_range": [float(primary.coverage.min()), float(primary.coverage.max())],
+            "scope": "five-block fixed-fit uniform-grid mean",
+        }
+
+    _record_check(checks, "block_t_primary_validation", block_t_check)
 
     status = "pass" if checks and all(item["status"] == "pass" for item in checks) else "fail"
     report = {

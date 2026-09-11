@@ -70,11 +70,15 @@ def validate_croissant_metadata(
             _https_url(distribution.get("contentUrl"), field=f"distribution[{index}].contentUrl")
         )
     source_urls = [url for url in distribution_urls if "openneuro.org/datasets/" in url]
-    release_urls = [url for url in distribution_urls if url.endswith(".tar.gz")]
+    release_urls = [
+        url for url in distribution_urls
+        if url.endswith((".tar.gz", ".zip", ".csv"))
+        and "openneuro.org/datasets/" not in url
+    ]
     if not source_urls:
         raise CroissantValidationError("Croissant must retain at least one OpenNeuro provenance URL")
     if not release_urls:
-        raise CroissantValidationError("Croissant must describe the released anonymous archive")
+        raise CroissantValidationError("Croissant must describe a released anonymous artifact")
     record_sets = metadata["recordSet"]
     if not isinstance(record_sets, list) or not record_sets:
         raise CroissantValidationError("Croissant recordSet must be a non-empty list")

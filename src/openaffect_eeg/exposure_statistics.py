@@ -58,7 +58,7 @@ def _interval(draws, *, point=None, method="percentile", cluster_df=None):
         if point is None:
             raise ValueError("Basic interval requires its paired point estimate")
         lo, hi = 2*point-hi, 2*point-lo
-    elif method == "normal_t":
+    elif method in {"normal_t", "block_t"}:
         if point is None or cluster_df is None or cluster_df < 1 or len(finite) < 2:
             return np.nan, np.nan, len(finite)
         from scipy.stats import t
@@ -81,7 +81,7 @@ def analyze_predictions(
     """Analyze a complete model x p x s grid; fail on mismatched test support."""
     if iterations < 100:
         raise ValueError("At least 100 bootstrap draws are required")
-    if interval_method not in {"percentile", "basic", "normal_t"}:
+    if interval_method not in {"percentile", "basic", "normal_t", "block_t"}:
         raise ValueError("Unknown interval method")
     table = predictions.copy()
     subject = "subject_uid" if "subject_uid" in table else "subject_id"
@@ -148,8 +148,10 @@ def analyze_predictions(
     ccc, mae = ccc.reshape(shape), mae.reshape(shape)
     index = {name: i for i, name in enumerate(PREDICTORS)}
     cluster_df = min(min(s["n_participants"], s["n_stimuli_or_conditions"]) for s in supports)-1
+    block_df = len(splits)-1
     def interval(draws, point):
-        return _interval(draws, point=point, method=interval_method, cluster_df=cluster_df)
+        interval_df = block_df if interval_method == "block_t" else cluster_df
+        return _interval(draws, point=point, method=interval_method, cluster_df=interval_df)
     cells, contrast_rows, summary = [], [], []
     for mi, model in enumerate(models):
         for gi, (p, s) in enumerate(grid):
@@ -230,7 +232,8 @@ def analyze_predictions(
     report = dict(iterations=iterations, bootstrap_seed=seed, fixed_seeds=[int(x) for x in splits],
         target_names=list(target_names),
         pointwise_interval_method=interval_method, conservative_cluster_df=int(cluster_df),
-        interval_boundary="Finite-sample coverage not guaranteed; t-normal is a heuristic sensitivity analysis; max-deviation simultaneous bands unchanged",
+        identity_block_df=int(block_df),
+        interval_boundary="The block-t interval uses crossed-bootstrap standard errors and a five-block t critical value; topology-matched coverage is reported for the uniform-grid primary estimand; cellwise ranges remain descriptive; max-deviation simultaneous bands unchanged",
         supports=supports, resampling="shared participant x stimulus multiplicities across fixed splits",
         degenerate_stimulus_factor=any(x["n_stimuli_or_conditions"] < 2 for x in supports),
         simultaneous_family="dose cells within each model and named contrast, not all analyses",

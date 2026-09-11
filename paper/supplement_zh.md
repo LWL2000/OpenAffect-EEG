@@ -18,7 +18,7 @@ Emo 使用既有 100 Hz 原始试次和十秒 EEGNet 裁剪。Urban 仅 64 个 E
 
 ### 全部主要和次要汇总
 
-下列同源表格未重新训练或重采样。全部 300 个聚合格点检查 EC-P=(PC-P)+(EC-PC)，最大数值误差小于 1e-12，只验证分数恒等式。区间来自配对差值，不是独立区间端点相减。<!-- evidence: paper/generated/evidence_argument_v10/verification.json -->
+下列同源表格未重新训练模型。V13 主区间从同一冻结预测重新执行交叉 bootstrap，并按五块聚合使用 df=4；全部 300 个聚合格点检查 EC-P=(PC-P)+(EC-PC)，最大数值误差小于 1e-12，只验证分数恒等式。区间来自配对差值，不是独立区间端点相减。<!-- evidence: paper/generated/evidence_argument_v10/verification.json; paper/generated/final_revision_v13/block_t/added_value_statistics.json -->
 
 <!-- full-sensitivity-v9-tables -->
 
@@ -26,7 +26,9 @@ Emo 使用既有 100 Hz 原始试次和十秒 EEGNet 裁剪。Urban 仅 64 个 E
 
 从零剂量出发，PC 个人剂量效应：Emo +0.2036 [0.0955, 0.3116]、Urban +0.1564 [0.0492, 0.2637]；刺激剂量效应：+0.4907 [0.3581, 0.6233]、+0.3408 [0.2161, 0.4655]；联合效应：+0.6327 [0.4810, 0.7844]、+0.4181 [0.2928, 0.5435]。这里是启发式 t-normal 敏感性区间，对应 percentile 也为正。这不同于正文在固定刺激剂量的 PC-P 比较。<!-- evidence: paper/generated/final_closure_v9/normal_t/table_added_value_summary.csv -->
 
-重采样共享参与者和刺激重数，块内计算再跨块平均，不把网格预测当独立样本。小簇覆盖诊断与无效次数限制解释。固定拟合区间不是重训置信度或等价检验，点区间和剂量族带不统一控制所有模型和次指标。
+重采样共享参与者和刺激重数，块内计算再跨块平均，不把网格预测当独立样本。小簇覆盖诊断与无效次数限制解释。主 block-t 只对均匀网格平均获得拓扑匹配支持；固定拟合区间不是重训置信度或等价检验，单格范围和剂量族带不统一控制所有模型和次指标。
+
+主分析后的稳健性检查包括：更换身份分块并完整重拟合六个设置；在原分块四角上采用三组 EEGNet 初始化；以及只解冻 LaBraM 最后一个 transformer block 和归一化层、通过验证集选 epoch 后在训练加验证上重拟合残差头。替代分块的最大点位移为 Emo 0.0135、Urban 0.0154，12/12 区间跨零；三组 EEGNet 初始化的最大点跨度为 0.0097，12/12 区间跨零；LaBraM 微调为 -0.0110 [-0.1041,+0.0820] 与 -0.0404 [-0.1159,+0.0351]。这些检查使用同一已查看数据，不是新确认队列，也没有覆盖全部 5×5 微调面、任意优化器或任意 checkpoint。<!-- evidence: paper/generated/final_revision_v13/sensitivity/sensitivity_summary.json -->
 
 ### 已知真值评估器压力测试
 

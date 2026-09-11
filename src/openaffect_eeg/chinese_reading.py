@@ -308,7 +308,7 @@ def build_chinese_reading_pdf(
     supplement = (paper / "supplement_zh.md").read_text(encoding="utf-8")
     generated = {
         "<!-- resource-decomposition-v10-table -->": "generated/evidence_argument_v10/decomposition_zh.md",
-        "<!-- primary-v10-table -->": "generated/evidence_argument_v10/primary_zh.md",
+        "<!-- primary-v10-table -->": "generated/final_revision_v13/primary_zh.md",
         "<!-- full-sensitivity-v9-tables -->": "generated/final_closure_v9/tables_zh.md",
     }
     for marker, relative in generated.items():

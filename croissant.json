@@ -18,10 +18,10 @@
   "@type": "sc:Dataset",
   "name": "OpenAffect-EEG Metadata and Evaluation Benchmark",
   "description": "Leakage-resistant trial metadata, frozen split definitions, evaluation cards, aggregate audit results, and reproducibility code for auditing what EEG affect models predict. Raw EEG, derived feature arrays, and restricted stimuli are not distributed.",
-  "url": "https://replace-before-submission.invalid/OpenAffect-EEG",
-  "version": "0.2.0",
+  "url": "https://anonymous.4open.science/r/OpenAffect-EEG-1815/",
+  "version": "0.3.0",
   "dateCreated": "2026-08-31",
-  "dateModified": "2026-08-31",
+  "dateModified": "2026-09-11",
   "license": "https://spdx.org/licenses/MIT.html",
   "creator": [
     {
@@ -37,7 +37,7 @@
     "http://mlcommons.org/croissant/1.0",
     "http://mlcommons.org/croissant/RAI/1.0"
   ],
-  "citeAs": "@software{openaffect_eeg_2026, title={OpenAffect-EEG: Auditing What EEG Emotion Models Actually Predict}, author={Anonymous}, year={2026}}",
+  "citeAs": "@software{openaffect_eeg_2026, title={OpenAffect-EEG: Auditing EEG Added Value Under Matched Label Resources}, author={Anonymous}, year={2026}}",
   "rai:dataCollection": "This release is a secondary harmonization of published EEG emotion-study metadata. It preserves only source-permitted trial identifiers, experimental contexts, split assignments, and aggregate evaluation outputs; recordings and media remain with the original providers.",
   "rai:dataCollectionType": [
     "Secondary Data analysis",
@@ -71,10 +71,10 @@
   "distribution": [
     {
       "@type": "cr:FileObject",
-      "name": "OpenAffect-EEG anonymous release archive",
-      "description": "Code, source-permitted metadata, split definitions, cards, and aggregate audit results. This explicit staging URL must be replaced by a live anonymous artifact URL before submission.",
-      "contentUrl": "https://replace-before-submission.invalid/OpenAffect-EEG-anonymous.tar.gz",
-      "encodingFormat": "application/gzip"
+      "name": "OpenAffect-EEG matched-increment aggregate",
+      "description": "Source-permitted aggregate results for every paired EEG versus EEG-free resource-dose cell in the anonymous review artifact.",
+      "contentUrl": "https://anonymous.4open.science/api/repo/OpenAffect-EEG-1815/file/paper/generated/reviewer_revision_v12/matched_increment_all_cells.csv",
+      "encodingFormat": "text/csv"
     },
     {
       "@type": "cr:FileObject",

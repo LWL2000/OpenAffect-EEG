@@ -1,13 +1,13 @@
 {
-  "content_pages": 8,
+  "content_pages": 9,
   "final_figure_count": 5,
   "missing_final_figures": [],
   "mode": "final",
   "page_limit": 9,
   "pdf": {
     "path": "paper/neurips2026/main.pdf",
-    "sha256": "38a72985f4845beeb0bbaad6f29c05cc693ebc5f50244d01e3db6222edd31249",
-    "size_bytes": 718222
+    "sha256": "49c0bb2d95deaf363ded07d1c477ec1052c229bfb347b8240094b671a11e666d",
+    "size_bytes": 725054
   },
   "status": "pass",
   "text_audits": {
@@ -18,7 +18,7 @@
       "status": "pass"
     },
     "main": {
-      "citation_count": 19,
+      "citation_count": 21,
       "claim_reference_count": 0,
       "error_count": 0,
       "status": "pass"

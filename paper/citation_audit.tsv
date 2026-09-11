@@ -36,6 +36,7 @@ suo2026protocols	arxiv:2607.27655	https://arxiv.org/abs/2607.27655	2026-08-21	ve
 wang2026fmaudit	arxiv:2605.26910	https://arxiv.org/abs/2605.26910	2026-08-21	verified_preprint	Tuning, ablation, and physiological probing audit for EEG-FMs
 bendrich2022feature	10.3390/s22239282	https://doi.org/10.3390/s22239282	2026-09-01	verified	Known/unknown participant and movie evaluation protocols for continuous EEG emotion recognition
 bhosale2022calibration	10.1016/j.bspc.2021.103289	https://doi.org/10.1016/j.bspc.2021.103289	2026-09-01	verified	Few-shot and zero-calibration subject-independent EEG emotion recognition settings
+pandilova2026identity	10.3390/s26175327	https://doi.org/10.3390/s26175327	2026-09-11	verified	Participant-identity confounding, EEG-free participant label-tendency baseline, and matched personalization comparisons on DEAP and DREAMER
 li2021calibration	10.1109/EMBC46164.2021.9629649	https://doi.org/10.1109/EMBC46164.2021.9629649	2026-09-01	verified	Labelled target-user calibration under domain adaptation
 kukhilava2025eegain	arxiv:2505.18175	https://arxiv.org/abs/2505.18175	2026-09-01	verified_preprint	Unified EEG emotion evaluation protocol and EEGain framework
 liu2026eegemolib	10.1093/nsr/nwag460	https://doi.org/10.1093/nsr/nwag460	2026-09-01	verified	Standardized subject-dependent and subject-independent EEG emotion benchmarks and EEGEmoLib toolbox

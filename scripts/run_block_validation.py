@@ -56,7 +56,8 @@ def main():
                     draws = np.column_stack([draws, draws.mean(1)])
                     exact = np.append(exact, exact.mean())
                     labels = [f'p{p}_s{s}' for p, s in grid]+['uniform_grid_mean']
-                    for method, (low, high) in intervals(point, draws, info['cluster_df']).items():
+                    for method, (low, high) in intervals(
+                            point, draws, info['cluster_df'], block_df=info['n_blocks']-1).items():
                         for j, label in enumerate(labels):
                             rows.append(dict(**meta, **info, method=method, estimand=label,
                                 truth=exact[j], estimate=point[j], ci_low=low[j], ci_high=high[j],

@@ -1,0 +1,9 @@
+{
+  "status": "executed_requires_interpretation",
+  "source_replicates": "results/block_validation_v12/replicates.csv",
+  "source_replicates_sha256": "28b10a2a4d9a7eb3e38ece6dc835e57308a2fcfc8f055f9c2f395bda28af5cd8",
+  "replicates_sha256": "261ce6f346a0c18bfad125ead44db682045f1e6beac0017baca6ae76b2381ec0",
+  "transformation": "Preserve the normal_t crossed-bootstrap standard error and replace its cluster critical value by t_(0.975, n_identity_blocks-1).",
+  "boundary": "Validates the fixed-fit uniform-grid mean on four simulated signal families with the observed five-block topology; cell intervals remain descriptive and retraining uncertainty is outside scope.",
+  "elapsed_seconds": 0.5
+}
