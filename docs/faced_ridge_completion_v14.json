@@ -1,0 +1,19 @@
+{
+  "cell_count": 2500,
+  "dataset_id": "faced_confirmation_v14",
+  "dose_grid": [
+    0,
+    1,
+    2,
+    4,
+    8
+  ],
+  "manifest_sha256": "a72ab624f1288b6ed9a38dd0d029a93ad8b7347cad026cefa9e88d2b3e1a7da8",
+  "model": "bandpower_ridge",
+  "note": "Completion and integrity record only; scientific interpretation awaits prespecified neural models and joint uncertainty analysis.",
+  "predictions_sha256": "5b7b2f7edb1667835c313e4e17d0da1ee438f2c4bac25080fc7f934f1a426ab1",
+  "results_interpreted": false,
+  "rows": 430500,
+  "split_count": 100,
+  "status": "complete"
+}
