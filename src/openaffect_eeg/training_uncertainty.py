@@ -88,9 +88,11 @@ def analyze_training_uncertainty(
     if len(grid) != len(participant_doses) * len(stimulus_doses):
         raise ValueError("Malformed resource grid")
 
+    rotation_column = "fold_rotation_seed" if "fold_rotation_seed" in predictions else None
     key = ["assignment_seed", "trial_uid"]
     metadata_columns = [
         *key,
+        *([rotation_column] if rotation_column else []),
         "subject_uid",
         "stimulus_uid",
         *[f"target_{name}" for name in targets],
@@ -123,8 +125,28 @@ def analyze_training_uncertainty(
 
     rng = np.random.default_rng(seed)
     weights = _identity_weights(reference, iterations=iterations, rng=rng)
-    ccc, mae = weighted_scores(truth, estimates, weights)
-    shape = (iterations + 1, len(training_seeds), len(grid), 2)
+    if rotation_column:
+        rotation_seeds = sorted(int(value) for value in reference[rotation_column].unique())
+        rotation_masks = [reference[rotation_column].eq(value).to_numpy() for value in rotation_seeds]
+    else:
+        rotation_seeds = [None]
+        rotation_masks = [np.ones(len(reference), dtype=bool)]
+    ccc_by_rotation, mae_by_rotation = [], []
+    for mask in rotation_masks:
+        ccc_rotation, mae_rotation = weighted_scores(
+            truth[mask], estimates[mask], weights[:, mask]
+        )
+        ccc_by_rotation.append(ccc_rotation)
+        mae_by_rotation.append(mae_rotation)
+    ccc = np.stack(ccc_by_rotation, axis=1)
+    mae = np.stack(mae_by_rotation, axis=1)
+    shape = (
+        iterations + 1,
+        len(rotation_seeds),
+        len(training_seeds),
+        len(grid),
+        2,
+    )
     ccc = ccc.reshape(shape)
     mae = mae.reshape(shape)
     ccc_delta = ccc[..., 1] - ccc[..., 0]
@@ -135,15 +157,20 @@ def analyze_training_uncertainty(
         len(training_seeds),
         size=(iterations, len(training_seeds)),
     )
-    point_cells = ccc_delta[0].mean(axis=0)
-    point_mae_cells = mae_delta[0].mean(axis=0)
+    rotation_draws = rng.integers(
+        0,
+        len(rotation_seeds),
+        size=(iterations, len(rotation_seeds)),
+    )
+    point_cells = ccc_delta[0].mean(axis=(0, 1))
+    point_mae_cells = mae_delta[0].mean(axis=(0, 1))
     bootstrap_cells = np.empty((iterations, len(grid)))
     bootstrap_mae_cells = np.empty((iterations, len(grid)))
     for draw in range(iterations):
-        bootstrap_cells[draw] = ccc_delta[draw + 1, seed_draws[draw]].mean(axis=0)
-        bootstrap_mae_cells[draw] = mae_delta[
-            draw + 1, seed_draws[draw]
-        ].mean(axis=0)
+        selected_ccc = ccc_delta[draw + 1, rotation_draws[draw]][:, seed_draws[draw]]
+        selected_mae = mae_delta[draw + 1, rotation_draws[draw]][:, seed_draws[draw]]
+        bootstrap_cells[draw] = selected_ccc.mean(axis=(0, 1))
+        bootstrap_mae_cells[draw] = selected_mae.mean(axis=(0, 1))
     valid = np.isfinite(bootstrap_cells).all(axis=1)
     if valid.sum() < max(100, int(iterations * 0.9)):
         raise RuntimeError("Too many degenerate crossed-bootstrap draws")
@@ -199,6 +226,8 @@ def analyze_training_uncertainty(
         "targets": list(targets),
         "training_seeds": training_seeds,
         "training_seed_count": len(training_seeds),
+        "fold_rotation_seeds": rotation_seeds,
+        "fold_rotation_count": len(rotation_seeds),
         "assignment_seeds": sorted(
             int(value) for value in reference.assignment_seed.unique()
         ),
@@ -211,7 +240,7 @@ def analyze_training_uncertainty(
         "bootstrap_seed": seed,
         "resampling": (
             "Shared participant-by-stimulus multiplicities and resampled "
-            "executed training seeds."
+            "executed training seeds and supplied fold rotations."
         ),
         "primary": {
             "estimand": "uniform mean matched EEG CCC increment over resource cells",
@@ -226,8 +255,8 @@ def analyze_training_uncertainty(
             "radius": simultaneous_radius,
         },
         "boundary": (
-            "Includes identity and executed training-seed uncertainty. Fold "
-            "rotations are fixed unless distinct rotation outputs are supplied; "
+            "Includes identity, executed training-seed, and supplied fold-rotation "
+            "uncertainty. A single supplied rotation remains fixed; "
             "arbitrary architecture and tuning-policy uncertainty is not covered."
         ),
     }

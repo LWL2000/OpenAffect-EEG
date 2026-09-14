@@ -69,3 +69,16 @@ def test_training_uncertainty_rejects_single_seed() -> None:
         assert "At least two" in str(error)
     else:
         raise AssertionError("single-seed input should fail")
+
+
+def test_fold_rotations_are_reported_and_resampled() -> None:
+    first = synthetic_predictions()
+    first["fold_rotation_seed"] = 41
+    second = synthetic_predictions(effect=0.01)
+    second["fold_rotation_seed"] = 59
+    second["assignment_seed"] += 1000
+    _, report = analyze_training_uncertainty(
+        pd.concat([first, second], ignore_index=True), iterations=120, seed=7
+    )
+    assert report["fold_rotation_seeds"] == [41, 59]
+    assert report["fold_rotation_count"] == 2
