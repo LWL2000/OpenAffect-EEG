@@ -19,6 +19,7 @@ import pandas as pd
 import yaml
 
 from extract_labram_features import repository_commit, sha256_file
+from openaffect_eeg.confirmatory_execution import split_records
 from openaffect_eeg.final_robustness import population_targets, prediction_table
 from openaffect_eeg.labram import EMO_64_CHANNELS
 from run_labram_finetune_v13 import fit_residual, write_json
@@ -72,7 +73,15 @@ def dataset_tensors(args: argparse.Namespace, spec: dict, table: pd.DataFrame):
     import torch
 
     tensors = torch.as_tensor(np.asarray(raw[raw_index], dtype=np.float32), device="cuda")
-    if args.dataset == "ds005540":
+    if "channel_order" in spec and "units" in spec:
+        channels = list(spec["channel_order"])
+        if spec["units"] == "microvolts":
+            scale_factor = 1.0
+        elif spec["units"] == "physical volts":
+            scale_factor = 1_000_000.0
+        else:
+            raise ValueError("Configured tensor units must be microvolts or physical volts")
+    elif args.dataset == "ds005540":
         channels = list(EMO_64_CHANNELS)
         scale_factor = 1.0
     else:
@@ -127,14 +136,25 @@ def main() -> None:
         "trainable_final_blocks": args.trainable_final_blocks,
         "keep_checkpoints": args.keep_checkpoints,
         "doses": list(doses),
+        "split_count": len(split_records(cfg, base)),
+        "input_sha256": {
+            "tensors": sha256_file(args.data_root / spec["tensors"]),
+            "uids": sha256_file(args.data_root / spec["uids"]),
+            **({"split_manifest": sha256_file(base / "split_manifest.csv")}
+               if (base / "split_manifest.csv").exists() else {}),
+        },
     }
-    write_json(args.output / "manifest.json", manifest)
+    manifest_path = args.output / "manifest.json"
+    if manifest_path.exists() and json.loads(manifest_path.read_text(encoding="utf-8")) != manifest:
+        raise ValueError("Frozen LaBraM inputs or source changed; use a new output directory")
+    write_json(manifest_path, manifest)
 
     rows: list[pd.DataFrame] = []
     training: list[dict] = []
-    for fold in range(int(cfg["fold_count"])):
-        assignment_seed = int(cfg["design_seed"]) + fold
-        folder = base / "assignments" / f"seed-{assignment_seed}"
+    for split in split_records(cfg, base):
+        fold = int(split["split_index"])
+        assignment_seed = int(split["assignment_seed"])
+        folder = Path(split["folder_path"])
         for stimulus_dose in doses:
             assignment0 = pd.read_csv(
                 folder / f"participant-00_stimulus-{stimulus_dose:02d}.tsv.gz",
@@ -185,6 +205,8 @@ def main() -> None:
                     {
                         "fold": fold,
                         "assignment_seed": assignment_seed,
+                        **({"fold_rotation_seed": int(split["fold_rotation_seed"])}
+                           if "fold_rotation_seed" in split else {}),
                         "stimulus_dose": stimulus_dose,
                         "training_seed": training_seed,
                         "prediction_sha256": sha256_file(prediction_path),
@@ -209,8 +231,12 @@ def main() -> None:
                     frame.insert(0, "representation", "labram_final4_residual")
                     frame.insert(1, "assignment_seed", assignment_seed)
                     frame.insert(2, "training_seed", training_seed)
-                    frame.insert(3, "participant_dose", participant_dose)
-                    frame.insert(4, "stimulus_dose", stimulus_dose)
+                    offset = 3
+                    if "fold_rotation_seed" in split:
+                        frame.insert(offset, "fold_rotation_seed", int(split["fold_rotation_seed"]))
+                        offset += 1
+                    frame.insert(offset, "participant_dose", participant_dose)
+                    frame.insert(offset + 1, "stimulus_dose", stimulus_dose)
                     rows.append(frame)
                 write_json(args.output / "training.json", training)
                 print(
