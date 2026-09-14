@@ -37,6 +37,11 @@ preprocessing:
     - nonfinite_selected_eeg
     - nonfinite_or_out_of_range_valence_arousal
     - participant_missing_any_of_16_short_trials
+  target_transform: (rating - 5) / 4
+  bandpower:
+    welch_window_seconds: 2
+    bands_hz: [[2, 4], [4, 8], [8, 13], [13, 30], [30, 45]]
+    transform: log10(mean_psd + 1e-12)
 design:
   assignment_seed: 20260914
   participant_folds: 5

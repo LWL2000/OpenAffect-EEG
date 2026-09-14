@@ -73,6 +73,13 @@ scale stops ingestion until source documentation is obtained. File hashes,
 observed shapes, the scale decision, participant exclusions, and signal-only QC
 summaries are locked before labels are unsealed.
 
+After unsealing, valence and arousal ratings must be finite and in `[1, 9]` and
+are mapped linearly to `[-1, 1]` by `(rating - 5) / 4`. The deterministic Ridge
+view contains per-channel log10 Welch band power at 100 Hz using two-second
+windows and bands 2--4, 4--8, 8--13, 13--30, and 30--45 Hz, with `1e-12` added
+before the logarithm. These transformations were fixed without viewing label
+values.
+
 No exclusion may depend on a label value, an EEG/no-EEG score, an effect sign,
 or model performance. Unexpected source defects may trigger a dated amendment;
 the original rule and reason will remain visible.
