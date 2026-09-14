@@ -20,6 +20,7 @@ import yaml
 
 from extract_labram_features import repository_commit, sha256_file
 from openaffect_eeg.confirmatory_execution import split_records
+from openaffect_eeg.confirmation_controls import residual_training_targets, synthetic_target_signal
 from openaffect_eeg.final_robustness import population_targets, prediction_table
 from openaffect_eeg.labram import EMO_64_CHANNELS
 from run_labram_finetune_v13 import fit_residual, write_json
@@ -56,6 +57,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-epochs", type=int, default=40)
     parser.add_argument("--patience", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument(
+        "--control",
+        choices=("observed", "label_permutation", "synthetic_signal"),
+        default="observed",
+    )
     parser.add_argument(
         "--keep-checkpoints",
         action="store_true",
@@ -101,6 +107,8 @@ def main() -> None:
     cfg = load_config(args.config)
     if args.dataset not in cfg["datasets"]:
         raise ValueError(f"Unknown dataset {args.dataset}")
+    if args.control != "observed" and args.dataset != "amigos_confirmation_v14":
+        raise ValueError("v14 neural controls are prespecified for AMIGOS only")
     spec = cfg["datasets"][args.dataset]
     doses = tuple(int(value) for value in cfg.get("doses", (0, 1, 2, 4, 8)))
     if doses != (0, 1, 2, 4, 8):
@@ -118,6 +126,15 @@ def main() -> None:
     )
     table["tensor_index"] = np.arange(len(table))
     tensors, channels, scale_factor = dataset_tensors(args, spec, table)
+    if args.control == "synthetic_signal":
+        import torch
+        addition = synthetic_target_signal(
+            table[list(spec["targets"])].to_numpy(float),
+            channels=tensors.shape[1],
+            samples=tensors.shape[2],
+            amplitude=100.0 / scale_factor,
+        )
+        tensors = tensors + torch.as_tensor(addition, device=tensors.device)
 
     args.output.mkdir(parents=True, exist_ok=True)
     source_paths = [
@@ -129,6 +146,7 @@ def main() -> None:
     ]
     manifest = {
         "dataset_id": args.dataset,
+        "control": args.control,
         "model_repository_commit": repository_commit(args.model_repository),
         "sources": {str(path): sha256_file(path) for path in source_paths},
         "scope": "Full 5x5 resource grid with five-seed LaBraM tail adaptation.",
@@ -162,6 +180,10 @@ def main() -> None:
             )
             resources = population_targets(table, assignment0, targets)
             for training_seed in training_seeds:
+                fit_seed = training_seed + assignment_seed + stimulus_dose
+                training_targets = residual_training_targets(
+                    resources, control=args.control, seed=fit_seed
+                )
                 fit_id = (
                     f"fold-{fold}_stimulus-{stimulus_dose}_"
                     f"training-seed-{training_seed}"
@@ -180,15 +202,15 @@ def main() -> None:
                     prediction, meta = fit_residual(
                         tensors,
                         resources["train"].tensor_index.to_numpy(),
-                        resources["train_y"] - resources["train_loo"],
+                        training_targets["train"],
                         resources["validation"].tensor_index.to_numpy(),
-                        resources["val_y"] - resources["val_prior"],
+                        training_targets["validation"],
                         resources["fit"].tensor_index.to_numpy(),
-                        resources["fit_y"] - resources["fit_loo"],
+                        training_targets["fit"],
                         channels=channels,
                         repository=args.model_repository,
                         checkpoint=args.checkpoint,
-                        seed=training_seed + assignment_seed + stimulus_dose,
+                        seed=fit_seed,
                         crop_samples=int(spec["crop_samples"]),
                         scale_factor=scale_factor,
                         output=model_path,
@@ -228,7 +250,7 @@ def main() -> None:
                         zero,
                         prediction,
                     )
-                    frame.insert(0, "representation", "labram_final4_residual")
+                    frame.insert(0, "representation", f"labram_final4_residual_{args.control}")
                     frame.insert(1, "assignment_seed", assignment_seed)
                     frame.insert(2, "training_seed", training_seed)
                     offset = 3

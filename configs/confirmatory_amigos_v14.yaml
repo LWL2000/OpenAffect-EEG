@@ -82,8 +82,16 @@ training:
   selection_metric: macro_mae
   selection_tie_breaker: lower_parameter_count
 controls:
-  label_permutation_negative: required
-  synthetic_eeg_signal_positive: required
+  scope: full_5x5_grid_all_rotations_all_training_seeds
+  label_permutation_negative:
+    required: true
+    warning_threshold_primary_ccc_increment: 0.10
+  synthetic_eeg_signal_positive:
+    required: true
+    signal: valence_10hz_channel_1_arousal_15hz_channel_2
+    amplitude_microvolts_at_unit_target: 100.0
+    minimum_primary_ccc_increment: 0.10
+  interpretation: controls_are_diagnostic_and_not_empirical_dataset_results
 inference:
   primary_metric: ccc
   primary_target_aggregation: macro_valence_arousal

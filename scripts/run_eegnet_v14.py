@@ -15,6 +15,7 @@ import yaml
 
 from openaffect_eeg.artifacts import sha256_file
 from openaffect_eeg.confirmatory_execution import split_records, write_json
+from openaffect_eeg.confirmation_controls import residual_training_targets, synthetic_target_signal
 from openaffect_eeg.final_robustness import (
     GPURegressionConfig,
     fit_gpu_regression,
@@ -39,10 +40,17 @@ def main() -> None:
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--training-seed", type=int, action="append")
     parser.add_argument("--keep-checkpoints", action="store_true")
+    parser.add_argument(
+        "--control",
+        choices=("observed", "label_permutation", "synthetic_signal"),
+        default="observed",
+    )
     args = parser.parse_args()
 
     config = load_config(args.config)
     spec = config["datasets"][args.dataset]
+    if args.control != "observed" and args.dataset != "amigos_confirmation_v14":
+        raise ValueError("v14 neural controls are prespecified for AMIGOS only")
     doses = tuple(int(value) for value in config["doses"])
     training_seeds = tuple(args.training_seed or config["training_seeds"])
     if doses != (0, 1, 2, 4, 8):
@@ -61,7 +69,14 @@ def main() -> None:
     if not torch.cuda.is_available():
         raise RuntimeError("A CUDA GPU is required")
     raw = np.load(args.data_root / spec["tensors"], mmap_mode="r", allow_pickle=False)
-    tensors = torch.as_tensor(np.asarray(raw[raw_index], dtype=np.float32), device="cuda")
+    tensor_array = np.asarray(raw[raw_index], dtype=np.float32)
+    if args.control == "synthetic_signal":
+        tensor_array = tensor_array + synthetic_target_signal(
+            table[list(spec["targets"])].to_numpy(float),
+            channels=tensor_array.shape[1],
+            samples=tensor_array.shape[2],
+        )
+    tensors = torch.as_tensor(tensor_array, device="cuda")
     if not torch.isfinite(tensors).all():
         raise ValueError("EEG tensors contain non-finite values")
 
@@ -69,6 +84,7 @@ def main() -> None:
     sources = [args.config, Path(__file__), Path(inspect.getfile(fit_gpu_regression))]
     manifest = {
         "dataset_id": args.dataset,
+        "control": args.control,
         "scope": "Locked 5x5 resource grid, five EEGNet seeds, validation-selected learning rate.",
         "training_seeds": list(training_seeds),
         "doses": list(doses),
@@ -96,6 +112,10 @@ def main() -> None:
             )
             resources = population_targets(table, assignment0, target_columns)
             for training_seed in training_seeds:
+                fit_seed = training_seed + assignment_seed + stimulus_dose
+                training_targets = residual_training_targets(
+                    resources, control=args.control, seed=fit_seed
+                )
                 candidates: list[tuple[str, np.ndarray, dict]] = []
                 for setting, learning_rate in config["eegnet_settings"].items():
                     fit_id = (
@@ -120,12 +140,12 @@ def main() -> None:
                             prediction, metadata = fit_gpu_regression(
                                 tensors,
                                 resources["train"].tensor_index.to_numpy(),
-                                resources["train_y"] - resources["train_loo"],
+                                training_targets["train"],
                                 resources["validation"].tensor_index.to_numpy(),
-                                resources["val_y"] - resources["val_prior"],
+                                training_targets["validation"],
                                 resources["fit"].tensor_index.to_numpy(),
-                                resources["fit_y"] - resources["fit_loo"],
-                                seed=training_seed + assignment_seed + stimulus_dose,
+                                training_targets["fit"],
+                                seed=fit_seed,
                                 config=train_config,
                                 checkpoint=checkpoint_path,
                             )
@@ -188,7 +208,7 @@ def main() -> None:
                         np.zeros_like(prediction),
                         prediction,
                     )
-                    frame.insert(0, "representation", "eegnet_selected_residual")
+                    frame.insert(0, "representation", f"eegnet_selected_residual_{args.control}")
                     frame.insert(1, "assignment_seed", assignment_seed)
                     frame.insert(2, "training_seed", training_seed)
                     offset = 3

@@ -29,11 +29,18 @@ def main() -> None:
     parser.add_argument("--equivalence-margin", type=float, default=0.05)
     parser.add_argument("--strict-margin", type=float, default=0.025)
     parser.add_argument(
+        "--control",
+        choices=("observed", "label_permutation", "synthetic_signal"),
+        default="observed",
+    )
+    parser.add_argument(
         "--equivalence-scope",
         choices=("exploratory", "confirmatory"),
         default="exploratory",
     )
     args = parser.parse_args()
+    if args.control != "observed" and args.equivalence_scope == "confirmatory":
+        raise ValueError("Synthetic controls cannot receive a confirmatory equivalence label")
 
     predictions = pd.read_csv(args.predictions, sep="\t")
     cells, report = analyze_training_uncertainty(
@@ -49,6 +56,23 @@ def main() -> None:
     report["input_predictions_sha256"] = sha256_file(args.predictions)
     report["cell_table_sha256"] = sha256_file(cells_path)
     report["equivalence_scope"] = args.equivalence_scope
+    estimate = float(report["primary"]["estimate"])
+    if args.control == "label_permutation":
+        report["control_diagnostic"] = {
+            "control": args.control,
+            "warning_threshold": 0.10,
+            "warning": bool(estimate > 0.10),
+            "rule": "warn if the primary matched CCC increment exceeds +0.10",
+        }
+    elif args.control == "synthetic_signal":
+        report["control_diagnostic"] = {
+            "control": args.control,
+            "minimum_expected_increment": 0.10,
+            "warning": bool(estimate < 0.10),
+            "rule": "warn if the primary matched CCC increment is below +0.10",
+        }
+    else:
+        report["control_diagnostic"] = {"control": "observed", "warning": False}
     (args.output / "training_uncertainty_summary.json").write_text(
         json.dumps(report, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",

@@ -128,8 +128,17 @@ as the deterministic tie-breaker. Test labels are never used for checkpoint,
 epoch, hyperparameter, preprocessing, or model selection.
 
 A label-permutation negative control and a synthetic EEG-signal positive
-control must pass before real test effects are interpreted. Failure of a model
-or seed is reported; it is not removed based on its direction or magnitude.
+control run over the full design before real test effects are interpreted. In
+the negative control, residual targets are permuted independently within the
+training and validation partitions, preserving their values and sizes; a
+primary CCC increment above `+0.10` triggers a leakage/debugging warning. In
+the positive control, target valence and arousal are deliberately encoded as
+100-microvolt 10-Hz and 15-Hz sinusoids in the first two EEG channels; a primary
+CCC increment below `+0.10` triggers a sensitivity/optimization warning. These
+fixed thresholds are diagnostic engineering checks, not hypothesis tests or
+empirical AMIGOS findings. All control estimates and warnings are retained.
+Failure of a model or seed is reported; it is not removed based on its direction
+or magnitude.
 
 ## Estimands and inference
 
