@@ -3,7 +3,26 @@
 这三项必须由真实的人完成。脚本会核对文件、版本和哈希，但不能替代签署人、
 两名人工编码者或独立复现者的身份与判断。
 
-## 1. 获取 AMIGOS 后交给自动管线
+## 1. 获取开放 FACED 数据并交给自动管线
+
+AMIGOS 方案已在未访问任何试次标签或 EEG 的情况下，因 EULA 和下载端点的可访问性
+问题被 FACED `nm000112` v1.1.3 替代。修订记录见
+`docs/confirmatory_dataset_amendment_v14.md`，不得删除原 AMIGOS 方案的审计记录。
+
+FACED 使用 CC-BY-4.0，固定版本入口为：
+`https://data.nemar.org/nm000112/v1.1.3/`。优先使用 NEMAR CLI 的按受试者、可续传下载，
+避免一次下载 22.7 GB 压缩包；下载后的原始 BDF、事件表和个体标签放在仓库外。
+
+```bash
+npm install -g nemar-cli
+nemar dataset download nm000112 --subjects sub-000,sub-001
+```
+
+先用少量受试者验证摄取程序，再扩展到固定版本的全部受试者。正式 QC 必须先生成并
+锁定不包含评分值的结构报告，之后才允许解封 Valence/Arousal。若结构 QC 后少于 25
+名参与者完整保留 28 个视频，则本确认数据集失败，不得看完结果再换另一个数据集。
+
+以下旧 AMIGOS 步骤仅作为历史审计记录保留，不再执行。
 
 1. 在 AMIGOS 官方页面下载 EULA：
    `https://www.eecs.qmul.ac.uk/mmv/datasets/amigos/doc/eula.pdf`。

@@ -1,9 +1,15 @@
 # Outcome-blind AMIGOS confirmation protocol (v14)
 
-Status: locked before receipt or inspection of AMIGOS recordings or labels  
-Lock date: 2026-09-14 (Asia/Shanghai)  
-Parent manuscript commit: `90ec1ce59bfb9858fe79fa9ad2eec155f60995a4`  
+Status: superseded outcome-blind on 2026-09-14 before receipt or inspection of
+AMIGOS recordings or labels; retained as an audit trail
+Lock date: 2026-09-14 (Asia/Shanghai)
+Parent manuscript commit: `90ec1ce59bfb9858fe79fa9ad2eec155f60995a4`
 Machine-readable companion: `configs/confirmatory_amigos_v14.yaml`
+
+The replacement and its access-only rationale are recorded in
+`docs/confirmatory_dataset_amendment_v14.md`. No AMIGOS outcome was observed,
+so this is a pre-outcome feasibility amendment rather than a response to a
+scientific result.
 
 ## Purpose and confirmatory status
 

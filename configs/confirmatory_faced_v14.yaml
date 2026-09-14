@@ -1,52 +1,54 @@
-version: confirmatory_amigos_v14
-status: superseded_outcome_blind_before_data_access
-superseded_by: confirmatory_faced_v14
-superseded_date: 2026-09-14
+version: confirmatory_faced_v14
+status: outcome_blind_locked
 lock_date: 2026-09-14
-parent_commit: 90ec1ce59bfb9858fe79fa9ad2eec155f60995a4
+parent_commit: 1832b6bfb198de11236aa30c514a420dd4644421
+amends: confirmatory_amigos_v14
 dataset:
-  id: amigos_short_individual
-  source: AMIGOS
-  access: eula_gated
-  outcome_files_received_at_lock: false
-  arm: short_video_individual_viewing
+  id: faced_nemar_v1_1_3
+  source: NEMAR nm000112
+  version: v1.1.3
+  doi: 10.82901/nemar.nm000112
+  license: CC-BY-4.0
+  versioned_base_url: https://data.nemar.org/nm000112/v1.1.3/
+  access: direct_anonymous_versioned
+  trial_outcomes_accessed_at_lock: false
+  eeg_samples_accessed_at_lock: false
   minimum_eligible_participants: 25
-  minimum_common_stimuli: 12
-  targets: [valence, arousal]
-  labels_sealed_during_structural_qc: true
-  expected_files: Data_Preprocessed_P01.mat through Data_Preprocessed_P40.mat
-  required_mat_variables: [joined_data, labels_selfassessment]
-  short_trial_count: 16
-  source_sampling_hz: 128
-  eeg_channels: [AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8, FC6, F4, F8, AF4]
+  required_common_stimuli: 28
+  targets: [Valence, Arousal]
+  target_documented_range: [0.0, 7.0]
+  required_event_columns: [onset, duration, video_index, Valence, Arousal]
+  required_video_indices: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+  eeg_channels: [Fp1, Fp2, Fz, F3, F4, F7, F8, FC1, FC2, FC5, FC6, Cz, C3, C4, T3, T4, A1, A2, CP1, CP2, CP5, CP6, Pz, P3, P4, T5, T6, PO3, PO4, Oz, O1, O2]
 preprocessing:
-  remove_baseline_samples: 640
-  stimulus_segment: central_30_seconds
-  required_post_baseline_samples: 3840
+  segment: last_30_seconds_before_video_offset
+  reference: instantaneous_common_average
+  bandpass_hz: [0.5, 45.0]
+  butterworth_order: 4
+  zero_phase: true
+  filter_pad_seconds: 2.0
   output_sampling_hz: 100
-  resample_poly_up: 25
-  resample_poly_down: 32
+  output_samples: 3000
+  unit_after_mne_read: volts
+  output_unit: microvolts
+  microvolt_median_channel_sd: [0.1, 1000.0]
   common_stimulus_complete_case: true
-  unit_rule:
-    microvolt_median_channel_sd: [0.1, 1000.0]
-    volt_median_channel_sd: [0.0000001, 0.001]
-    otherwise: stop_for_documentation
+  target_transform: (rating - 3.5) / 3.5
   exclusions:
-    - missing_or_malformed_required_variable
-    - missing_short_trial_signal_or_label
-    - fewer_than_14_signal_channels
-    - fewer_than_3840_post_baseline_samples
+    - unreadable_bdf_without_repair
+    - missing_or_duplicate_required_video_index
+    - missing_required_channel_or_sampling_metadata
+    - event_or_window_outside_recording_bounds
+    - fewer_than_30_seconds_before_video_offset
     - nonfinite_selected_eeg
     - nonfinite_or_out_of_range_valence_arousal
-    - participant_missing_any_of_16_short_trials
-  target_transform: (rating - 5) / 4
+    - participant_missing_any_of_28_trials
   bandpower:
     welch_window_seconds: 2
     bands_hz: [[2, 4], [4, 8], [8, 13], [13, 30], [30, 45]]
     transform: log10(mean_psd + 1e-12)
 design:
   assignment_seed: 20260914
-  resource_assignment_seed_rule: assignment_seed + global_split_index
   participant_folds: 5
   stimulus_folds: 4
   use_all_fold_cross_products: true
@@ -56,10 +58,8 @@ design:
   stimulus_doses: [0, 1, 2, 4, 8]
   unavailable_on_resource_shortfall: true
 models:
-  matched_no_eeg:
-    enabled: true
-  bandpower_ridge:
-    alphas: [0.1, 1.0, 10.0, 100.0]
+  matched_no_eeg: {enabled: true}
+  bandpower_ridge: {alphas: [0.1, 1.0, 10.0, 100.0]}
   eegnet:
     implementation: braindecode_1_2
     learning_rates: [0.001, 0.0001]
@@ -93,7 +93,6 @@ controls:
     signal: valence_10hz_channel_1_arousal_15hz_channel_2
     amplitude_microvolts_at_unit_target: 100.0
     minimum_primary_ccc_increment: 0.10
-  interpretation: controls_are_diagnostic_and_not_empirical_dataset_results
 inference:
   primary_metric: ccc
   primary_target_aggregation: macro_valence_arousal
@@ -111,7 +110,7 @@ equivalence:
   tost_alpha_each_side: 0.05
   decision_interval_confidence: 0.90
   estimation_interval_confidence: 0.95
-  confirmatory_scope: amigos_only
+  confirmatory_scope: faced_only
 reporting:
   no_sign_based_stopping: true
   retain_all_failures_and_deviations: true
