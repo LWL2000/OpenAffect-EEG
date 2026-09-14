@@ -1,0 +1,30 @@
+{
+  "bandpower_shape": [
+    3444,
+    30,
+    5
+  ],
+  "dataset": "nm000112",
+  "excluded": [],
+  "note": "No target distribution or model outcome was used to alter the frozen protocol.",
+  "outputs_sha256": {
+    "faced_100hz_30s_microvolts.npy": "3e3a5f69badcaf7a30c4f62870aa1fc58d644c39244865c09973ac96f6bbb8b9",
+    "faced_bandpower.npz": "975249c67c414943fcbafddeff4fde107a30884d3f951190586012dd722f5901",
+    "faced_trial_uids.npy": "6c2fbb8d5a111a6003a09e868c1b0080d06667fd8d7cc56c1e1b8afdcc4beda8",
+    "faced_trials.tsv.gz": "b3c509dd41b18bd45ea672dde1a467704a5b494e9cdb45ca667eac31261a4702"
+  },
+  "participants": 123,
+  "raw_data_committed": false,
+  "signal_qc_report_sha256": "034d5167a57bd2da6457b992233d6cf0551f6f072aca74c2fca950f5715bdd48",
+  "status": "complete",
+  "stimuli": 28,
+  "target_transform": "(rating - 3.5) / 3.5",
+  "targets_unsealed": true,
+  "tensor_shape": [
+    3444,
+    30,
+    3000
+  ],
+  "trials": 3444,
+  "version": "v1.1.3"
+}

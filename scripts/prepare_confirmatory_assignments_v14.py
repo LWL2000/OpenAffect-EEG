@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile the locked AMIGOS crossed-fold resource assignments."""
+"""Compile a locked confirmation dataset's crossed-fold resource assignments."""
 from __future__ import annotations
 
 import argparse
@@ -42,9 +42,17 @@ def prepare(config_path: Path, data_root: Path, assignments_root: Path, dataset:
     trials = pd.read_csv(trial_path, sep="\t").sort_values("trial_uid").reset_index(drop=True)
     required = {"trial_uid", "subject_uid", "stimulus_uid", *spec["targets"]}
     if required - set(trials) or trials.trial_uid.duplicated().any():
-        raise ValueError("Malformed eligible AMIGOS trial table")
-    if trials.subject_uid.nunique() < 25 or trials.stimulus_uid.nunique() != 16:
-        raise ValueError("AMIGOS confirmation requires at least 25 complete participants and 16 stimuli")
+        raise ValueError("Malformed eligible confirmation trial table")
+    minimum_participants = int(spec.get("minimum_participants", 25))
+    required_stimuli = int(spec.get("required_stimuli", 16))
+    if (
+        trials.subject_uid.nunique() < minimum_participants
+        or trials.stimulus_uid.nunique() != required_stimuli
+    ):
+        raise ValueError(
+            f"{dataset} requires at least {minimum_participants} complete "
+            f"participants and exactly {required_stimuli} stimuli"
+        )
 
     base = assignments_root / dataset
     base.mkdir(parents=True, exist_ok=True)
@@ -117,7 +125,10 @@ def prepare(config_path: Path, data_root: Path, assignments_root: Path, dataset:
         "input_sha256": sha256_file(trial_path),
         "manifest_sha256": sha256_file(base / "split_manifest.csv"),
         "outcome_blind": False,
-        "boundary": "Assignments are deterministic and were specified before AMIGOS outcomes were accessed.",
+        "boundary": (
+            "Assignments are deterministic and the design was specified before "
+            f"{dataset} outcomes were accessed."
+        ),
     }
     write_json(base / "preparation_report.json", report)
     return report

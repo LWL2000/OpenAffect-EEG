@@ -1,4 +1,4 @@
-version: confirmatory_amigos_v14_experiment
+version: confirmatory_faced_v14_experiment
 design_seed: 20260914
 resource_assignment_seed_rule: design_seed + global_split_index
 fold_count: 100
@@ -19,19 +19,19 @@ eegnet:
 bootstrap_iterations: 2000
 bootstrap_seed: 2026091400
 datasets:
-  amigos_confirmation_v14:
-    trials: derived/confirmatory_amigos_v14_inputs/amigos_trials.tsv.gz
+  faced_confirmation_v14:
+    trials: derived/confirmatory_faced_v14_inputs/faced_trials.tsv.gz
     harmonize: false
     targets: [target_valence, target_arousal]
-    tensors: derived/confirmatory_amigos_v14_inputs/amigos_100hz_30s_microvolts.npy
-    uids: derived/confirmatory_amigos_v14_inputs/amigos_trial_uids.npy
+    tensors: derived/confirmatory_faced_v14_inputs/faced_100hz_30s_microvolts.npy
+    uids: derived/confirmatory_faced_v14_inputs/faced_trial_uids.npy
     crop_samples: 1000
     units: microvolts
     minimum_participants: 25
-    required_stimuli: 16
+    required_stimuli: 28
     prespecified_neural_controls: true
-    channel_order: [AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8, FC6, F4, F8, AF4]
+    channel_order: [Fp1, Fp2, Fz, F3, F4, F7, F8, FC1, FC2, FC5, FC6, Cz, C3, C4, T7, T8, CP1, CP2, CP5, CP6, Pz, P3, P4, P7, P8, PO3, PO4, Oz, O1, O2]
     features:
       bandpower:
-        path: derived/confirmatory_amigos_v14_inputs/amigos_bandpower.npz
+        path: derived/confirmatory_faced_v14_inputs/faced_bandpower.npz
         array: channel_log_bandpower

@@ -49,8 +49,8 @@ def main() -> None:
 
     config = load_config(args.config)
     spec = config["datasets"][args.dataset]
-    if args.control != "observed" and args.dataset != "amigos_confirmation_v14":
-        raise ValueError("v14 neural controls are prespecified for AMIGOS only")
+    if args.control != "observed" and not spec.get("prespecified_neural_controls"):
+        raise ValueError("Neural controls are not prespecified for this dataset")
     doses = tuple(int(value) for value in config["doses"])
     training_seeds = tuple(args.training_seed or config["training_seeds"])
     if doses != (0, 1, 2, 4, 8):

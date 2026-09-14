@@ -107,9 +107,9 @@ def main() -> None:
     cfg = load_config(args.config)
     if args.dataset not in cfg["datasets"]:
         raise ValueError(f"Unknown dataset {args.dataset}")
-    if args.control != "observed" and args.dataset != "amigos_confirmation_v14":
-        raise ValueError("v14 neural controls are prespecified for AMIGOS only")
     spec = cfg["datasets"][args.dataset]
+    if args.control != "observed" and not spec.get("prespecified_neural_controls"):
+        raise ValueError("Neural controls are not prespecified for this dataset")
     doses = tuple(int(value) for value in cfg.get("doses", (0, 1, 2, 4, 8)))
     if doses != (0, 1, 2, 4, 8):
         raise ValueError("v14 confirmation requires the locked 5x5 dose grid")
