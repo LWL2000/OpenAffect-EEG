@@ -30,6 +30,16 @@ attempts on different days, the next same-year reserve replaces it; both the
 inaccessible record and replacement remain in the flow table. This rule creates
 possible access bias, which must be reported.
 
+Before paper-level resource coding, the retrieval produced 380 records passing
+the mechanical title-and-dataset check. To avoid unnecessary screening without
+changing the sample, title/abstract screening proceeds in the frozen hash order
+within each year and stops after six eligible records are found (four main and
+two reserve). Later records are retained as `not_screened_after_quota`. Because
+no later record precedes the sixth eligible record in the frozen order, this is
+identical to selecting the first six eligible records from the full randomized
+ordering. This clarification was committed after retrieval counts were known but
+before resource-access outcomes were coded.
+
 ## Coding and estimands
 
 Two people independently code the same version of every paper using
@@ -69,4 +79,3 @@ single paper can contribute correlated evaluations.
 - Any protocol change is appended with a timestamp, rationale, and whether it
   was made before or after coder outcomes were visible. The original files stay
   in version control.
-

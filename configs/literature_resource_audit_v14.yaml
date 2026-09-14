@@ -21,6 +21,9 @@ screening:
   require_affect_prediction_target: true
   require_at_least_one_repeated_stimulus_dataset: true
   exclude: [review, editorial, dataset_description_without_prediction, nonhuman]
+  process_order: frozen_sha256_within_year
+  stop_after_eligible_per_year: 6
+  remainder_status: not_screened_after_quota
 sampling:
   main_sample_size: 24
   reserve_size: 12
@@ -47,4 +50,3 @@ reporting:
   resource_parity_denominator: papers_with_no_eeg_comparator
   no_baseline_is_separate_category: true
   no_ai_as_second_human_coder: true
-
