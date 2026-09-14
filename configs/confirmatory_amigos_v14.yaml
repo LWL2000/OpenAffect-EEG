@@ -67,9 +67,11 @@ inference:
 equivalence:
   primary_absolute_ccc_margin: 0.05
   strict_sensitivity_margin: 0.025
+  tost_alpha_each_side: 0.05
+  decision_interval_confidence: 0.90
+  estimation_interval_confidence: 0.95
   confirmatory_scope: amigos_only
 reporting:
   no_sign_based_stopping: true
   retain_all_failures_and_deviations: true
   retain_contradictory_results: true
-

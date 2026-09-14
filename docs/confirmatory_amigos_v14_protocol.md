@@ -133,9 +133,11 @@ the 25 cells and are otherwise descriptive.
 ## Prespecified practical-equivalence rule
 
 The primary smallest effect size of interest is an absolute CCC increment of
-`0.05`. Practical equivalence is declared only if the two-sided 95% interval
-for the primary estimand lies wholly inside `[-0.05, +0.05]`. A stricter
-`[-0.025, +0.025]` interval is reported as sensitivity. These thresholds are
+`0.05`. The two one-sided tests use alpha 0.05 per side: practical equivalence
+is declared only if the 90% interval for the primary estimand lies wholly inside
+`[-0.05, +0.05]`. A stricter `[-0.025, +0.025]` margin is reported as
+sensitivity. The effect estimate also receives a 95% interval, which is not
+mislabeled as the standard TOST decision interval. These thresholds are
 decision conventions, not established clinical constants. They were fixed
 before AMIGOS outcome access and will not be retroactively applied as
 confirmatory thresholds to the earlier datasets.
@@ -159,4 +161,3 @@ before the structural-QC amendment is locked, if eligibility rules change in
 response to results, if fewer than 25 participants or 12 common short-video
 stimuli remain, or if the matched comparator cannot be constructed without
 using test labels outside the declared calibration resources.
-
