@@ -1,0 +1,50 @@
+version: literature_resource_audit_v14
+status: protocol_locked_before_paper_level_resource_coding
+lock_date: 2026-09-14
+scope:
+  language: English
+  publication_start: 2021-01-01
+  publication_end: 2026-09-14
+  publication_types: [article, proceedings-article]
+  repeated_stimulus_datasets: [DEAP, DREAMER, AMIGOS, MAHNOB-HCI]
+retrieval:
+  index: OpenAlex
+  entity: works
+  title_queries:
+    - '"EEG emotion recognition"'
+    - '"EEG-based emotion recognition"'
+  retain_raw_response: true
+  deduplicate: [doi, openalex_id]
+screening:
+  require_original_empirical_model: true
+  require_eeg_input: true
+  require_affect_prediction_target: true
+  require_at_least_one_repeated_stimulus_dataset: true
+  exclude: [review, editorial, dataset_description_without_prediction, nonhuman]
+sampling:
+  main_sample_size: 24
+  reserve_size: 12
+  year_strata: [2021, 2022, 2023, 2024, 2025, 2026]
+  main_per_year: 4
+  reserve_per_year: 2
+  order_method: sha256
+  order_seed: openaffect-literature-v14-20260914
+  inaccessible_replacement: next_eligible_same_year
+coding:
+  coders: 2
+  human_independent: true
+  lock_before_comparison: true
+  adjudicate_after_lock: true
+  primary_unit: paper
+  secondary_unit: paper_dataset_evaluation
+agreement:
+  nominal: [cohen_kappa, percent_agreement]
+  missingness: report_separately
+reporting:
+  preserve_exclusions: true
+  preserve_inaccessible_records: true
+  report_all_paper_denominator: true
+  resource_parity_denominator: papers_with_no_eeg_comparator
+  no_baseline_is_separate_category: true
+  no_ai_as_second_human_coder: true
+
