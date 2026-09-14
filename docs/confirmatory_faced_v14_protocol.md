@@ -56,10 +56,10 @@ For every eligible presentation, select the last 30.0 seconds ending at the
 video offset. Load the harmonised 30 scalp channels in the amended order, convert MNE's volt
 output to microvolts, subtract the instantaneous average across channels, apply
 a fourth-order zero-phase Butterworth bandpass at 0.5--45 Hz using a two-second
-signal pad on each side where recording bounds allow, and resample to 100 Hz
-with polyphase anti-alias filtering. The retained tensor is 32 by 3,000.
+reflection pad from within the fixed window on each side, and resample to 100 Hz
+with polyphase anti-alias filtering. The retained tensor is 30 by 3,000.
 
-The retained tensor is 30 by 3,000. The signal-only scale check requires the median within-trial channel standard
+The signal-only scale check requires the median within-trial channel standard
 deviation after conversion to fall in `[0.1, 1000]` microvolts. A nonconforming
 file stops before label access and requires a dated, source-supported amendment;
 it is not automatically rescaled based on model performance. There is no

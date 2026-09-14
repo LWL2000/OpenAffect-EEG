@@ -33,3 +33,16 @@ machine-readable, outcome-free summary is
 `docs/faced_remote_preflight_summary_v14.json`. These observed sampling-rate
 counts differ from the dataset README overview and will therefore be reported
 from the pinned file headers.
+
+The full local signal-only QC then passed all 123 participants and all 3,444
+fixed windows. Its outcome-free summary and full-report hash are recorded in
+`docs/faced_signal_qc_summary_v14.json`. Six initial checks differed by one
+sample because onset and duration decimals were rounded independently. The
+implementation now maps the video end to its nearest sample and takes exactly
+30 seconds backwards for every trial, which directly implements the frozen
+end-anchored window.
+
+For filtering, the two-second pads are deterministic reflections of the fixed
+within-video window. No post-video rating-period sample is allowed to enter the
+filter padding. This clarification was fixed before target values were read or
+any model was fitted.

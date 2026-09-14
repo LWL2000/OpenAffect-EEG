@@ -325,12 +325,12 @@ def local_signal_qc(
             windows = _event_windows(event_path.read_text(encoding="utf-8-sig"))
             scales: list[float] = []
             for _, start_seconds, stop_seconds in windows:
-                start = round(start_seconds * sampling_hz)
                 stop = round(stop_seconds * sampling_hz)
+                expected = round((stop_seconds - start_seconds) * sampling_hz)
+                start = stop - expected
                 if start < 0 or stop > raw.n_times or stop <= start:
                     raise ValueError("fixed 30-second window is outside recording bounds")
                 signal = raw.get_data(picks=indices, start=start, stop=stop) * 1e6
-                expected = round(30.0 * sampling_hz)
                 if signal.shape != (len(CHANNELS), expected):
                     raise ValueError("unexpected fixed-window tensor shape")
                 if not np.isfinite(signal).all():

@@ -1,0 +1,24 @@
+{
+  "complete_subject_count": 123,
+  "dataset": "nm000112",
+  "eeg_samples_loaded": true,
+  "full_report_sha256": "034d5167a57bd2da6457b992233d6cf0551f6f072aca74c2fca950f5715bdd48",
+  "maximum_observed_trial_channel_sd_microvolts": 510.2309527659944,
+  "median_trial_channel_sd_microvolts": 22.229867218939184,
+  "minimum_observed_trial_channel_sd_microvolts": 9.148317245341829,
+  "note": "Signal-only QC over all fixed 30-second windows; rating values were not read.",
+  "outcome_values_loaded": false,
+  "sampling_hz_counts": {
+    "1000.0": 68,
+    "250.0": 55
+  },
+  "schema_version": "1.0",
+  "source_channel_schemas": {
+    "legacy_10_20_with_a1_a2": 61,
+    "modern_10_20_with_horizontal_eog": 62
+  },
+  "stage": "local_signal_qc",
+  "status": "pass",
+  "trial_count": 3444,
+  "version": "v1.1.3"
+}
