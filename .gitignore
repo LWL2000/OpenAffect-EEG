@@ -21,3 +21,5 @@ derived/literature_resource_audit_v14/
 derived/confirmatory_faced_v14_remote_preflight.json
 derived/confirmatory_faced_v14_signal_qc*.json
 derived/confirmatory_faced_v14_inputs/
+derived/confirmatory_faced_v14_assignments/
+derived/confirmatory_faced_v14_ridge/

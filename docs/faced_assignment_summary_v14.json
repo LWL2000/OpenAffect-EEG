@@ -1,0 +1,22 @@
+{
+  "boundary": "Assignments are deterministic and the design was specified before faced_confirmation_v14 outcomes were accessed.",
+  "dataset": "faced_confirmation_v14",
+  "generated_bytes": 38160221,
+  "generated_file_count": 5103,
+  "input_sha256": "b3c509dd41b18bd45ea672dde1a467704a5b494e9cdb45ca667eac31261a4702",
+  "manifest_sha256": "4fe61777292cdd23eee611eb07bafff24bf2afcdb053f8c87735ac7911e71ee2",
+  "outcome_blind": false,
+  "participants": 123,
+  "resource_cell_count": 2500,
+  "rotations": [
+    20260914,
+    20260931,
+    20260948,
+    20260965,
+    20260982
+  ],
+  "split_count": 100,
+  "status": "complete",
+  "stimuli": 28,
+  "trials": 3444
+}
