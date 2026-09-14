@@ -9,6 +9,7 @@ from collections import Counter
 from collections.abc import Iterable
 from pathlib import Path
 
+import numpy as np
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -208,6 +209,22 @@ def _event_structure(text: str, *, recording_seconds: float) -> dict[str, object
     }
 
 
+def _event_windows(text: str) -> list[tuple[str, float, float]]:
+    """Extract stimulus identity and timing without reading rating columns."""
+    rows = list(csv.DictReader(io.StringIO(text.lstrip("\ufeff")), delimiter="\t"))
+    windows = []
+    for row in rows:
+        if not _nonmissing(row.get("video_index")):
+            continue
+        video_index = row["video_index"].strip()
+        onset = float(row["onset"])
+        duration = float(row["duration"])
+        windows.append((video_index, onset + duration - 30.0, onset + duration))
+    if {item[0] for item in windows} != VIDEO_INDICES or len(windows) != 28:
+        raise ValueError("event table does not provide one window for each video 1--28")
+    return sorted(windows, key=lambda item: int(item[0]))
+
+
 def remote_structural_preflight(
     *, subjects: Iterable[str] = SUBJECTS, session: requests.Session | None = None
 ) -> dict[str, object]:
@@ -272,6 +289,88 @@ def remote_structural_preflight(
         "complete_subject_count": len(complete),
         "minimum_required_subjects": 25,
         "status": "pass" if len(complete) >= 25 else "fail_insufficient_support",
+        "records": records,
+    }
+
+
+def local_signal_qc(
+    root: Path,
+    remote_report: dict[str, object],
+    *,
+    subjects: Iterable[str] | None = None,
+    minimum_subjects: int = 25,
+) -> dict[str, object]:
+    """Read only fixed EEG windows and event timing; never read rating values."""
+    import mne
+
+    if remote_report.get("status") != "pass":
+        raise ValueError("A passing remote structural report is required")
+    if remote_report.get("outcome_values_loaded") is not False:
+        raise ValueError("Remote report must be outcome-blind")
+    selected_subjects = list(subjects or remote_report["complete_subjects"])
+    records: list[dict[str, object]] = []
+    complete: list[str] = []
+    all_trial_scales: list[float] = []
+    for subject in selected_subjects:
+        prefix = root / subject / "eeg" / f"{subject}_task-watchingVideoClips"
+        bdf_path = prefix.with_name(prefix.name + "_eeg.bdf")
+        event_path = prefix.with_name(prefix.name + "_events.tsv")
+        record: dict[str, object] = {"subject": subject, "status": "invalid"}
+        try:
+            if not bdf_path.is_file() or not event_path.is_file():
+                raise ValueError("required local BDF or event file is missing")
+            raw = mne.io.read_raw_bdf(bdf_path, preload=False, verbose="ERROR")
+            indices, source_schema = canonical_eeg_indices(raw.ch_names)
+            sampling_hz = float(raw.info["sfreq"])
+            windows = _event_windows(event_path.read_text(encoding="utf-8-sig"))
+            scales: list[float] = []
+            for _, start_seconds, stop_seconds in windows:
+                start = round(start_seconds * sampling_hz)
+                stop = round(stop_seconds * sampling_hz)
+                if start < 0 or stop > raw.n_times or stop <= start:
+                    raise ValueError("fixed 30-second window is outside recording bounds")
+                signal = raw.get_data(picks=indices, start=start, stop=stop) * 1e6
+                expected = round(30.0 * sampling_hz)
+                if signal.shape != (len(CHANNELS), expected):
+                    raise ValueError("unexpected fixed-window tensor shape")
+                if not np.isfinite(signal).all():
+                    raise ValueError("fixed EEG window contains non-finite samples")
+                scale = float(np.median(np.std(signal, axis=1, ddof=1)))
+                if not 0.1 <= scale <= 1000.0:
+                    raise ValueError("fixed EEG window fails frozen microvolt scale bounds")
+                scales.append(scale)
+            record.update(
+                {
+                    "status": "signal_complete",
+                    "source_channel_schema": source_schema,
+                    "sampling_hz": sampling_hz,
+                    "trial_count": len(scales),
+                    "median_trial_channel_sd_microvolts": float(np.median(scales)),
+                    "minimum_trial_channel_sd_microvolts": min(scales),
+                    "maximum_trial_channel_sd_microvolts": max(scales),
+                }
+            )
+            all_trial_scales.extend(scales)
+            complete.append(subject)
+        except (OSError, TypeError, ValueError) as error:
+            record["error"] = str(error)
+        records.append(record)
+    status = "pass" if len(complete) >= minimum_subjects else "fail_insufficient_support"
+    return {
+        "schema_version": "1.0",
+        "stage": "local_signal_qc",
+        "dataset": "nm000112",
+        "version": "v1.1.3",
+        "outcome_values_loaded": False,
+        "eeg_samples_loaded": True,
+        "complete_subjects": complete,
+        "complete_subject_count": len(complete),
+        "minimum_required_subjects": minimum_subjects,
+        "trial_count": len(all_trial_scales),
+        "median_trial_channel_sd_microvolts": (
+            float(np.median(all_trial_scales)) if all_trial_scales else None
+        ),
+        "status": status,
         "records": records,
     }
 

@@ -4,6 +4,7 @@ from openaffect_eeg.faced_confirmation import (
     CHANNELS,
     LEGACY_CHANNELS,
     MODERN_CHANNELS_WITH_EOG,
+    _event_windows,
     canonical_eeg_indices,
     parse_bdf_header,
 )
@@ -44,3 +45,11 @@ def test_both_source_montages_map_to_the_same_30_scalp_channels() -> None:
     assert legacy_selected == list(CHANNELS)
     assert modern_selected == list(CHANNELS)
     assert legacy_name != modern_name
+
+
+def test_event_windows_use_last_30_seconds_without_reading_ratings() -> None:
+    header = "onset\tduration\tvideo_index\tValence\tArousal\n"
+    rows = [f"{index * 40}\t35\t{index}\tSECRET\tSECRET" for index in range(1, 29)]
+    windows = _event_windows(header + "\n".join(rows) + "\n")
+    assert windows[0] == ("1", 45.0, 75.0)
+    assert windows[-1] == ("28", 1125.0, 1155.0)
