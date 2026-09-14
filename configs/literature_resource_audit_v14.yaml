@@ -5,7 +5,7 @@ scope:
   language: English
   publication_start: 2021-01-01
   publication_end: 2026-09-14
-  publication_types: [article, proceedings-article]
+  publication_types: [article, conference-paper]
   repeated_stimulus_datasets: [DEAP, DREAMER, AMIGOS, MAHNOB-HCI]
 retrieval:
   index: OpenAlex
