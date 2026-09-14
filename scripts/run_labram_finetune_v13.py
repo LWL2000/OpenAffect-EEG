@@ -37,17 +37,35 @@ def channel_ids(names: list[str]) -> list[int]:
     return [0, *result]
 
 
-def build_model(repository: Path, checkpoint: Path, device: str, targets: int, seed: int):
-    backbone, torch, metadata = load_labram(repository, checkpoint, device, seed=seed)
-    for parameter in backbone.parameters():
-        parameter.requires_grad_(False)
+def select_trainable_tail(backbone, final_blocks: int) -> None:
+    """Freeze the backbone and unfreeze a declared transformer tail and norm."""
     if not hasattr(backbone, "blocks") or len(backbone.blocks) < 1:
         raise ValueError("Official LaBraM transformer blocks were not found")
-    for parameter in backbone.blocks[-1].parameters():
-        parameter.requires_grad_(True)
+    if final_blocks < 1 or final_blocks > len(backbone.blocks):
+        raise ValueError(
+            f"final_blocks must be in [1, {len(backbone.blocks)}], got {final_blocks}"
+        )
+    for parameter in backbone.parameters():
+        parameter.requires_grad_(False)
+    for block in backbone.blocks[-final_blocks:]:
+        for parameter in block.parameters():
+            parameter.requires_grad_(True)
     if hasattr(backbone, "norm"):
         for parameter in backbone.norm.parameters():
             parameter.requires_grad_(True)
+
+
+def build_model(
+    repository: Path,
+    checkpoint: Path,
+    device: str,
+    targets: int,
+    seed: int,
+    *,
+    trainable_final_blocks: int = 1,
+):
+    backbone, torch, metadata = load_labram(repository, checkpoint, device, seed=seed)
+    select_trainable_tail(backbone, trainable_final_blocks)
     torch.manual_seed(seed)
     head = torch.nn.Linear(int(backbone.embed_dim), targets).to(device)
     return backbone, head, torch, metadata
@@ -69,6 +87,7 @@ def fit_residual(
     crop_samples,
     scale_factor,
     output,
+    trainable_final_blocks=1,
     max_epochs=30,
     patience=5,
     batch_size=8,
@@ -80,13 +99,27 @@ def fit_residual(
     device = "cuda"
     input_chans = channel_ids(channels)
     targets = train_y.shape[1]
-    pretrained, _, _, load_meta = build_model(repository, checkpoint, device, targets, seed)
+    pretrained, _, _, load_meta = build_model(
+        repository,
+        checkpoint,
+        device,
+        targets,
+        seed,
+        trainable_final_blocks=trainable_final_blocks,
+    )
     pretrained_state = {key: value.detach().cpu() for key, value in pretrained.state_dict().items()}
     del pretrained
     torch.cuda.empty_cache()
 
     def new_model(run_seed):
-        model, head, _, _ = build_model(repository, checkpoint, device, targets, run_seed)
+        model, head, _, _ = build_model(
+            repository,
+            checkpoint,
+            device,
+            targets,
+            run_seed,
+            trainable_final_blocks=trainable_final_blocks,
+        )
         model.load_state_dict(pretrained_state)
         return model, head
 
@@ -183,6 +216,7 @@ def fit_residual(
             + sum(p.numel() for p in fitted_head.parameters()),
         "optimization": {"backbone_lr": 1e-5, "head_lr": 1e-3, "weight_decay": 0.01,
                          "max_epochs": max_epochs, "patience": patience, "batch_size": batch_size},
+        "trainable_final_blocks": trainable_final_blocks,
         "adaptation": "100-Hz analysis tensors linearly resampled to LaBraM's 200-Hz patch interface",
         "input_scale_factor": scale_factor,
     }
