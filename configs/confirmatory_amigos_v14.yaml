@@ -1,0 +1,75 @@
+version: confirmatory_amigos_v14
+status: outcome_blind_locked
+lock_date: 2026-09-14
+parent_commit: 90ec1ce59bfb9858fe79fa9ad2eec155f60995a4
+dataset:
+  id: amigos_short_individual
+  source: AMIGOS
+  access: eula_gated
+  outcome_files_received_at_lock: false
+  arm: short_video_individual_viewing
+  minimum_eligible_participants: 25
+  minimum_common_stimuli: 12
+  targets: [valence, arousal]
+  labels_sealed_during_structural_qc: true
+design:
+  assignment_seed: 20260914
+  participant_folds: 5
+  stimulus_folds: 4
+  use_all_fold_cross_products: true
+  fixed_test_support: true
+  population_training_size_constant: true
+  participant_doses: [0, 1, 2, 4, 8]
+  stimulus_doses: [0, 1, 2, 4, 8]
+  unavailable_on_resource_shortfall: true
+models:
+  matched_no_eeg:
+    enabled: true
+  bandpower_ridge:
+    alphas: [0.1, 1.0, 10.0, 100.0]
+  eegnet:
+    implementation: braindecode_1_2
+    learning_rates: [0.001, 0.0001]
+    max_epochs: 100
+    patience: 15
+    batch_size: 128
+    weight_decay: 0.0001
+    dropout: 0.25
+  labram_peft:
+    checkpoint: official_pretrained
+    trainable_final_blocks: 4
+    train_final_norm: true
+    train_regression_head: true
+    backbone_learning_rate: 0.00001
+    head_learning_rate: 0.001
+    weight_decay: 0.01
+    max_epochs: 40
+    patience: 8
+training:
+  seeds: [2026091401, 2026091402, 2026091403, 2026091404, 2026091405]
+  fold_rotation_seeds: [20260914, 20260931, 20260948, 20260965, 20260982]
+  selection_metric: macro_mae
+  selection_tie_breaker: lower_parameter_count
+controls:
+  label_permutation_negative: required
+  synthetic_eeg_signal_positive: required
+inference:
+  primary_metric: ccc
+  primary_target_aggregation: macro_valence_arousal
+  primary_resource_aggregation: uniform_mean_25_cells
+  bootstrap_iterations: 2000
+  bootstrap_seed: 2026091400
+  crossed_clusters: [participant_id, stimulus_id]
+  resample_training_seeds: true
+  refit_fold_rotations: true
+  simultaneous_cell_band: max_absolute_deviation
+  confidence_level: 0.95
+equivalence:
+  primary_absolute_ccc_margin: 0.05
+  strict_sensitivity_margin: 0.025
+  confirmatory_scope: amigos_only
+reporting:
+  no_sign_based_stopping: true
+  retain_all_failures_and_deviations: true
+  retain_contradictory_results: true
+
