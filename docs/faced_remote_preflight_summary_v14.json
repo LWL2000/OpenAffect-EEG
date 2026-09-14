@@ -1,0 +1,24 @@
+{
+  "bdf_total_bytes": 33719359104,
+  "common_scalp_channel_count": 30,
+  "complete_subject_count": 123,
+  "dataset": "nm000112",
+  "eeg_samples_loaded": false,
+  "events_total_bytes": 1511524,
+  "manifest_sha256": "3e2d1e68f806f53a57e2b7d6acedfd1728f4462842bc74b4bef44684839e3d90",
+  "note": "Counts come from pinned manifest, BDF headers, and event structure only; transient HTTP failures were retried.",
+  "outcome_values_loaded": false,
+  "required_video_count": 28,
+  "sampling_hz_counts": {
+    "1000.0": 68,
+    "250.0": 55
+  },
+  "schema_version": "1.0",
+  "source_channel_schemas": {
+    "legacy_10_20_with_a1_a2": 61,
+    "modern_10_20_with_horizontal_eog": 62
+  },
+  "stage": "remote_structural_preflight",
+  "status": "pass",
+  "version": "v1.1.3"
+}

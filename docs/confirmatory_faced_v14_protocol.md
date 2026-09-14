@@ -5,6 +5,11 @@ Lock date: 2026-09-14 (Asia/Shanghai)
 Parent repository commit: `1832b6bfb198de11236aa30c514a420dd4644421`
 Machine-readable companion: `configs/confirmatory_faced_v14.yaml`
 
+The outcome-blind header preflight subsequently exposed two acquisition-cohort
+channel schemas. The dated, pre-outcome harmonisation in
+`docs/confirmatory_faced_structural_amendment_v14.md` supersedes only the source
+channel selection and tensor channel count below.
+
 ## Question, units, and outcome-blind status
 
 The study tests whether matching participant- and stimulus-label resources
@@ -30,7 +35,7 @@ version is not silently substituted. Manifest and used-file SHA-256 values are
 archived with the run.
 
 A participant is eligible when the BDF is readable by MNE without repair, the
-32 declared EEG channels and sampling rate are available, and exactly one valid
+declared cohort channel schema and sampling rate are available, and exactly one valid
 presentation is recoverable for every `video_index` 1--28. A trial requires a
 finite onset/duration, at least 30 seconds of signal ending at video offset,
 finite participant-specific Valence and Arousal, and no non-finite selected EEG
@@ -48,13 +53,13 @@ outcomes.
 ## Frozen signal and target processing
 
 For every eligible presentation, select the last 30.0 seconds ending at the
-video offset. Load the 32 EEG channels in the declared order, convert MNE's volt
+video offset. Load the harmonised 30 scalp channels in the amended order, convert MNE's volt
 output to microvolts, subtract the instantaneous average across channels, apply
 a fourth-order zero-phase Butterworth bandpass at 0.5--45 Hz using a two-second
 signal pad on each side where recording bounds allow, and resample to 100 Hz
 with polyphase anti-alias filtering. The retained tensor is 32 by 3,000.
 
-The signal-only scale check requires the median within-trial channel standard
+The retained tensor is 30 by 3,000. The signal-only scale check requires the median within-trial channel standard
 deviation after conversion to fall in `[0.1, 1000]` microvolts. A nonconforming
 file stops before label access and requires a dated, source-supported amendment;
 it is not automatically rescaled based on model performance. There is no

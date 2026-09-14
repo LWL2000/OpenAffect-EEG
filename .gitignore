@@ -18,3 +18,4 @@ paper/chinese_reading/*.toc
 paper/generated/table_identity_exposure_claims.csv
 paper/generated/final_revision_v13/pdf_qa/
 derived/literature_resource_audit_v14/
+derived/confirmatory_faced_v14_remote_preflight.json
