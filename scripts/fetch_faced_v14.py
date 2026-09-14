@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import requests
@@ -99,11 +100,19 @@ def main() -> None:
     parser.add_argument(
         "--include-bdf", action="store_true", help="Include the large EEG BDF files"
     )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=4,
+        help="Concurrent file transfers; defaults to four",
+    )
     args = parser.parse_args()
     subjects = {value.strip() for value in args.subjects.split(",") if value.strip()}
     unknown = subjects - set(SUBJECTS)
     if unknown:
         raise ValueError(f"Unknown FACED subject IDs: {sorted(unknown)}")
+    if not 1 <= args.workers <= 8:
+        raise ValueError("--workers must be between 1 and 8")
     client = requests_session()
     manifest, manifest_sha256 = fetch_manifest(client)
     selected = [
@@ -116,20 +125,25 @@ def main() -> None:
             include_bdf=args.include_bdf,
         )
     ]
-    records = []
-    for entry in sorted(selected, key=lambda item: str(item["path"])):
+    def transfer(entry: dict[str, object]) -> dict[str, object]:
         destination = args.output_root / str(entry["path"])
-        state = _download(client, entry, destination)
-        records.append(
-            {
-                "path": entry["path"],
-                "size": entry["size"],
-                "checksum_algorithm": entry["checksum_algorithm"],
-                "checksum": entry["checksum"],
-                "state": state,
-            }
-        )
-        print(json.dumps(records[-1], sort_keys=True))
+        state = _download(requests_session(), entry, destination)
+        return {
+            "path": entry["path"],
+            "size": entry["size"],
+            "checksum_algorithm": entry["checksum_algorithm"],
+            "checksum": entry["checksum"],
+            "state": state,
+        }
+
+    records = []
+    with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        futures = {executor.submit(transfer, entry): entry for entry in selected}
+        for future in as_completed(futures):
+            record = future.result()
+            records.append(record)
+            print(json.dumps(record, sort_keys=True), flush=True)
+    records.sort(key=lambda item: str(item["path"]))
     receipt = {
         "dataset": "nm000112",
         "version": "v1.1.3",
