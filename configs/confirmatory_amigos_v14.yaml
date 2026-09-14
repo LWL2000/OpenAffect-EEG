@@ -12,6 +12,31 @@ dataset:
   minimum_common_stimuli: 12
   targets: [valence, arousal]
   labels_sealed_during_structural_qc: true
+  expected_files: Data_Preprocessed_P01.mat through Data_Preprocessed_P40.mat
+  required_mat_variables: [joined_data, labels_selfassessment]
+  short_trial_count: 16
+  source_sampling_hz: 128
+  eeg_channels: [AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8, FC6, F4, F8, AF4]
+preprocessing:
+  remove_baseline_samples: 640
+  stimulus_segment: central_30_seconds
+  required_post_baseline_samples: 3840
+  output_sampling_hz: 100
+  resample_poly_up: 25
+  resample_poly_down: 32
+  common_stimulus_complete_case: true
+  unit_rule:
+    microvolt_median_channel_sd: [0.1, 1000.0]
+    volt_median_channel_sd: [0.0000001, 0.001]
+    otherwise: stop_for_documentation
+  exclusions:
+    - missing_or_malformed_required_variable
+    - missing_short_trial_signal_or_label
+    - fewer_than_14_signal_channels
+    - fewer_than_3840_post_baseline_samples
+    - nonfinite_selected_eeg
+    - nonfinite_or_out_of_range_valence_arousal
+    - participant_missing_any_of_16_short_trials
 design:
   assignment_seed: 20260914
   participant_folds: 5

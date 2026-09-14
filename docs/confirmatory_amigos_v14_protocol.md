@@ -48,16 +48,30 @@ when it has a stable participant ID, a stable short-video ID, finite
 participant-reported valence and arousal, and a readable EEG recording with the
 documented montage. Group-viewing and long-video trials are excluded.
 
-After authorised download, structural QC may inspect file names, shapes,
-sampling rates, channel labels, missingness indicators, and signal quality. The
-valence and arousal values must remain sealed during this step. Before labels
-are unsealed, an amendment will freeze:
+After authorised download, structural QC may inspect file names, MAT variable
+names and shapes, sampling-rate metadata, channel metadata, missingness
+indicators, and EEG scale, but not valence or arousal values. The expected files
+are `Data_Preprocessed_P01.mat` through `P40.mat`, with `joined_data` and
+`labels_selfassessment`; only the first 16 trials are considered.
 
-- the exact source version and file hashes;
-- the eligible participant and stimulus IDs;
-- channel mapping and physical units;
-- segment length and deterministic artefact thresholds;
-- any exclusions caused by corrupt or absent recordings.
+The preprocessing rule was frozen before data receipt. For each short trial,
+the first 640 samples (the documented five-second baseline at 128 Hz) are
+removed. The central 3,840 remaining samples (30 seconds) are selected and
+polyphase-resampled by 25/32 to 3,000 samples at 100 Hz. The first 14 signal
+columns are mapped, in order, to AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8,
+FC6, F4, F8, and AF4. A trial is excluded for a missing/malformed variable,
+missing signal or label, fewer than 14 channels, fewer than 3,840 post-baseline
+samples, non-finite selected EEG, or non-finite/out-of-range valence or arousal.
+Only participants retaining all 16 short trials enter the common-stimulus
+analysis; missing trials are not imputed.
+
+Because the public paper specifies acquisition resolution but not the numerical
+unit stored in the preprocessed MAT arrays, units are resolved without labels:
+a median selected-window channel SD in `[0.1, 1000]` is treated as microvolts;
+one in `[1e-7, 1e-3]` is treated as volts and multiplied by `1e6`. Any other
+scale stops ingestion until source documentation is obtained. File hashes,
+observed shapes, the scale decision, participant exclusions, and signal-only QC
+summaries are locked before labels are unsealed.
 
 No exclusion may depend on a label value, an EEG/no-EEG score, an effect sign,
 or model performance. Unexpected source defects may trigger a dated amendment;
