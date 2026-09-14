@@ -55,6 +55,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-epochs", type=int, default=40)
     parser.add_argument("--patience", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=8)
+    parser.add_argument(
+        "--keep-checkpoints",
+        action="store_true",
+        help="Retain large fitted state files after predictions and metadata are sealed.",
+    )
     return parser.parse_args()
 
 
@@ -120,6 +125,7 @@ def main() -> None:
         "scope": "Full 5x5 resource grid with five-seed LaBraM tail adaptation.",
         "training_seeds": list(training_seeds),
         "trainable_final_blocks": args.trainable_final_blocks,
+        "keep_checkpoints": args.keep_checkpoints,
         "doses": list(doses),
     }
     write_json(args.output / "manifest.json", manifest)
@@ -173,6 +179,8 @@ def main() -> None:
                     )
                     np.save(prediction_path, prediction, allow_pickle=False)
                     write_json(metadata_path, meta)
+                    if not args.keep_checkpoints and model_path.exists():
+                        model_path.unlink()
                 training.append(
                     {
                         "fold": fold,
