@@ -52,7 +52,7 @@ def prepare(config_path: Path, data_root: Path, assignments_root: Path, dataset:
     manifest_rows: list[dict[str, object]] = []
     support_by_rotation: dict[int, set[str]] = {rotation: set() for rotation in rotations}
     split_index = 0
-    for rotation_index, rotation_seed in enumerate(rotations):
+    for rotation_seed in rotations:
         crossed = crossed_outer_assignments(trials, rotation_seed=rotation_seed)
         for metadata, strict in crossed:
             assignment_seed = int(config["design_seed"]) + split_index
