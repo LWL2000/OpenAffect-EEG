@@ -7,6 +7,7 @@ import io
 import json
 from collections import Counter
 from collections.abc import Iterable
+from fractions import Fraction
 from pathlib import Path
 
 import numpy as np
@@ -33,6 +34,7 @@ REQUIRED_EVENT_COLUMNS = {
     "onset", "duration", "video_index", "Valence", "Arousal"
 }
 VIDEO_INDICES = {str(index) for index in range(1, 29)}
+BANDS = ((2.0, 4.0), (4.0, 8.0), (8.0, 13.0), (13.0, 30.0), (30.0, 45.0))
 
 
 def requests_session() -> requests.Session:
@@ -373,6 +375,200 @@ def local_signal_qc(
         "status": status,
         "records": records,
     }
+
+
+def _read_targets(path: Path) -> dict[str, tuple[float, float]]:
+    rows = list(
+        csv.DictReader(io.StringIO(path.read_text(encoding="utf-8-sig")), delimiter="\t")
+    )
+    targets: dict[str, tuple[float, float]] = {}
+    for row in rows:
+        if not _nonmissing(row.get("video_index")):
+            continue
+        video_index = row["video_index"].strip()
+        try:
+            valence = float(row["Valence"])
+            arousal = float(row["Arousal"])
+        except (KeyError, TypeError, ValueError) as error:
+            raise ValueError(f"invalid target for video {video_index}") from error
+        if not np.isfinite([valence, arousal]).all():
+            raise ValueError(f"non-finite target for video {video_index}")
+        if not 0.0 <= valence <= 7.0 or not 0.0 <= arousal <= 7.0:
+            raise ValueError(f"out-of-range target for video {video_index}")
+        if video_index in targets:
+            raise ValueError(f"duplicate target for video {video_index}")
+        targets[video_index] = ((valence - 3.5) / 3.5, (arousal - 3.5) / 3.5)
+    if set(targets) != VIDEO_INDICES:
+        raise ValueError("targets do not cover video_index 1--28 exactly once")
+    return targets
+
+
+def _preprocess_window(
+    raw: object, indices: list[int], *, start_seconds: float, stop_seconds: float
+) -> np.ndarray:
+    from scipy.signal import butter, resample_poly, sosfiltfilt
+
+    sampling_hz = float(raw.info["sfreq"])
+    stop = round(stop_seconds * sampling_hz)
+    expected = round((stop_seconds - start_seconds) * sampling_hz)
+    start = stop - expected
+    signal = raw.get_data(picks=indices, start=start, stop=stop) * 1e6
+    if signal.shape != (len(CHANNELS), expected) or not np.isfinite(signal).all():
+        raise ValueError("invalid fixed EEG window during ingestion")
+    signal = signal - signal.mean(axis=0, keepdims=True)
+    pad = round(2.0 * sampling_hz)
+    padded = np.pad(signal, ((0, 0), (pad, pad)), mode="reflect")
+    sos = butter(4, (0.5, 45.0), btype="bandpass", fs=sampling_hz, output="sos")
+    filtered = sosfiltfilt(sos, padded, axis=1, padtype=None)[:, pad:-pad]
+    ratio = Fraction(100, round(sampling_hz))
+    tensor = resample_poly(filtered, ratio.numerator, ratio.denominator, axis=1)
+    if tensor.shape != (len(CHANNELS), 3000) or not np.isfinite(tensor).all():
+        raise ValueError("unexpected preprocessed FACED tensor")
+    return tensor.astype(np.float32)
+
+
+def _bandpower(signal: np.ndarray) -> np.ndarray:
+    from scipy.signal import welch
+
+    frequencies, spectrum = welch(signal, fs=100.0, nperseg=200, axis=1)
+    features = []
+    for low, high in BANDS:
+        mask = (frequencies >= low) & (frequencies < high)
+        features.append(np.log10(spectrum[:, mask].mean(axis=1) + 1e-12))
+    return np.stack(features, axis=1).astype(np.float32)
+
+
+def ingest_faced_to_disk(
+    root: Path,
+    signal_report_path: Path,
+    output_root: Path,
+    *,
+    minimum_subjects: int = 25,
+    overwrite: bool = False,
+) -> dict[str, object]:
+    """Unseal targets and write the frozen FACED tensors and feature table."""
+    import mne
+    import pandas as pd
+
+    signal_report = json.loads(signal_report_path.read_text(encoding="utf-8"))
+    if signal_report.get("status") != "pass":
+        raise ValueError("A passing local signal QC report is required")
+    if signal_report.get("outcome_values_loaded") is not False:
+        raise ValueError("Signal QC report must precede target unsealing")
+    candidates = list(signal_report["complete_subjects"])
+    targets_by_subject: dict[str, dict[str, tuple[float, float]]] = {}
+    exclusions: list[dict[str, str]] = []
+    for subject in candidates:
+        event_path = (
+            root
+            / subject
+            / "eeg"
+            / f"{subject}_task-watchingVideoClips_events.tsv"
+        )
+        try:
+            targets_by_subject[subject] = _read_targets(event_path)
+        except (OSError, ValueError) as error:
+            exclusions.append({"subject": subject, "reason": str(error)})
+    if len(targets_by_subject) < minimum_subjects:
+        raise ValueError(
+            f"Only {len(targets_by_subject)} label-complete participants; "
+            f"confirmation requires {minimum_subjects}"
+        )
+
+    output_root.mkdir(parents=True, exist_ok=True)
+    tensor_path = output_root / "faced_100hz_30s_microvolts.npy"
+    tensor_temp = output_root / "faced_100hz_30s_microvolts.incomplete.npy"
+    uid_path = output_root / "faced_trial_uids.npy"
+    feature_path = output_root / "faced_bandpower.npz"
+    trial_path = output_root / "faced_trials.tsv.gz"
+    report_path = output_root / "ingestion_report.json"
+    outputs = (tensor_path, uid_path, feature_path, trial_path, report_path)
+    if not overwrite and any(path.exists() for path in outputs):
+        raise FileExistsError("FACED ingestion output exists; use --overwrite explicitly")
+    tensor_temp.unlink(missing_ok=True)
+
+    subject_order = sorted(targets_by_subject)
+    trial_count = len(subject_order) * 28
+    tensors = np.lib.format.open_memmap(
+        tensor_temp,
+        mode="w+",
+        dtype=np.float32,
+        shape=(trial_count, len(CHANNELS), 3000),
+    )
+    features = np.empty((trial_count, len(CHANNELS), len(BANDS)), dtype=np.float32)
+    rows: list[dict[str, object]] = []
+    uids: list[str] = []
+    output_index = 0
+    for subject in subject_order:
+        prefix = root / subject / "eeg" / f"{subject}_task-watchingVideoClips"
+        raw = mne.io.read_raw_bdf(
+            prefix.with_name(prefix.name + "_eeg.bdf"),
+            preload=False,
+            verbose="ERROR",
+        )
+        indices, _ = canonical_eeg_indices(raw.ch_names)
+        windows = _event_windows(
+            prefix.with_name(prefix.name + "_events.tsv").read_text(
+                encoding="utf-8-sig"
+            )
+        )
+        for video_index, start_seconds, stop_seconds in windows:
+            tensor = _preprocess_window(
+                raw,
+                indices,
+                start_seconds=start_seconds,
+                stop_seconds=stop_seconds,
+            )
+            valence, arousal = targets_by_subject[subject][video_index]
+            uid = f"faced:{subject}:V{int(video_index):02d}"
+            tensors[output_index] = tensor
+            features[output_index] = _bandpower(tensor)
+            uids.append(uid)
+            rows.append(
+                {
+                    "dataset_id": "faced_confirmation_v14",
+                    "trial_uid": uid,
+                    "subject_id": subject,
+                    "subject_uid": f"faced:{subject}",
+                    "stimulus_uid": f"faced:V{int(video_index):02d}",
+                    "target_valence": valence,
+                    "target_arousal": arousal,
+                    "target_available": True,
+                    "feature_alignment_status": "verified",
+                }
+            )
+            output_index += 1
+    tensors.flush()
+    del tensors
+    tensor_temp.replace(tensor_path)
+    uid_array = np.asarray(uids)
+    np.save(uid_path, uid_array, allow_pickle=False)
+    np.savez_compressed(
+        feature_path,
+        trial_uid=uid_array,
+        channel_log_bandpower=features,
+    )
+    pd.DataFrame(rows).to_csv(trial_path, sep="\t", index=False)
+    report: dict[str, object] = {
+        "status": "complete",
+        "dataset": "nm000112",
+        "version": "v1.1.3",
+        "participants": len(subject_order),
+        "stimuli": 28,
+        "trials": trial_count,
+        "excluded": exclusions,
+        "targets_unsealed": True,
+        "target_transform": "(rating - 3.5) / 3.5",
+        "tensor_shape": [trial_count, len(CHANNELS), 3000],
+        "bandpower_shape": [trial_count, len(CHANNELS), len(BANDS)],
+        "signal_qc_report_sha256": sha256_file(signal_report_path),
+        "outputs_sha256": {
+            path.name: sha256_file(path)
+            for path in (tensor_path, uid_path, feature_path, trial_path)
+        },
+    }
+    write_json(report_path, report)
+    return report
 
 
 def write_json(path: Path, value: object) -> None:
