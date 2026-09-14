@@ -124,6 +124,20 @@ exit
 3. 填写后的 `docs/independent_acceptance_form.md` 副本，或下面的等价中文记录；
 4. 第一次运行失败时的报告和终端记录，即使后续已经修复成功。
 
+V14 还提供机器可检查的 `docs/independent_acceptance_form_v14.json`。执行者应
+填写实际逻辑 CPU 数、内存、开始时可用磁盘、首次得到结果的时间和首次失败点。
+负责人收到三份文件后运行：
+
+```bash
+python scripts/package_independent_acceptance_v14.py \
+  completed_form.json independent_acceptance_report.json \
+  openaffect_acceptance_terminal.txt independent_packet_v14.json
+```
+
+只有输出同时为 `packet_status=valid`、`acceptance_type=independent_user` 和
+`independent_user_claim_allowed=true`，论文才可写“独立用户复现通过”。验证器只能
+检查材料内部一致性，不能认证执行者的声明真实性。
+
 中文记录至少填写：
 
 ```text
