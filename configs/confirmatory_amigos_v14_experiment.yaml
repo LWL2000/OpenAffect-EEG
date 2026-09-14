@@ -1,0 +1,34 @@
+version: confirmatory_amigos_v14_experiment
+design_seed: 20260914
+resource_assignment_seed_rule: design_seed + global_split_index
+fold_count: 100
+doses: [0, 1, 2, 4, 8]
+fold_rotation_seeds: [20260914, 20260931, 20260948, 20260965, 20260982]
+training_seeds: [2026091401, 2026091402, 2026091403, 2026091404, 2026091405]
+ridge_settings:
+  ridge_locked: [0.1, 1.0, 10.0, 100.0]
+eegnet_settings:
+  eegnet_lr1e3: 0.001
+  eegnet_lr1e4: 0.0001
+eegnet:
+  max_epochs: 100
+  patience: 15
+  batch_size: 128
+  weight_decay: 0.0001
+  dropout: 0.25
+bootstrap_iterations: 2000
+bootstrap_seed: 2026091400
+datasets:
+  amigos_confirmation_v14:
+    trials: derived/confirmatory_amigos_v14_inputs/amigos_trials.tsv.gz
+    harmonize: false
+    targets: [target_valence, target_arousal]
+    tensors: derived/confirmatory_amigos_v14_inputs/amigos_100hz_30s_microvolts.npy
+    uids: derived/confirmatory_amigos_v14_inputs/amigos_trial_uids.npy
+    crop_samples: 1000
+    units: microvolts
+    channel_order: [AF3, F7, F3, FC5, T7, P7, O1, O2, P8, T8, FC6, F4, F8, AF4]
+    features:
+      bandpower:
+        path: derived/confirmatory_amigos_v14_inputs/amigos_bandpower.npz
+        array: channel_log_bandpower

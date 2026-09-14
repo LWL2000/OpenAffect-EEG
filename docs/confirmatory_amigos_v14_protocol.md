@@ -100,9 +100,12 @@ participant calibration uses only the same participant's non-test stimuli, and
 stimulus calibration uses only other participants' labels for the same test
 stimulus. Validation excludes all test identities.
 
-The exact assignment seed is `20260914`. Identity ordering, shortfalls at a
-requested dose, and replacement rows are recorded. A dose cell with inadequate
-resources is marked unavailable rather than silently using a smaller dose.
+The base assignment seed is `20260914`. Resource sampling uses
+`20260914 + global_split_index`, where the global split index is 0--99 in
+fold-rotation order and participant-block then stimulus-block order. Identity
+ordering, shortfalls at a requested dose, and replacement rows are recorded. A
+dose cell with inadequate resources is marked unavailable rather than silently
+using a smaller dose.
 
 ## Predictors and training repetitions
 

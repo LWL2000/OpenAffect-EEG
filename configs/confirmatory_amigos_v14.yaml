@@ -44,6 +44,7 @@ preprocessing:
     transform: log10(mean_psd + 1e-12)
 design:
   assignment_seed: 20260914
+  resource_assignment_seed_rule: assignment_seed + global_split_index
   participant_folds: 5
   stimulus_folds: 4
   use_all_fold_cross_products: true
