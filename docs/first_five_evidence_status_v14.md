@@ -9,7 +9,7 @@ completed scientific result.
 | Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete: 125 fits and five seeds per dataset, with no failed-fit files | Finish the FACED five-seed EEGNet and LaBraM sequence |
 | Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap code validated; same-data LaBraM analyses complete | Apply it to all completed FACED neural predictions and retain failure/model-selection histories |
 | Practical equivalence | CCC margins 0.05 and 0.025 were fixed before FACED label access; 90% decision interval is implemented | Report the FACED decision. Same-data LaBraM is inconclusive at both margins and cannot substitute for FACED |
-| Field audit | Original sampling flow retained; 24-paper public-access cohort with four papers per year validated; 24 PDF/text hashes and evidence packets created; independent lock/agreement tooling smoke-tested | Two real people independently code and lock both CSV pairs; compare agreement and adjudicate disagreements |
+| Field audit | Original sampling flow retained; 24-paper public-access cohort with four papers per year validated; 24 PDF/text hashes and evidence packets created; two independent AI sensitivity codings completed and hash-locked | Harmonize the post-lock evaluation units, then have two real people independently code and lock both CSV pairs; compare agreement and adjudicate disagreements |
 
 ## Same-data LaBraM results
 
@@ -34,3 +34,13 @@ within-year order. This makes the coder task feasible while creating access
 bias. Both the intent-to-sample access attrition and the access-conditioned
 cohort must be reported; the latter cannot be called an unbiased prevalence
 estimate for all EEG affect papers.
+
+## Dual-AI sensitivity audit
+
+Two independent AI coders reviewed the same 24-paper accessible cohort without
+seeing each other's judgments before both files were hash-locked. Both classified
+24/24 papers as lacking an eligible learned no-EEG comparator. This is useful
+triage evidence, not completion of the preregistered two-human-coder audit. The
+evaluation-unit definitions also require post-lock harmonization: coder A made
+57 dataset/protocol rows and coder B made 59. Until that mapping is adjudicated,
+evaluation-level kappa is not reported.
