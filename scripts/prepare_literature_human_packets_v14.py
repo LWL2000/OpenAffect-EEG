@@ -22,6 +22,26 @@ After coding, run the lock command shown in `LOCK_COMMAND.txt`. Do not edit the
 CSVs after the lock file is created.
 """
 
+README_ZH = """# 独立人工编码包
+
+请独立完成编码，在 A、B 两份锁定文件都生成前，不查看或讨论另一位编码者的逐篇判断。
+先阅读 `literature_resource_coding_manual_v14.md`，再核对 PDF、补充材料和论文代码。
+JSON 只用于定位候选段落，每个结论都必须回到 PDF 页码核实；原文不足时填写
+`unclear`，不得根据常见做法猜测。完成两个 CSV 后，运行 `LOCK_COMMAND.txt`
+中的命令。锁定后不要再修改 CSV。
+"""
+
+DECLARATION = """coder_id:
+coder_name_or_study_identifier:
+affiliation_or_role:
+relationship_to_manuscript_authors:
+prior_involvement_in_this_project:
+coding_started_at:
+coding_completed_at:
+statement: I coded independently and did not inspect the other coder's judgments before both locks.
+signature_or_typed_name:
+"""
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -50,6 +70,10 @@ def main() -> None:
                 root / "evidence_packets" / f"{paper_id}.json",
             )
         (root / "README.md").write_text(README, encoding="utf-8")
+        (root / "README_zh.md").write_text(README_ZH, encoding="utf-8")
+        (root / "CODER_DECLARATION.txt").write_text(
+            DECLARATION.replace("coder_id:\n", f"coder_id: {coder}\n"), encoding="utf-8"
+        )
         command = (
             f"python lock_literature_coding_v14.py paper_set.csv "
             f"coder_{coder}_paper.csv coder_{coder}_evaluations.csv coder_{coder}_lock.json\n"
