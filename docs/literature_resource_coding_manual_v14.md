@@ -10,6 +10,10 @@ Do not use reported accuracy to resolve an access judgment.
 `prediction_target`, `claim_type`, `no_eeg_comparator`, `overall_parity`,
 `confidence`, `evidence_locator`, and `notes` are required.
 
+`confidence` is `high`, `medium`, or `low`. Use `none` in a free-text resource
+field only when the paper explicitly establishes that the resource is absent;
+use `unclear` when reporting is insufficient.
+
 `claim_type` is one of:
 
 - `eeg_prediction_only`: evaluates an EEG predictor without claiming an
@@ -51,6 +55,9 @@ Create one row per dataset and materially different evaluation protocol. Record:
 - whether model selection uses the final test labels;
 - comparator prediction columns and matched metric rows.
 
+Code `window_trial_leakage` as `yes`, `no`, `unclear`, or `not_applicable`, and
+`test_label_model_selection` as `yes`, `no`, or `unclear`.
+
 Resource access means information used to fit, choose, calibrate, or construct a
 prediction. Merely reporting a dataset's labels in a descriptive table does not
 count as model access. If a paper trains window samples with a repeated trial
@@ -64,4 +71,3 @@ every disagreement receives `final_value`, `adjudicator`, `evidence_locator`, an
 `reason`. Agreement is calculated on the pre-adjudication files. An author or
 agent may adjudicate, but the paper must identify who served as the two human
 independent coders and disclose any author involvement.
-

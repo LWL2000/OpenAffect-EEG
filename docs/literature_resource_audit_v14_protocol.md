@@ -79,3 +79,21 @@ single paper can contribute correlated evaluations.
 - Any protocol change is appended with a timestamp, rationale, and whether it
   was made before or after coder outcomes were visible. The original files stay
   in version control.
+
+## Access-cohort amendment (2026-09-15)
+
+The two prespecified reserves per year were insufficient to produce a 24-paper
+full-text coding set: after a second public-access attempt on a different day,
+only 13 of the 36 planned main/reserve records had a validated public full text.
+This was known when this amendment was made; no paper-level resource coding
+outcomes from either human coder were available.
+
+The original 24-paper intent-to-sample set and its access attrition remain the
+primary sampling record. For an explicitly access-conditioned sensitivity
+cohort, screening continues in the same frozen within-year hash order. Reviews,
+preprints, and other ineligible records remain excluded. After the planned
+reserves are exhausted, the first eligible article or proceedings record with a
+validated, index-declared public PDF is added until each year contributes four
+codable papers. Failed retrievals and skipped records remain in the flow table.
+The resulting 24-paper access cohort must be labelled as access-conditioned and
+must not be presented as an unbiased prevalence sample of the whole field.
