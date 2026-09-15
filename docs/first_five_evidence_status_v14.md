@@ -5,10 +5,10 @@ completed scientific result.
 
 | Upgrade | Verified evidence | Remaining completion condition |
 |---|---|---|
-| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; 430,500 Ridge OOF rows; 50-candidate EEGNet smoke complete | Finish and report every prespecified EEGNet/LaBraM observed and control run |
-| Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete: 125 fits and five seeds per dataset, with no failed-fit files | Finish the FACED five-seed EEGNet and LaBraM sequence |
-| Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap code validated; same-data LaBraM analyses complete | Apply it to all completed FACED neural predictions and retain failure/model-selection histories |
-| Practical equivalence | CCC margins 0.05 and 0.025 were fixed before FACED label access; 90% decision interval is implemented | Report the FACED decision. Same-data LaBraM is inconclusive at both margins and cannot substitute for FACED |
+| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; 430,500 Ridge OOF rows; five-seed EEGNet observed run and analysis complete | Finish both EEGNet controls and all LaBraM observed/control runs, then report the full prespecified sequence |
+| Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete: 125 fits and five seeds per dataset, with no failed-fit files; FACED EEGNet observed completed with five seeds | Finish the FACED EEGNet controls and LaBraM observed/control sequence |
+| Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap code validated; same-data LaBraM analyses and FACED EEGNet observed analysis complete with 2,000/2,000 valid replicates | Apply the same analysis to the remaining completed FACED controls and LaBraM predictions |
+| Practical equivalence | CCC margins 0.05 and 0.025 were fixed before FACED label access; FACED EEGNet observed 90% interval is [-0.07962, -0.00010] and is inconclusive at both margins | Complete controls and LaBraM before interpreting the FACED confirmation as a whole |
 | Field audit | Original sampling flow retained; 24-paper public-access cohort with four papers per year validated; 24 PDF/text hashes and evidence packets created; two independent AI sensitivity codings completed and hash-locked | Harmonize the post-lock evaluation units, then have two real people independently code and lock both CSV pairs; compare agreement and adjudicate disagreements |
 
 ## Same-data LaBraM results
@@ -24,6 +24,21 @@ cohorts and not a field-wide conclusion.
 The negative intervals show worse CCC after adding the fitted LaBraM residual in
 these two analyses. They do not establish practical equivalence and they do not
 predict the untouched FACED outcome.
+
+## Interim FACED EEGNet observed result
+
+The five-seed observed EEGNet stage completed on 2026-09-16. The uniform-grid
+mean matched EEG CCC increment is -0.04139, with a joint 95% interval of
+[-0.08747, 0.00017]. The prespecified 90% equivalence interval is
+[-0.07962, -0.00010], so equivalence is not established at either the primary
+±0.05 margin or the strict ±0.025 sensitivity margin. All 2,000 requested
+bootstrap iterations were valid and included 123 participants, 28 stimuli,
+five training seeds, and five supplied fold rotations. The cell-table SHA-256
+is `c8d2ce8d413dce2b5062a3f22180bf2bf16f44859952b8dc25c6200fbd8faaf0`.
+
+This is an interim model-stage result. The label-permutation and synthetic-signal
+controls and all LaBraM stages remain required before the FACED confirmation is
+interpreted as a whole.
 
 ## Field-audit boundary
 
