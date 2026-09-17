@@ -10,6 +10,7 @@ STATUS=$DERIVED/faced_v14_all_status.tsv
 PY=${OPENAFFECT_PYTHON:-/home/lwl/miniforge3/envs/openaffect-eeg/bin/python}
 LABRAM_REPO=${LABRAM_REPOSITORY:-/home/lwl/third_party/LaBraM}
 CHECKPOINT=${LABRAM_CHECKPOINT:-$DATA/models/labram/labram-base.pth}
+LABRAM_RUNNER=${LABRAM_RUNNER:-scripts/run_labram_peft_v14.py}
 
 NVIDIA_LIBS=$(find /home/lwl/miniforge3/envs/lerobot/lib/python3.12/site-packages/nvidia -type d -name lib | paste -sd: -)
 export LD_LIBRARY_PATH="$NVIDIA_LIBS:/usr/local/cuda-13.2/extras/CUPTI/lib64:${LD_LIBRARY_PATH:-}"
@@ -57,7 +58,7 @@ PY
 
 for control in label_permutation synthetic_residual_signal; do
   out="$DERIVED/faced_labram_${control}_v14"
-  run_step "labram_${control}" "$PY" scripts/run_labram_peft_v14.py \
+  run_step "labram_${control}" "$PY" "$LABRAM_RUNNER" \
     configs/confirmatory_faced_v14_experiment.yaml "$DATA" "$ASSIGN" \
     "$LABRAM_REPO" "$CHECKPOINT" "$out" \
     --dataset faced_confirmation_v14 --control "$control"
