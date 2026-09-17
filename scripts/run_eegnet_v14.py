@@ -15,7 +15,11 @@ import yaml
 
 from openaffect_eeg.artifacts import sha256_file
 from openaffect_eeg.confirmatory_execution import split_records, write_json
-from openaffect_eeg.confirmation_controls import residual_training_targets, synthetic_target_signal
+from openaffect_eeg.confirmation_controls import (
+    residual_signal_targets,
+    residual_training_targets,
+    synthetic_target_signal,
+)
 from openaffect_eeg.final_robustness import (
     GPURegressionConfig,
     fit_gpu_regression,
@@ -42,7 +46,7 @@ def main() -> None:
     parser.add_argument("--keep-checkpoints", action="store_true")
     parser.add_argument(
         "--control",
-        choices=("observed", "label_permutation", "synthetic_signal"),
+        choices=("observed", "label_permutation", "synthetic_signal", "synthetic_residual_signal"),
         default="observed",
     )
     args = parser.parse_args()
@@ -111,6 +115,14 @@ def main() -> None:
                 folder / f"participant-00_stimulus-{stimulus_dose:02d}.tsv.gz", sep="\t"
             )
             resources = population_targets(table, assignment0, target_columns)
+            fit_tensors = tensors
+            if args.control == "synthetic_residual_signal":
+                addition = synthetic_target_signal(
+                    residual_signal_targets(resources, table, target_columns),
+                    channels=tensor_array.shape[1],
+                    samples=tensor_array.shape[2],
+                )
+                fit_tensors = tensors + torch.as_tensor(addition, device=tensors.device)
             for training_seed in training_seeds:
                 fit_seed = training_seed + assignment_seed + stimulus_dose
                 training_targets = residual_training_targets(
@@ -138,7 +150,7 @@ def main() -> None:
                         )
                         try:
                             prediction, metadata = fit_gpu_regression(
-                                tensors,
+                                fit_tensors,
                                 resources["train"].tensor_index.to_numpy(),
                                 training_targets["train"],
                                 resources["validation"].tensor_index.to_numpy(),

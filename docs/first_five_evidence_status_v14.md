@@ -5,7 +5,7 @@ completed scientific result.
 
 | Upgrade | Verified evidence | Remaining completion condition |
 |---|---|---|
-| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; 430,500 Ridge OOF rows; five-seed EEGNet observed and label-permutation stages complete | Finish the EEGNet synthetic-signal control and all LaBraM observed/control runs, then report the full prespecified sequence |
+| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; 430,500 Ridge OOF rows; five-seed EEGNet observed and label-permutation stages complete | Original raw-target positive control failed; run and report the dated residual-aligned amendment and finish all LaBraM stages |
 | Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete: 125 fits and five seeds per dataset, with no failed-fit files; FACED EEGNet observed and label-permutation stages completed with five seeds | Finish the FACED EEGNet synthetic-signal control and LaBraM observed/control sequence |
 | Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap code validated; same-data LaBraM analyses and two FACED EEGNet stages complete with 2,000/2,000 valid replicates each | Apply the same analysis to the remaining FACED synthetic-signal and LaBraM predictions |
 | Practical equivalence | CCC margins 0.05 and 0.025 were fixed before FACED label access; FACED EEGNet observed 90% interval is [-0.07962, -0.00010] and is inconclusive at both margins | Complete controls and LaBraM before interpreting the FACED confirmation as a whole |
@@ -48,6 +48,15 @@ point estimates are descriptive until the positive synthetic-signal control and
 LaBraM stages establish whether the pipeline can recover injected information.
 The label-permutation cell-table SHA-256 is
 `a4dd4784fb106110e417f81de9f5b388ff4098d7a93e0034d0ca14760d89326a`.
+
+The original EEGNet synthetic-signal control failed its required diagnostic:
+the increment was -0.14755, with a 95% interval of [-0.23976, 0.05729], rather
+than the required value above +0.10. Inspection showed that it encoded raw
+outcomes although the neural model learns residual outcomes and is added back
+to the population prior. The failed result is retained. A dated post-outcome
+amendment adds a separately named residual-aligned control; see
+`docs/confirmatory_positive_control_amendment_v14.md`. Until that amended
+control succeeds, the FACED neural result is not treated as confirmed.
 
 ## Field-audit boundary
 

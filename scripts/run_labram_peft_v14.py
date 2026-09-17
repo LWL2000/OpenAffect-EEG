@@ -20,7 +20,11 @@ import yaml
 
 from extract_labram_features import repository_commit, sha256_file
 from openaffect_eeg.confirmatory_execution import split_records
-from openaffect_eeg.confirmation_controls import residual_training_targets, synthetic_target_signal
+from openaffect_eeg.confirmation_controls import (
+    residual_signal_targets,
+    residual_training_targets,
+    synthetic_target_signal,
+)
 from openaffect_eeg.final_robustness import population_targets, prediction_table
 from openaffect_eeg.labram import EMO_64_CHANNELS
 from run_labram_finetune_v13 import fit_residual, write_json
@@ -59,7 +63,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument(
         "--control",
-        choices=("observed", "label_permutation", "synthetic_signal"),
+        choices=("observed", "label_permutation", "synthetic_signal", "synthetic_residual_signal"),
         default="observed",
     )
     parser.add_argument(
@@ -179,6 +183,16 @@ def main() -> None:
                 sep="\t",
             )
             resources = population_targets(table, assignment0, targets)
+            fit_tensors = tensors
+            if args.control == "synthetic_residual_signal":
+                import torch
+                addition = synthetic_target_signal(
+                    residual_signal_targets(resources, table, targets),
+                    channels=tensors.shape[1],
+                    samples=tensors.shape[2],
+                    amplitude=100.0 / scale_factor,
+                )
+                fit_tensors = tensors + torch.as_tensor(addition, device=tensors.device)
             for training_seed in training_seeds:
                 fit_seed = training_seed + assignment_seed + stimulus_dose
                 training_targets = residual_training_targets(
@@ -200,7 +214,7 @@ def main() -> None:
                         raise ValueError(f"Malformed cached predictions: {prediction_path}")
                 else:
                     prediction, meta = fit_residual(
-                        tensors,
+                        fit_tensors,
                         resources["train"].tensor_index.to_numpy(),
                         training_targets["train"],
                         resources["validation"].tensor_index.to_numpy(),

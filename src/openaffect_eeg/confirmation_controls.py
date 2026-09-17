@@ -8,7 +8,7 @@ def residual_training_targets(resources: dict, *, control: str, seed: int) -> di
     """Return observed or split-preserving permuted residual targets."""
     train = np.asarray(resources["train_y"] - resources["train_loo"], dtype=float)
     validation = np.asarray(resources["val_y"] - resources["val_prior"], dtype=float)
-    if control in {"observed", "synthetic_signal"}:
+    if control in {"observed", "synthetic_signal", "synthetic_residual_signal"}:
         return {"train": train, "validation": validation, "fit": np.concatenate([train, validation])}
     if control != "label_permutation":
         raise ValueError(f"Unknown confirmation control {control}")
@@ -20,6 +20,29 @@ def residual_training_targets(resources: dict, *, control: str, seed: int) -> di
         "validation": validation_permuted,
         "fit": np.concatenate([train_permuted, validation_permuted]),
     }
+
+
+def residual_signal_targets(resources: dict, trials, targets) -> np.ndarray:
+    """Build split-aligned oracle residuals for a positive-control signal.
+
+    Training and validation rows exactly match their fitted residual targets.
+    Other rows use the fit-only population prior that is used when predictions
+    are scored. This avoids injecting raw outcomes into a residual learner,
+    which would double-count the population prior at evaluation time.
+    """
+    columns = list(targets)
+    values = np.asarray(trials[columns].to_numpy(float) - resources["all_prior"], dtype=float)
+    train_index = resources["train"].tensor_index.to_numpy(int)
+    validation_index = resources["validation"].tensor_index.to_numpy(int)
+    train = np.asarray(resources["train_y"] - resources["train_loo"], dtype=float)
+    validation = np.asarray(resources["val_y"] - resources["val_prior"], dtype=float)
+    if values.shape != (len(trials), len(columns)):
+        raise ValueError("Malformed split-aligned residual signal targets")
+    values[train_index] = train
+    values[validation_index] = validation
+    if not np.isfinite(values).all():
+        raise ValueError("Split-aligned residual signal targets must be finite")
+    return values
 
 
 def synthetic_target_signal(
