@@ -5,9 +5,9 @@ completed scientific result.
 
 | Upgrade | Verified evidence | Remaining completion condition |
 |---|---|---|
-| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; 430,500 Ridge OOF rows; five-seed EEGNet observed and label-permutation and five-seed LaBraM observed stages complete | Original raw-target positive control failed; run and report the dated residual-aligned controls and finish the LaBraM control stages |
-| Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete: 125 fits and five seeds per dataset, with no failed-fit files; FACED EEGNet observed and label-permutation and FACED LaBraM observed completed with five seeds | Finish the residual-aligned EEGNet control and LaBraM control sequence |
-| Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap code validated; same-data LaBraM analyses, two FACED EEGNet stages, and FACED LaBraM observed complete with 2,000/2,000 valid replicates each | Apply the same analysis to the remaining FACED controls |
+| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; 430,500 Ridge OOF rows; five-seed EEGNet observed and label-permutation and five-seed LaBraM observed stages complete | Both the original raw-target and dated residual-aligned EEGNet positive controls failed; diagnose without suppressing either result, then complete the LaBraM controls |
+| Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete: 125 fits and five seeds per dataset, with no failed-fit files; FACED EEGNet observed and label-permutation and FACED LaBraM observed completed with five seeds | The recovery gate stopped before the LaBraM controls when the residual-aligned EEGNet positive control failed |
+| Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap code validated; same-data LaBraM analyses, three FACED EEGNet stages, and FACED LaBraM observed complete with 2,000/2,000 valid replicates each | Apply the same analysis to the remaining LaBraM controls after resolving the positive-control design |
 | Practical equivalence | CCC margins 0.05 and 0.025 were fixed before FACED label access; FACED EEGNet observed is inconclusive at both margins; FACED LaBraM observed 90% interval is [-0.01025, -0.00011] and establishes equivalence at both margins | Complete controls before interpreting the FACED confirmation as a whole |
 | Field audit | Original sampling flow retained; 24-paper public-access cohort with four papers per year validated; 24 PDF/text hashes and evidence packets created; two independent AI sensitivity codings completed and hash-locked | Harmonize the post-lock evaluation units, then have two real people independently code and lock both CSV pairs; compare agreement and adjudicate disagreements |
 
@@ -57,6 +57,14 @@ to the population prior. The failed result is retained. A dated post-outcome
 amendment adds a separately named residual-aligned control; see
 `docs/confirmatory_positive_control_amendment_v14.md`. Until that amended
 control succeeds, the FACED neural result is not treated as confirmed.
+
+The residual-aligned EEGNet control completed on 2026-09-19 and also failed:
+its mean increment was -0.05623, with a joint 95% interval of
+[-0.11926, 0.02672], rather than the required value above +0.10. All 2,000
+bootstrap iterations were valid. This rules out target alignment as a
+sufficient explanation for the first failure. The guarded sequence stopped
+before the LaBraM controls, and both EEGNet control failures remain part of the
+evidence record.
 
 ## Interim FACED LaBraM observed result
 

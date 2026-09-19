@@ -30,3 +30,23 @@ confirmed scientific finding. Both the failed original control and the amended
 control result will be reported. Confirmatory interpretation remains withheld
 until the amended control recovers the injected residual information and the
 LaBraM stages are complete.
+
+## Completed amended-control result (2026-09-19)
+
+The residual-aligned sinusoidal control also failed its diagnostic. Its
+uniform-grid mean matched CCC increment was -0.05623, with a joint 95% interval
+of [-0.11926, 0.02672] and a 90% interval of [-0.10587, 0.02459], below the
+required +0.10 increment. All 2,000 requested joint bootstrap iterations were
+valid. The prediction SHA-256 is
+`70e514d7fca135516fc97aa6195a6c84ed9adaf6cf4065d89e40aa9fc9dfd36c`; the
+cell-table SHA-256 is
+`00c865764841dba5b08d6b0714ad1539e97483477c69679a67ef03e7ad1000e5`.
+
+This second failure shows that raw-target versus residual-target alignment was
+not a sufficient explanation for the original failure. One plausible unresolved
+mechanism is that signed sinusoidal amplitude is confounded with carrier phase
+under random cropping and the model's temporal invariances. That mechanism is a
+diagnostic hypothesis, not an established cause. The guarded recovery driver
+therefore stopped before the LaBraM controls. No FACED neural result is treated
+as confirmed, and any further redesigned control must be labelled exploratory
+and retain both failed controls.
