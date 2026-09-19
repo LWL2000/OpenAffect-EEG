@@ -66,6 +66,12 @@ sufficient explanation for the first failure. The guarded sequence stopped
 before the LaBraM controls, and both EEGNet control failures remain part of the
 evidence record.
 
+A deterministic oracle-residual diagnostic produced a +0.61761 mean increment
+(200-iteration diagnostic 95% interval [0.58107, 0.67126]), showing that the
++0.10 threshold is attainable under the unchanged calibration and scoring
+pipeline. This localizes the unresolved failure to learned recovery or signal
+construction rather than to an impossible downstream metric threshold.
+
 ## Interim FACED LaBraM observed result
 
 The five-seed LaBraM observed stage completed on 2026-09-19. The uniform-grid

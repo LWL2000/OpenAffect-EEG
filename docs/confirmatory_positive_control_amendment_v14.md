@@ -50,3 +50,15 @@ diagnostic hypothesis, not an established cause. The guarded recovery driver
 therefore stopped before the LaBraM controls. No FACED neural result is treated
 as confirmed, and any further redesigned control must be labelled exploratory
 and retain both failed controls.
+
+## Threshold-attainability diagnostic
+
+A deterministic oracle check then replaced the learned residual with the exact
+outcome-minus-prior residual while preserving the frozen assignments,
+calibration, resource grid, and scoring code. Its uniform-grid mean matched CCC
+increment was +0.61761; a 200-iteration diagnostic bootstrap gave a 95% interval
+of [0.58107, 0.67126]. Thus the +0.10 threshold is attainable under the scoring
+pipeline. The failed neural controls cannot be explained by an impossible
+threshold or by the downstream CCC calculation. This oracle repeats one
+deterministic prediction under five seed labels, so it is a pipeline diagnostic,
+not evidence about training uncertainty or EEG information.
