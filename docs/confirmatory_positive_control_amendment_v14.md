@@ -62,3 +62,17 @@ pipeline. The failed neural controls cannot be explained by an impossible
 threshold or by the downstream CCC calculation. This oracle repeats one
 deterministic prediction under five seed labels, so it is a pipeline diagnostic,
 not evidence about training uncertainty or EEG information.
+
+## Exploratory signed-power pilot
+
+After the two full sinusoidal controls failed, a separately labelled one-cell
+pilot encoded positive and negative residual magnitudes in different carrier
+channels and replaced the first four input channels. This removes the
+sign-versus-phase ambiguity under random cropping. On split 0, stimulus dose 8,
+and training seed 2026091401, validation-selected EEGNet reached residual MAE
+0.03407. Its personalized combined macro CCC was 0.99611 at participant dose 0
+and 0.99614 at participant dose 8, versus prior-only CCCs of 0.34070 and
+0.52684. This supports the sign/phase mechanism and shows that the training
+pipeline can recover a crop-robust injected signal in one cell. It remains an
+exploratory post-failure diagnostic; it is neither a full-grid result nor a
+replacement for either failed control.

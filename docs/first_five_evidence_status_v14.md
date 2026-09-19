@@ -72,6 +72,12 @@ A deterministic oracle-residual diagnostic produced a +0.61761 mean increment
 pipeline. This localizes the unresolved failure to learned recovery or signal
 construction rather than to an impossible downstream metric threshold.
 
+A subsequent exploratory one-cell signed-power pilot removed the carrier
+sign/phase ambiguity and succeeded: selected validation residual MAE was
+0.03407, and personalized combined macro CCC was approximately 0.996 at both
+participant doses checked. This validates the proposed diagnostic mechanism in
+one split/resource cell only; the full grid and LaBraM controls remain pending.
+
 ## Interim FACED LaBraM observed result
 
 The five-seed LaBraM observed stage completed on 2026-09-19. The uniform-grid
