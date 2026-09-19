@@ -18,6 +18,7 @@ from openaffect_eeg.confirmatory_execution import split_records, write_json
 from openaffect_eeg.confirmation_controls import (
     residual_signal_targets,
     residual_training_targets,
+    synthetic_signed_power_signal,
     synthetic_target_signal,
 )
 from openaffect_eeg.final_robustness import (
@@ -46,7 +47,13 @@ def main() -> None:
     parser.add_argument("--keep-checkpoints", action="store_true")
     parser.add_argument(
         "--control",
-        choices=("observed", "label_permutation", "synthetic_signal", "synthetic_residual_signal"),
+        choices=(
+            "observed",
+            "label_permutation",
+            "synthetic_signal",
+            "synthetic_residual_signal",
+            "synthetic_signed_power_residual",
+        ),
         default="observed",
     )
     args = parser.parse_args()
@@ -123,6 +130,16 @@ def main() -> None:
                     samples=tensor_array.shape[2],
                 )
                 fit_tensors = tensors + torch.as_tensor(addition, device=tensors.device)
+            elif args.control == "synthetic_signed_power_residual":
+                signal = synthetic_signed_power_signal(
+                    residual_signal_targets(resources, table, target_columns),
+                    channels=tensor_array.shape[1],
+                    samples=tensor_array.shape[2],
+                )
+                fit_tensors = tensors.clone()
+                fit_tensors[:, :4, :] = torch.as_tensor(
+                    signal[:, :4, :], device=tensors.device
+                )
             for training_seed in training_seeds:
                 fit_seed = training_seed + assignment_seed + stimulus_dose
                 training_targets = residual_training_targets(

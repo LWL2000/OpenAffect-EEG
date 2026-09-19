@@ -8,7 +8,12 @@ def residual_training_targets(resources: dict, *, control: str, seed: int) -> di
     """Return observed or split-preserving permuted residual targets."""
     train = np.asarray(resources["train_y"] - resources["train_loo"], dtype=float)
     validation = np.asarray(resources["val_y"] - resources["val_prior"], dtype=float)
-    if control in {"observed", "synthetic_signal", "synthetic_residual_signal"}:
+    if control in {
+        "observed",
+        "synthetic_signal",
+        "synthetic_residual_signal",
+        "synthetic_signed_power_residual",
+    }:
         return {"train": train, "validation": validation, "fit": np.concatenate([train, validation])}
     if control != "label_permutation":
         raise ValueError(f"Unknown confirmation control {control}")

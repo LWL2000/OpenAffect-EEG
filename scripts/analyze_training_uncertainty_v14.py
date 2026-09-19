@@ -30,7 +30,13 @@ def main() -> None:
     parser.add_argument("--strict-margin", type=float, default=0.025)
     parser.add_argument(
         "--control",
-        choices=("observed", "label_permutation", "synthetic_signal", "synthetic_residual_signal"),
+        choices=(
+            "observed",
+            "label_permutation",
+            "synthetic_signal",
+            "synthetic_residual_signal",
+            "synthetic_signed_power_residual",
+        ),
         default="observed",
     )
     parser.add_argument(
@@ -64,7 +70,11 @@ def main() -> None:
             "warning": bool(estimate > 0.10),
             "rule": "warn if the primary matched CCC increment exceeds +0.10",
         }
-    elif args.control in {"synthetic_signal", "synthetic_residual_signal"}:
+    elif args.control in {
+        "synthetic_signal",
+        "synthetic_residual_signal",
+        "synthetic_signed_power_residual",
+    }:
         report["control_diagnostic"] = {
             "control": args.control,
             "minimum_expected_increment": 0.10,
