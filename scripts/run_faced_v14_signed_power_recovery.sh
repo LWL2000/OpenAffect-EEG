@@ -39,36 +39,52 @@ for dose in ("0", "8"):
         raise SystemExit(f"Signed-power pilot CCC failed at participant dose {dose}")
 PY
 
-EEGNET_POSITIVE=$DERIVED/faced_eegnet_synthetic_signed_power_residual_v14
+SUBSET_ARGS=(
+  --split-index 0 --split-index 20 --split-index 40 --split-index 60 --split-index 80
+  --stimulus-dose 0 --stimulus-dose 2 --stimulus-dose 8
+)
+
+EEGNET_POSITIVE=$DERIVED/faced_eegnet_synthetic_signed_power_residual_subset_v14
 run_step eegnet_synthetic_signed_power_residual "$PY" scripts/run_eegnet_v14.py \
   configs/confirmatory_faced_v14_experiment.yaml "$DATA" "$ASSIGN" "$EEGNET_POSITIVE" \
-  --dataset faced_confirmation_v14 --control synthetic_signed_power_residual
+  --dataset faced_confirmation_v14 --control synthetic_signed_power_residual \
+  "${SUBSET_ARGS[@]}"
 run_step eegnet_synthetic_signed_power_residual_analysis "$PY" scripts/analyze_training_uncertainty_v14.py \
   "$EEGNET_POSITIVE/identity_exposure_predictions.tsv.gz" \
-  "$DERIVED/faced_eegnet_synthetic_signed_power_residual_analysis_v14" \
+  "$DERIVED/faced_eegnet_synthetic_signed_power_residual_subset_analysis_v14" \
   --bootstrap 2000 --seed 2026091400 --control synthetic_signed_power_residual \
   --equivalence-scope exploratory
-"$PY" - "$DERIVED/faced_eegnet_synthetic_signed_power_residual_analysis_v14/training_uncertainty_summary.json" <<'PY'
+"$PY" - "$DERIVED/faced_eegnet_synthetic_signed_power_residual_subset_analysis_v14/training_uncertainty_summary.json" <<'PY'
 import json, sys
 from pathlib import Path
 if json.loads(Path(sys.argv[1]).read_text())["control_diagnostic"]["warning"]:
-    raise SystemExit("Full-grid signed-power EEGNet diagnostic failed")
+    raise SystemExit("Signed-power EEGNet diagnostic subset failed")
 PY
 
-for control in label_permutation synthetic_signed_power_residual; do
-  out="$DERIVED/faced_labram_${control}_v14"
-  run_step "labram_${control}" "$PY" "$LABRAM_RUNNER" \
-    configs/confirmatory_faced_v14_experiment.yaml "$DATA" "$ASSIGN" \
-    "$LABRAM_REPO" "$CHECKPOINT" "$out" \
-    --dataset faced_confirmation_v14 --control "$control"
-  run_step "labram_${control}_analysis" "$PY" scripts/analyze_training_uncertainty_v14.py \
-    "$out/identity_exposure_predictions.tsv.gz" \
-    "$DERIVED/faced_labram_${control}_analysis_v14" \
-    --bootstrap 2000 --seed 2026091400 --control "$control" \
-    --equivalence-scope exploratory
-done
+LABRAM_PERMUTATION=$DERIVED/faced_labram_label_permutation_v14
+run_step labram_label_permutation "$PY" "$LABRAM_RUNNER" \
+  configs/confirmatory_faced_v14_experiment.yaml "$DATA" "$ASSIGN" \
+  "$LABRAM_REPO" "$CHECKPOINT" "$LABRAM_PERMUTATION" \
+  --dataset faced_confirmation_v14 --control label_permutation
+run_step labram_label_permutation_analysis "$PY" scripts/analyze_training_uncertainty_v14.py \
+  "$LABRAM_PERMUTATION/identity_exposure_predictions.tsv.gz" \
+  "$DERIVED/faced_labram_label_permutation_analysis_v14" \
+  --bootstrap 2000 --seed 2026091400 --control label_permutation \
+  --equivalence-scope exploratory
 
-"$PY" - "$DERIVED/faced_labram_synthetic_signed_power_residual_analysis_v14/training_uncertainty_summary.json" <<'PY'
+LABRAM_POSITIVE=$DERIVED/faced_labram_synthetic_signed_power_residual_subset_v14
+run_step labram_synthetic_signed_power_residual "$PY" "$LABRAM_RUNNER" \
+  configs/confirmatory_faced_v14_experiment.yaml "$DATA" "$ASSIGN" \
+  "$LABRAM_REPO" "$CHECKPOINT" "$LABRAM_POSITIVE" \
+  --dataset faced_confirmation_v14 --control synthetic_signed_power_residual \
+  "${SUBSET_ARGS[@]}"
+run_step labram_synthetic_signed_power_residual_analysis "$PY" scripts/analyze_training_uncertainty_v14.py \
+  "$LABRAM_POSITIVE/identity_exposure_predictions.tsv.gz" \
+  "$DERIVED/faced_labram_synthetic_signed_power_residual_subset_analysis_v14" \
+  --bootstrap 2000 --seed 2026091400 --control synthetic_signed_power_residual \
+  --equivalence-scope exploratory
+
+"$PY" - "$DERIVED/faced_labram_synthetic_signed_power_residual_subset_analysis_v14/training_uncertainty_summary.json" <<'PY'
 import json, sys
 from pathlib import Path
 if json.loads(Path(sys.argv[1]).read_text())["control_diagnostic"]["warning"]:

@@ -44,6 +44,8 @@ def main() -> None:
     parser.add_argument("output", type=Path)
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--training-seed", type=int, action="append")
+    parser.add_argument("--split-index", type=int, action="append")
+    parser.add_argument("--stimulus-dose", type=int, action="append")
     parser.add_argument("--keep-checkpoints", action="store_true")
     parser.add_argument(
         "--control",
@@ -62,14 +64,24 @@ def main() -> None:
     spec = config["datasets"][args.dataset]
     if args.control != "observed" and not spec.get("prespecified_neural_controls"):
         raise ValueError("Neural controls are not prespecified for this dataset")
-    doses = tuple(int(value) for value in config["doses"])
+    participant_doses = tuple(int(value) for value in config["doses"])
+    stimulus_doses = tuple(args.stimulus_dose or participant_doses)
     training_seeds = tuple(args.training_seed or config["training_seeds"])
-    if doses != (0, 1, 2, 4, 8):
+    if participant_doses != (0, 1, 2, 4, 8):
         raise ValueError("v14 confirmation requires the locked 5x5 grid")
+    if not stimulus_doses or any(value not in participant_doses for value in stimulus_doses):
+        raise ValueError("Stimulus-dose diagnostic subset must come from the locked grid")
+    if (args.split_index or args.stimulus_dose) and args.control != "synthetic_signed_power_residual":
+        raise ValueError("Split/dose subsetting is restricted to the exploratory signed-power control")
     if len(training_seeds) != 5 or len(set(training_seeds)) != 5:
         raise ValueError("Exactly five distinct training seeds are required")
     base = args.assignments_root / args.dataset
     splits = split_records(config, base)
+    if args.split_index:
+        requested = set(args.split_index)
+        splits = [item for item in splits if int(item["split_index"]) in requested]
+        if {int(item["split_index"]) for item in splits} != requested:
+            raise ValueError("Unknown split index in diagnostic subset")
     table = pd.read_csv(base / "eligible_trials.tsv.gz", sep="\t").sort_values("trial_uid").reset_index(drop=True)
     table["tensor_index"] = np.arange(len(table))
     uids = np.load(args.data_root / spec["uids"], allow_pickle=False).astype(str)
@@ -96,9 +108,14 @@ def main() -> None:
     manifest = {
         "dataset_id": args.dataset,
         "control": args.control,
-        "scope": "Locked 5x5 resource grid, five EEGNet seeds, validation-selected learning rate.",
+        "scope": (
+            "Exploratory five-rotation, three-stimulus-dose diagnostic subset."
+            if args.split_index or args.stimulus_dose
+            else "Locked 5x5 resource grid, five EEGNet seeds, validation-selected learning rate."
+        ),
         "training_seeds": list(training_seeds),
-        "doses": list(doses),
+        "participant_doses": list(participant_doses),
+        "stimulus_doses": list(stimulus_doses),
         "split_count": len(splits),
         "source_sha256": {str(path): sha256_file(path) for path in sources},
         "input_sha256": {
@@ -117,7 +134,7 @@ def main() -> None:
     for split in splits:
         assignment_seed = int(split["assignment_seed"])
         folder = Path(split["folder_path"])
-        for stimulus_dose in doses:
+        for stimulus_dose in stimulus_doses:
             assignment0 = pd.read_csv(
                 folder / f"participant-00_stimulus-{stimulus_dose:02d}.tsv.gz", sep="\t"
             )
@@ -224,7 +241,7 @@ def main() -> None:
                     },
                 }
                 selections.append(selection)
-                for participant_dose in doses:
+                for participant_dose in participant_doses:
                     assignment = pd.read_csv(
                         folder / f"participant-{participant_dose:02d}_stimulus-{stimulus_dose:02d}.tsv.gz",
                         sep="\t",
@@ -255,7 +272,7 @@ def main() -> None:
     result.to_csv(destination, sep="\t", index=False)
     write_json(args.output / "completion.json", {
         "status": "complete",
-        "fit_candidates": len(splits) * len(doses) * len(training_seeds) * len(config["eegnet_settings"]),
+        "fit_candidates": len(splits) * len(stimulus_doses) * len(training_seeds) * len(config["eegnet_settings"]),
         "selected_fits": len(selections),
         "rows": len(result),
         "predictions_sha256": sha256_file(destination),

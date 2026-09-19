@@ -76,3 +76,21 @@ and 0.99614 at participant dose 8, versus prior-only CCCs of 0.34070 and
 pipeline can recover a crop-robust injected signal in one cell. It remains an
 exploratory post-failure diagnostic; it is neither a full-grid result nor a
 replacement for either failed control.
+
+## Cost-controlled diagnostic subset (2026-09-20)
+
+The initially launched signed-power full-grid recovery was stopped after 52 of
+5,000 EEGNet candidate fits. Successful signal recovery required roughly 96
+epochs per fit, compared with about seven epochs before early stopping in the
+failed controls. The observed throughput was about 20 fits per hour, implying
+roughly ten days for EEGNet alone. The 52 partial fits are retained as an
+incomplete computational record and are excluded from inference.
+
+Before restarting or inspecting any subset-level outcome, a cost-controlled
+exploratory diagnostic was fixed: split indices 0, 20, 40, 60, and 80; stimulus
+doses 0, 2, and 8; all five participant doses; and all five training seeds.
+This gives 150 EEGNet candidate fits across two learning rates and 75 LaBraM
+fits. The subset samples every fold rotation and the lower, middle, and upper
+stimulus-resource regimes. It tests whether the successful one-cell pilot
+generalizes across rotations, doses, and seeds, but it is not a replacement for
+the locked full 5x5 confirmation grid and cannot support a confirmatory claim.

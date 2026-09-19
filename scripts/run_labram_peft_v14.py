@@ -59,6 +59,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--trainable-final-blocks", type=int, default=4)
     parser.add_argument("--training-seed", type=int, action="append")
+    parser.add_argument("--split-index", type=int, action="append")
+    parser.add_argument("--stimulus-dose", type=int, action="append")
     parser.add_argument("--max-epochs", type=int, default=40)
     parser.add_argument("--patience", type=int, default=8)
     parser.add_argument("--batch-size", type=int, default=8)
@@ -121,15 +123,26 @@ def main() -> None:
     spec = cfg["datasets"][args.dataset]
     if args.control != "observed" and not spec.get("prespecified_neural_controls"):
         raise ValueError("Neural controls are not prespecified for this dataset")
-    doses = tuple(int(value) for value in cfg.get("doses", (0, 1, 2, 4, 8)))
-    if doses != (0, 1, 2, 4, 8):
+    participant_doses = tuple(int(value) for value in cfg.get("doses", (0, 1, 2, 4, 8)))
+    stimulus_doses = tuple(args.stimulus_dose or participant_doses)
+    if participant_doses != (0, 1, 2, 4, 8):
         raise ValueError("v14 confirmation requires the locked 5x5 dose grid")
+    if not stimulus_doses or any(value not in participant_doses for value in stimulus_doses):
+        raise ValueError("Stimulus-dose diagnostic subset must come from the locked grid")
+    if (args.split_index or args.stimulus_dose) and args.control != "synthetic_signed_power_residual":
+        raise ValueError("Split/dose subsetting is restricted to the exploratory signed-power control")
     training_seeds = tuple(args.training_seed or DEFAULT_TRAINING_SEEDS)
     if len(training_seeds) != 5 or len(set(training_seeds)) != 5:
         raise ValueError("Exactly five distinct training seeds are required")
 
     targets = tuple(spec["targets"])
     base = args.assignments_root / args.dataset
+    splits = split_records(cfg, base)
+    if args.split_index:
+        requested = set(args.split_index)
+        splits = [item for item in splits if int(item["split_index"]) in requested]
+        if {int(item["split_index"]) for item in splits} != requested:
+            raise ValueError("Unknown split index in diagnostic subset")
     table = (
         pd.read_csv(base / "eligible_trials.tsv.gz", sep="\t")
         .sort_values("trial_uid")
@@ -160,12 +173,17 @@ def main() -> None:
         "control": args.control,
         "model_repository_commit": repository_commit(args.model_repository),
         "sources": {str(path): sha256_file(path) for path in source_paths},
-        "scope": "Full 5x5 resource grid with five-seed LaBraM tail adaptation.",
+        "scope": (
+            "Exploratory five-rotation, three-stimulus-dose signed-power diagnostic subset."
+            if args.split_index or args.stimulus_dose
+            else "Full 5x5 resource grid with five-seed LaBraM tail adaptation."
+        ),
         "training_seeds": list(training_seeds),
         "trainable_final_blocks": args.trainable_final_blocks,
         "keep_checkpoints": args.keep_checkpoints,
-        "doses": list(doses),
-        "split_count": len(split_records(cfg, base)),
+        "participant_doses": list(participant_doses),
+        "stimulus_doses": list(stimulus_doses),
+        "split_count": len(splits),
         "input_sha256": {
             "tensors": sha256_file(args.data_root / spec["tensors"]),
             "uids": sha256_file(args.data_root / spec["uids"]),
@@ -180,11 +198,11 @@ def main() -> None:
 
     rows: list[pd.DataFrame] = []
     training: list[dict] = []
-    for split in split_records(cfg, base):
+    for split in splits:
         fold = int(split["split_index"])
         assignment_seed = int(split["assignment_seed"])
         folder = Path(split["folder_path"])
-        for stimulus_dose in doses:
+        for stimulus_dose in stimulus_doses:
             assignment0 = pd.read_csv(
                 folder / f"participant-00_stimulus-{stimulus_dose:02d}.tsv.gz",
                 sep="\t",
@@ -268,7 +286,7 @@ def main() -> None:
                         **meta,
                     }
                 )
-                for participant_dose in doses:
+                for participant_dose in participant_doses:
                     assignment = pd.read_csv(
                         folder
                         / f"participant-{participant_dose:02d}_stimulus-{stimulus_dose:02d}.tsv.gz",
