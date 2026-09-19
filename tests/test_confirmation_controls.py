@@ -8,6 +8,7 @@ from openaffect_eeg.confirmation_controls import (
     residual_signal_targets,
     residual_training_targets,
     synthetic_target_signal,
+    synthetic_signed_power_signal,
 )
 
 
@@ -35,6 +36,20 @@ def test_synthetic_signal_encodes_both_targets_without_touching_other_channels()
     assert not np.allclose(signal[:, 0], 0)
     assert not np.allclose(signal[:, 1], 0)
     assert np.allclose(signal[:, 2:], 0)
+
+
+def test_signed_power_signal_preserves_sign_by_channel_identity() -> None:
+    targets = np.array([[-1.0, 0.5], [0.25, -0.75], [0.0, 0.0]])
+    signal = synthetic_signed_power_signal(
+        targets, channels=6, samples=100, amplitude=2.0
+    )
+    power = np.mean(np.square(signal[:, :4]), axis=2)
+    decoded = np.column_stack(
+        [np.sqrt(power[:, 0]) - np.sqrt(power[:, 1]),
+         np.sqrt(power[:, 2]) - np.sqrt(power[:, 3])]
+    ) * np.sqrt(2.0) / 2.0
+    assert np.allclose(decoded, targets, atol=1e-6)
+    assert np.allclose(signal[:, 4:], 0)
 
 
 def test_residual_signal_targets_match_split_training_objective() -> None:
