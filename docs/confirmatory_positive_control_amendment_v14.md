@@ -94,3 +94,14 @@ fits. The subset samples every fold rotation and the lower, middle, and upper
 stimulus-resource regimes. It tests whether the successful one-cell pilot
 generalizes across rotations, doses, and seeds, but it is not a replacement for
 the locked full 5x5 confirmation grid and cannot support a confirmatory claim.
+
+The EEGNet subset completed all 150 candidate fits and selected 75 fits. The
+uniform mean matched CCC increment was +0.65124, with a joint 95% interval of
+[0.59682, 0.78544]; 1,999 of 2,000 bootstrap iterations were valid. It therefore
+passed the pre-run +0.10 diagnostic gate and supports the proposed sign/phase
+failure mechanism across the sampled rotations, doses, and seeds. The prediction
+SHA-256 is `c2a4fb48e6dea4cc0b3db21bd1f6ed3765f40e246b9f59ac828d8bcb0e7d57cc`;
+the cell-table SHA-256 is
+`972dfdbc97014b9492bbf042bec013dbea93c52fb0afc63a0bdcfb7a21d8d606`.
+This remains an exploratory pipeline diagnostic and does not repair the failed
+locked positive controls or change the status of the observed scientific result.
