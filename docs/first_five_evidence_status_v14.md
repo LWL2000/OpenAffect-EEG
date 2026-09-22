@@ -1,14 +1,14 @@
 # Evidence status for the first five upgrades (v14)
 
-Checked 2026-09-19. A computation launch or prepared form is not counted as a
+Checked 2026-09-22. A computation launch or prepared form is not counted as a
 completed scientific result.
 
 | Upgrade | Verified evidence | Remaining completion condition |
 |---|---|---|
-| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; 430,500 Ridge OOF rows; five-seed EEGNet observed and label-permutation and five-seed LaBraM observed stages complete | Both the original raw-target and dated residual-aligned EEGNet positive controls failed; diagnose without suppressing either result, then complete the LaBraM controls |
-| Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete: 125 fits and five seeds per dataset, with no failed-fit files; FACED EEGNet observed and label-permutation and FACED LaBraM observed completed with five seeds | The recovery gate stopped before the LaBraM controls when the residual-aligned EEGNet positive control failed |
-| Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap code validated; same-data LaBraM analyses, three FACED EEGNet stages, and FACED LaBraM observed complete with 2,000/2,000 valid replicates each | Apply the same analysis to the remaining LaBraM controls after resolving the positive-control design |
-| Practical equivalence | CCC margins 0.05 and 0.025 were fixed before FACED label access; FACED EEGNet observed is inconclusive at both margins; FACED LaBraM observed 90% interval is [-0.01025, -0.00011] and establishes equivalence at both margins | Complete controls before interpreting the FACED confirmation as a whole |
+| Untouched FACED confirmation | FACED v1.1.3; 123 participants; 3,444 eligible trials; no exclusions; 100 crossed splits; 2,500 resource cells; observed and label-permutation EEGNet/LaBraM stages complete | Both locked sinusoidal EEGNet positive controls failed. The redesigned positive controls passed only as post-failure exploratory subsets, so the cohort is untouched but the complete pipeline cannot be called fully preregistered confirmation |
+| Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete; FACED EEGNet and LaBraM observed stages, full-grid LaBraM label permutation (2,500 fits), and LaBraM signed-power subset (75 fits) completed with five seeds and no failed records | Computational criterion complete; interpretation retains the post-outcome-control limitation |
+| Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap complete for all reported FACED stages; 2,000/2,000 valid iterations for LaBraM label permutation and 1,999/2,000 for each signed-power subset | Computational criterion complete; arbitrary architecture and tuning-policy uncertainty remain outside the estimand |
+| Practical equivalence | Fixed CCC margins 0.05 and 0.025 applied without retroactive changes; FACED EEGNet observed is inconclusive; FACED LaBraM observed and label permutation are equivalent at both margins | Statistical criterion complete; conclusions must remain model-specific |
 | Field audit | Original sampling flow retained; 24-paper public-access cohort with four papers per year validated; 24 PDF/text hashes and evidence packets created; two independent AI sensitivity codings completed and hash-locked | Harmonize the post-lock evaluation units, then have two real people independently code and lock both CSV pairs; compare agreement and adjudicate disagreements |
 
 ## Same-data LaBraM results
@@ -73,10 +73,12 @@ pipeline. This localizes the unresolved failure to learned recovery or signal
 construction rather than to an impossible downstream metric threshold.
 
 A subsequent exploratory one-cell signed-power pilot removed the carrier
-sign/phase ambiguity and succeeded: selected validation residual MAE was
-0.03407, and personalized combined macro CCC was approximately 0.996 at both
-participant doses checked. This validates the proposed diagnostic mechanism in
-one split/resource cell only; the full grid and LaBraM controls remain pending.
+sign/phase ambiguity and succeeded. Frozen cost-controlled subsets then passed
+for both architectures. EEGNet produced +0.65124 (95% [0.59682, 0.78544]) from
+150 candidate fits; LaBraM produced +0.63032 (95% [0.57698, 0.75945]) from 75
+fits. These results show that both pipelines recover the redesigned signal, but
+remain post-failure exploratory diagnostics rather than replacements for the
+failed locked controls.
 
 ## Interim FACED LaBraM observed result
 
@@ -91,9 +93,21 @@ seeds, and five supplied fold rotations. The prediction SHA-256 is
 cell-table SHA-256 is
 `5cbce648f8f7269ee9a8165d3e76ac5c0ff3c81353c923115acdb5604df212cd`.
 
-This is a completed observed-model result, but the LaBraM permutation and
-residual-aligned positive controls remain necessary before treating it as a
-validated confirmation result.
+The full-grid LaBraM label-permutation control also completed. Its mean matched
+increment was -0.00584, with a joint 95% interval of [-0.00765, -0.00413] and
+a 90% interval of [-0.00736, -0.00442]. It did not trigger the spurious-gain
+warning and was equivalent at both margins. All 2,000 bootstrap iterations were
+valid. Its prediction SHA-256 is
+`84028e0dd5cfc76ec4025f378f4b2a11622a5e22d7a7528b372544f2b56c8499` and its
+cell-table SHA-256 is
+`da25e99b827721450d3d6a934618cf7d83974c05944c3eecd921b30ff3fbd8372`.
+
+The observed-model result is therefore supported by a well-behaved negative
+control and a successful redesigned positive diagnostic across two
+architectures. The remaining limitation is temporal: the successful positive
+diagnostic was designed after both locked controls failed, so the evidence is
+stronger than an unvalidated null result but weaker than a fully preregistered
+confirmation.
 
 ## Field-audit boundary
 

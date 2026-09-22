@@ -105,3 +105,31 @@ the cell-table SHA-256 is
 `972dfdbc97014b9492bbf042bec013dbea93c52fb0afc63a0bdcfb7a21d8d606`.
 This remains an exploratory pipeline diagnostic and does not repair the failed
 locked positive controls or change the status of the observed scientific result.
+
+## Completed LaBraM controls (2026-09-22)
+
+The full-grid LaBraM label-permutation control completed all 2,500 fits across
+100 splits, five stimulus doses, and five training seeds. Its uniform mean
+matched CCC increment was -0.00584, with a joint 95% interval of
+[-0.00765, -0.00413] and a 90% interval of [-0.00736, -0.00442]. The
+prespecified spurious-gain warning did not trigger, and the interval lies within
+both equivalence margins. All 2,000 bootstrap iterations were valid. The
+prediction SHA-256 is
+`84028e0dd5cfc76ec4025f378f4b2a11622a5e22d7a7528b372544f2b56c8499`;
+the cell-table SHA-256 is
+`da25e99b827721450d3d6a934618cf7d83974c05944c3eecd921b30ff3fbd8372`.
+
+The cost-controlled LaBraM signed-power subset completed all 75 fits. Its
+uniform mean matched CCC increment was +0.63032, with a joint 95% interval of
+[0.57698, 0.75945]; 1,999 of 2,000 bootstrap iterations were valid. It passed
+the fixed +0.10 diagnostic gate. The prediction SHA-256 is
+`f29a170d927f8a9bd5801950a1fba23bc685d91af34ca9c164dece67f5947d3a`;
+the cell-table SHA-256 is
+`7ad89211d566d50104da2feeed2790ceff24a1c9eb94fc09702a5da88c4e5de2f`.
+
+Together with the EEGNet signed-power result, this shows that both neural
+pipelines can recover the redesigned crop-robust signal across the sampled
+rotations, doses, and seeds. It strengthens the sign/phase explanation for the
+two locked-control failures, but remains post-failure exploratory evidence. It
+does not retroactively turn either failed sinusoidal control into a pass or make
+the FACED observed result fully preregistered confirmation.
