@@ -137,6 +137,8 @@ curves, simulation, and checklists are supporting mechanisms, not separate
 novelty claims. We neither audit physiological mechanisms nor claim broader
 dataset coverage or higher classification accuracy than existing EEG suites.
 
+\input{cross_domain_significance_v14}
+
 \section{Resource-Matched Evaluation}
 \subsection{Trial graph and resource contract}
 Each trial has a participant identity $i$, stimulus identity $j$, observed
@@ -451,12 +453,19 @@ unmatched comparison. Nor does every subject-independent protocol become
 invalid: a properly scoped zero-calibration claim remains meaningful. The
 resource ledger makes that scope explicit.
 
+% evidence: paper/generated/literature_resource_audit_v14/summary.json; paper/generated/literature_resource_audit_v14/paper_level_agreement.csv; paper/generated/literature_resource_audit_v14/evaluation_unit_count_diagnostic.csv; paper/generated/literature_resource_audit_v14/ADJUDICATION_REPORT.md
 The two evidence streams have different roles. Tables~\ref{tab:resource-decomposition}
 and~\ref{tab:primary-v13} change the interpretation of actual EEG predictions
 generated in this study. The external code cases validate scoped execution
 claims without reproducing an external classifier. Together they support a
-preventive evaluation workflow; they do not measure how often published EEG
-gains arose from resource mismatch.
+preventive evaluation workflow. In a protocol-locked sensitivity audit of 24
+EEG-affect papers with validated public full text, two independently locked
+model-assisted coding passes found no eligible learned no-EEG comparator
+(24/24; raw agreement 100\%). This is not evidence that those papers used an
+unmatched comparator: most did not make an incremental EEG comparison at all.
+The access-conditioned sample, automated coders, and four papers with differing
+protocol-unit counts preclude a representative prevalence claim; complete
+codes, locks, and post-lock adjudication are released.
 
 \paragraph{When is the method useful?}
 A researcher comparing encoders can hold test and labelled resources fixed; a

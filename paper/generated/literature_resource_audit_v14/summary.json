@@ -1,0 +1,23 @@
+{
+  "accessible_cohort_exact_95_interval": [
+    0.8575264022774743,
+    1.0
+  ],
+  "audit_type": "two_independent_ai_coders",
+  "both_coders_no_learned_no_eeg_comparator_count": 24,
+  "both_coders_no_learned_no_eeg_comparator_fraction": 1.0,
+  "coder_A_evaluation_count": 60,
+  "coder_B_evaluation_count": 57,
+  "exact_evaluation_key_overlap": 11,
+  "human_coder_requirement_satisfied": false,
+  "interpretation_limits": [
+    "The cohort was conditioned on validated public full-text access and is not an unbiased field-prevalence sample.",
+    "AI coders do not satisfy the preregistered requirement for two independent human coders.",
+    "Evaluation-level kappa is withheld until dataset/protocol units are harmonized after lock.",
+    "A constant category makes Cohen's kappa undefined even when raw agreement is 100 percent."
+  ],
+  "paper_count": 24,
+  "paper_level_disagreement_count": 5,
+  "papers_with_different_evaluation_unit_counts": 4,
+  "status": "dual_ai_exploratory_complete_protocol_alignment_pending"
+}

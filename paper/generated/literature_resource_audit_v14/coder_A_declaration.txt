@@ -1,0 +1,9 @@
+coder_id: A
+coder_name_or_study_identifier: 独立模型辅助编码者 A
+affiliation_or_role: AI model-assisted independent coder; not a human coder
+relationship_to_manuscript_authors: none known
+prior_involvement_in_this_project: none; no manuscript drafting or prior coding involvement
+coding_started_at: 2026-10-19 Asia/Shanghai
+coding_completed_at: 2026-10-19 Asia/Shanghai
+statement: I coded independently from the frozen coder A packet and did not inspect or discuss another coder's judgments. I am an AI model-assisted coder, not a human coder, and this declaration does not satisfy the study's two-human-coder requirement.
+signature_or_typed_name: 独立模型辅助编码者 A

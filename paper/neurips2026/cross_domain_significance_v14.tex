@@ -1,0 +1,18 @@
+\paragraph{Why the evaluation object transfers beyond EEG.}
+The general issue is attribution under unequal resources. If a component-bearing
+system is scored as $S(1,R_1;T)$ and its comparator as $S(0,R_0;T)$, their
+difference combines the component, the change from $R_0$ to $R_1$, and their
+interaction. A component-specific increment instead compares $S(1,R;T)$ with
+$S(0,R;T)$ on fixed support $T$. Related evidence shows why this distinction is
+material: higher multimodal performance need not identify cross-modal
+interaction \citep{hessel2020interactions}; controlled vision--language
+comparisons attribute many reported differences to training data and
+hyperparameters \citep{bugliarello2021unmasked}; and active learning, domain
+adaptation, and personalized federated learning change with annotation or local
+data budgets \citep{hacohen2022budget,bai2021pretrain,marfoq2022local}.
+The invariant depends on the claim: an active-learning study may treat selected
+labels as the intervention and hold annotation cost fixed, whereas a modality
+ablation that claims added information should share calibration labels. Our
+cross-domain contribution is therefore a reusable resource-contract test for
+component attribution. FACED validates its consequence for EEG; it does not
+estimate the prevalence of mismatch in other fields.

@@ -1,7 +1,8 @@
-# Final evidence conclusion for upgrades 1--5 (v14)
+# Final evidence conclusion for the v14 evidence upgrades
 
-Checked 2026-09-22 after the guarded server workflow reached
-`signed_power_recovery_all`.
+Checked 2026-10-19 after the guarded server workflow reached
+`signed_power_recovery_all`, the model-assisted field audit was locked, and the
+controlled public artifact was rerun in a clean environment.
 
 ## Results that can support the paper
 
@@ -41,15 +42,39 @@ the stopped 52-fit full-grid attempt, and the successful frozen subsets.
 
 ## Completion status
 
-The computational parts of upgrades 1--4 are finished and hash-verified. The
-pre-registered field-prevalence upgrade is not complete: two independent AI
-codings agree that all 24 accessible papers lack an eligible learned no-EEG
-comparator, but two real human coders have not independently locked and
-adjudicated their files. The accessible cohort is also selection-biased toward
-papers with public full text. These AI results may be reported as sensitivity
-or triage evidence, not as the planned human prevalence estimate.
+The computational parts of upgrades 1--4 are finished and hash-verified. Two
+new independently locked model-assisted coding passes and a separate post-lock
+adjudication are also complete. Both passes agree that all 24 accessible papers
+lack an eligible learned no-EEG comparator. Paper-level raw agreement is 100%
+for comparator presence and overall parity, but protocol unitization differs
+(60 versus 57 rows), and one target-granularity choice remains deliberately
+unresolved. The accessible cohort is selection-biased toward papers with public
+full text. These results may be reported as an exploratory sensitivity audit,
+not as the preregistered two-human prevalence estimate.
 
-Accordingly, all server experiments are complete, but the first five evidence
-upgrades as a package are not complete until the two-human audit is finished or
-the manuscript explicitly removes the human-prevalence claim and presents the
-AI audit as exploratory.
+Accordingly, all server experiments are complete. The manuscript now follows
+the second permissible path: it removes the human-prevalence claim and labels
+the model-assisted audit as exploratory. The original two-human completion
+criterion remains unmet and must not be claimed.
+
+## Artifact and cross-domain evidence
+
+A separately instructed model operator cloned the public branch, created a
+fresh Python 3.12 environment, and ran the reviewer quickstart. The first run
+correctly exposed 29 stale records in the old 280-file release manifest. After
+the repository's controlled release builder regenerated the current 365-file
+boundary, all six acceptance checks and 16 targeted tests passed, the manifest
+had zero mismatches, and a second build was byte-identical. The acceptance
+packet is deliberately labelled `author_assisted`: this is a useful independent
+execution path, but it is not an outside-person or independent-human
+reproduction and it does not reproduce full EEG training.
+
+The manuscript now states the cross-domain contribution as an identification
+argument. A component-specific gain is identified by comparing systems that
+hold the remaining resource contract fixed; changing both the component and
+resources confounds the component effect with the resource change and their
+interaction. Primary-source examples from multimodal learning, active learning,
+personalized federated learning, domain adaptation, and vision--language
+pretraining show that the same comparison issue matters beyond EEG. These
+examples support transfer of the evaluation template, not a prevalence claim
+about those fields.

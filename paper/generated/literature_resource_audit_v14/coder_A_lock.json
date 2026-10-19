@@ -1,0 +1,10 @@
+{
+  "coder_id": "A",
+  "cohort_sha256": "cf2fa665a95599942e733b59255846abe7d9befafc5844c431bdaf4bdfbc09a9",
+  "evaluation_codes_sha256": "7c48f338b0868935df3fa10104c79b6627c924e07fefb04735ae20c9a98dde4e",
+  "evaluation_count": 60,
+  "locked_at_utc": "2026-10-19T09:05:57.424539+00:00",
+  "paper_codes_sha256": "9cbe37ba3b9436d5dd03f09ef33f7be030bce48a042770dca2f4ade40b9f559e",
+  "paper_count": 24,
+  "status": "locked"
+}

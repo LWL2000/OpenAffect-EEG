@@ -1,0 +1,5 @@
+field,n,percent_agreement,cohen_kappa
+claim_type,24,95.83333333333334,0.0
+no_eeg_comparator,24,100.0,
+overall_parity,24,100.0,
+confidence,24,83.33333333333334,0.48387096774193555

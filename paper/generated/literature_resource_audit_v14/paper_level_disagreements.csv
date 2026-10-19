@@ -1,0 +1,6 @@
+paper_id,field,coder_A,coder_B
+P034,claim_type,eeg_prediction_only,method_comparison
+P028,confidence,high,medium
+X2302,confidence,low,medium
+X2503,confidence,high,medium
+P014,confidence,high,medium

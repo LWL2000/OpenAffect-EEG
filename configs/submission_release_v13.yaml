@@ -37,11 +37,14 @@ include:
 - docs/REVIEWER_QUICKSTART.md
 - docs/independent_acceptance_form.md
 - docs/independent_acceptance_task_zh.md
+- docs/cross_domain_significance_v14.md
+- docs/model_assisted_field_audit_v14.md
 - paper/README.md
 - paper/references.bib
 - paper/citation_audit.tsv
 - paper/benchmark_data_card.md
 - paper/neurips2026/main.tex
+- paper/neurips2026/cross_domain_significance_v14.tex
 - paper/neurips2026/main.pdf
 - paper/neurips2026/supplement.tex
 - paper/neurips2026/evidence_appendix.tex
@@ -50,6 +53,7 @@ include:
 - paper/neurips2026/figures/**
 - paper/generated/claim_ledger.tsv
 - paper/generated/claim_values.tex
+- paper/generated/literature_resource_audit_v14/**
 - paper/generated/submission_build_report.json
 - paper/generated/evidence_argument_v10/**
 - paper/generated/submission_closure_v11/**

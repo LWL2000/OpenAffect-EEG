@@ -21,6 +21,7 @@ include:
   - paper/benchmark_data_card.md
   - paper/figure_plan_zh.json
   - paper/neurips2026/main.tex
+  - paper/neurips2026/cross_domain_significance_v14.tex
   - paper/neurips2026/main.pdf
   - paper/neurips2026/supplement.tex
   - paper/neurips2026/checklist.tex
@@ -28,6 +29,7 @@ include:
   - paper/neurips2026/figures/**
   - paper/generated/claim_ledger.tsv
   - paper/generated/claim_values.tex
+  - paper/generated/literature_resource_audit_v14/**
   - paper/generated/seedv_case_study.json
   - paper/generated/music_labram_cross_dataset_audit_v1.json
   - paper/generated/music_eeg_external_audit_v2.json
@@ -68,6 +70,8 @@ include:
   - docs/reproduction_report.md
   - docs/research_protocol.md
   - docs/neurips_ed_v1_results.md
+  - docs/cross_domain_significance_v14.md
+  - docs/model_assisted_field_audit_v14.md
   - docs/labram_results.md
   - docs/public_release.md
   - docs/cross_dataset_foundation_audit.md
@@ -102,6 +106,7 @@ required_files:
   - paper/benchmark_data_card.md
   - paper/figure_plan_zh.json
   - paper/neurips2026/main.tex
+  - paper/neurips2026/cross_domain_significance_v14.tex
   - paper/neurips2026/main.pdf
   - paper/chinese_reading/OpenAffect-EEG-zh.pdf
   - paper/generated/competitive_revision_v3/primary_values.tex
@@ -129,6 +134,7 @@ required_files:
   - paper/neurips2026/neurips_2026.sty
   - paper/generated/claim_ledger.tsv
   - paper/generated/claim_values.tex
+  - paper/generated/literature_resource_audit_v14/README.md
   - paper/generated/table_identity_exposure_claims.csv
   - paper/generated/identity_exposure_v1/analysis/table_identity_exposure_cells.csv
   - paper/generated/identity_exposure_v1/analysis/table_identity_exposure_deployment.csv
