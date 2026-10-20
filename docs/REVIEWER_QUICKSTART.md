@@ -1,4 +1,4 @@
-# Reviewer quickstart
+# Reviewer quickstart: v14 integrated evidence
 
 This artifact requires Python 3.11 or 3.12 and does not download EEG data,
 stimulus media, feature arrays, or model weights during acceptance testing.
@@ -28,6 +28,20 @@ runs `pip check`, executes the synthetic audit, rebuilds the source-linked
 evidence summaries with their frozen hashes, and verifies the V13 five-block
 block-$t$ derivation and simulation artifacts. The final release manifest
 records every included file.
+
+The current release additionally validates every v14 archived summary and cell
+table, checks that the complete resource grids reproduce their primary means
+and equivalence decisions, and rebuilds all manuscript v14 tables from those
+public aggregates. No training, simulation or bootstrap is repeated. For just
+this check, run:
+
+```bash
+python scripts/build_v14_paper_assets.py --verify --output v14-table-check
+```
+
+`docs/v14_reproduction.md` describes the separate data-owner workflow for full
+scientific reproduction. Archived invocation labels do not overrule the failed
+locked-control limitation. Average equivalence is not cellwise equivalence.
 
 A passing report establishes executable behavior on the tested machine. It is
 independent-user evidence only if the operator did not participate in artifact

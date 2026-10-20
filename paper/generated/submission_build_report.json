@@ -1,16 +1,28 @@
 {
-  "content_pages": 9,
+  "content_pages": 8,
   "final_figure_count": 5,
   "missing_final_figures": [],
   "mode": "draft",
   "page_limit": 9,
   "pdf": {
     "path": "paper/neurips2026/main.pdf",
-    "sha256": "169ae4523e48db234b8f69f9687795b36985d4a08bbd6ed3c64358e2af7e3945",
-    "size_bytes": 732722
+    "sha256": "fe069ebb83dc41551bd28988fc0b3b5b27a5e3eb53991357ba4bf51ead88bb9f",
+    "size_bytes": 807777
   },
   "status": "pass",
   "text_audits": {
+    "cross_domain_significance_v14": {
+      "citation_count": 5,
+      "claim_reference_count": 0,
+      "error_count": 0,
+      "status": "pass"
+    },
+    "development_evidence_v13": {
+      "citation_count": 4,
+      "claim_reference_count": 0,
+      "error_count": 0,
+      "status": "pass"
+    },
     "evidence_appendix": {
       "citation_count": 6,
       "claim_reference_count": 0,
@@ -18,7 +30,7 @@
       "status": "pass"
     },
     "main": {
-      "citation_count": 21,
+      "citation_count": 17,
       "claim_reference_count": 0,
       "error_count": 0,
       "status": "pass"
@@ -32,6 +44,18 @@
     "supplement": {
       "citation_count": 16,
       "claim_reference_count": 110,
+      "error_count": 0,
+      "status": "pass"
+    },
+    "v14_results": {
+      "citation_count": 4,
+      "claim_reference_count": 0,
+      "error_count": 0,
+      "status": "pass"
+    },
+    "v14_supplement": {
+      "citation_count": 2,
+      "claim_reference_count": 0,
       "error_count": 0,
       "status": "pass"
     }

@@ -12,6 +12,7 @@ from pathlib import Path
 from openaffect_eeg.submission import build_submission
 from openaffect_eeg.evidence_argument import build_argument
 from openaffect_eeg.submission_closure import build_submission_closure
+from openaffect_eeg.v14_evidence import build_assets
 
 
 def parse_args() -> argparse.Namespace:
@@ -23,31 +24,31 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--require-final-figures", action="store_true")
     parser.add_argument("--forbid", action="append", default=[])
+    parser.add_argument("--reuse-existing-evidence", action="store_true", help="Compile from existing evidence without rebuilding older analyses or claims.")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
     project_root = args.project_root.resolve()
-    build_argument(project_root / "paper/generated/final_closure_v9",
-                   project_root / "paper/generated/evidence_argument_v10")
-    build_submission_closure(
-        project_root,
-        project_root / "paper/generated/submission_closure_v11",
-    )
-    claim_build = subprocess.run(
-        [sys.executable, str(project_root / "scripts" / "append_identity_exposure_claims.py")],
-        cwd=project_root,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    if claim_build.returncode != 0:
-        raise RuntimeError(
-            "Identity-exposure claim build failed:\n"
-            + claim_build.stdout
-            + claim_build.stderr
+    if not args.reuse_existing_evidence:
+        build_argument(project_root / "paper/generated/final_closure_v9",
+                       project_root / "paper/generated/evidence_argument_v10")
+        build_submission_closure(
+            project_root,
+            project_root / "paper/generated/submission_closure_v11",
         )
+        claim_build = subprocess.run(
+            [sys.executable, str(project_root / "scripts" / "append_identity_exposure_claims.py")],
+            cwd=project_root,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if claim_build.returncode != 0:
+            raise RuntimeError("Identity-exposure claim build failed:\n" + claim_build.stdout + claim_build.stderr)
+    if (project_root / "paper/generated/evidence_v14/archive_manifest.json").is_file():
+        build_assets(project_root)
     report = build_submission(
         project_root,
         require_final_figures=args.require_final_figures,

@@ -1,0 +1,15 @@
+{
+  "arousal_ccc_delta_mean": 0.0011775459753232962,
+  "ccc_delta_uniform_mean": -0.0019980730308064303,
+  "executed_cell_count": 2500,
+  "executed_cell_metrics_sha256": "f11848c7bbbe231659b2621e8f4b9ab92f56444b64f3b83b73e67b058652fb08",
+  "joint_uncertainty_available": false,
+  "participants": 123,
+  "resource_cells": 25,
+  "scope": "Descriptive aggregation of already executed deterministic Ridge cell metrics; no refitting, new predictions, resampling or equivalence inference.",
+  "source_predictions_sha256": "5b7b2f7edb1667835c313e4e17d0da1ee438f2c4bac25080fc7f934f1a426ab1",
+  "split_count": 100,
+  "status": "complete_descriptive_archive",
+  "stimuli": 28,
+  "valence_ccc_delta_mean": -0.005173692036936159
+}

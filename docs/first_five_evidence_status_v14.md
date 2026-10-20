@@ -1,5 +1,9 @@
 # Evidence status for the first five upgrades (v14)
 
+Historical chronology checked 2026-09-22; current integration checked 2026-10-20.
+The headings marked interim below are retained chronological records. See
+`final_evidence_conclusion_v14.md` and the public `evidence_v14` archive for current status.
+
 Checked 2026-09-22. A computation launch or prepared form is not counted as a
 completed scientific result.
 
@@ -9,14 +13,14 @@ completed scientific result.
 | Strong models and five seeds | ds005540 and ds006850 LaBraM final-four-block adaptation complete; FACED EEGNet and LaBraM observed stages, full-grid LaBraM label permutation (2,500 fits), and LaBraM signed-power subset (75 fits) completed with five seeds and no failed records | Computational criterion complete; interpretation retains the post-outcome-control limitation |
 | Training uncertainty | Joint participant/stimulus, executed-seed, and supplied-rotation bootstrap complete for all reported FACED stages; 2,000/2,000 valid iterations for LaBraM label permutation and 1,999/2,000 for each signed-power subset | Computational criterion complete; arbitrary architecture and tuning-policy uncertainty remain outside the estimand |
 | Practical equivalence | Fixed CCC margins 0.05 and 0.025 applied without retroactive changes; FACED EEGNet observed is inconclusive; FACED LaBraM observed and label permutation are equivalent at both margins | Statistical criterion complete; conclusions must remain model-specific |
-| Field audit | Original sampling flow retained; 24-paper public-access cohort with four papers per year validated; 24 PDF/text hashes and evidence packets created; two independent AI sensitivity codings completed and hash-locked | Harmonize the post-lock evaluation units, then have two real people independently code and lock both CSV pairs; compare agreement and adjudicate disagreements |
+| Field audit | Original sampling flow retained; 24-paper public-access cohort with four papers per year validated; 24 PDF/text hashes and evidence packets created; two independent AI sensitivity codings completed and hash-locked | Two newly locked model-assisted passes and post-lock adjudication are complete; the manuscript uses an exploratory audit. The original two-human criterion remains unmet; this is a project protocol condition, not a universal venue requirement |
 
 ## Same-data LaBraM results
 
 These are sensitivity evidence on the two existing datasets, not confirmation
 cohorts and not a field-wide conclusion.
 
-| Dataset | Uniform-grid mean matched EEG CCC increment | 95% interval | 90% equivalence interval | Decision at ±0.05 / ±0.025 |
+| Dataset | Uniform-grid mean matched EEG CCC increment | 95% interval | 90% equivalence interval | Decision at 卤0.05 / 卤0.025 |
 |---|---:|---:|---:|---|
 | ds005540 | -0.04127 | [-0.06902, -0.01120] | [-0.06549, -0.01628] | inconclusive / inconclusive |
 | ds006850 | -0.04178 | [-0.07553, -0.00644] | [-0.06975, -0.01237] | inconclusive / inconclusive |
@@ -31,7 +35,7 @@ The five-seed observed EEGNet stage completed on 2026-09-16. The uniform-grid
 mean matched EEG CCC increment is -0.04139, with a joint 95% interval of
 [-0.08747, 0.00017]. The prespecified 90% equivalence interval is
 [-0.07962, -0.00010], so equivalence is not established at either the primary
-±0.05 margin or the strict ±0.025 sensitivity margin. All 2,000 requested
+卤0.05 margin or the strict 卤0.025 sensitivity margin. All 2,000 requested
 bootstrap iterations were valid and included 123 participants, 28 stimuli,
 five training seeds, and five supplied fold rotations. The cell-table SHA-256
 is `c8d2ce8d413dce2b5062a3f22180bf2bf16f44859952b8dc25c6200fbd8faaf0`.
@@ -85,11 +89,11 @@ failed locked controls.
 The five-seed LaBraM observed stage completed on 2026-09-19. The uniform-grid
 mean matched EEG CCC increment is -0.00532, with a joint 95% interval of
 [-0.01124, 0.00085]. The prespecified 90% equivalence interval is
-[-0.01025, -0.00011], establishing equivalence at both the primary ±0.05 margin
-and the strict ±0.025 sensitivity margin. All 2,000 requested bootstrap
+[-0.01025, -0.00011], establishing equivalence at both the primary 卤0.05 margin
+and the strict 卤0.025 sensitivity margin. All 2,000 requested bootstrap
 iterations were valid and included 123 participants, 28 stimuli, five training
 seeds, and five supplied fold rotations. The prediction SHA-256 is
-`1dd155dbca9b6bd3e1d8c34ed514db78ec6b8dbb92da3ba8f298caa7985dd0231`; the
+`1dd155dbca9b6bd3e1d8c34ed514db78ec6b8dbb92da3ba8f298ca7985dd0231`; the
 cell-table SHA-256 is
 `5cbce648f8f7269ee9a8165d3e76ac5c0ff3c81353c923115acdb5604df212cd`.
 
@@ -100,7 +104,7 @@ warning and was equivalent at both margins. All 2,000 bootstrap iterations were
 valid. Its prediction SHA-256 is
 `84028e0dd5cfc76ec4025f378f4b2a11622a5e22d7a7528b372544f2b56c8499` and its
 cell-table SHA-256 is
-`da25e99b827721450d3d6a934618cf7d83974c05944c3eecd921b30ff3fbd8372`.
+`da25e99b827721450d3d6a934618cf7d83974c05944c3eecd921b30f3fbd8372`.
 
 The observed-model result is therefore supported by a well-behaved negative
 control and a successful redesigned positive diagnostic across two

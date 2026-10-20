@@ -1,0 +1,175 @@
+\section{V14 Evidence, Frozen Analysis and Reproduction Boundaries}
+\label{app:v14}
+This appendix is the current v14 evidence layer. The following development
+appendices preserve earlier analyses on their original supports. Their use of
+``primary'' refers to their own frozen development plan, not to the prospective
+FACED design. All v14 tables here are rebuilt from archived aggregate files;
+the manuscript integration reruns no training, bootstrap or simulation.
+
+\subsection{Pinned FACED acquisition and assignment}
+% evidence: docs/confirmatory_faced_v14_protocol.md; docs/confirmatory_faced_structural_amendment_v14.md; docs/faced_ingestion_summary_v14.json; docs/faced_assignment_summary_v14.json
+The source is FACED on NEMAR, nm000112 v1.1.3, under CC BY 4.0
+\citep{chen2023faced,nemar2026faced}. The protocol was locked on 14 September
+2026 before EEG samples or participant rating values were read. The cohort
+contains 123 complete participants and 28 videos; all 3,444 trials pass the
+complete-support rule without post-outcome exclusions. Eligibility requires
+readable BDF, exactly one valid presentation of every video, at least 30 seconds
+ending at video offset, finite ratings and finite selected EEG samples. No
+rating is imputed and no outcome-dependent artefact rejection is performed.
+
+% evidence: docs/confirmatory_faced_structural_amendment_v14.md; docs/faced_remote_preflight_summary_v14.json; docs/faced_signal_qc_summary_v14.json
+Header-only preflight found 61 legacy and 62 modern channel schemas and
+sampling rates of 1000 Hz (68 files) or 250 Hz (55 files). The pre-outcome
+amendment renames legacy temporal channels and uses their common 30-channel
+scalp intersection, excluding A1/A2 or horizontal EOG channels. Video end is
+mapped to its nearest sample, then exactly 30 seconds are taken backwards.
+After conversion to microvolts, common-average reference and a fourth-order
+zero-phase 0.5--45 Hz Butterworth bandpass use two-second reflections of the
+within-video window. Polyphase resampling yields 30 by 3,000 samples.
+No post-video rating-period signal enters the padding. Ratings use
+$(y-3.5)/3.5$. The Ridge view is per-channel log10 Welch power in five fixed
+bands with a two-second window; it is a completed sanity baseline, not a new
+neural model or a separately claimed confirmation result.
+
+% evidence: paper/generated/evidence_v14/ridge_descriptive.csv
+All 2,500 already executed Ridge cell records are retained as scalar metric
+rows with source-record hashes. Their descriptive uniform mean is
+$\FacedRidgeMean$ CCC (valence $-0.0052$, arousal $+0.0012$). These are means
+of the existing cell scores; no new prediction or bootstrap was run. No joint
+Ridge interval was archived, so we do not assign a significance or equivalence
+decision to these point summaries.
+
+% evidence: configs/confirmatory_faced_v14_experiment.yaml; docs/faced_assignment_summary_v14.json
+Five participant folds and four stimulus folds give 20 test cross-products per
+rotation. The five rotation seeds are 20260914, 20260931, 20260948, 20260965
+and 20260982; the global split index runs from zero to 99. Population fitting
+excludes test participants and initially excludes test stimuli; nonzero
+stimulus doses add declared ratings from other participants by replacing donor
+rows. Participant calibration remains outside population fitting. Each
+rotation covers every eligible trial once, but rotations and seeds are not
+additional independent participants. The recorded 17,220 rows per full-grid
+cell count repeated trial occurrences across rotations; there are still only
+3,444 distinct eligible trials and 123 independent participant identities.
+
+\subsection{Neural training and uncertainty}
+% evidence: scripts/run_eegnet_v14.py; scripts/run_labram_peft_v14.py; scripts/run_labram_finetune_v13.py; configs/confirmatory_faced_v14_experiment.yaml
+EEGNet uses learning rates $10^{-3}$ and $10^{-4}$, dropout 0.25, AdamW weight
+decay $10^{-4}$, batch size 128, at most 100 epochs and patience 15.
+LaBraM adapts the final four transformer blocks, final normalization and a
+linear regression head, with backbone/head learning rates $10^{-5}/10^{-3}$,
+AdamW weight decay 0.01, batch size eight, at most 40 epochs and patience eight.
+Training uses random ten-second crops; evaluation is deterministic. Validation
+MAE selects duration, followed by full refitting on permitted training plus
+validation trials. Training seeds are 2026091401 through 2026091405.
+Participant-dose changes use post-fit calibration and do not cause redundant
+EEG retraining. Checkpoints, pretraining exposure and arbitrary hyperparameter
+search policies remain outside the observable claim contract.
+
+% evidence: src/openaffect_eeg/training_uncertainty.py; paper/generated/evidence_v14/all_results.csv; docs/confirmatory_faced_v14_protocol.md
+The analysis computes a CCC per target on each scoring split, pairs predictors
+before averaging, and shares participant--stimulus multiplicities across
+compared predictors and resource cells. Executed seeds and fully refitted
+rotations are resampled within the frozen numerical procedure. Percentile 95\%
+estimation intervals and 90\% TOST-compatible decision intervals use 2,000
+requested draws; all full-grid stages have 2,000 valid draws and each
+signed-power subset has 1,999. Cell CSVs additionally report MAE differences,
+pointwise intervals and a max-absolute-deviation simultaneous band. This
+bootstrap's coverage is not independently established by the older Gaussian
+five-block simulations: those validate the older fixed-fit development
+statistic only. Five seeds and five rotations also do not cover every possible
+model, tuning strategy or acquisition domain.
+
+% evidence: docs/confirmatory_faced_v14_protocol.md; paper/generated/evidence_v14/all_results.csv
+The primary equivalence margin $\pm0.05$ and strict sensitivity margin
+$\pm0.025$ were fixed before FACED label access. They operationalize two
+absolute CCC resolutions, not a patient-, user- or task-validated minimum
+important effect. We report the continuous estimate and both decision
+intervals so readers can apply another justified bound. Equivalence is limited
+to the average of the declared cells and targets. Older development datasets
+have no prospective equivalence claim, and no FACED per-target or subgroup
+equivalence is inferred from the pooled mean.
+
+\input{../generated/evidence_v14/controls}
+
+\subsection{Complete control chronology and source integrity}
+% evidence: docs/confirmatory_positive_control_amendment_v14.md; paper/generated/evidence_v14/all_results.csv
+The original raw-outcome sinusoid failed the EEGNet $+0.10$ recovery gate.
+Because the model learns an outcome-minus-prior residual and adds it to the
+prior, raw-target encoding could double-count that prior. The dated
+17 September amendment encoded the residual, but the second completed control
+also failed. A deterministic oracle residual attained $+0.6176$, showing the
+gate is attainable under the scoring code, not proving neural learnability.
+A subsequent single-cell signed-power pilot separated residual signs across
+channels, reducing carrier phase ambiguity under random crops. This is a
+post-failure mechanism hypothesis and diagnostic, not a preregistered test.
+
+% evidence: docs/confirmatory_positive_control_amendment_v14.md; paper/generated/evidence_v14/all_results.csv
+The signed-power full-grid attempt was stopped after 52 of 5,000 EEGNet
+candidate fits because of measured cost; its partial record is excluded from
+inference. Before the subset restart, split indices $0,20,40,60,80$, stimulus
+doses $0,2,8$, all five participant doses and all five training seeds were
+fixed. This yields 150 EEGNet candidates (75 selected) and 75 LaBraM fits. Its
+realized support includes 85 participants and 23 videos. Both models recover
+the redesigned signal, with the intervals in Table~\ref{tab:v14-controls};
+neither replaces a failed full-grid control. The LaBraM full-grid permutation
+has 2,500 fits and no spurious-positive warning. Completed controls, failed
+controls, the stopped attempt and their different supports are disclosed
+without changing observed predictions or original margins.
+
+% evidence: paper/generated/evidence_v14/archive_manifest.json; paper/generated/evidence_v14/build_report.json
+Ten completed neural analysis sets are released as immutable summary JSONs and
+cell CSVs with source SHA-256 records. The paper builder checks every source
+hash, complete cell key set, primary mean and equivalence decision before
+formatting tables. Original machine fields labelled \texttt{confirmatory}
+record the invocation scope; the paper's interpretation explicitly withholds
+fully preregistered confirmation because the locked controls failed. A
+resource-corner table retains every corner for both FACED architectures;
+neither signs nor significance select the displayed cases. Ridge completion,
+ingestion, structural-QC and assignment summaries are also released. Trial-level
+predictions, participant identifiers, tensors and weights remain excluded.
+
+\subsection{Model-assisted literature coding and independent execution}
+% evidence: paper/generated/literature_resource_audit_v14/summary.json; paper/generated/literature_resource_audit_v14/ADJUDICATION_REPORT.md; docs/model_assisted_field_audit_v14.md
+The literature sampling frame and coding manual were frozen before coding.
+The original main/reserve cohort suffered access attrition; a dated amendment
+continued the same hash order to form a 24-paper public-full-text sensitivity
+cohort, four papers per year in 2021--2026. Two separately instructed model
+operators locked their codes before comparison. Both found no eligible learned
+no-EEG comparator in 24/24 papers. Raw agreement is 100\% for comparator
+presence and parity, but Cohen's kappa is undefined for a constant category.
+Claim type agreed in 23/24 papers; confidence agreed in 20/24. The operators
+created 60 versus 57 protocol units; post-lock adjudication resolved omissions
+and material splits for three papers, while one target-granularity choice
+remains unresolved. No protocol-level kappa is inferred from unaligned units.
+The coders share a model family and may share errors. This does not meet the
+original two-human condition or estimate representative mismatch prevalence;
+absence of a comparator is not evidence of an invalid comparison.
+
+The separately instructed artifact operator used a clean Python environment.
+The initial public quickstart exposed a stale release manifest; the controlled
+builder and synchronized manifest repaired that failure. The final checks
+verify executable software and aggregate evidence reconstruction, not full
+raw-to-paper EEG retraining. The acceptance type remains
+\texttt{author\_assisted}, with no independent-human claim. Model assistance
+also supported coding, software maintenance and manuscript drafting; authors
+are responsible for source checks and all scientific interpretations.
+
+\subsection{Reproduction modes and computational boundary}
+The reviewer quickstart validates the release, executes a synthetic contract
+example, rebuilds earlier source-linked cases and rebuilds all v14 result
+tables from the public aggregate archive. The following v14 command performs
+only deterministic verification and formatting:
+\begin{verbatim}
+python scripts/build_v14_paper_assets.py --verify \
+  --output /tmp/openaffect-v14-table-check
+\end{verbatim}
+Full scientific reproduction is a separate, explicit data-owner workflow:
+obtain pinned source files, run the released signal/QC and assignment CLIs,
+execute EEGNet or LaBraM with the frozen configurations, and run the joint
+analysis on locally retained predictions. The command map, including all
+failed controls and the fixed diagnostic subset, is in
+\texttt{docs/v14\_reproduction.md}. The manuscript integration itself repeats
+none of those experiments. Exact wall-clock and energy totals were not logged
+consistently across all earlier runs, so no complete training-cost claim is
+made. A remaining scientific limitation is that strong synthetic recovery
+cannot establish sensitivity to all realistic EEG effects.

@@ -5,18 +5,20 @@ NeurIPS Evaluations & Datasets submission.
 
 ## Current writing artifacts
 
-The V13 final-review manuscript integrates resource-matched contrasts from
-the frozen V9 results, topology-matched evaluator diagnostics, post-primary
-partition/initialization/fine-tuning checks, and a source-linked claim repair.
+The current V14 English manuscript integrates the completed FACED observed and
+control stages, five-seed adapted LaBraM, joint seed/rotation uncertainty and
+pre-outcome average-equivalence bounds. Failed controls remain visible. The
+frozen development results, evaluator diagnostics and source-linked cases are
+retained with their original scope. See `../docs/v14_reproduction.md` and
+`generated/evidence_v14/README.md` for the synchronized evidence and release.
 See `reviews/evaluation_argument_evidence_v10_zh.md`
 for the original claim-to-evidence argument. The versioned reviewer artifact is
 available through the anonymous URL recorded in the manuscript and Croissant
 metadata.
 
-- `manuscript_zh.md`: Chinese mother manuscript with inline frozen-claim IDs.
-- `supplement_zh.md`: Chinese supplementary-methods and evidence-boundary draft.
-- `chinese_reading/OpenAffect-EEG-zh.pdf`: local Chinese reading edition, rebuilt
-  together with the English manuscript by `scripts/build_paper_bundle.py`.
+- `manuscript_zh.md`, `supplement_zh.md`, and the Chinese reading PDF: historical
+  pre-v14 reading drafts, not the synchronized current submission or part of the
+  v14 controlled archive.
 - `benchmark_data_card_zh.md`: benchmark-level data card.
 - `references.bib`: verified manuscript bibliography.
 - `citation_audit.tsv`: persistent identifier, verification status, and intended

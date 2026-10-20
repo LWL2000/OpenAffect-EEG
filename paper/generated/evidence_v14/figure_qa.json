@@ -1,0 +1,33 @@
+{
+  "boundary_violation_count": 0,
+  "controls": "All negative, failed positive and exploratory positive controls appear in Table S and the public archive, rather than being overlaid on these observed-data grids.",
+  "dpi": 300,
+  "grayscale": "paper/generated/evidence_v14/faced_matched_heatmap_grayscale.png",
+  "height_inches": 3.45,
+  "minimum_font_pt": 7.2,
+  "overlap_count": 0,
+  "permitted_conclusion": "The model-specific uniform means and heterogeneous point estimates differ; interval/equivalence inference applies to the mean, not all cells.",
+  "publication_format": "Provisional NeurIPS 2026 reference template, pending next-venue guidance",
+  "redundant_encoding": "Every cell prints its signed value; hue is not the only encoding.",
+  "reviewer_passes": {
+    "scientific_fidelity": "pass: values trace to the archived complete grids; mean intervals and control boundary are explicit",
+    "skeptical_review": "pass: fixed test support, seed/rotation scope, control table and average-versus-cell distinction stated",
+    "visual_hierarchy": "pass: actual 5.5-inch manuscript width, minimum font 7.2pt, printed cell values and grayscale inspected"
+  },
+  "scale": [
+    -0.1,
+    0.1
+  ],
+  "scientific_question": "Does matched EEG added value vary across participant and stimulus label-resource doses?",
+  "sources": {
+    "paper/generated/evidence_v14/archive/faced_eegnet_observed/cells.csv": "c8d2ce8d413dce2b5062a3f22180bf2bf16f44859952b8dc25c6200fbd8faaf0",
+    "paper/generated/evidence_v14/archive/faced_eegnet_observed/summary.json": "061f48eaaae6e287ce733dbb92a565794582e58b8d90f5c715363d50f5ea581c",
+    "paper/generated/evidence_v14/archive/faced_labram_observed/cells.csv": "5cbce648f8f7269ee9a8165d3e76ac5c0ff3c81353c923115acdb5604df212cd",
+    "paper/generated/evidence_v14/archive/faced_labram_observed/summary.json": "a60f0b2757c8fa896431459476844c44218558b6146e87d8109c02cdcea56ddf"
+  },
+  "status": "pass",
+  "uncertainty": "Archived joint intervals under each heatmap; pointwise and simultaneous cell bands released in archive/cells.csv.",
+  "unsupported_conclusion": "No individual heatmap cell is certified equivalent or evidence of universal EEG absence.",
+  "whole_page_preview": "paper/generated/evidence_v14/qa/heatmap_page.png",
+  "width_inches": 5.5
+}

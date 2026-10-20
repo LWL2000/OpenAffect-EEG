@@ -1,0 +1,14 @@
+% evidence: paper/generated/evidence_v14/all_results.csv
+\begin{table}[t]\centering\small
+\caption{Existing five-seed adapted-model evidence. FACED intervals jointly resample participants, stimuli, executed training seeds and five fully refitted rotations; development-task intervals hold their single rotation fixed. Equivalence decisions apply to the uniform-grid mean and use the 90\% interval. Failed locked controls limit the FACED confirmation claim.}
+\label{tab:v14-primary}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}l l r X l@{}}\toprule
+Dataset & Model & $\Delta$CCC & 95\% interval & Decision\\\midrule
+FACED & EEGNet & $-0.0414$ & $[-0.0875, +0.0002]$ & uncertain \\
+FACED & LaBraM tail & $-0.0053$ & $[-0.0112, +0.0009]$ & equivalent$^{*}$ \\
+EmoEEG-MC & LaBraM tail & $-0.0413$ & $[-0.0690, -0.0112]$ & negative \\
+Urban & LaBraM tail & $-0.0418$ & $[-0.0755, -0.0064]$ & negative \\
+\bottomrule\end{tabularx}
+\vspace{2pt}\parbox{\linewidth}{\footnotesize $^{*}$FACED LaBraM also meets the narrower $\pm0.025$ margin. Development-task margins were not prespecified and are not used for a confirmatory equivalence claim.}
+\end{table}

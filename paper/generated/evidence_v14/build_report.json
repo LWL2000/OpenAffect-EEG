@@ -1,0 +1,17 @@
+{
+  "analysis_count": 10,
+  "experimental_computation_run": false,
+  "outputs": {
+    "all_results.csv": "782451646c88cf224f0508154bb2138ef9f4fcc9de5ad02bac012917bbd21ccf",
+    "cases.tex": "aa14a97fe1811593353228b21dd4a175565b7cddd10c1944c8e6fe0771765d6a",
+    "controls.tex": "60a94fb266c87ef86abbac1d6cf392bd12b136ac46c51a3689839616190b83c5",
+    "primary.tex": "fa68251e2c84b7f0d4bf402e65bbb830ae9191436b1e0338d627ea4804de2a38",
+    "resource_corners.csv": "079ba5f9afccd1fb1de72a58c34d7eeefa462eb100cb2985dc96165e9990545b",
+    "ridge_descriptive.csv": "3e84bbac01f8ee3acd210ee7e4aab0026530dea656ba08aff863e37e72d58530",
+    "system_attribution_cases.csv": "61fb879fb1533bf3d1d3f6de3737f27bb9780cb30a0c50cf9af00bcfaa69b2b6",
+    "values.tex": "fddc344be15fbcac5c52435b00ec5a51a5e49e30c12c0cf65881be8790cb25e6"
+  },
+  "ridge_executed_cells": 2500,
+  "source_file_count": 20,
+  "status": "pass"
+}

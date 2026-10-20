@@ -1,0 +1,189 @@
+{
+  "analyses": [
+    {
+      "analysis_id": "faced_eegnet_observed",
+      "condition": "observed",
+      "dataset": "FACED",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_observed/summary.json",
+          "sha256": "061f48eaaae6e287ce733dbb92a565794582e58b8d90f5c715363d50f5ea581c",
+          "source": "derived/faced_eegnet_observed_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_observed/cells.csv",
+          "sha256": "c8d2ce8d413dce2b5062a3f22180bf2bf16f44859952b8dc25c6200fbd8faaf0",
+          "source": "derived/faced_eegnet_observed_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "EEGNet"
+    },
+    {
+      "analysis_id": "faced_labram_observed",
+      "condition": "observed",
+      "dataset": "FACED",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_labram_observed/summary.json",
+          "sha256": "a60f0b2757c8fa896431459476844c44218558b6146e87d8109c02cdcea56ddf",
+          "source": "derived/faced_labram_observed_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_labram_observed/cells.csv",
+          "sha256": "5cbce648f8f7269ee9a8165d3e76ac5c0ff3c81353c923115acdb5604df212cd",
+          "source": "derived/faced_labram_observed_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "LaBraM tail"
+    },
+    {
+      "analysis_id": "faced_eegnet_permutation",
+      "condition": "label permutation",
+      "dataset": "FACED",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_permutation/summary.json",
+          "sha256": "76000fbd618c5ca40a5133f7aa50e5b1a52c649d46cea7178d6a7f0c52c5b961",
+          "source": "derived/faced_eegnet_label_permutation_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_permutation/cells.csv",
+          "sha256": "a4dd4784fb106110e417f81de9f5b388ff4098d7a93e0034d0ca14760d89326a",
+          "source": "derived/faced_eegnet_label_permutation_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "EEGNet"
+    },
+    {
+      "analysis_id": "faced_labram_permutation",
+      "condition": "label permutation",
+      "dataset": "FACED",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_labram_permutation/summary.json",
+          "sha256": "a7daeba6b8609a57493e1c40e8a428503a65c1150ca3f57701323a683e74d5d3",
+          "source": "derived/faced_labram_label_permutation_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_labram_permutation/cells.csv",
+          "sha256": "da25e99b827721450d3d6a934618cf7d83974c05944c3eecd921b30f3fbd8372",
+          "source": "derived/faced_labram_label_permutation_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "LaBraM tail"
+    },
+    {
+      "analysis_id": "faced_eegnet_raw_sinusoid",
+      "condition": "raw-target sinusoid",
+      "dataset": "FACED",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_raw_sinusoid/summary.json",
+          "sha256": "f558da791d888dce36b2c1a9267cf0cfa2480e34d437a40c8ed7292e49761d6d",
+          "source": "derived/faced_eegnet_synthetic_signal_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_raw_sinusoid/cells.csv",
+          "sha256": "41cf9ae45f8172d676ba50b508a89881884dc472b6b5332a93d372263ad4569c",
+          "source": "derived/faced_eegnet_synthetic_signal_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "EEGNet"
+    },
+    {
+      "analysis_id": "faced_eegnet_residual_sinusoid",
+      "condition": "residual sinusoid",
+      "dataset": "FACED",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_residual_sinusoid/summary.json",
+          "sha256": "1f705996864cb34ae2b0536944da751e7ff4d9518f8e399fa56158820cd3c0b6",
+          "source": "derived/faced_eegnet_synthetic_residual_signal_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_residual_sinusoid/cells.csv",
+          "sha256": "00c865764841dba5b08d6b0714ad1539e97483477c69679a67ef03e7ad1000e5",
+          "source": "derived/faced_eegnet_synthetic_residual_signal_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "EEGNet"
+    },
+    {
+      "analysis_id": "faced_eegnet_signed_power",
+      "condition": "signed-power subset",
+      "dataset": "FACED subset",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_signed_power/summary.json",
+          "sha256": "e78b9a1709984aa2d7974c8a7449c927b33abbf3cc62489f29dafe6789d2e91b",
+          "source": "derived/faced_eegnet_synthetic_signed_power_residual_subset_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_eegnet_signed_power/cells.csv",
+          "sha256": "972dfdbc97014b9492bbf042bec013dbea93c52fb0afc63a0bdcfb7a21d8d606",
+          "source": "derived/faced_eegnet_synthetic_signed_power_residual_subset_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "EEGNet"
+    },
+    {
+      "analysis_id": "faced_labram_signed_power",
+      "condition": "signed-power subset",
+      "dataset": "FACED subset",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_labram_signed_power/summary.json",
+          "sha256": "1fe43420f6587bc1723eae762f00df090049e36272a6f6a99a1c059fed8f73ec",
+          "source": "derived/faced_labram_synthetic_signed_power_residual_subset_analysis_v14/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/faced_labram_signed_power/cells.csv",
+          "sha256": "7ad89211d566d50104da2feeed2790ceff24a1c9eb94fc09702a5da8c4e5de2f",
+          "source": "derived/faced_labram_synthetic_signed_power_residual_subset_analysis_v14/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "LaBraM tail"
+    },
+    {
+      "analysis_id": "emo_labram_adapted",
+      "condition": "observed sensitivity",
+      "dataset": "EmoEEG-MC",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/emo_labram_adapted/summary.json",
+          "sha256": "d59292fe7f4d987c367d01c46332d8562d0ac32cf058e835c6c76d6c1d4194a5",
+          "source": "derived/training_uncertainty_v14/ds005540_labram/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/emo_labram_adapted/cells.csv",
+          "sha256": "705f72c579f19dd33ccdd21835e8959006838d66a5a64f78be435275af5ca0f9",
+          "source": "derived/training_uncertainty_v14/ds005540_labram/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "LaBraM tail"
+    },
+    {
+      "analysis_id": "urban_labram_adapted",
+      "condition": "observed sensitivity",
+      "dataset": "Urban",
+      "files": [
+        {
+          "path": "paper/generated/evidence_v14/archive/urban_labram_adapted/summary.json",
+          "sha256": "414fd6c7183de3f2ec01b32712ef37e0ed23934f273a4cfd9dd416a5e7a6caf9",
+          "source": "derived/training_uncertainty_v14/ds006850_labram/training_uncertainty_summary.json"
+        },
+        {
+          "path": "paper/generated/evidence_v14/archive/urban_labram_adapted/cells.csv",
+          "sha256": "42d04e8494bef18894e4417ebbf038580d7b3c6c267adcbbedfc3894e6521716",
+          "source": "derived/training_uncertainty_v14/ds006850_labram/training_uncertainty_cells.csv"
+        }
+      ],
+      "model": "LaBraM tail"
+    }
+  ],
+  "data_policy": "Aggregate summaries and cell statistics only; no EEG, trial predictions, participant IDs or fitted weights.",
+  "execution": "Reuses existing results; no fitting, simulation, bootstrap or download.",
+  "interpretation": "Archived equivalence_scope fields record the original analysis invocation. Failed locked controls prevent calling the complete FACED pipeline a fully preregistered confirmation.",
+  "schema_version": "1.0",
+  "status": "archived"
+}

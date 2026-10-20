@@ -1,0 +1,14 @@
+% evidence: paper/generated/evidence_v14/all_results.csv
+\begin{table}[htbp]\centering\small
+\caption{All completed FACED neural controls, including failures. Signed-power rows use an exploratory subset with 85 participants, 23 observed stimulus identities, 15 resource cells and five sampled split indices; they do not replace either failed full-grid control.}
+\label{tab:v14-controls}
+\begin{tabularx}{\linewidth}{@{}l l r X l@{}}\toprule
+Model & Control & $\Delta$CCC & 95\% interval & Gate\\\midrule
+EEGNet & label permutation & $-0.0400$ & $[-0.0856, +0.0002]$ & pass \\
+LaBraM tail & label permutation & $-0.0058$ & $[-0.0077, -0.0041]$ & pass \\
+EEGNet & raw-target sinusoid & $-0.1476$ & $[-0.2398, +0.0573]$ & warning \\
+EEGNet & residual sinusoid & $-0.0562$ & $[-0.1193, +0.0267]$ & warning \\
+EEGNet & signed-power subset & $+0.6512$ & $[+0.5968, +0.7854]$ & pass \\
+LaBraM tail & signed-power subset & $+0.6303$ & $[+0.5770, +0.7595]$ & pass \\
+\bottomrule\end{tabularx}
+\end{table}

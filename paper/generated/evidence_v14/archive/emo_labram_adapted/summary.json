@@ -1,0 +1,176 @@
+{
+  "assignment_seeds": [
+    20260908,
+    20260909,
+    20260910,
+    20260911,
+    20260912
+  ],
+  "bootstrap_iterations_requested": 2000,
+  "bootstrap_iterations_valid": 2000,
+  "bootstrap_seed": 2026091400,
+  "boundary": "Includes identity, executed training-seed, and supplied fold-rotation uncertainty. A single supplied rotation remains fixed; arbitrary architecture and tuning-policy uncertainty is not covered.",
+  "cell_table_sha256": "705f72c579f19dd33ccdd21835e8959006838d66a5a64f78be435275af5ca0f9",
+  "control_diagnostic": {
+    "control": "observed",
+    "warning": false
+  },
+  "equivalence_scope": "exploratory",
+  "fold_rotation_count": 1,
+  "fold_rotation_seeds": [
+    null
+  ],
+  "grid": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      8
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      8
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      4,
+      1
+    ],
+    [
+      4,
+      2
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      8,
+      0
+    ],
+    [
+      8,
+      1
+    ],
+    [
+      8,
+      2
+    ],
+    [
+      8,
+      4
+    ],
+    [
+      8,
+      8
+    ]
+  ],
+  "input_predictions_sha256": "852cff71d7be21cb55142c22f5012c6a0e2b3e550075b5c3c655896ae5c88982",
+  "participants": 30,
+  "primary": {
+    "ci_95": [
+      -0.06902002533657468,
+      -0.011201216331295285
+    ],
+    "equivalence_primary": {
+      "alpha_each_side": 0.05,
+      "decision": "inconclusive",
+      "decision_interval_90": [
+        -0.06548924580206579,
+        -0.01627994947420724
+      ],
+      "established": false,
+      "margin": 0.05
+    },
+    "equivalence_strict_sensitivity": {
+      "alpha_each_side": 0.05,
+      "decision": "inconclusive",
+      "decision_interval_90": [
+        -0.06548924580206579,
+        -0.01627994947420724
+      ],
+      "established": false,
+      "margin": 0.025
+    },
+    "estimand": "uniform mean matched EEG CCC increment over resource cells",
+    "estimate": -0.04127196194202152
+  },
+  "resampling": "Shared participant-by-stimulus multiplicities and resampled executed training seeds and supplied fold rotations.",
+  "simultaneous_cell_band": {
+    "confidence": 0.95,
+    "method": "bootstrap max absolute deviation",
+    "radius": 0.10324866085414663
+  },
+  "status": "complete",
+  "stimuli": 42,
+  "targets": [
+    "valence",
+    "arousal"
+  ],
+  "test_rows_per_cell": 252,
+  "training_seed_count": 5,
+  "training_seeds": [
+    2026091401,
+    2026091402,
+    2026091403,
+    2026091404,
+    2026091405
+  ]
+}

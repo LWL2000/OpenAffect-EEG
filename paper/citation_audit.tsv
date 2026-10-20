@@ -50,3 +50,4 @@ bugliarello2021unmasked	10.1162/tacl_a_00408	https://aclanthology.org/2021.tacl-
 hacohen2022budget	pmlr:v162-hacohen22a	https://proceedings.mlr.press/v162/hacohen22a.html	2026-10-19	verified	Active-learning conclusions depend on the labelled-data budget
 bai2021pretrain	10.18653/v1/2021.emnlp-main.409	https://aclanthology.org/2021.emnlp-main.409/	2026-10-19	verified	Domain adaptation trades annotation and pretraining resources under a fixed budget
 marfoq2022local	pmlr:v162-marfoq22a	https://proceedings.mlr.press/v162/marfoq22a.html	2026-10-19	verified	Personalized federated evaluation isolates local-data size while holding the global model fixed
+nemar2026faced	doi:10.82901/nemar.nm000112	https://nemar.org/dataset/nm000112	2026-10-20	verified_metadata	NEMAR version v1.1.3, 123 participants, 28 videos and license verified; original FACED authors credited via chen2023faced

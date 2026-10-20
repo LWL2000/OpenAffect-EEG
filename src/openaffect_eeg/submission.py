@@ -240,6 +240,13 @@ def build_submission(
             paper_dir / "reviewer_revision_appendix.tex", bibliography, ledger,
             citation_audit, forbidden_patterns=forbidden_patterns, source_root=root,
         )
+    for component in ("v14_results", "v14_supplement", "development_evidence_v13", "cross_domain_significance_v14"):
+        if rf"\input{{{component}}}" in main.read_text(encoding="utf-8"):
+            text_audits[component] = audit_manuscript(
+                paper_dir / f"{component}.tex", bibliography, ledger,
+                citation_audit, forbidden_patterns=forbidden_patterns,
+                source_root=root,
+            )
     failed_text_audits = [
         name for name, audit in text_audits.items() if audit["status"] != "pass"
     ]

@@ -3,11 +3,12 @@ message: "Please cite the OpenAffect-EEG paper and the upstream datasets and mod
 title: "OpenAffect-EEG: Auditing EEG Added Value Under Matched Label Resources"
 type: software
 version: 0.3.0
-date-released: 2026-09-11
+date-released: 2026-10-20
 license: MIT
 authors:
   - family-names: "Anonymous"
     given-names: "OpenAffect-EEG authors"
 abstract: >-
-  An executable, claim-locked benchmark for subject, stimulus, context, and
-  dataset isolation in trial-level EEG affect evaluation.
+  An executable, resource-matched evaluation design for EEG added value,
+  with fixed-support participant/stimulus label-dose grids, a versioned
+  v14 evidence archive, and explicit deployment-claim boundaries.

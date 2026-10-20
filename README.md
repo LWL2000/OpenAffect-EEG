@@ -6,16 +6,28 @@ non-EEG predictors with matched resources. It does not establish causal or
 latent-emotion disentanglement. The anonymous review artifact contains no raw
 EEG, stimulus media, participant-level predictions, feature arrays, or weights.
 
-## Current revision: V13
+## Current revision: V14 evidence integration
 
-[Revision, limitations, and reproduction commands](docs/reviewer_revision_v13.md)
-include the complete matched-increment heatmap and an executed five-block
-coverage study. The primary block-t interval is supported for the predeclared
-uniform-grid mean on the tested topology; cellwise ranges remain descriptive.
-Primary EEG predictions and training records are reused. Post-primary evidence
-adds a fully refitted alternative identity partition, three EEGNet
-initialization schedules at the resource corners, and bounded last-block
-LaBraM fine-tuning; these remain same-data sensitivity checks.
+[Current evidence, limits and reproduction](docs/v14_reproduction.md) now match
+the English manuscript, FACED main heatmap and complete control appendix.
+Ten completed neural analysis sets are released as immutable aggregate JSON/CSV
+files. They include FACED EEGNet and final-four-block-adapted LaBraM across five
+training seeds and five fully refitted rotations, both label permutations,
+both failed EEGNet sinusoidal controls, exploratory signed-power subsets, and
+five-seed LaBraM sensitivities on the two development tasks.
+
+FACED LaBraM's mean matched CCC increment is -0.0053 with 95% interval
+[-0.0112, 0.0009], within the pre-outcome ±0.05 and ±0.025 average-equivalence
+boundaries. EEGNet remains inconclusive. Failed locked controls prevent calling
+the complete pipeline fully preregistered confirmation. The signed-power
+subsets do not replace them. The original development grids and their fixed-fit
+block-t validation remain supporting evidence with a separate scope.
+
+The [integration record](docs/v14_integration_report.md) and
+[novelty/case boundaries](docs/novelty_and_practical_cases_v14.md) identify what
+changed. Manuscript integration repeats no model fitting, bootstrap, simulation
+or dataset download. The retained `neurips2026` folder is a reference template
+pending the next venue's official instructions.
 
 ## Reviewer acceptance
 
@@ -34,6 +46,18 @@ python scripts/verify_review_artifact.py \
 ```
 
 This acceptance path does not download restricted data or retrain EEG models.
+It also rebuilds all v14 tables from the public aggregate archive and checks
+their source hashes, grid coverage, means and equivalence decisions.
+
+To verify only the v14 tables:
+
+```bash
+python scripts/build_v14_paper_assets.py --verify --output v14-table-check
+```
+
+The two literature coding passes and the separate artifact operator are
+model-assisted roles. Their results are explicitly labelled exploratory or
+author-assisted; no two-human audit or independent-human reproduction is claimed.
 
 ## Server layout
 
@@ -43,7 +67,7 @@ This acceptance path does not download restricted data or retrain EEG models.
 
 Raw recordings, derivatives, caches, and model weights must never be committed.
 
-## Public workflow modes
+## Historical benchmark workflow modes
 
 The benchmark has three explicit entry points. `metadata` validates the public
 contract, Croissant metadata, and evaluation cards without reading EEG;
@@ -62,6 +86,8 @@ python scripts/run_benchmark.py full \
 
 See `docs/reproducibility.md`, `cards/datasets`, and `cards/models` for the
 public artifact boundary, environment roles, and model-specific limitations.
+These original workflow modes keep their historical data coverage. The current
+FACED source-data workflow is separately specified in `docs/v14_reproduction.md`.
 
 ## Initial dataset tiers
 

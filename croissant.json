@@ -13,15 +13,20 @@
       "@type": "@vocab"
     },
     "field": "cr:field",
-    "recordSet": "cr:recordSet"
+    "recordSet": "cr:recordSet",
+    "source": "cr:source",
+    "fileObject": "cr:fileObject",
+    "extract": "cr:extract",
+    "column": "cr:column",
+    "key": "cr:key"
   },
   "@type": "sc:Dataset",
   "name": "OpenAffect-EEG Metadata and Evaluation Benchmark",
-  "description": "Leakage-resistant trial metadata, frozen split definitions, evaluation cards, aggregate audit results, and reproducibility code for auditing what EEG affect models predict. Raw EEG, derived feature arrays, and restricted stimuli are not distributed.",
+  "description": "Resource-matched EEG evaluation code, fixed-support label-resource protocols, frozen development evidence, FACED v14 aggregate results and control failures. Raw EEG, individual predictions, features, restricted stimuli and model weights are not distributed.",
   "url": "https://anonymous.4open.science/r/OpenAffect-EEG-1815/",
-  "version": "0.3.0",
+  "version": "v14_evidence_integration_20261020",
   "dateCreated": "2026-08-31",
-  "dateModified": "2026-09-11",
+  "dateModified": "2026-10-20",
   "license": "https://spdx.org/licenses/MIT.html",
   "creator": [
     {
@@ -44,7 +49,7 @@
     "Experiments",
     "Self-reporting"
   ],
-  "rai:dataCollectionRawData": "Authoritative source recordings, event files, and dataset terms are available from OpenNeuro datasets ds002721, ds003751, ds005540, and ds006866. Users obtain source data independently and must follow each source's access and reuse terms.",
+  "rai:dataCollectionRawData": "Authoritative sources include OpenNeuro ds002721, ds003751, ds005540, ds006850 and ds006866, and NEMAR FACED nm000112 v1.1.3. Users obtain each source independently under its terms; no new participant data were collected.",
   "rai:dataCollectionMissingData": "Availability differs by source and trial. The public release records label availability and does not impute missing self-report values. Some source modalities, recordings, stimuli, and restricted derivatives are intentionally absent from the release.",
   "rai:dataAnnotationAnalysis": "Affect targets are normalized from source-provided self-report scales into valence and arousal where documented. Nominal stimulus labels and source ratings are retained only as documented metadata and are never silently substituted for participant self-reports.",
   "rai:dataUseCases": [
@@ -55,7 +60,10 @@
   "rai:dataLimitations": [
     "This is an evaluation metadata resource, not a redistribution of raw EEG, precomputed features, audiovisual stimuli, or foundation-model checkpoints.",
     "Emotion labels are heterogeneous source self-reports with imperfect agreement; benchmark scores must not be interpreted as direct readouts of private affect.",
-    "Not every source supports every isolation protocol, and the benchmark must report unavailable cells rather than fill them with proxy results."
+    "Not every source supports every isolation protocol, and the benchmark must report unavailable cells rather than fill them with proxy results.",
+    "FACED average equivalence is specific to the declared model, resource grid, targets and pre-outcome margins. Failed locked controls prevent a fully preregistered complete-pipeline confirmation claim.",
+    "The literature audit uses correlated model-assisted coders and an access-conditioned cohort; it is not two-human or representative field-prevalence evidence.",
+    "The reviewer quickstart validates software and aggregate reconstruction, not independent-human or full raw-to-paper EEG reproduction."
   ],
   "rai:dataBiases": [
     "Participant samples, elicitation paradigms, devices, preprocessing, and rating scales differ across source studies.",
@@ -103,6 +111,15 @@
       "description": "Authoritative OpenNeuro source; users obtain recordings under source terms.",
       "contentUrl": "https://openneuro.org/datasets/ds006866",
       "encodingFormat": "text/html"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "v14-results",
+      "name": "V14 completed neural analysis aggregates",
+      "description": "All ten completed neural analysis sets, including failed controls; confidence intervals are already computed, not resampled by the artifact check.",
+      "contentUrl": "https://anonymous.4open.science/api/repo/OpenAffect-EEG-1815/file/paper/generated/evidence_v14/all_results.csv",
+      "encodingFormat": "text/csv",
+      "sha256": "782451646c88cf224f0508154bb2138ef9f4fcc9de5ad02bac012917bbd21ccf"
     }
   ],
   "recordSet": [
@@ -112,13 +129,41 @@
       "description": "Harmonized trial-level identities, contexts, label availability, and source self-report targets permitted by the source terms.",
       "key": "trial_uid",
       "field": [
-        {"@type": "cr:Field", "name": "trial_uid", "dataType": "Text"},
-        {"@type": "cr:Field", "name": "dataset_id", "dataType": "Text"},
-        {"@type": "cr:Field", "name": "subject_uid", "dataType": "Text"},
-        {"@type": "cr:Field", "name": "stimulus_uid", "dataType": "Text"},
-        {"@type": "cr:Field", "name": "context", "dataType": "Text"},
-        {"@type": "cr:Field", "name": "target_valence", "dataType": "Float"},
-        {"@type": "cr:Field", "name": "target_arousal", "dataType": "Float"}
+        {
+          "@type": "cr:Field",
+          "name": "trial_uid",
+          "dataType": "Text"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "dataset_id",
+          "dataType": "Text"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "subject_uid",
+          "dataType": "Text"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "stimulus_uid",
+          "dataType": "Text"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "context",
+          "dataType": "Text"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "target_valence",
+          "dataType": "Float"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "target_arousal",
+          "dataType": "Float"
+        }
       ]
     },
     {
@@ -127,10 +172,151 @@
       "description": "Versioned complete-trial train, validation, test, and preexcluded roles for fixed protocol seeds.",
       "key": "trial_uid",
       "field": [
-        {"@type": "cr:Field", "name": "protocol", "dataType": "Text"},
-        {"@type": "cr:Field", "name": "seed", "dataType": "Integer"},
-        {"@type": "cr:Field", "name": "trial_uid", "dataType": "Text"},
-        {"@type": "cr:Field", "name": "split", "dataType": "Text"}
+        {
+          "@type": "cr:Field",
+          "name": "protocol",
+          "dataType": "Text"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "seed",
+          "dataType": "Integer"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "trial_uid",
+          "dataType": "Text"
+        },
+        {
+          "@type": "cr:Field",
+          "name": "split",
+          "dataType": "Text"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "name": "v14_neural_aggregate_results",
+      "description": "Completed model/condition analyses, not independent participant records.",
+      "key": "analysis_id",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "name": "analysis_id",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "analysis_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "dataset",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "dataset"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "model",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "model"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "condition",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "condition"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "estimate",
+          "dataType": "Float",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "estimate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "ci95_low",
+          "dataType": "Float",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "ci95_low"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "ci95_high",
+          "dataType": "Float",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "ci95_high"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "equivalence_005",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "equivalence_005"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "name": "equivalence_0025",
+          "dataType": "Text",
+          "source": {
+            "fileObject": {
+              "@id": "v14-results"
+            },
+            "extract": {
+              "column": "equivalence_0025"
+            }
+          }
+        }
       ]
     }
   ]

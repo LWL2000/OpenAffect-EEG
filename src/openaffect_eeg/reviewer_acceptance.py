@@ -165,6 +165,13 @@ def run_reviewer_acceptance(project_root: Path, output: Path) -> dict[str, objec
 
     _record_check(checks, "block_t_primary_validation", block_t_check)
 
+    if (project_root / "paper/generated/evidence_v14/archive_manifest.json").is_file():
+        from openaffect_eeg.v14_evidence import verify_assets
+        _record_check(
+            checks, "v14_frozen_aggregate_rebuild",
+            lambda: verify_assets(project_root, output / "rebuilt-v14"),
+        )
+
     status = "pass" if checks and all(item["status"] == "pass" for item in checks) else "fail"
     report = {
         "schema_version": "1.0",

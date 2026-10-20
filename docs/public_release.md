@@ -1,5 +1,12 @@
 # Anonymous public release
 
+The current policy is v14 evidence integration (2026-10-20), mirrored by
+`configs/submission_release_v14.yaml` and `configs/public_release.yaml`.
+It includes the synchronized English manuscript, FACED aggregates, protocols,
+portable CLIs, the two model-assisted literature codes, and the v14 rebuilding
+check. The V11 commands below are historical examples, not the current release.
+See `v14_reproduction.md` for the current command map and scientific limits.
+
 ## Build
 
 ```bash
